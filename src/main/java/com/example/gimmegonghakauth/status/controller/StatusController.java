@@ -1,7 +1,7 @@
 package com.example.gimmegonghakauth.status.controller;
 
+import com.example.gimmegonghakauth.abeek.service.GonghakAbeekService;
 import com.example.gimmegonghakauth.common.constant.AbeekTypeConst;
-import com.example.gimmegonghakauth.status.service.MyAbeekService;
 import com.example.gimmegonghakauth.status.service.dto.AbeekDetailsDto;
 import com.example.gimmegonghakauth.status.service.dto.CourseDetailsDto;
 import com.example.gimmegonghakauth.status.service.dto.GonghakRecommendCoursesDto;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class StatusController {
 
-    private final MyAbeekService myAbeekService;
+    private final GonghakAbeekService gonghakAbeekService;
 
     // 사용자의 공학인증 현황과 추천 과목을 가져온다.
     @GetMapping("/status")
@@ -34,7 +34,7 @@ public class StatusController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long studentId = Long.parseLong(userDetails.getUsername());
 
-        MyAbeekResponse response = myAbeekService.getUserResult(studentId);
+        MyAbeekResponse response = gonghakAbeekService.getUserResult(studentId);
 
         addResultPoint(model, response.gonghakResultDto());
         addCoursesDetails(model, response.gonghakResultDto());

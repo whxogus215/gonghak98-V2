@@ -2,6 +2,7 @@ package com.example.gimmegonghakauth.status.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.example.gimmegonghakauth.abeek.service.GonghakAbeekService;
 import com.example.gimmegonghakauth.common.constant.AbeekTypeConst;
 import com.example.gimmegonghakauth.common.domain.CoursesDomain;
 import com.example.gimmegonghakauth.common.domain.MajorsDomain;
@@ -29,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 class MyAbeekServiceTest {
 
     @Autowired
-    private MyAbeekService myAbeekService;
+    private GonghakAbeekService gonghakAbeekService;
 
     @Autowired
     private UserService userService;
@@ -56,7 +57,7 @@ class MyAbeekServiceTest {
         UserDomain user = createTestUserWithSingleCompletedCourse(courseId);
 
         // when
-        MyAbeekResponse result = myAbeekService.getUserResult(user.getStudentId());
+        MyAbeekResponse result = gonghakAbeekService.getUserResult(user.getStudentId());
 
         // then
         ResultPointDto userResult = result.gonghakResultDto().getUserResult().get(findAbeekType).getResultPoint();
@@ -76,7 +77,7 @@ class MyAbeekServiceTest {
         UserDomain user = createTestUserWithSingleCompletedCourse(courseId);
 
         // when
-        MyAbeekResponse result = myAbeekService.getUserResult(user.getStudentId());
+        MyAbeekResponse result = gonghakAbeekService.getUserResult(user.getStudentId());
 
         // then
         List<IncompletedCoursesDto> recommendCourses = result.recommendCourses().recommendCourses().get(findAbeekType);
