@@ -1,0 +1,13 @@
+package com.gonghak98.V2.common.infrastructure;
+
+import com.gonghak98.V2.common.domain.MajorsDomain;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MajorsDao  extends JpaRepository<MajorsDomain, Long> {
+    MajorsDomain findByMajor(String Major);
+
+    Optional<MajorsDomain> findById(Long id);
+}
