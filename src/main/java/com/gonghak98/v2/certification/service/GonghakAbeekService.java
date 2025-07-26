@@ -1,4 +1,4 @@
-package com.gonghak98.v2.abeek.service;
+package com.gonghak98.v2.certification.service;
 
 import com.gonghak98.v2.status.service.dto.MyAbeekResponse;
 
