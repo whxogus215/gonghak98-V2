@@ -1,6 +1,6 @@
 package com.gonghak98.v2.status.controller;
 
-import com.gonghak98.v2.abeek.service.GonghakAbeekService;
+import com.gonghak98.v2.certification.service.GonghakAbeekService;
 import com.gonghak98.v2.common.constant.AbeekTypeConst;
 import com.gonghak98.v2.status.service.dto.AbeekDetailsDto;
 import com.gonghak98.v2.status.service.dto.CourseDetailsDto;

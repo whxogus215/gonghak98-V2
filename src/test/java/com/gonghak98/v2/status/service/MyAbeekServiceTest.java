@@ -2,7 +2,7 @@ package com.gonghak98.v2.status.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.abeek.service.GonghakAbeekService;
+import com.gonghak98.v2.certification.service.GonghakAbeekService;
 import com.gonghak98.v2.common.constant.AbeekTypeConst;
 import com.gonghak98.v2.common.domain.CoursesDomain;
 import com.gonghak98.v2.common.domain.MajorsDomain;
