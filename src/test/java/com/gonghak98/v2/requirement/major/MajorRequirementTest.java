@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class MajorRequirementTest {
 
@@ -17,19 +18,30 @@ public class MajorRequirementTest {
     class 전자정보통신공학과 {
 
         @DisplayName("전공영역은 설계, 실험, 일반, 선후수 세부요건을 검사할 수 있다.")
-        @Test
-        void 전공영역_검사() {
+        @CsvSource(value = {"디지털논리회로", "전기회로실험", "기초광학및실험", "전자소자공정실험", "마이크로컴퓨터실험"})
+        @ParameterizedTest
+        void 전공영역_검사(String studentLabCourseName) {
             //given
-            CompletedCourse completedCourse = new CompletedCourse("전기회로실험");
+            CompletedCourse completedCourse = CompletedCourse.builder().name(studentLabCourseName).point(3).build();
+
             Set<String> essentialLabCourses = Set.of("디지털논리회로", "전기회로실험", "기초광학및실험", "전자소자공정실험", "마이크로컴퓨터실험");
-            int minCount = 1;
-            MajorRequirement majorRequirement = new MajorRequirement(new LabMajor(essentialLabCourses, minCount));
+            LabMajor labMajor = new LabMajor(essentialLabCourses, 1);
+
+            Set<String> GENERAL_COURSES = Set.of(
+                "전기회로", "신호및시스템", "기초설계", "물리전자공학", "전자회로1",
+                "통신이론", "전자기1", "기초반도체", "데이터통신", "디지털신호처리",
+                "광전자공학", "컴퓨터네트워크", "디지털통신시스템", "음성처리", "영상처리"
+            );
+            GeneralMajor generalMajor = new GeneralMajor(GENERAL_COURSES, 24);
+
+            MajorRequirement majorRequirement = new MajorRequirement(labMajor, generalMajor);
 
             //when
             CheckResult checkResult = majorRequirement.check(List.of(completedCourse));
 
             //then
             assertThat(checkResult.passResults().get(RequirementType.LAB)).isTrue();
+            assertThat(checkResult.passResults().get(RequirementType.GENERAL)).isFalse();
             assertThat(completedCourse.isPassed()).isTrue();
         }
     }

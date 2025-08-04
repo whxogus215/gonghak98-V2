@@ -18,7 +18,7 @@ public class LabMajor {
     public boolean check(List<CompletedCourse> courses) {
         int count = 0;
         for (CompletedCourse course : courses) {
-            if (essentialLabCourseNames.contains(course.getCourseName())) {
+            if (essentialLabCourseNames.contains(course.getName())) {
                 course.pass();
                 count++;
             }
