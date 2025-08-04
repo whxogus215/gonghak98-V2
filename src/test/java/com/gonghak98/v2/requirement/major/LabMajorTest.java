@@ -28,7 +28,7 @@ class LabMajorTest {
     void 한_개_과목이상_이수(String studentCourseName) {
         //given
         List<CompletedCourse> studentCourses = 랜덤이름을_가진_기이수_과목_특정_개수만큼_생성(5);
-        studentCourses.add(new CompletedCourse(studentCourseName));
+        studentCourses.add(CompletedCourse.builder().name(studentCourseName).point(3).build());
 
         //when
         boolean isCertificated = labMajor.check(studentCourses);
@@ -40,7 +40,7 @@ class LabMajorTest {
     private List<CompletedCourse> 랜덤이름을_가진_기이수_과목_특정_개수만큼_생성(int minimumCount) {
         List<CompletedCourse> courses = new ArrayList<>();
         for (int i = 1; i <= minimumCount; i++) {
-            courses.add(new CompletedCourse("랜덤과목-" + i));
+            courses.add(CompletedCourse.builder().name("랜덤과목-" + i).build());
         }
         return courses;
     }
