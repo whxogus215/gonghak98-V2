@@ -1,9 +1,8 @@
-package com.gonghak98.v2.certification.service;
+package com.gonghak98.v2.requirement.major;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.certification.domain.LabCourseRule;
-import com.gonghak98.v2.course.domain.CompletedCourse;
+import com.gonghak98.v2.completedcourse.CompletedCourse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -12,17 +11,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class LabCourseValidatorTest {
+class LabMajorTest {
 
-    private LabCourseValidator labCourseValidator;
-    private LabCourseRule labCourseRule;
+    private LabMajor labMajor;
 
     @BeforeEach
     void setUp() {
-        labCourseValidator = new LabCourseValidator();
         Set<String> essentialLabCourses = Set.of("디지털논리회로", "전기회로실험", "기초광학및실험", "전자소자공정실험", "마이크로컴퓨터실험");
-        int minimumCount = 1;
-        labCourseRule = new LabCourseRule(essentialLabCourses, minimumCount);
+        int minCount = 1;
+        labMajor = new LabMajor(essentialLabCourses, minCount);
     }
 
     @ParameterizedTest
@@ -34,7 +31,7 @@ class LabCourseValidatorTest {
         studentCourses.add(new CompletedCourse(studentCourseName));
 
         //when
-        boolean isCertificated = labCourseValidator.validate(studentCourses, labCourseRule);
+        boolean isCertificated = labMajor.check(studentCourses);
 
         //then
         assertThat(isCertificated).isTrue();
@@ -42,7 +39,7 @@ class LabCourseValidatorTest {
 
     private List<CompletedCourse> 랜덤이름을_가진_기이수_과목_특정_개수만큼_생성(int minimumCount) {
         List<CompletedCourse> courses = new ArrayList<>();
-        for(int i = 1; i <= minimumCount; i++) {
+        for (int i = 1; i <= minimumCount; i++) {
             courses.add(new CompletedCourse("랜덤과목-" + i));
         }
         return courses;
