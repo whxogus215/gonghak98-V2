@@ -1,0 +1,44 @@
+package com.gonghak98.v2.requirement.major;
+
+import com.gonghak98.v2.completedcourse.CompletedCourse;
+import com.gonghak98.v2.course.DesignCourse;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class DesignMajor {
+
+    private final DesignCourse basicDesignCourse;
+    private final List<DesignCourse> elementDesignCourses;
+    private final List<DesignCourse> comprehensiveDesignCourses;
+
+    private final double minDesignPoint;
+
+    public boolean check(List<CompletedCourse> studentCourses) {
+        double designPointSum = 0.0;
+        boolean isBasicPassed = false;
+        boolean isComprehensivePassed = false;
+        for (CompletedCourse course : studentCourses) {
+            if (basicDesignCourse.isEqual(course.getId())) {
+                isBasicPassed = true;
+                course.pass();
+                designPointSum += basicDesignCourse.getDesignPoint();
+            }
+            for (DesignCourse elementDesignCourse : elementDesignCourses) {
+                if (elementDesignCourse.isEqual(course.getId())) {
+                    course.pass();
+                    designPointSum += elementDesignCourse.getDesignPoint();
+                }
+            }
+            for (DesignCourse comprehensiveDesignCourse : comprehensiveDesignCourses) {
+                if (comprehensiveDesignCourse.isEqual(course.getId())) {
+                    course.pass();
+                    designPointSum += comprehensiveDesignCourse.getDesignPoint();
+                    isComprehensivePassed = true;
+                }
+            }
+        }
+
+        return isBasicPassed && isComprehensivePassed && designPointSum >= minDesignPoint;
+    }
+}
