@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class LabMajor {
-
+    
+    // TODO : 과목 이름을 기준으로 비교할 경우, 과목 이름이 변경됐을 때, 대응이 어려움. -> 변경 가능성이 적은 학수번호를 기준으로 비교하기
     private Set<String> essentialLabCourseNames;
 
     private int minCount;
