@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.gonghak98.v2.certification.controller.AreaResult;
 import com.gonghak98.v2.certification.controller.AreaType;
 import com.gonghak98.v2.certification.controller.CertificationRequest;
-import com.gonghak98.v2.certification.controller.CertificationResult;
+import com.gonghak98.v2.certification.controller.CertificationResponse;
 import com.gonghak98.v2.certification.controller.MajorAreaDetails;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,10 +24,10 @@ class CertificationServiceTest {
     @DisplayName("실험 교과목이 담겨있을 때, 전공 영역과 실험 교과목 세부 조건의 정보를 전달할 수 있다.")
     void testLabCourseCertification() {
         // given
-        CertificationRequest request = new CertificationRequest();
+        CertificationRequest request = new CertificationRequest("전자정보통신공학과");
 
         // when
-        CertificationResult result = certificationService.getCertificationResult(request);
+        CertificationResponse result = certificationService.getCertificationResult(request);
 
         // then
         final AreaResult labCourseResult = result.areaResults().get(AreaType.MAJOR);
