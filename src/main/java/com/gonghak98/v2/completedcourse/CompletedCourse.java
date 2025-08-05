@@ -1,27 +1,26 @@
 package com.gonghak98.v2.completedcourse;
 
+import lombok.Builder;
+import lombok.Getter;
+
+@Builder
 public class CompletedCourse {
 
-    private String courseName;
+    @Getter
+    private int id;
+
+    @Getter
+    private String name;
 
     private int year;
 
     private int semester;
 
+    @Getter
     private boolean isPassed;
 
-    public CompletedCourse(String courseName) {
-        this.courseName = courseName;
-        this.isPassed = false;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public boolean isPassed() {
-        return isPassed;
-    }
+    @Getter
+    private double point;
 
     public void pass() {
         isPassed = true;

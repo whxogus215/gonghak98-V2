@@ -79,7 +79,7 @@ class MajorCertificationAcceptanceTest {
             assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
             assertThat(result.getBoolean("major.labCourse.isPassed")).isTrue();
             assertThat(result.getString("major.labCourse.description")).isEqualTo("실험교과목을 1과목 이상 이수");
-            assertThat(result.getString("major.labCourse.description"))
+            assertThat(result.getString("major.labCourse.courses"))
                 .isEqualTo("디지털논리회로, 전기회로실험, 기초광학및실험, 전자소자공정실험, 마이크로컴퓨터실험");
         }
 
