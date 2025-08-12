@@ -45,3 +45,6 @@ out/
 scripts
 
 *.properties
+
+### Ignore CLAUDE.md ###
+CLAUDE.md
