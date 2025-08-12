@@ -2,7 +2,7 @@ package com.gonghak98.v2.requirement.major;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.completedcourse.CompletedCourse;
+import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.course.Course;
 import com.gonghak98.v2.course.DesignCourse;
 import java.util.List;

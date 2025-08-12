@@ -1,6 +1,6 @@
 package com.gonghak98.v2.requirement.major;
 
-import com.gonghak98.v2.completedcourse.CompletedCourse;
+import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.course.Course;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

@@ -12,7 +12,7 @@ public class CertificationController {
     private final CertificationService certificationService;
 
     @PostMapping("/api/certification/check")
-    public CertificationResult checkCertification(CertificationRequest request) {
+    public CertificationResponse checkCertification(CertificationRequest request) {
         return certificationService.getCertificationResult(request);
     }
 }

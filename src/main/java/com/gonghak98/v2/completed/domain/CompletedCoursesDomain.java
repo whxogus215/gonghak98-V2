@@ -1,7 +1,7 @@
 package com.gonghak98.v2.completed.domain;
 
-import com.gonghak98.v2.common.domain.CoursesDomain;
-import com.gonghak98.v2.user.domain.UserDomain;
+import com.gonghak98.v2.legacy.common.domain.CoursesDomain;
+import com.gonghak98.v2.legacy.user.domain.UserDomain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
