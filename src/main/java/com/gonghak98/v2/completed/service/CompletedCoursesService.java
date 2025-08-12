@@ -1,11 +1,11 @@
 package com.gonghak98.v2.completed.service;
 
 import com.gonghak98.v2.completed.infrastructure.CompletedCoursesDao;
-import com.gonghak98.v2.common.infrastructure.CoursesDao;
-import com.gonghak98.v2.user.infrastructure.UserRepository;
+import com.gonghak98.v2.legacy.common.infrastructure.CoursesDao;
+import com.gonghak98.v2.legacy.user.infrastructure.UserRepository;
 import com.gonghak98.v2.completed.domain.CompletedCoursesDomain;
-import com.gonghak98.v2.common.domain.CoursesDomain;
-import com.gonghak98.v2.user.domain.UserDomain;
+import com.gonghak98.v2.legacy.common.domain.CoursesDomain;
+import com.gonghak98.v2.legacy.user.domain.UserDomain;
 import com.gonghak98.v2.completed.service.exception.FileException;
 import java.io.IOException;
 import java.util.ArrayList;

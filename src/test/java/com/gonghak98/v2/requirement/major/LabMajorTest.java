@@ -3,7 +3,7 @@ package com.gonghak98.v2.requirement.major;
 import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.completedcourse.CompletedCourse;
+import com.gonghak98.v2.student.CompletedCourse;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

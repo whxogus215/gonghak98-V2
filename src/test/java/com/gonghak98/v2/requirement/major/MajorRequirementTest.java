@@ -5,7 +5,7 @@ import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createGene
 import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.completedcourse.CompletedCourse;
+import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.requirement.constant.RequirementType;
 import com.gonghak98.v2.requirement.vo.CheckResult;
 import java.util.List;

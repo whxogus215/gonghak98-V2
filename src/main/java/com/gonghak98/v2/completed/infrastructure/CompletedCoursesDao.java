@@ -1,7 +1,7 @@
 package com.gonghak98.v2.completed.infrastructure;
 
 import com.gonghak98.v2.completed.domain.CompletedCoursesDomain;
-import com.gonghak98.v2.user.domain.UserDomain;
+import com.gonghak98.v2.legacy.user.domain.UserDomain;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

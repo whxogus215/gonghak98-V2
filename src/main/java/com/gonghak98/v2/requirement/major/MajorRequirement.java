@@ -1,6 +1,6 @@
 package com.gonghak98.v2.requirement.major;
 
-import com.gonghak98.v2.completedcourse.CompletedCourse;
+import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.requirement.constant.RequirementType;
 import com.gonghak98.v2.requirement.vo.CheckResult;
 import java.util.EnumMap;
