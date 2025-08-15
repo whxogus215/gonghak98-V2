@@ -1,4 +1,4 @@
-package com.gonghak98.v2.requirement.major;
+package com.gonghak98.v2.abeek.major;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

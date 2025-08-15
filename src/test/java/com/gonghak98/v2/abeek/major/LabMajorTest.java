@@ -1,6 +1,6 @@
-package com.gonghak98.v2.requirement.major;
+package com.gonghak98.v2.abeek.major;
 
-import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createLabMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFactory.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.student.CompletedCourse;

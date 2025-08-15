@@ -1,13 +1,13 @@
-package com.gonghak98.v2.requirement.fixture;
+package com.gonghak98.v2.abeek.fixture;
 
 import com.gonghak98.v2.course.Course;
 import com.gonghak98.v2.course.DesignCourse;
-import com.gonghak98.v2.requirement.major.DesignMajor;
-import com.gonghak98.v2.requirement.major.GeneralMajor;
-import com.gonghak98.v2.requirement.major.LabMajor;
+import com.gonghak98.v2.abeek.major.DesignMajor;
+import com.gonghak98.v2.abeek.major.GeneralMajor;
+import com.gonghak98.v2.abeek.major.LabMajor;
 import java.util.List;
 
-public class RequirementFactory {
+public class MajorFactory {
 
     private static final int 조회_불가능한_학수번호 = -1;
 

@@ -1,4 +1,4 @@
-package com.gonghak98.v2.requirement.major;
+package com.gonghak98.v2.abeek.major;
 
 import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.course.DesignCourse;
@@ -21,18 +21,15 @@ public class DesignMajor {
         for (CompletedCourse course : studentCourses) {
             if (basicDesignCourse.isEqual(course.getId())) {
                 isBasicPassed = true;
-                course.pass();
                 designPointSum += basicDesignCourse.getDesignPoint();
             }
             for (DesignCourse elementDesignCourse : elementDesignCourses) {
                 if (elementDesignCourse.isEqual(course.getId())) {
-                    course.pass();
                     designPointSum += elementDesignCourse.getDesignPoint();
                 }
             }
             for (DesignCourse comprehensiveDesignCourse : comprehensiveDesignCourses) {
                 if (comprehensiveDesignCourse.isEqual(course.getId())) {
-                    course.pass();
                     designPointSum += comprehensiveDesignCourse.getDesignPoint();
                     isComprehensivePassed = true;
                 }

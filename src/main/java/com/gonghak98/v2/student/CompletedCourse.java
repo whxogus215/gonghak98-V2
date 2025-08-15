@@ -17,12 +17,5 @@ public class CompletedCourse {
     private int semester;
 
     @Getter
-    private boolean isPassed;
-
-    @Getter
     private double point;
-
-    public void pass() {
-        isPassed = true;
-    }
 }

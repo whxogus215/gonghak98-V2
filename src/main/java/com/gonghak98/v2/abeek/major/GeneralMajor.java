@@ -1,4 +1,4 @@
-package com.gonghak98.v2.requirement.major;
+package com.gonghak98.v2.abeek.major;
 
 import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.course.Course;
@@ -12,12 +12,11 @@ public class GeneralMajor {
 
     private final double minPoint;
 
-    public boolean check(List<CompletedCourse> courses) {
+    public boolean check(List<CompletedCourse> completedCourses) {
         double pointSum = 0.0;
-        for (CompletedCourse course : courses) {
+        for (CompletedCourse course : completedCourses) {
             for (Course essentialCourse : essentialCourses) {
                 if (essentialCourse.isEqual(course.getId())) {
-                    course.pass();
                     pointSum += course.getPoint();
                 }
             }
