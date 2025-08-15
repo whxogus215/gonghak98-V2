@@ -1,6 +1,6 @@
-package com.gonghak98.v2.requirement.major;
+package com.gonghak98.v2.abeek.major;
 
-import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createGeneralMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFactory.createGeneralMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.student.CompletedCourse;
@@ -25,7 +25,6 @@ class GeneralMajorTest {
 
         //then
         assertThat(isPassed).isTrue();
-        assertThat(studentCourses).allMatch(CompletedCourse::isPassed);
     }
 
     @ParameterizedTest
@@ -40,7 +39,6 @@ class GeneralMajorTest {
 
         //then
         assertThat(isPassed).isFalse();
-        assertThat(studentCourses).allMatch(CompletedCourse::isPassed);
     }
 
     private static Stream<Arguments> providePassingGeneralCourseCombinations() {

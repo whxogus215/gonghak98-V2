@@ -1,20 +1,21 @@
-package com.gonghak98.v2.requirement.major;
+package com.gonghak98.v2.abeek.major;
 
-import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createDesignMajor;
-import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createGeneralMajor;
-import static com.gonghak98.v2.requirement.fixture.RequirementFactory.createLabMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFactory.createDesignMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFactory.createGeneralMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFactory.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.gonghak98.v2.abeek.AreaType;
+import com.gonghak98.v2.abeek.dto.CheckResult;
 import com.gonghak98.v2.student.CompletedCourse;
-import com.gonghak98.v2.requirement.constant.RequirementType;
-import com.gonghak98.v2.requirement.vo.CheckResult;
+import java.util.EnumMap;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class MajorRequirementTest {
+public class MajorTest {
 
     @Nested
     class 전자정보통신공학과 {
@@ -28,18 +29,17 @@ public class MajorRequirementTest {
                                                              .name(studentLabCourseName)
                                                              .point(3)
                                                              .build();
-            MajorRequirement majorRequirement = new MajorRequirement(createDesignMajor(),
-                                                                     createLabMajor(),
-                                                                     createGeneralMajor());
+            Major major = new Major(createDesignMajor(),
+                                    createLabMajor(),
+                                    createGeneralMajor());
+
+            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class));
 
             //when
-            CheckResult checkResult = majorRequirement.check(List.of(completedCourse));
+            major.checkAllCourses(List.of(completedCourse), checkResult);
 
             //then
-            assertThat(checkResult.passResults().get(RequirementType.DESIGN)).isFalse();
-            assertThat(checkResult.passResults().get(RequirementType.LAB)).isTrue();
-            assertThat(checkResult.passResults().get(RequirementType.GENERAL)).isFalse();
-            assertThat(completedCourse.isPassed()).isTrue();
+            assertThat(checkResult.passResults().get(AreaType.MAJOR)).isFalse();
         }
     }
 }
