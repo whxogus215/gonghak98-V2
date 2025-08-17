@@ -11,6 +11,7 @@ public class Course {
 
     private String name;
 
+    @Getter
     private double point;
 
     public boolean isEqual(int id) {
