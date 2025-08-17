@@ -1,6 +1,5 @@
 package com.gonghak98.v2.abeek.major;
 
-import static com.gonghak98.v2.abeek.fixture.MajorFactory.createDesignMajor;
 import static com.gonghak98.v2.abeek.fixture.MajorFactory.createGeneralMajor;
 import static com.gonghak98.v2.abeek.fixture.MajorFactory.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,8 +28,7 @@ public class MajorTest {
                                                              .name(studentLabCourseName)
                                                              .point(3)
                                                              .build();
-            Major major = new Major(createDesignMajor(),
-                                    createLabMajor(),
+            Major major = new Major(createLabMajor(),
                                     createGeneralMajor());
 
             CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class));

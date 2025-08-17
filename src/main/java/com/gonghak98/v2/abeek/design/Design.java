@@ -1,12 +1,14 @@
-package com.gonghak98.v2.abeek.major;
+package com.gonghak98.v2.abeek.design;
 
+import com.gonghak98.v2.abeek.AreaType;
+import com.gonghak98.v2.abeek.dto.CheckResult;
 import com.gonghak98.v2.student.CompletedCourse;
 import com.gonghak98.v2.course.DesignCourse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DesignMajor {
+public class Design {
 
     private final DesignCourse basicDesignCourse;
     private final List<DesignCourse> elementDesignCourses;
@@ -14,7 +16,7 @@ public class DesignMajor {
 
     private final double minDesignPoint;
 
-    public boolean check(List<CompletedCourse> studentCourses) {
+    public void checkAllCourses(List<CompletedCourse> studentCourses, CheckResult checkResult) {
         double designPointSum = 0.0;
         boolean isBasicPassed = false;
         boolean isComprehensivePassed = false;
@@ -35,7 +37,8 @@ public class DesignMajor {
                 }
             }
         }
+        boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignPoint);
 
-        return isBasicPassed && isComprehensivePassed && designPointSum >= minDesignPoint;
+        checkResult.passResults().put(AreaType.DESIGN, isAllSatisfied);
     }
 }
