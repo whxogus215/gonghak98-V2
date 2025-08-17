@@ -4,5 +4,5 @@ public enum AreaType {
     MSC,
     BSM,
     MAJOR,
-    GENERAL_EDUCATION
+    GYOYANG
 }
