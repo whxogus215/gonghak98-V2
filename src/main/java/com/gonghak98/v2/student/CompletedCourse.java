@@ -4,18 +4,16 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Builder
+@Getter
 public class CompletedCourse {
 
-    @Getter
     private int id;
 
-    @Getter
     private String name;
 
     private int year;
 
     private int semester;
 
-    @Getter
     private double point;
 }

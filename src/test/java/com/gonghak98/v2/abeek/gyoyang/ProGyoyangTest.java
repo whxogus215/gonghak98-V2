@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.abeek.AreaType;
 import com.gonghak98.v2.abeek.dto.CheckResult;
+import com.gonghak98.v2.abeek.fixture.GivenObjectFactory;
 import com.gonghak98.v2.student.CompletedCourse;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class));
+            CheckResult checkResult = GivenObjectFactory.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
@@ -40,7 +40,7 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사_실패(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class));
+            CheckResult checkResult = GivenObjectFactory.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
@@ -55,7 +55,7 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사_실패2(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class));
+            CheckResult checkResult = GivenObjectFactory.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when

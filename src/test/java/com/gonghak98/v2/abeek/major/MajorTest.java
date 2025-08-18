@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.abeek.AreaType;
 import com.gonghak98.v2.abeek.dto.CheckResult;
+import com.gonghak98.v2.abeek.fixture.GivenObjectFactory;
 import com.gonghak98.v2.student.CompletedCourse;
-import java.util.EnumMap;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -31,7 +31,7 @@ public class MajorTest {
             Major major = new Major(createLabMajor(),
                                     createGeneralMajor());
 
-            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class));
+            CheckResult checkResult = GivenObjectFactory.createCheckResult();
 
             //when
             major.checkAllCourses(List.of(completedCourse), checkResult);
