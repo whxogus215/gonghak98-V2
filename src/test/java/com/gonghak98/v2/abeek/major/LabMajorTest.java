@@ -18,7 +18,7 @@ class LabMajorTest {
     void 한_개_과목이상_이수(int courseId, String studentCourseName) {
         //given
         List<CompletedCourse> studentCourses = 랜덤이름을_가진_기이수_과목_특정_개수만큼_생성(5);
-        studentCourses.add(CompletedCourse.builder().id(courseId).name(studentCourseName).point(3).build());
+        studentCourses.add(CompletedCourse.builder().id(courseId).name(studentCourseName).build());
         LabMajor labMajor = createLabMajor();
 
         //when
