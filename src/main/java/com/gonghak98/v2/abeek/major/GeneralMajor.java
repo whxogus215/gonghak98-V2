@@ -17,7 +17,7 @@ public class GeneralMajor {
         for (CompletedCourse course : completedCourses) {
             for (Course essentialCourse : essentialCourses) {
                 if (essentialCourse.isEqual(course.getId())) {
-                    pointSum += course.getPoint();
+                    pointSum += essentialCourse.getPoint();
                 }
             }
         }

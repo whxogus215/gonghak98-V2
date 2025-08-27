@@ -1,11 +1,13 @@
 package com.gonghak98.v2.student;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Builder
 @Getter
-public class CompletedCourse {
+@EqualsAndHashCode(of = "id")
+public class CompletedCourse implements Comparable<CompletedCourse> {
 
     private int id;
 
@@ -15,5 +17,11 @@ public class CompletedCourse {
 
     private int semester;
 
-    private double point;
+    @Override
+    public int compareTo(CompletedCourse other) {
+        if (this.year == other.year) {
+            return Integer.compare(this.semester, other.semester);
+        }
+        return Integer.compare(this.year, other.year);
+    }
 }

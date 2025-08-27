@@ -26,7 +26,6 @@ public class MajorTest {
             //given
             CompletedCourse completedCourse = CompletedCourse.builder().id(courseId)
                                                              .name(studentLabCourseName)
-                                                             .point(3)
                                                              .build();
             Major major = new Major(createLabMajor(),
                                     createGeneralMajor());

@@ -44,23 +44,23 @@ class GeneralMajorTest {
     private static Stream<Arguments> providePassingGeneralCourseCombinations() {
 
         List<CompletedCourse> essential = List.of(
-            CompletedCourse.builder().id(4114).name("전기회로").point(3).build(),
-            CompletedCourse.builder().id(4111).name("물리전자공학").point(3).build(),
-            CompletedCourse.builder().id(5246).name("신호및시스템").point(3).build(),
-            CompletedCourse.builder().id(7620).name("기초설계").point(3).build()
+            CompletedCourse.builder().id(4114).name("전기회로").build(),
+            CompletedCourse.builder().id(4111).name("물리전자공학").build(),
+            CompletedCourse.builder().id(5246).name("신호및시스템").build(),
+            CompletedCourse.builder().id(7620).name("기초설계").build()
         );
 
         List<CompletedCourse> elective1 = List.of(
-            CompletedCourse.builder().id(4474).name("통신이론").point(3).build(),
-            CompletedCourse.builder().id(4699).name("데이터통신").point(3).build(),
-            CompletedCourse.builder().id(3284).name("컴퓨터네트워크").point(3).build(),
-            CompletedCourse.builder().id(6132).name("영상처리").point(3).build()
+            CompletedCourse.builder().id(4474).name("통신이론").build(),
+            CompletedCourse.builder().id(4699).name("데이터통신").build(),
+            CompletedCourse.builder().id(3284).name("컴퓨터네트워크").build(),
+            CompletedCourse.builder().id(6132).name("영상처리").build()
         );
         List<CompletedCourse> elective2 = List.of(
-            CompletedCourse.builder().id(7453).name("전자회로1").point(3).build(),
-            CompletedCourse.builder().id(9649).name("전자기1").point(3).build(),
-            CompletedCourse.builder().id(4829).name("광전자공학").point(3).build(),
-            CompletedCourse.builder().id(8086).name("디지털통신시스템").point(3).build()
+            CompletedCourse.builder().id(7453).name("전자회로1").build(),
+            CompletedCourse.builder().id(9649).name("전자기1").build(),
+            CompletedCourse.builder().id(4829).name("광전자공학").build(),
+            CompletedCourse.builder().id(8086).name("디지털통신시스템").build()
         );
 
         return Stream.of(
@@ -72,19 +72,19 @@ class GeneralMajorTest {
     private static Stream<Arguments> provideNotPassingGeneralCourseCombinations() {
 
         List<CompletedCourse> essential = List.of(
-            CompletedCourse.builder().id(4114).name("전기회로").point(3).build(),
-            CompletedCourse.builder().id(4111).name("물리전자공학").point(3).build(),
-            CompletedCourse.builder().id(5246).name("신호및시스템").point(3).build(),
-            CompletedCourse.builder().id(7620).name("기초설계").point(3).build()
+            CompletedCourse.builder().id(4114).name("전기회로").build(),
+            CompletedCourse.builder().id(4111).name("물리전자공학").build(),
+            CompletedCourse.builder().id(5246).name("신호및시스템").build(),
+            CompletedCourse.builder().id(7620).name("기초설계").build()
         );
 
         List<CompletedCourse> elective1 = List.of(
-            CompletedCourse.builder().id(4474).name("통신이론").point(3).build(),
-            CompletedCourse.builder().id(4699).name("데이터통신").point(3).build()
+            CompletedCourse.builder().id(4474).name("통신이론").build(),
+            CompletedCourse.builder().id(4699).name("데이터통신").build()
         );
         List<CompletedCourse> elective2 = List.of(
-            CompletedCourse.builder().id(7453).name("전자회로1").point(3).build(),
-            CompletedCourse.builder().id(9649).name("전자기1").point(3).build()
+            CompletedCourse.builder().id(7453).name("전자회로1").build(),
+            CompletedCourse.builder().id(9649).name("전자기1").build()
         );
 
         return Stream.of(

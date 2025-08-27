@@ -65,7 +65,7 @@ class MscBasicTest {
             );
 
             List<CompletedCourse> otherCourses = List.of(
-                CompletedCourse.builder().id(Integer.MAX_VALUE).name("테스트과목").point(3).build()
+                CompletedCourse.builder().id(Integer.MAX_VALUE).name("테스트과목").build()
             );
 
             return Stream.of(
@@ -83,7 +83,7 @@ class MscBasicTest {
             );
 
             List<CompletedCourse> otherCourses = List.of(
-                CompletedCourse.builder().id(Integer.MAX_VALUE).name("테스트과목").point(3).build()
+                CompletedCourse.builder().id(Integer.MAX_VALUE).name("테스트과목").build()
             );
 
             return Stream.of(
