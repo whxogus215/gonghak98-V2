@@ -1,6 +1,6 @@
 package com.gonghak98.v2.abeek.fixture;
 
-import com.gonghak98.v2.abeek.prerequisite.DesignPrerequisite;
+import com.gonghak98.v2.report.domain.abeek.prerequisite.DesignPrerequisite;
 import java.util.Set;
 
 public class PrerequisiteFactory {

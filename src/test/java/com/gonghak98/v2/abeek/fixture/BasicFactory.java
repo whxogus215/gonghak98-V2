@@ -1,8 +1,8 @@
 package com.gonghak98.v2.abeek.fixture;
 
-import com.gonghak98.v2.abeek.basic.Basic;
-import com.gonghak98.v2.abeek.basic.msc.MscBasic;
-import com.gonghak98.v2.course.Course;
+import com.gonghak98.v2.report.domain.abeek.basic.Basic;
+import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
+import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 
 public class BasicFactory {

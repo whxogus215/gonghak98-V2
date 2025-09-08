@@ -3,11 +3,11 @@ package com.gonghak98.v2.abeek.basic.msc;
 import static com.gonghak98.v2.abeek.fixture.BasicFactory.createMscBasic;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.abeek.AreaType;
-import com.gonghak98.v2.abeek.basic.Basic;
-import com.gonghak98.v2.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.basic.Basic;
+import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
 import com.gonghak98.v2.abeek.fixture.GivenObjectFactory;
-import com.gonghak98.v2.student.CompletedCourse;
+import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,6 @@
 package com.gonghak98.v2.file.infrastructure;
 
-import com.gonghak98.v2.course.SemesterConst;
+import com.gonghak98.v2.report.domain.course.SemesterConst;
 import com.gonghak98.v2.file.infrastructure.exception.ExcelFileException;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileData;

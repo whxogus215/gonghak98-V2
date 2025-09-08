@@ -1,8 +1,8 @@
 package com.gonghak98.v2.abeek.fixture;
 
-import com.gonghak98.v2.abeek.gyoyang.Gyoyang;
-import com.gonghak98.v2.abeek.gyoyang.ProGyoyang;
-import com.gonghak98.v2.course.Course;
+import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
+import com.gonghak98.v2.report.domain.abeek.gyoyang.ProGyoyang;
+import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 
 public class GyoyangFactory {

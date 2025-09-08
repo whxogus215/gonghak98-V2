@@ -1,8 +1,8 @@
 package com.gonghak98.v2.abeek.fixture;
 
-import com.gonghak98.v2.abeek.major.GeneralMajor;
-import com.gonghak98.v2.abeek.major.LabMajor;
-import com.gonghak98.v2.course.Course;
+import com.gonghak98.v2.report.domain.abeek.major.GeneralMajor;
+import com.gonghak98.v2.report.domain.abeek.major.LabMajor;
+import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 
 public class MajorFactory {
