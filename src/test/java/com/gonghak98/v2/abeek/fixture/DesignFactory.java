@@ -1,8 +1,8 @@
 package com.gonghak98.v2.abeek.fixture;
 
-import com.gonghak98.v2.abeek.design.Design;
-import com.gonghak98.v2.course.Course;
-import com.gonghak98.v2.course.DesignCourse;
+import com.gonghak98.v2.report.domain.abeek.design.Design;
+import com.gonghak98.v2.report.domain.course.Course;
+import com.gonghak98.v2.report.domain.course.DesignCourse;
 import java.util.List;
 
 public class DesignFactory {
