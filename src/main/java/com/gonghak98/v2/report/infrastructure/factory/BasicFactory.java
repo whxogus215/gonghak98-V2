@@ -2,10 +2,10 @@ package com.gonghak98.v2.report.infrastructure.factory;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
+import com.gonghak98.v2.report.domain.abeek.basic.Basic;
+import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
 import com.gonghak98.v2.report.domain.abeek.exception.AbeekException;
 import com.gonghak98.v2.report.domain.abeek.exception.ExceptionMessage;
-import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
-import com.gonghak98.v2.report.domain.abeek.gyoyang.ProGyoyang;
 import com.gonghak98.v2.report.domain.course.Course;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
@@ -17,12 +17,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class GyoyangFactory {
+public class BasicFactory {
 
     private final JpaGonghakCourseRepository gonghakCourseRepository;
 
-    public Gyoyang create(DepartmentEntity department) {
-        final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndCategory(department, AreaType.getBasicType(department.getName()));
+    public Basic create(DepartmentEntity department) {
+        final AreaType basicType = AreaType.getBasicType(department.getName());
+        final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndCategory(department, basicType);
 
         if (gonghakCourses.isEmpty()) {
             throw new AbeekException(ExceptionMessage.EMPTY_GONGHAK_COURSE.getMessage());
@@ -33,13 +34,7 @@ public class GyoyangFactory {
                                                       .map(GonghakCourseEntity::getCourse)
                                                       .map(CourseEntity::toDomain)
                                                       .toList();
-        List<Course> electiveCourses = gonghakCourses.stream()
-                                                     .filter(c -> c.getSubCategory() == CourseType.ELECTIVE)
-                                                     .map(GonghakCourseEntity::getCourse)
-                                                     .map(CourseEntity::toDomain)
-                                                     .toList();
 
-        int minPoint = 14;
-        return new ProGyoyang(essentialCourses, electiveCourses, minPoint);
+        return new MscBasic(essentialCourses);
     }
 }

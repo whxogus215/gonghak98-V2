@@ -1,22 +1,21 @@
 package com.gonghak98.v2.report.domain.abeek.major;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
-import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class LabMajor {
 
-    private final List<Course> essentialLabCourses;
+    private final List<Integer> courseIds;
 
     private final int minCount;
 
     public boolean check(List<CompletedCourse> completedCourses) {
         int count = 0;
         for (CompletedCourse course : completedCourses) {
-            for (Course essentialLabCourse : essentialLabCourses) {
-                if (essentialLabCourse.isEqual(course.getId())) {
+            for (Integer courseId : courseIds) {
+                if (courseId == course.getId()) {
                     count++;
                 }
             }
@@ -24,4 +23,10 @@ public class LabMajor {
         return count >= minCount;
     }
 
+    @JsonCreator
+    public LabMajor(@JsonProperty("courseIds") final List<Integer> courseIds,
+                    @JsonProperty("minCount") final int minCount) {
+        this.courseIds = courseIds;
+        this.minCount = minCount;
+    }
 }
