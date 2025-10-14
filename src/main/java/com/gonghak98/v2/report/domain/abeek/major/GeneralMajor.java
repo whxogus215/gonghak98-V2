@@ -1,23 +1,29 @@
 package com.gonghak98.v2.report.domain.abeek.major;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
-import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class GeneralMajor {
 
-    private final List<Course> essentialCourses;
+    private final List<Integer> courseIds;
 
     private final double minPoint;
+
+    @JsonCreator
+    public GeneralMajor(@JsonProperty("courseIds") final List<Integer> courseIds,
+                        @JsonProperty("minPoint") final double minPoint) {
+        this.courseIds = courseIds;
+        this.minPoint = minPoint;
+    }
 
     public boolean check(List<CompletedCourse> completedCourses) {
         double pointSum = 0.0;
         for (CompletedCourse course : completedCourses) {
-            for (Course essentialCourse : essentialCourses) {
-                if (essentialCourse.isEqual(course.getId())) {
-                    pointSum += essentialCourse.getPoint();
+            for (Integer courseId : courseIds) {
+                if (courseId == course.getId()) {
+                    pointSum += course.getPoint();
                 }
             }
         }
