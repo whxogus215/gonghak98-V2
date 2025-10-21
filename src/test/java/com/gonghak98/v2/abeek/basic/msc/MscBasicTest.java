@@ -1,12 +1,12 @@
 package com.gonghak98.v2.abeek.basic.msc;
 
-import static com.gonghak98.v2.abeek.fixture.BasicFactory.createMscBasic;
+import static com.gonghak98.v2.abeek.fixture.BasicFixture.createMscBasic;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
-import com.gonghak98.v2.abeek.fixture.GivenObjectFactory;
+import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
@@ -26,7 +26,7 @@ class MscBasicTest {
         @ParameterizedTest
         void MSC_영역_검사(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFactory.createCheckResult();
+            CheckResult checkResult = GivenObjectFixture.createCheckResult();
             Basic basic = createMscBasic();
 
             //when
@@ -41,7 +41,7 @@ class MscBasicTest {
         @ParameterizedTest
         void MSC_영역_검사2(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFactory.createCheckResult();
+            CheckResult checkResult = GivenObjectFixture.createCheckResult();
             Basic basic = createMscBasic();
 
             //when

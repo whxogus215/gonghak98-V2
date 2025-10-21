@@ -1,12 +1,12 @@
 package com.gonghak98.v2.abeek.major;
 
-import static com.gonghak98.v2.abeek.fixture.MajorFactory.createGeneralMajor;
-import static com.gonghak98.v2.abeek.fixture.MajorFactory.createLabMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFixture.createGeneralMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFixture.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
-import com.gonghak98.v2.abeek.fixture.GivenObjectFactory;
+import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
@@ -31,7 +31,7 @@ public class MajorTest {
             Major major = new Major(createLabMajor(),
                                     createGeneralMajor());
 
-            CheckResult checkResult = GivenObjectFactory.createCheckResult();
+            CheckResult checkResult = GivenObjectFixture.createCheckResult();
 
             //when
             major.checkAllCourses(List.of(completedCourse), checkResult);

@@ -5,7 +5,7 @@ import com.gonghak98.v2.report.domain.abeek.gyoyang.ProGyoyang;
 import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 
-public class GyoyangFactory {
+public class GyoyangFixture {
 
     public static Gyoyang createProGyoyang() {
 

@@ -3,7 +3,7 @@ package com.gonghak98.v2.abeek.fixture;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.DesignPrerequisite;
 import java.util.Set;
 
-public class PrerequisiteFactory {
+public class PrerequisiteFixture {
 
     public static DesignPrerequisite createDesignPrerequisite() {
         Integer basicCourseId = 7620;

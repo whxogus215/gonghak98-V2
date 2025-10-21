@@ -1,6 +1,6 @@
 package com.gonghak98.v2.abeek.major;
 
-import static com.gonghak98.v2.abeek.fixture.MajorFactory.createGeneralMajor;
+import static com.gonghak98.v2.abeek.fixture.MajorFixture.createGeneralMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.major.GeneralMajor;

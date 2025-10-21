@@ -5,7 +5,7 @@ import com.gonghak98.v2.report.domain.abeek.major.LabMajor;
 import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 
-public class MajorFactory {
+public class MajorFixture {
 
     private static final int 조회_불가능한_학수번호 = -1;
 

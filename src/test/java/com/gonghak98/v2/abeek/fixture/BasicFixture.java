@@ -5,7 +5,7 @@ import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
 import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 
-public class BasicFactory {
+public class BasicFixture {
 
     public static Basic createMscBasic() {
 
