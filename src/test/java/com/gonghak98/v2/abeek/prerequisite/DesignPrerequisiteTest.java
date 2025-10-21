@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
-import com.gonghak98.v2.abeek.fixture.PrerequisiteFactory;
+import com.gonghak98.v2.abeek.fixture.PrerequisiteFixture;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.DesignPrerequisite;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.EnumMap;
@@ -32,7 +32,7 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(beforeYear).semester(beforeSemester).build();
             CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(afterYear).semester(afterSemester).build();
 
-            DesignPrerequisite designPrerequisite = PrerequisiteFactory.createDesignPrerequisite();
+            DesignPrerequisite designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
 
             //when
             designPrerequisite.check(List.of(basicCompletedCourse, elementCompletedCourse), checkResult);
@@ -52,7 +52,7 @@ class DesignPrerequisiteTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(beforeYear).semester(beforeSemester).build();
             CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(afterYear).semester(afterSemester).build();
 
-            DesignPrerequisite designPrerequisite = PrerequisiteFactory.createDesignPrerequisite();
+            DesignPrerequisite designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
 
             //when
             designPrerequisite.check(List.of(basicCompletedCourse, comprehensiveCompletedCourse), checkResult);
@@ -72,7 +72,7 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(2025).semester(2).build();
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(2025).semester(2).build();
 
-            DesignPrerequisite designPrerequisite = PrerequisiteFactory.createDesignPrerequisite();
+            DesignPrerequisite designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
 
             //when
             designPrerequisite.check(List.of(basicCompletedCourse, elementCompletedCourse, comprehensiveCompletedCourse), checkResult);

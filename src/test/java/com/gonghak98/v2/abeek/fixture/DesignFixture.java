@@ -5,7 +5,7 @@ import com.gonghak98.v2.report.domain.course.Course;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
 import java.util.List;
 
-public class DesignFactory {
+public class DesignFixture {
 
     public static Design createDesign() {
         Course basicCourse = Course.builder().id(7620).name("기초설계").build();

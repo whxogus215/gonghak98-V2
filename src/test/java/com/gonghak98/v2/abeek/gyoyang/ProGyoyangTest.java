@@ -1,11 +1,11 @@
 package com.gonghak98.v2.abeek.gyoyang;
 
-import static com.gonghak98.v2.abeek.fixture.GyoyangFactory.createProGyoyang;
+import static com.gonghak98.v2.abeek.fixture.GyoyangFixture.createProGyoyang;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
-import com.gonghak98.v2.abeek.fixture.GivenObjectFactory;
+import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
@@ -26,7 +26,7 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFactory.createCheckResult();
+            CheckResult checkResult = GivenObjectFixture.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
@@ -41,7 +41,7 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사_실패(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFactory.createCheckResult();
+            CheckResult checkResult = GivenObjectFixture.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
@@ -56,7 +56,7 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사_실패2(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFactory.createCheckResult();
+            CheckResult checkResult = GivenObjectFixture.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
