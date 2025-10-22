@@ -30,8 +30,4 @@ public class Abeek {
 
         return checkResult;
     }
-
-    // TODO 영역별 로직 구현 후, 최종 반영된 CheckResult로 영역별 CategoryResult를 만든 다음 AbeekResult를 반환하는 private 메서드 추가
-    // TODO 도메인 용어 정리 -> 이름 변경
-    // TODO 오브젝트 책 - 상속 대신 합성을 사용하라는 챕터 학습 및 정리하기! (블로그 포스팅 : gonghak98 V2 2편)
 }
