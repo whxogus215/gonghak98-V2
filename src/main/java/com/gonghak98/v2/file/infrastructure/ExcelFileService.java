@@ -1,15 +1,14 @@
 package com.gonghak98.v2.file.infrastructure;
 
-import com.gonghak98.v2.report.domain.course.SemesterConst;
 import com.gonghak98.v2.file.infrastructure.exception.ExcelFileException;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileData;
 import com.gonghak98.v2.file.service.dto.FileResponse;
+import com.gonghak98.v2.report.domain.course.SemesterConst;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -22,11 +21,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-@RequiredArgsConstructor
 public class ExcelFileService implements FileService {
 
-    @Value("${excel.template.first-row}")
     private final int firstRow;
+
+    public ExcelFileService(@Value("${excel.template.first-row}") int firstRow) {
+        this.firstRow = firstRow;
+    }
 
     @Override
     public FileResponse getFileData(MultipartFile file) throws ExcelFileException {
