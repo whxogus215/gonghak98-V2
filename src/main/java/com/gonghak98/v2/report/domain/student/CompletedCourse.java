@@ -17,6 +17,8 @@ public class CompletedCourse implements Comparable<CompletedCourse> {
 
     private int semester;
 
+    private int point;
+
     @Override
     public int compareTo(CompletedCourse other) {
         if (this.year == other.year) {
