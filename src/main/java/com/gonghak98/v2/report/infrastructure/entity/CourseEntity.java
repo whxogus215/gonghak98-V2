@@ -1,6 +1,7 @@
 package com.gonghak98.v2.report.infrastructure.entity;
 
 import com.gonghak98.v2.report.domain.course.Course;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +17,10 @@ public class CourseEntity {
     private Integer id;
 
     @Getter
+    @Column(unique = true)
     private Integer courseId;
 
+    @Getter
     private String name;
 
     private double point;
