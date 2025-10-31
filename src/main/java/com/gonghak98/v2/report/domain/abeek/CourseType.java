@@ -1,5 +1,6 @@
 package com.gonghak98.v2.report.domain.abeek;
 
+import java.util.Arrays;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -15,4 +16,11 @@ public enum CourseType {
     DESIGN_COMPREHENSIVE("종합설계");
 
     private final String content;
+
+    public static CourseType getByName(String name) {
+        return Arrays.stream(values())
+                     .filter(courseType -> courseType.content.equals(name))
+                     .findFirst()
+                     .orElse(null);
+    }
 }
