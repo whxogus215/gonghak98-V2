@@ -7,6 +7,8 @@ import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.Prerequisite;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +22,8 @@ public class Abeek {
     private final Prerequisite prerequisite;
 
     public CheckResult checkAllCourses(List<CompletedCourse> completedCourses) {
-        CheckResult checkResult = new CheckResult(null, null);
+        CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class),
+                                                  new HashMap<>());
 
         gyoyang.checkAllCourses(completedCourses, checkResult);
         basic.checkAllCourses(completedCourses, checkResult);
