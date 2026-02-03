@@ -50,7 +50,7 @@ public class DevDataLoader implements ApplicationRunner {
             throw new IllegalArgumentException(path + "을 찾을 수 없습니다.");
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(resource.getFile()))) {
+        try (BufferedReader br = Files.newBufferedReader(resource.getFile().toPath(), StandardCharsets.UTF_8)) {
             final String headerLine = br.readLine(); // 맨 첫 줄은 헤더이므로 사용하지 않습니다.
 
             String line;
@@ -128,7 +128,7 @@ public class DevDataLoader implements ApplicationRunner {
         String departmentName = fileName.substring(0, fileName.lastIndexOf('.'));
         DepartmentEntity department = jpaDepartmentRepository.findByName(departmentName)
                                                              .orElseThrow(() -> new IllegalArgumentException("해당 이름의 학과가 존재하지 않습니다."));
-        try (BufferedReader br = new BufferedReader(new FileReader(path.toFile()))) {
+        try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             final String headerLine = br.readLine(); // 맨 첫 줄은 헤더이므로 사용하지 않습니다.
 
             String line;
