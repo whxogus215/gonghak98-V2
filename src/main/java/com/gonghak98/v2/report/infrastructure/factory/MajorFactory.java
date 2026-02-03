@@ -6,9 +6,9 @@ import com.gonghak98.v2.report.domain.abeek.major.GeneralMajor;
 import com.gonghak98.v2.report.domain.abeek.major.LabMajor;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
-import java.io.File;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,7 +23,8 @@ public class MajorFactory {
         String departmentName = department.getName();
 
         try {
-            JsonNode majorConfig = objectMapper.readTree(new File("src/main/resources/json/major-config/" + departmentName + ".json"))
+            JsonNode majorConfig = objectMapper.readTree(new ClassPathResource("src/main/resources/json/major-config/" + departmentName + ".json")
+                                                             .getInputStream())
                                                .get("components");
             labMajor = objectMapper.treeToValue(majorConfig.get("labMajor"), LabMajor.class);
             generalMajor = objectMapper.treeToValue(majorConfig.get("generalMajor"), GeneralMajor.class);
