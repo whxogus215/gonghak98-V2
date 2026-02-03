@@ -1,0 +1,89 @@
+{
+  "studentInfo": {
+    "studentId": "201812345",
+    "studentName": "김공학",
+    "major": "컴퓨터공학"
+  },
+  "abeekResult": {
+    "totalSummary": {
+      "isAllSatisfied": false,
+      "totalAcquiredCredits": 128,
+      "message": "공학인증 요건을 일부 충족하지 못했습니다. '전공' 영역을 확인해주세요."
+    },
+    "gyoyang": {
+      "isSatisfied": true,
+      "categoryName": "전문교양",
+      "acquiredCredits": 18,
+      "requiredCredits": 18,
+      "recognizedCourses": [
+        { "courseCode": "GED001", "courseName": "기술과 사회", "credits": 3 },
+        { "courseCode": "GED002", "courseName": "공학윤리", "credits": 3 },
+        // ... more courses
+      ]
+    },
+    "basic": {
+      "isSatisfied": true,
+      "categoryName": "공학기초",
+      "acquiredCredits": 30,
+      "requiredCredits": 30,
+      "recognizedCourses": [
+        { "courseCode": "BSM001", "courseName": "미적분학 I", "credits": 3 },
+        { "courseCode": "BSM002", "courseName": "일반물리학실험 I", "credits": 1 },
+        // ... more courses
+      ],
+      "details": {
+        "bsm": {
+          "isSatisfied": true,
+          "categoryName": "BSM",
+          "acquiredCredits": 30,
+          "requiredCredits": 30
+        },
+        "msc": {
+          "isSatisfied": true,
+          "categoryName": "MSC",
+          "acquiredCredits": 0,
+          "requiredCredits": 0
+        }
+      }
+    },
+    "major": {
+      "isSatisfied": false,
+      "categoryName": "전공",
+      "acquiredCredits": 57,
+      "requiredCredits": 60,
+      "recognizedCourses": [
+        { "courseCode": "CS101", "courseName": "프로그래밍기초", "credits": 3 },
+        // ... more courses
+      ],
+      "details": {
+        "required": {
+          "isSatisfied": false,
+          "categoryName": "전공필수",
+          "acquiredCredits": 27,
+          "requiredCredits": 30
+        },
+        "elective": {
+          "isSatisfied": true,
+          "categoryName": "전공선택",
+          "acquiredCredits": 30,
+          "requiredCredits": 30
+        }
+      }
+    },
+    "design": {
+      "isSatisfied": true,
+      "categoryName": "설계",
+      "acquiredCredits": 12,
+      "requiredCredits": 12,
+      "recognizedCourses": [
+        { "courseCode": "CS301", "courseName": "자료구조설계", "credits": 3 },
+        { "courseCode": "CS401", "courseName": "종합설계프로젝트", "credits": 6 }
+      ]
+    },
+    "courseDependency": {
+      "isSatisfied": true,
+      "categoryName": "선후수",
+      "violatedCourses": []
+    }
+  }
+}

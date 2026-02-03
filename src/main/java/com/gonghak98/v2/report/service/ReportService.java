@@ -26,10 +26,6 @@ public class ReportService {
         Abeek abeek = abeekService.getAbeek(departmentName);
         CheckResult checkResult = abeek.checkAllCourses(completedCourses);
 
-        //TODO Abeek 조회 구현 후, 구현하기!
-//        Report report = Report.of(checkResult);
-//
-//        reportRepository.save(report);
-        return null;
+        return reportRepository.save(checkResult);
     }
 }
