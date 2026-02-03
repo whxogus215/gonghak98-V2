@@ -25,29 +25,21 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-    runtimeOnly 'com.h2database:h2'
-
-    implementation 'com.github.in-seo:univcert:master-SNAPSHOT'
-
-    testImplementation 'junit:junit:4.13.1'
-
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
 
     compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'io.rest-assured:rest-assured'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    testCompileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
+    testCompileOnly 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.rest-assured:rest-assured'
 }
 
 tasks.named('bootBuildImage') {
