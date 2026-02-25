@@ -17,6 +17,6 @@ public class ReportRepositoryImpl implements ReportRepository {
     @Override
     public ReportResponse save(final CheckResult checkResult) {
         final Report savedReport = mongoDBReportRepository.save(Report.toReport(checkResult));
-        return ReportResponse.toResponse(savedReport);
+        return new ReportResponse(savedReport);
     }
 }
