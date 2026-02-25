@@ -12,10 +12,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @NoArgsConstructor
+@Getter
 public class Report {
 
     @Id
-    @Getter
     private String id;
 
     @CreatedDate
