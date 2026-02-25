@@ -4,7 +4,7 @@ import static com.gonghak98.v2.abeek.fixture.GyoyangFixture.createProGyoyang;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -26,14 +26,14 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFixture.createCheckResult();
+            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
-            gyoyang.checkAllCourses(studentCourses, checkResult);
+            gyoyang.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(checkResult.passResults().get(AreaType.GYOYANG)).isTrue();
+            assertThat(requirementResult.passResults().get(AreaType.GYOYANG)).isTrue();
         }
 
         @DisplayName("필수 과목을 모두 이수하지 않으면, 선택 교과목 중 2과목 이상을 포함해도, 전문교양 영역을 만족하지 못한다.")
@@ -41,14 +41,14 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사_실패(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFixture.createCheckResult();
+            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
-            gyoyang.checkAllCourses(studentCourses, checkResult);
+            gyoyang.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(checkResult.passResults().get(AreaType.GYOYANG)).isFalse();
+            assertThat(requirementResult.passResults().get(AreaType.GYOYANG)).isFalse();
         }
 
         @DisplayName("필수 과목을 모두 이수해도, 선택 교과목 중 2과목 미만으로 이수하면, 전문교양 영역을 만족하지 못한다.")
@@ -56,14 +56,14 @@ class ProGyoyangTest {
         @ParameterizedTest
         void 전문교양_영역_검사_실패2(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFixture.createCheckResult();
+            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
             Gyoyang gyoyang = createProGyoyang();
 
             //when
-            gyoyang.checkAllCourses(studentCourses, checkResult);
+            gyoyang.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(checkResult.passResults().get(AreaType.GYOYANG)).isFalse();
+            assertThat(requirementResult.passResults().get(AreaType.GYOYANG)).isFalse();
         }
 
         private static List<CompletedCourse> createEssentialCourses() {
