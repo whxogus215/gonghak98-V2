@@ -29,4 +29,10 @@ public class GeneralMajor {
         }
         return pointSum >= minPoint;
     }
+    
+    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
+        return completedCourses.stream()
+                .filter(course -> courseIds.contains(course.getId()))
+                .toList();
+    }
 }

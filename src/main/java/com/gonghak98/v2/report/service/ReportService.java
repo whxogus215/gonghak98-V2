@@ -5,6 +5,7 @@ import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.domain.abeek.Abeek;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

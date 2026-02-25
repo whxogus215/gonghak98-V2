@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
@@ -26,14 +26,14 @@ class MscBasicTest {
         @ParameterizedTest
         void MSC_영역_검사(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFixture.createCheckResult();
+            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
             Basic basic = createMscBasic();
 
             //when
-            basic.checkAllCourses(studentCourses, checkResult);
+            basic.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(checkResult.passResults().get(AreaType.MSC)).isTrue();
+            assertThat(requirementResult.passResults().get(AreaType.MSC)).isTrue();
         }
 
         @DisplayName("지정된 MSC 교과목을 모두 이수하지 못하면, MSC 영역을 만족하지 못한다.")
@@ -41,14 +41,14 @@ class MscBasicTest {
         @ParameterizedTest
         void MSC_영역_검사2(List<CompletedCourse> studentCourses) {
             //given
-            CheckResult checkResult = GivenObjectFixture.createCheckResult();
+            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
             Basic basic = createMscBasic();
 
             //when
-            basic.checkAllCourses(studentCourses, checkResult);
+            basic.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(checkResult.passResults().get(AreaType.MSC)).isFalse();
+            assertThat(requirementResult.passResults().get(AreaType.MSC)).isFalse();
         }
 
         private static Stream<Arguments> provideAllEssentialMscCourses() {
