@@ -23,7 +23,7 @@ public class MajorFactory {
         String departmentName = department.getName();
 
         try {
-            JsonNode majorConfig = objectMapper.readTree(new ClassPathResource("src/main/resources/json/major-config/" + departmentName + ".json")
+            JsonNode majorConfig = objectMapper.readTree(new ClassPathResource("json/major-config/" + departmentName + ".json")
                                                              .getInputStream())
                                                .get("components");
             labMajor = objectMapper.treeToValue(majorConfig.get("labMajor"), LabMajor.class);
