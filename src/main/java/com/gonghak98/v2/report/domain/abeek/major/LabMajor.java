@@ -11,6 +11,13 @@ public class LabMajor {
 
     private final int minCount;
 
+    @JsonCreator
+    public LabMajor(@JsonProperty("courseIds") final List<Integer> courseIds,
+                    @JsonProperty("minCount") final int minCount) {
+        this.courseIds = courseIds;
+        this.minCount = minCount;
+    }
+
     public boolean check(List<CompletedCourse> completedCourses) {
         int count = 0;
         for (CompletedCourse course : completedCourses) {
@@ -23,10 +30,9 @@ public class LabMajor {
         return count >= minCount;
     }
 
-    @JsonCreator
-    public LabMajor(@JsonProperty("courseIds") final List<Integer> courseIds,
-                    @JsonProperty("minCount") final int minCount) {
-        this.courseIds = courseIds;
-        this.minCount = minCount;
+    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
+        return completedCourses.stream()
+                .filter(course -> courseIds.contains(course.getId()))
+                .toList();
     }
 }

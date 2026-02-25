@@ -20,6 +20,7 @@ public class MajorFactory {
     public Major create(DepartmentEntity department) {
         LabMajor labMajor;
         GeneralMajor generalMajor;
+        double minPoint;
         String departmentName = department.getName();
 
         try {
@@ -28,9 +29,10 @@ public class MajorFactory {
                                                .get("components");
             labMajor = objectMapper.treeToValue(majorConfig.get("labMajor"), LabMajor.class);
             generalMajor = objectMapper.treeToValue(majorConfig.get("generalMajor"), GeneralMajor.class);
+            minPoint = objectMapper.treeToValue(majorConfig.get("minPoint"), Double.class);
         } catch (IOException e) {
             throw new IllegalArgumentException("파일을 읽어오는 중 에러가 발생했습니다.");
         }
-        return new Major(labMajor, generalMajor);
+        return new Major(labMajor, generalMajor, minPoint);
     }
 }

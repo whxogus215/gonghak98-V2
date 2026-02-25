@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.design.Design;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
@@ -22,14 +22,14 @@ class DesignTest {
     @DisplayName("기초설계 및 캡스톤디자인AㆍB 중 하나를 포함하여 설계 9학점 이상 이수해야 설계 영역 조건을 만족한다.")
     void 기초설계_캡스톤_1개_포함_설계_9학점_이상(List<CompletedCourse> studentCourses) {
         //given
-        CheckResult checkResult = GivenObjectFixture.createCheckResult();
+        RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
         Design design = createDesign();
 
         //when
-        design.checkAllCourses(studentCourses, checkResult);
+        design.checkAllCourses(studentCourses, requirementResult);
 
         //then
-        assertThat(checkResult.passResults().get(AreaType.DESIGN)).isTrue();
+        assertThat(requirementResult.passResults().get(AreaType.DESIGN)).isTrue();
     }
 
     @ParameterizedTest
@@ -37,14 +37,14 @@ class DesignTest {
     @DisplayName("기초설계 및 요소설계 2개를 이수해도 캡스톤디자인 A or B를 이수하지 않으면, 설계 영역 조건을 만족하지 못한다.")
     void 기초설계_요소설계_2개_캡스톤디자인_미이수(List<CompletedCourse> studentCourses) {
         //given
-        CheckResult checkResult = GivenObjectFixture.createCheckResult();
+        RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
         Design design = createDesign();
 
         //when
-        design.checkAllCourses(studentCourses, checkResult);
+        design.checkAllCourses(studentCourses, requirementResult);
 
         //then
-        assertThat(checkResult.passResults().get(AreaType.DESIGN)).isFalse();
+        assertThat(requirementResult.passResults().get(AreaType.DESIGN)).isFalse();
     }
 
     private static List<CompletedCourse> createBasicDesignCourses() {

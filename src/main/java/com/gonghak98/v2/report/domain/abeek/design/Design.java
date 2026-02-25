@@ -1,9 +1,10 @@
 package com.gonghak98.v2.report.domain.abeek.design;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +17,7 @@ public class Design {
 
     private final double minDesignPoint;
 
-    public void checkAllCourses(List<CompletedCourse> studentCourses, CheckResult checkResult) {
+    public void checkAllCourses(List<CompletedCourse> studentCourses, RequirementResult requirementResult) {
         double designPointSum = 0.0;
         boolean isBasicPassed = false;
         boolean isComprehensivePassed = false;
@@ -39,6 +40,37 @@ public class Design {
         }
         boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignPoint);
 
-        checkResult.passResults().put(AreaType.DESIGN, isAllSatisfied);
+        requirementResult.passResults().put(AreaType.DESIGN, isAllSatisfied);
+    }
+    
+    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
+        List<CompletedCourse> relatedCourses = new ArrayList<>();
+        for (CompletedCourse course : completedCourses) {
+            if (isDesignCourse(course.getId())) {
+                relatedCourses.add(course);
+            }
+        }
+        return relatedCourses;
+    }
+
+    private boolean isDesignCourse(int courseId) {
+        if (basicDesignCourse.isEqual(courseId)) {
+            return true;
+        }
+        for (DesignCourse designCourse : elementDesignCourses) {
+            if (designCourse.isEqual(courseId)) {
+                return true;
+            }
+        }
+        for (DesignCourse designCourse : comprehensiveDesignCourses) {
+            if (designCourse.isEqual(courseId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Double getRequiredPoints() {
+        return minDesignPoint;
     }
 }

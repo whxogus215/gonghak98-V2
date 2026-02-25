@@ -5,7 +5,7 @@ import static com.gonghak98.v2.abeek.fixture.MajorFixture.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -29,15 +29,16 @@ public class MajorTest {
                                                              .name(studentLabCourseName)
                                                              .build();
             Major major = new Major(createLabMajor(),
-                                    createGeneralMajor());
+                                    createGeneralMajor(),
+                                    45);
 
-            CheckResult checkResult = GivenObjectFixture.createCheckResult();
+            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
 
             //when
-            major.checkAllCourses(List.of(completedCourse), checkResult);
+            major.checkAllCourses(List.of(completedCourse), requirementResult);
 
             //then
-            assertThat(checkResult.passResults().get(AreaType.MAJOR)).isFalse();
+            assertThat(requirementResult.passResults().get(AreaType.MAJOR)).isFalse();
         }
     }
 }

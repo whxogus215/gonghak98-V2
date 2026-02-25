@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.NonDesignPrerequisite;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.EnumMap;
@@ -26,7 +26,7 @@ class NonDesignPrerequisiteTest {
         @Test
         void 선후수_조건_검사1() {
             //given
-            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class), new HashMap<>());
+            RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
             CompletedCourse beforeCourse = CompletedCourse.builder().id(1).build();
             CompletedCourse afterCourse = CompletedCourse.builder().id(2).build();
 
@@ -35,10 +35,10 @@ class NonDesignPrerequisiteTest {
             NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
 
             //when
-            nonDesignPrerequisite.check(List.of(afterCourse), checkResult);
+            nonDesignPrerequisite.check(List.of(afterCourse), requirementResult);
 
             //then
-            assertThat(checkResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
 
         @DisplayName("필수 선수과목을 후수 과목보다 나중에 들었을 때")
@@ -46,7 +46,7 @@ class NonDesignPrerequisiteTest {
         @ParameterizedTest
         void 선후수_조건_검사2(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CheckResult checkResult = new CheckResult(new EnumMap<>(AreaType.class), new HashMap<>());
+            RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
             CompletedCourse beforeCourse = CompletedCourse.builder().id(1).year(beforeYear).semester(beforeSemester).build();
             CompletedCourse afterCourse = CompletedCourse.builder().id(2).year(afterYear).semester(afterSemester).build();
 
@@ -55,10 +55,10 @@ class NonDesignPrerequisiteTest {
             NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
 
             //when
-            nonDesignPrerequisite.check(List.of(afterCourse), checkResult);
+            nonDesignPrerequisite.check(List.of(afterCourse), requirementResult);
 
             //then
-            assertThat(checkResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
     }
 }
