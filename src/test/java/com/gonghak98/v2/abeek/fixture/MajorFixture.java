@@ -4,6 +4,8 @@ import com.gonghak98.v2.report.domain.abeek.major.GeneralMajor;
 import com.gonghak98.v2.report.domain.abeek.major.LabMajor;
 import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MajorFixture {
 
@@ -27,7 +29,7 @@ public class MajorFixture {
             Course.builder().id(6294).name("음성처리").point(3).build(),
             Course.builder().id(6132).name("영상처리").point(3).build()
         );
-        List<Integer> courseIds = generalCourses.stream().map(Course::getId).toList();
+        Set<Integer> courseIds = generalCourses.stream().map(Course::getId).collect(Collectors.toSet());
         int minPoint = 24;
 
         return new GeneralMajor(courseIds, minPoint);
@@ -41,7 +43,7 @@ public class MajorFixture {
             Course.builder().id(조회_불가능한_학수번호).name("전자소자공정실험").point(3).build(),
             Course.builder().id(9666).name("마이크로컴퓨터실험").point(3).build()
         );
-        List<Integer> courseIds = essentialLabCourses.stream().map(Course::getId).toList();
+        Set<Integer> courseIds = essentialLabCourses.stream().map(Course::getId).collect(Collectors.toSet());
 
         int minCount = 1;
 

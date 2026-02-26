@@ -8,15 +8,26 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class ProGyoyang implements Gyoyang {
 
     private final List<Course> essentialCourses;
     private final List<Course> electiveCourses;
 
+    private final Set<Integer> courseIds;
+
     private final double minPoint;
+
+    public ProGyoyang(List<Course> essentialCourses,
+                      List<Course> electiveCourses,
+                      double minPoint) {
+        this.essentialCourses = essentialCourses;
+        this.electiveCourses = electiveCourses;
+        this.minPoint = minPoint;
+        this.courseIds = new HashSet<>();
+        essentialCourses.forEach(course -> this.courseIds.add(course.getId()));
+        electiveCourses.forEach(course -> this.courseIds.add(course.getId()));
+    }
 
     @Override
     public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
@@ -47,16 +58,12 @@ public class ProGyoyang implements Gyoyang {
 
         requirementResult.passResults().put(AreaType.GYOYANG, isAllSatisfied);
     }
-    
+
     @Override
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        Set<Integer> allCourseIds = new HashSet<>();
-        essentialCourses.forEach(course -> allCourseIds.add(course.getId()));
-        electiveCourses.forEach(course -> allCourseIds.add(course.getId()));
-        
         return completedCourses.stream()
-                .filter(course -> allCourseIds.contains(course.getId()))
-                .toList();
+                               .filter(course -> courseIds.contains(course.getId()))
+                               .toList();
     }
 
     @Override

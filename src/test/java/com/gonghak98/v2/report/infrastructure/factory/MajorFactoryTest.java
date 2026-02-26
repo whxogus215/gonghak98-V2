@@ -8,7 +8,7 @@ import com.gonghak98.v2.report.domain.abeek.major.GeneralMajor;
 import com.gonghak98.v2.report.domain.abeek.major.LabMajor;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
-import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +22,10 @@ class MajorFactoryTest {
         final DepartmentEntity departmentEntity = new DepartmentEntity("전자정보통신공학과");
 
         Major expected = new Major(
-            new LabMajor(List.of(5611, 9658, 8076, 9666), 1),
+            new LabMajor(Set.of(5611, 9658, 8076, 9666), 1),
             new GeneralMajor(
-                List.of(4114, 5246, 7620, 4111, 7453, 4474, 9649, 7806,
-                        4699, 4600, 4829, 3284, 8086, 6294, 6132),
+                Set.of(4114, 5246, 7620, 4111, 7453, 4474, 9649, 7806,
+                       4699, 4600, 4829, 3284, 8086, 6294, 6132),
                 24
             ),
             45

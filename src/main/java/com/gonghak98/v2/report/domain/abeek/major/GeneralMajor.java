@@ -4,15 +4,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
+import java.util.Set;
 
 public class GeneralMajor {
 
-    private final List<Integer> courseIds;
+    private final Set<Integer> courseIds;
 
     private final double minPoint;
 
     @JsonCreator
-    public GeneralMajor(@JsonProperty("courseIds") final List<Integer> courseIds,
+    public GeneralMajor(@JsonProperty("courseIds") final Set<Integer> courseIds,
                         @JsonProperty("minPoint") final double minPoint) {
         this.courseIds = courseIds;
         this.minPoint = minPoint;
