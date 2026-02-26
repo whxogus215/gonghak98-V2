@@ -12,6 +12,8 @@ import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,11 +31,11 @@ public class BasicFactory {
             throw new AbeekException(ExceptionMessage.EMPTY_GONGHAK_COURSE.getMessage());
         }
 
-        List<Course> essentialCourses = gonghakCourses.stream()
-                                                      .filter(c -> c.getSubCategory() == CourseType.ESSENTIAL)
-                                                      .map(GonghakCourseEntity::getCourse)
-                                                      .map(CourseEntity::toDomain)
-                                                      .toList();
+        Set<Course> essentialCourses = gonghakCourses.stream()
+                                                     .filter(c -> c.getSubCategory() == CourseType.ESSENTIAL)
+                                                     .map(GonghakCourseEntity::getCourse)
+                                                     .map(CourseEntity::toDomain)
+                                                     .collect(Collectors.toSet());
 
         return new MscBasic(essentialCourses);
     }
