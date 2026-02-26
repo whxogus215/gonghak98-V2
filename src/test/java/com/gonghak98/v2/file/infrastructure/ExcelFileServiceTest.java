@@ -93,6 +93,7 @@ class ExcelFileServiceTest {
             assertThat(data.courseId()).isNotZero();
             assertThat(data.semester()).isNotZero();
             assertThat(data.year()).isNotZero();
+            assertThat(data.point()).isNotZero();
         });
     }
 
