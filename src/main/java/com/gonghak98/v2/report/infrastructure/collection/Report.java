@@ -2,7 +2,7 @@ package com.gonghak98.v2.report.infrastructure.collection;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
 import com.gonghak98.v2.report.domain.counting.AreaCreditSummary;
 import java.util.Date;
 import java.util.Map;
@@ -27,7 +27,6 @@ public class Report {
 
     private Map<AreaType, Boolean> passResults;
     private Map<Integer, NonPassMessage> nonPassResults;
-
     private Map<AreaType, AreaCreditSummary> creditSummaries;
 
     public Report(final Map<AreaType, Boolean> passResults, final Map<Integer, NonPassMessage> nonPassResults) {
@@ -35,7 +34,15 @@ public class Report {
         this.nonPassResults = nonPassResults;
     }
 
-    public static Report toReport(final RequirementResult requirementResult) {
-        return new Report(requirementResult.passResults(), requirementResult.nonPassResults());
+    public Report(Map<AreaType, Boolean> passResults,
+                  Map<Integer, NonPassMessage> nonPassResults,
+                  Map<AreaType, AreaCreditSummary> creditSummaries) {
+        this.passResults = passResults;
+        this.nonPassResults = nonPassResults;
+        this.creditSummaries = creditSummaries;
+    }
+
+    public static Report toReport(final CheckResult checkResult) {
+        return new Report(checkResult.passResults(), checkResult.nonPassResults(), checkResult.creditSummaries());
     }
 }
