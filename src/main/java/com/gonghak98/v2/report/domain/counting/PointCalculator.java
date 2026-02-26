@@ -17,7 +17,7 @@ public class PointCalculator {
 
         for (AreaType areaType : AreaType.values()) {
             List<CompletedCourse> areaCourses = coursesByArea.getOrDefault(areaType, List.of());
-            int completedCredits = calculateTotalCredits(areaCourses);
+            double completedCredits = calculateTotalCredits(areaCourses);
             double requiredPoint = requiredPoints.getOrDefault(areaType, 0.0);
 
             PointCountResult pointCountResult = new PointCountResult(completedCredits, requiredPoint);
@@ -29,9 +29,9 @@ public class PointCalculator {
         return new CountingResult(summaries);
     }
 
-    private static int calculateTotalCredits(List<CompletedCourse> courses) {
+    private static double calculateTotalCredits(List<CompletedCourse> courses) {
         return courses.stream()
-                      .mapToInt(CompletedCourse::getPoint)
+                      .mapToDouble(CompletedCourse::getPoint)
                       .sum();
     }
 }
