@@ -9,7 +9,6 @@ import com.gonghak98.v2.report.infrastructure.jpa.JpaCourseRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
