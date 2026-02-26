@@ -2,7 +2,6 @@ package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
-
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 

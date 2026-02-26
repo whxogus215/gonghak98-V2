@@ -2,8 +2,8 @@ package com.gonghak98.v2.report.domain.abeek.design;
 
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
+import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
