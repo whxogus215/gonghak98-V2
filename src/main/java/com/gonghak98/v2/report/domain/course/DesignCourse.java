@@ -16,4 +16,8 @@ public class DesignCourse {
     public boolean isEqual(int id) {
         return course.isEqual(id);
     }
+
+    public Integer getCourseId() {
+        return course.getId();
+    }
 }

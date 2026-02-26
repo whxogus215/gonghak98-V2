@@ -4,17 +4,35 @@ import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import java.util.HashSet;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+import java.util.Set;
 
-@RequiredArgsConstructor
 public class Design {
 
     private final DesignCourse basicDesignCourse;
     private final List<DesignCourse> elementDesignCourses;
     private final List<DesignCourse> comprehensiveDesignCourses;
+    private final Set<Integer> designCourseIds;
 
     private final double minDesignPoint;
+
+    public Design(DesignCourse basicDesignCourse,
+                  List<DesignCourse> elementDesignCourses,
+                  List<DesignCourse> comprehensiveDesignCourses,
+                  double minDesignPoint) {
+        this.basicDesignCourse = basicDesignCourse;
+        this.elementDesignCourses = elementDesignCourses;
+        this.comprehensiveDesignCourses = comprehensiveDesignCourses;
+        this.minDesignPoint = minDesignPoint;
+
+        this.designCourseIds = new HashSet<>();
+        if (basicDesignCourse != null) {
+            this.designCourseIds.add(basicDesignCourse.getCourseId());
+        }
+        elementDesignCourses.forEach(c -> this.designCourseIds.add(c.getCourseId()));
+        comprehensiveDesignCourses.forEach(c -> this.designCourseIds.add(c.getCourseId()));
+    }
 
     public void checkAllCourses(List<CompletedCourse> studentCourses, RequirementResult requirementResult) {
         double designPointSum = 0.0;
@@ -49,20 +67,7 @@ public class Design {
     }
 
     private boolean isDesignCourse(int courseId) {
-        if (basicDesignCourse.isEqual(courseId)) {
-            return true;
-        }
-        for (DesignCourse designCourse : elementDesignCourses) {
-            if (designCourse.isEqual(courseId)) {
-                return true;
-            }
-        }
-        for (DesignCourse designCourse : comprehensiveDesignCourses) {
-            if (designCourse.isEqual(courseId)) {
-                return true;
-            }
-        }
-        return false;
+        return designCourseIds.contains(courseId);
     }
 
     public Double getRequiredPoints() {

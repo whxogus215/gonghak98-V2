@@ -3,13 +3,13 @@ package com.gonghak98.v2.abeek.fixture;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
 import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
 import com.gonghak98.v2.report.domain.course.Course;
-import java.util.List;
+import java.util.Set;
 
 public class BasicFixture {
 
     public static Basic createMscBasic() {
 
-        List<Course> essentialCourses = List.of(
+        Set<Course> essentialCourses = Set.of(
             Course.builder().id(11300).name("고급프로그래밍활용").build(),
             Course.builder().id(7330).name("확률및통계").build(),
             Course.builder().id(9912).name("C프로그래밍및실습").build(),

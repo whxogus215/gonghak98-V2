@@ -8,12 +8,18 @@ import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class MscBasic implements Basic {
 
-    private final List<Course> essentialCourses;
+    private final Set<Course> essentialCourses;
+    private final Set<Integer> essentialCourseIds;
+
+    public MscBasic(Set<Course> essentialCourses) {
+        this.essentialCourses = essentialCourses;
+        this.essentialCourseIds = essentialCourses.stream()
+                                                  .map(Course::getId)
+                                                  .collect(Collectors.toSet());
+    }
 
     @Override
     public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
@@ -21,9 +27,6 @@ public class MscBasic implements Basic {
         Set<Integer> completedCourseIds = completedCourses.stream()
                                                           .map(CompletedCourse::getId)
                                                           .collect(Collectors.toSet());
-        List<Integer> essentialCourseIds = essentialCourses.stream()
-                                                           .map(Course::getId)
-                                                           .toList();
 
         boolean isSatisfied = completedCourseIds.containsAll(essentialCourseIds);
 
@@ -32,10 +35,6 @@ public class MscBasic implements Basic {
 
     @Override
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        Set<Integer> essentialCourseIds = essentialCourses.stream()
-                                                          .map(Course::getId)
-                                                          .collect(Collectors.toSet());
-
         return completedCourses.stream()
                                .filter(course -> essentialCourseIds.contains(course.getId()))
                                .toList();
