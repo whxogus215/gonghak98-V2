@@ -4,7 +4,6 @@ import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -42,15 +41,11 @@ public class Design {
 
         requirementResult.passResults().put(AreaType.DESIGN, isAllSatisfied);
     }
-    
+
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        List<CompletedCourse> relatedCourses = new ArrayList<>();
-        for (CompletedCourse course : completedCourses) {
-            if (isDesignCourse(course.getId())) {
-                relatedCourses.add(course);
-            }
-        }
-        return relatedCourses;
+        return completedCourses.stream()
+                               .filter(c -> isDesignCourse(c.getId()))
+                               .toList();
     }
 
     private boolean isDesignCourse(int courseId) {
