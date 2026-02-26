@@ -12,6 +12,7 @@ public record FileResponse(List<FileData> fileDatas) {
                                                         .name(fileData.courseName())
                                                         .semester(fileData.semester())
                                                         .year(fileData.year())
+                                                        .point(fileData.point())
                                                         .build())
                         .toList();
     }

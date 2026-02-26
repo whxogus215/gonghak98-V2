@@ -23,6 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ExcelFileService implements FileService {
 
+    private static final int YEAR_COL_NUM = 2;
+    private static final int SEMESTER_COL_NUM = 3;
+    private static final int COURSE_ID_COL_NUM = 4;
+    private static final int COURSE_NAME_COL_NUM = 5;
+    private static final int POINT_COL_NUM = 9;
+
     private final int firstRow;
 
     public ExcelFileService(@Value("${excel.template.first-row}") int firstRow) {
@@ -50,14 +56,17 @@ public class ExcelFileService implements FileService {
         for (int i = firstRow; i < worksheet.getPhysicalNumberOfRows(); i++) { //데이터 추출
             Row row = worksheet.getRow(i);
 
-            int year = Integer.parseInt(dataFormatter.formatCellValue(row.getCell(1))) % 100;
-            int semester = SemesterConst.getSemester(dataFormatter.formatCellValue(row.getCell(2))).getValue();
+            int year = Integer.parseInt(dataFormatter.formatCellValue(row.getCell(YEAR_COL_NUM - 1))) % 100;
+            int semester = SemesterConst.getSemester(dataFormatter.formatCellValue(row.getCell(SEMESTER_COL_NUM - 1))).getValue();
 
-            String parsedCourseId = dataFormatter.formatCellValue(row.getCell(3));
+            String parsedCourseId = dataFormatter.formatCellValue(row.getCell(COURSE_ID_COL_NUM - 1));
             int courseId = convertCourseId(parsedCourseId);
 
-            String courseName = dataFormatter.formatCellValue(row.getCell(4));
-            fileDatas.add(new FileData(courseId, courseName, year, semester));
+            String courseName = dataFormatter.formatCellValue(row.getCell(COURSE_NAME_COL_NUM - 1));
+
+            double point = Double.parseDouble(dataFormatter.formatCellValue(row.getCell(POINT_COL_NUM - 1)));
+
+            fileDatas.add(new FileData(courseId, courseName, year, semester, point));
         }
         return new FileResponse(fileDatas);
     }
