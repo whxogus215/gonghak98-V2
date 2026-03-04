@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.gonghak98.v2.file.infrastructure.exception.ExcelFileException;
+import com.gonghak98.v2.file.exception.ExcelFileException;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
 import java.io.File;
