@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BaseException.class)
-    public ResponseEntity<ExceptionResponse> handleExcelException(BaseException exception) {
+    public ResponseEntity<ExceptionResponse> handleBaseException(BaseException exception) {
         final BaseExceptionType exceptionType = exception.exceptionType();
         return ResponseEntity.status(exceptionType.httpStatus())
                              .body(new ExceptionResponse(exceptionType.httpStatus().value(),
