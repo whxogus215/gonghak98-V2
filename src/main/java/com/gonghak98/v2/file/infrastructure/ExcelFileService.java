@@ -1,6 +1,7 @@
 package com.gonghak98.v2.file.infrastructure;
 
-import com.gonghak98.v2.file.infrastructure.exception.ExcelFileException;
+import com.gonghak98.v2.file.exception.ExcelFileException;
+import com.gonghak98.v2.file.exception.ExcelFileExceptionType;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileData;
 import com.gonghak98.v2.file.service.dto.FileResponse;
@@ -74,24 +75,24 @@ public class ExcelFileService implements FileService {
     //업로드 파일 검증
     private void validateExcelFileFormat(MultipartFile file, String extension) throws ExcelFileException {
         if (file.isEmpty()) {
-            throw new ExcelFileException("파일이 비어 있습니다.");
+            throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
         }
-        if (!extension.equals("xlsx") && !extension.equals("xls")) { //엑셀파일이 아니면
-            throw new ExcelFileException("엑셀 파일만 업로드 해주세요.");
+        if (!extension.equals("xlsx") && !extension.equals("xls")) { //엑셀파일이 아닐 때
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
         }
     }
 
     private void validateExcelContent(Sheet workSheet, DataFormatter dataFormatter) throws ExcelFileException {
         if (workSheet == null) {
-            throw new ExcelFileException("엑셀파일이 비어있습니다.");
+            throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
         }
         Row row = workSheet.getRow(0);
         if (row == null) {
-            throw new ExcelFileException("엑셀파일이 비어있습니다.");
+            throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
         }
         String data = dataFormatter.formatCellValue(row.getCell(0));
         if (!data.equals("기이수성적")) {
-            throw new ExcelFileException("기이수성적 엑셀파일을 업로드 해주세요.");
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
         }
     }
 
@@ -103,9 +104,9 @@ public class ExcelFileService implements FileService {
                 return new HSSFWorkbook(is);
             }
         } catch (IOException e) {
-            throw new ExcelFileException("엑셀 파일 추출 과정에서 오류가 발생했습니다.");
+            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
         }
-        throw new ExcelFileException("지원하지 않는 엑셀 파일 형식입니다 : " + extension);
+        throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
     }
 
     private int convertCourseId(String parsedCourseId) {
