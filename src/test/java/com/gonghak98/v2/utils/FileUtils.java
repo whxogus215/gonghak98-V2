@@ -13,15 +13,13 @@ public class FileUtils {
     private FileUtils() {
     }
 
-    public static MockMultipartFile 업로드_파일_생성(String filePath) {
+    public static MockMultipartFile 업로드_파일_생성(String path) {
         String fileName = "기이수성적조회";
-        FileInputStream fis;
-        File file = new File(filePath);
-        try {
-            fis = new FileInputStream(file);
-            return new MockMultipartFile(fileName, file.getName(), "xlsx", fis);
+        ClassPathResource resource = new ClassPathResource(path);
+        try (FileInputStream fis = new FileInputStream(resource.getFile())){
+            return new MockMultipartFile(fileName, resource.getFilename(), "xlsx", fis);
         } catch (IOException e) {
-            log.warn("파일을 찾을 수 없습니다.", e);
+            log.warn("파일을 찾을 수 없습니다. path : {}", path, e);
             throw new RuntimeException(e);
         }
     }
