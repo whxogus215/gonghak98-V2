@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import com.gonghak98.v2.file.exception.ExcelFileException;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
-import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,7 +55,7 @@ class ExcelFileServiceTest {
     @DisplayName("사용자가 올바른 기이수 성적파일을 업로드하면, 예외가 발생하지 않는다.")
     void validateWorkbookTest1() {
         //given
-        MockMultipartFile testFile = 업로드_파일_생성("src/test/resources/file/기이수성적조회.xlsx");
+        MockMultipartFile testFile = 업로드_파일_생성("file/기이수성적조회.xlsx");
 
         //when & then
         assertThatCode(() -> fileService.getFileData(testFile))
@@ -67,7 +66,7 @@ class ExcelFileServiceTest {
     @DisplayName("사용자가 잘못된 기이수 성적파일을 업로드하면, 예외가 발생한다.")
     void validateWorkbookTest2() {
         //given
-        MockMultipartFile testFile = 업로드_파일_생성("src/test/resources/file/수강신청내역조회.xlsx");
+        MockMultipartFile testFile = 업로드_파일_생성("file/수강신청내역조회.xlsx");
 
         //when & then
         assertThatThrownBy(() -> fileService.getFileData(testFile))
@@ -78,7 +77,7 @@ class ExcelFileServiceTest {
     @DisplayName("파일에서 데이터를 가져와서 과목정보를 갖는 DTO를 생성한다.")
     void getUserCoursesFromFileTest() {
         //given
-        MockMultipartFile testFile = 업로드_파일_생성("src/test/resources/file/기이수성적조회.xlsx");
+        MockMultipartFile testFile = 업로드_파일_생성("file/기이수성적조회.xlsx");
 
         //when
         FileResponse response = fileService.getFileData(testFile);
