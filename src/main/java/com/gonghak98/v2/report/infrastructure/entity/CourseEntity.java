@@ -1,10 +1,7 @@
 package com.gonghak98.v2.report.infrastructure.entity;
 
 import com.gonghak98.v2.report.domain.course.Course;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CourseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Getter
     private Integer id;
-
-    @Getter
-    @Column(unique = true)
-    private Integer courseId;
 
     @Getter
     private String name;
@@ -27,14 +20,14 @@ public class CourseEntity {
 
     public Course toDomain() {
         return Course.builder()
-                     .id(courseId)
+                     .id(id)
                      .name(name)
                      .point(point)
                      .build();
     }
 
-    public CourseEntity(Integer courseId, String name, double point) {
-        this.courseId = courseId;
+    public CourseEntity(Integer id, String name, double point) {
+        this.id = id;
         this.name = name;
         this.point = point;
     }
