@@ -20,6 +20,7 @@ import io.restassured.specification.RequestSpecification;
 import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +31,7 @@ import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.context.ActiveProfiles;
 
+@DisplayName("POST /api/reports")
 @ActiveProfiles("acceptance")
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ExtendWith(RestDocumentationExtension.class)
@@ -57,44 +59,52 @@ class ReportsApiAcceptanceTest {
             .charset("UTF-8").build();
     }
 
-    @Test
-    @DisplayName("POST /api/report로 기이수 성적파일을 업로드하면, 201 Created와 영역별 검사 결과가 반환된다.")
-    void 성적_업로드_성공_테스트() throws IOException {
-        //when
-        final Response response = RestAssured.given(this.spec)
-                                             .filter(document("create-report", requestParts(
-                                                 partWithName("departmentName").description("학과명 (예: 전자정보통신공학과)"),
-                                                 partWithName("file").description("기이수 성적 파일 (.xlsx)")
-                                             )))
-                                             .multiPart(department)
-                                             .multiPart("file", 인수테스트_업로드_파일_생성("/file/acceptance/졸업생_기이수성적조회.xlsx"))
-                                             .when()
-                                             .post("/api/reports")
-                                             .then().log().all()
-                                             .extract().response();
+    @Nested
+    class 기이수_성적파일_업로드_성공 {
 
-        //then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED.value());
+        @Test
+        @DisplayName("201 Created와 영역별 검사 결과가 반환된다.")
+        void 성적_업로드_성공_테스트() throws IOException {
+            //when
+            final Response response = RestAssured.given(spec)
+                                                 .filter(document("create-report", requestParts(
+                                                     partWithName("departmentName").description("학과명 (예: 전자정보통신공학과)"),
+                                                     partWithName("file").description("기이수 성적 파일 (.xlsx)")
+                                                 )))
+                                                 .multiPart(department)
+                                                 .multiPart("file", 인수테스트_업로드_파일_생성("/file/acceptance/졸업생_기이수성적조회.xlsx"))
+                                                 .when()
+                                                 .post("/api/reports")
+                                                 .then().log().all()
+                                                 .extract().response();
+
+            //then
+            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED.value());
+        }
     }
 
-    @Test
-    @DisplayName("POST /api/report로 다른 파일을 업로드하면, 400 BadRequest와 에러 응답이 반환된다.")
-    void 성적_업로드_예외_테스트() throws IOException {
-        //when
-        final Response response = RestAssured.given(this.spec)
-                                             .filter(document("create-fail-report", responseFields(
-                                                 fieldWithPath("httpStatusCode").description("HTTP 상태 코드"),
-                                                 fieldWithPath("errorCode").description("에러 코드"),
-                                                 fieldWithPath("errorMessage").description("에러 메시지"))
-                                             ))
-                                             .multiPart(department)
-                                             .multiPart("file", 인수테스트_업로드_파일_생성("/file/수강신청내역조회.xlsx"))
-                                             .when()
-                                             .post("/api/reports")
-                                             .then().log().all()
-                                             .extract().response();
+    @Nested
+    class 기이수_성적파일_업로드_실패 {
 
-        //then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+        @Test
+        @DisplayName("400 BadRequest와 에러 응답이 반환된다.")
+        void 성적_업로드_예외_테스트() throws IOException {
+            //when
+            final Response response = RestAssured.given(spec)
+                                                 .filter(document("create-fail-report", responseFields(
+                                                     fieldWithPath("httpStatusCode").description("HTTP 상태 코드"),
+                                                     fieldWithPath("errorCode").description("에러 코드"),
+                                                     fieldWithPath("errorMessage").description("에러 메시지"))
+                                                 ))
+                                                 .multiPart(department)
+                                                 .multiPart("file", 인수테스트_업로드_파일_생성("/file/수강신청내역조회.xlsx"))
+                                                 .when()
+                                                 .post("/api/reports")
+                                                 .then().log().all()
+                                                 .extract().response();
+
+            //then
+            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+        }
     }
 }
