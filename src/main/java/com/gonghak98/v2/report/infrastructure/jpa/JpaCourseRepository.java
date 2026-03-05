@@ -8,5 +8,5 @@ public interface JpaCourseRepository extends JpaRepository<CourseEntity, Integer
 
     Optional<CourseEntity> findByName(String name);
 
-    boolean existsByCourseId(Integer courseId);
+    boolean existsById(Integer id);
 }
