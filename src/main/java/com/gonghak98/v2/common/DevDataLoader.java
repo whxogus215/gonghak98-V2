@@ -85,7 +85,7 @@ public class DevDataLoader implements ApplicationRunner {
                             String name = split[1];
                             Double point = Double.parseDouble(split[2]);
 
-                            if (jpaCourseRepository.existsByCourseId(courseId)) {
+                            if (jpaCourseRepository.existsById(courseId)) {
                                 continue;
                             }
                             jpaCourseRepository.save(new CourseEntity(courseId, name, point));
