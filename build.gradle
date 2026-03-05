@@ -64,19 +64,10 @@ asciidoctor {
 
 bootJar {
     dependsOn asciidoctor
-    from ("${asciidoctor.outputDir}") {
-        into 'static/docs'
+    copy {
+        from asciidoctor.outputDir
+        into 'src/main/resources/static/docs'
     }
-}
-
-tasks.register('copyDocument', Copy) {
-    dependsOn asciidoctor
-    from layout.buildDirectory.dir("docs/asciidoc")
-    into layout.projectDirectory.dir("src/main/resources/static/docs")
-}
-
-tasks.named('build') {
-    dependsOn copyDocument
 }
 
 tasks.named('bootBuildImage') {
