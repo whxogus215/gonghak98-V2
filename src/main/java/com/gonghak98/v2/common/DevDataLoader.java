@@ -24,7 +24,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Profile("dev")
+@Profile({"dev", "acceptance"})
 @RequiredArgsConstructor
 @Component
 public class DevDataLoader implements ApplicationRunner {
