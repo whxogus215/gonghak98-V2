@@ -1,0 +1,50 @@
+= gonghak98 V2 API 문서
+:toc: left
+:toclevels: 2
+:source-highlighter: highlightjs
+
+== POST /api/reports
+
+=== Request
+
+include::{snippets}/create-report/curl-request.adoc[]
+
+=== Request Parts
+
+include::{snippets}/create-report/request-parts.adoc[]
+
+=== Response
+
+include::{snippets}/create-report/http-response.adoc[]
+
+=== Fail Case
+
+엑셀 파일 양식이 맞지 않거나 필수 데이터가 누락된 경우 **400 Bad Request**를 반환합니다.
+
+==== Response
+include::{snippets}/create-fail-report/http-response.adoc[]
+
+==== Response Fields
+include::{snippets}/create-fail-report/response-fields.adoc[]
+
+==== Error Codes
+
+[cols="1,2,3,3", options="header"]
+|===
+| HTTP Status | Error Code | Message | Description
+
+| 400
+| INVALID_EXCEL_FILE_TYPE
+| 올바른 기이수 성적 파일을 업로드해주세요.
+| `.xlsx`, `.xls` 가 아니거나 기이수 성적 파일을 수정했을 경우
+
+| 400
+| EMPTY_EXCEL_FILE
+| 기이수 성적 파일을 업로드해주세요.
+| 비어있는 파일을 업로드할 경우
+
+| 400
+| RETRY_EXCEL_FILE
+| 업로드 과정에서 오류가 발생했습니다. 다시 시도해주세요.
+| 파일 처리 과정에서 발생한 오류로 다시 업로드 시도
+|===
