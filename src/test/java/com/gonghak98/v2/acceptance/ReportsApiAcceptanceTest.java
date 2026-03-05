@@ -44,12 +44,13 @@ class ReportsApiAcceptanceTest {
 
     @BeforeEach
     void setUp(RestDocumentationContextProvider restDocumentation) {
-        RestAssured.port = port;
-
         final Filter docConfig = documentationConfiguration(restDocumentation)
             .operationPreprocessors()
             .withResponseDefaults(prettyPrint());
-        this.spec = new RequestSpecBuilder().addFilter(docConfig).build();
+        this.spec = new RequestSpecBuilder()
+            .setPort(port)
+            .addFilter(docConfig)
+            .build();
 
         this.department = new MultiPartSpecBuilder("전자정보통신공학과")
             .controlName("departmentName")
