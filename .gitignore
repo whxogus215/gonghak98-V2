@@ -46,5 +46,4 @@ scripts
 
 *.properties
 
-### Ignore CLAUDE.md ###
-CLAUDE.md
+src/main/resources/static/docs
