@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -33,7 +34,7 @@ public class DesignPrerequisite {
         List<CompletedCourse> completedComprehensiveCourses = completedCourses.stream()
                                                                               .filter(
                                                                                   completedCourse -> comprehensiveCourseIds.contains(completedCourse.getId()))
-                                                                              .toList();
+                                                                              .collect(Collectors.toList());
 
         boolean isElementPassed = checkElementPrerequisite(completedBasicCourse, completedElementCourses, nonPassResults);
         boolean isComprehensivePassed = checkComprehensivePrerequisite(completedBasicCourse, completedElementCourses, completedComprehensiveCourses,
@@ -54,7 +55,7 @@ public class DesignPrerequisite {
         }
         CompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
         for (CompletedCourse completedElementCourse : completedElementCourses) {
-            if (PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedElementCourse)) {
+            if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedElementCourse)) {
                 nonPassResults.put(completedElementCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 return false;
             }
@@ -74,7 +75,7 @@ public class DesignPrerequisite {
         CompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
 
         for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
-            if (PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedComprehensiveCourse)) {
+            if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedComprehensiveCourse)) {
                 nonPassResults.put(completedComprehensiveCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 return false;
             }
@@ -87,7 +88,7 @@ public class DesignPrerequisite {
         Collections.sort(completedComprehensiveCourses);
         CompletedCourse completedComprehensiveCourse = completedComprehensiveCourses.get(0);
         for (CompletedCourse completedElementCourse : completedElementCourses) {
-            if (PrerequisiteChecker.isSatisfiedPrerequisite(completedElementCourse, completedComprehensiveCourse)) {
+            if (!PrerequisiteChecker.isSatisfiedDesignPrerequisite(completedElementCourse, completedComprehensiveCourse)) {
                 nonPassResults.put(completedComprehensiveCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 return false;
             }
