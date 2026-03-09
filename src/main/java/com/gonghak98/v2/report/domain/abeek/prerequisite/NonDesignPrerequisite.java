@@ -26,7 +26,7 @@ public class NonDesignPrerequisite {
             if (completedCourseTable.containsKey(beforeCourseId)) {
                 CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseId);
                 CompletedCourse afterCourse = completedCourseTable.get(afterCourseId);
-                if (PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse,afterCourse)) {
+                if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse,afterCourse)) {
                     nonPassResults.put(afterCourseId, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 }
             } else {
