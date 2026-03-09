@@ -18,7 +18,31 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class NonDesignPrerequisiteTest {
+    
+    @Nested
+    class 선후수_조건을_만족하는_경우 {
 
+        @DisplayName("필수 선수과목을 먼저 듣고, 후수 과목을 들었을 때")
+        @CsvSource({"2025, 1, 2025, 2", "2025, 2, 2026, 1"})
+        @ParameterizedTest
+        void 선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
+            //given
+            RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
+            CompletedCourse beforeCourse = CompletedCourse.builder().id(1).year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().id(2).year(afterYear).semester(afterSemester).build();
+
+            Map<Integer, Integer> prerequisiteCourseIds = new HashMap<>();
+            prerequisiteCourseIds.put(afterCourse.getId(), beforeCourse.getId());
+            NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
+
+            //when
+            nonDesignPrerequisite.check(List.of(beforeCourse, afterCourse), requirementResult);
+
+            //then
+            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+        }
+    }
+    
     @Nested
     class 선후수_조건을_만족하지_않는_경우 {
 
@@ -56,6 +80,28 @@ class NonDesignPrerequisiteTest {
 
             //when
             nonDesignPrerequisite.check(List.of(afterCourse), requirementResult);
+
+            //then
+            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+        }
+
+        @DisplayName("후수 과목을 필수 선수 과목과 동시에 들었을 때")
+        @Test
+        void 선후수_조건_검사3() {
+            //given
+            int year = 2026;
+            int semester = 1;
+
+            RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
+            CompletedCourse beforeCourse = CompletedCourse.builder().id(1).year(year).semester(semester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().id(2).year(year).semester(semester).build();
+
+            Map<Integer, Integer> prerequisiteCourseIds = new HashMap<>();
+            prerequisiteCourseIds.put(afterCourse.getId(), beforeCourse.getId());
+            NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
+
+            //when
+            nonDesignPrerequisite.check(List.of(beforeCourse, afterCourse), requirementResult);
 
             //then
             assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
