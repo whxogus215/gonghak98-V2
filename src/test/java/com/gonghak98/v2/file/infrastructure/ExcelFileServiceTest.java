@@ -63,6 +63,29 @@ class ExcelFileServiceTest {
     }
 
     @Test
+    @DisplayName("30KB 이하의 파일을 업로드하면, 예외가 발생하지 않는다.")
+    void fileServiceTest4() {
+        //given
+        MockMultipartFile testFile = 업로드_파일_생성("file/기이수성적조회_200과목이수.xlsx");
+
+        //when & then
+        assertThatCode(() -> fileService.getFileData(testFile))
+            .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("30KB가 초과하는 파일을 업로드하면, 예외가 발생한다.")
+    void fileServiceTest5() {
+        //given
+        byte[] content = new byte[30 * 1024];
+        MockMultipartFile testFile = new MockMultipartFile("file", "large.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", content);
+
+        //when & then
+        assertThatThrownBy(() -> fileService.getFileData(testFile))
+            .isInstanceOf(ExcelFileException.class);
+    }
+
+    @Test
     @DisplayName("사용자가 올바른 기이수 성적파일을 업로드하면, 예외가 발생하지 않는다.")
     void validateWorkbookTest1() {
         //given

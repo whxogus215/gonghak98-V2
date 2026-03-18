@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ExcelFileService implements FileService {
 
+    private static final long MAX_FILE_SIZE = 30L * 1024;
+
     private static final int YEAR_COL_NUM = 2;
     private static final int SEMESTER_COL_NUM = 3;
     private static final int COURSE_ID_COL_NUM = 4;
@@ -77,6 +79,9 @@ public class ExcelFileService implements FileService {
     private void validateExcelFileFormat(MultipartFile file, String extension) throws ExcelFileException {
         if (file.isEmpty()) {
             throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
+        }
+        if (file.getSize() > MAX_FILE_SIZE) {
+            throw new ExcelFileException(ExcelFileExceptionType.EXCEED_EXCEL_FILE_SIZE);
         }
         if (!extension.equals("xlsx")) { //엑셀파일이 아닐 때
             throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);

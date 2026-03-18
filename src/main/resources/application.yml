@@ -1,3 +1,9 @@
 excel:
   template:
     first-row: 4
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50KB
+      max-request-size: 1MB
