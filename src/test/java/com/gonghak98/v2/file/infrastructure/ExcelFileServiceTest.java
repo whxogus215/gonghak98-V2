@@ -52,6 +52,17 @@ class ExcelFileServiceTest {
     }
 
     @Test
+    @DisplayName("사용자가 확장자만 맞게 수정하고, 잘못된 파일을 업로드하면, 예외가 발생한다.")
+    void fileServiceTest3() {
+        //given
+        MockMultipartFile testFile = 업로드_파일_생성("file/PDF샘플자료.xlsx");
+
+        //when & then
+        assertThatThrownBy(() -> fileService.getFileData(testFile))
+            .isInstanceOf(ExcelFileException.class);
+    }
+
+    @Test
     @DisplayName("사용자가 올바른 기이수 성적파일을 업로드하면, 예외가 발생하지 않는다.")
     void validateWorkbookTest1() {
         //given

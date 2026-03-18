@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,8 +78,20 @@ public class ExcelFileService implements FileService {
         if (file.isEmpty()) {
             throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
         }
-        if (!extension.equals("xlsx") && !extension.equals("xls")) { //엑셀파일이 아닐 때
+        if (!extension.equals("xlsx")) { //엑셀파일이 아닐 때
             throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+        }
+
+        try (InputStream is = file.getInputStream()) {
+            Tika tika = new Tika();
+            String mimeType = tika.detect(is);
+            if (!mimeType.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                && !mimeType.equals("application/vnd.ms-excel")
+                && !mimeType.equals("application/x-tika-ooxml")) {
+                throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+            }
+        } catch (IOException e) {
+            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
         }
     }
 
