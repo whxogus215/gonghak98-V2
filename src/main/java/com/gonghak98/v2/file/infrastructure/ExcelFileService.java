@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ooxml.POIXMLException;
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -115,16 +117,24 @@ public class ExcelFileService implements FileService {
     }
 
     private Workbook createWorkbook(MultipartFile file, String extension) {
+        ZipSecureFile.setMinInflateRatio(0.01d);
+        ZipSecureFile.setMaxEntrySize(10L * 1024 * 1024); // 해당 값은 MAX_FILE_SIZE와 최대 압축률의 값을 고려해서 설정해야 합니다.
+        ZipSecureFile.setMaxTextSize(1_000_000L);
+
         try (InputStream is = file.getInputStream()) {
             if (extension.equals("xlsx")) {
                 return new XSSFWorkbook(is);
-            } else if (extension.equals("xls")) {
+            } else { // 확장자가 xls일 때
                 return new HSSFWorkbook(is);
             }
         } catch (IOException e) {
             throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
+        } catch (POIXMLException e) {
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+        } catch (Exception e) {
+            // TODO 추후 로그 남기기
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
         }
-        throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
     }
 
     private int convertCourseId(String parsedCourseId) {
