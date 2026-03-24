@@ -3,9 +3,13 @@ package com.gonghak98.v2.report.service;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
+import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
+import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
+import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
 import com.gonghak98.v2.report.domain.abeek.Abeek;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.report.infrastructure.collection.Report;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +30,15 @@ public class ReportService {
         Abeek abeek = abeekService.getAbeek(departmentName);
         CheckResult checkResult = abeek.checkAllCourses(completedCourses);
 
-        return reportRepository.save(checkResult);
+        Report savedReport = reportRepository.save(checkResult);
+
+        return ReportResponse.builder()
+                             .id(savedReport.getId())
+                             .passResults(savedReport.getPassResults().entrySet().stream().map(e -> PassResultDto.from(e.getKey(), e.getValue())).toList())
+                             .nonPassResults(
+                                 savedReport.getNonPassResults().entrySet().stream().map(e -> NonPassResultDto.from(e.getKey(), e.getValue())).toList())
+                             .creditSummaries(
+                                 savedReport.getCreditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList())
+                             .build();
     }
 }
