@@ -15,16 +15,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DesignPrerequisite {
 
-    private final Integer basicCourseId;
-    private final Set<Integer> elementCourseIds;
-    private final Set<Integer> comprehensiveCourseIds;
+    private final Long basicCourseId;
+    private final Set<Long> elementCourseIds;
+    private final Set<Long> comprehensiveCourseIds;
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
         Map<AreaType, Boolean> passResults = requirementResult.passResults();
-        Map<Integer, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+        Map<Long, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = completedCourses.stream()
-                                                                         .filter(completedCourse -> completedCourse.getId() == basicCourseId)
+                                                                         .filter(completedCourse -> basicCourseId.equals(completedCourse.getId()))
                                                                          .findFirst();
 
         List<CompletedCourse> completedElementCourses = completedCourses.stream()
@@ -45,7 +45,7 @@ public class DesignPrerequisite {
     }
 
     private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
-                                             Map<Integer, NonPassMessage> nonPassResults) {
+                                             Map<Long, NonPassMessage> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedElementCourse : completedElementCourses) {
@@ -64,7 +64,7 @@ public class DesignPrerequisite {
     }
 
     private boolean checkComprehensivePrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
-                                                   List<CompletedCourse> completedComprehensiveCourses, Map<Integer, NonPassMessage> nonPassResults) {
+                                                   List<CompletedCourse> completedComprehensiveCourses, Map<Long, NonPassMessage> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {

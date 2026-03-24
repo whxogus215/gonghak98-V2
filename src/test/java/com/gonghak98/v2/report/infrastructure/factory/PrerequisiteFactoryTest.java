@@ -29,15 +29,15 @@ class PrerequisiteFactoryTest {
         final DepartmentEntity departmentEntity = new DepartmentEntity("전자정보통신공학과");
 
         Prerequisite expected = new Prerequisite(
-            new NonDesignPrerequisite(Map.of(4111, 1357,
-                                             7722, 7453,
-                                             9659, 9649,
-                                             4600, 5246,
-                                             4474, 5246)),
+            new NonDesignPrerequisite(Map.of(4111L, 1357L,
+                                             7722L, 7453L,
+                                             9659L, 9649L,
+                                             4600L, 5246L,
+                                             4474L, 5246L)),
             new DesignPrerequisite(
-                7620,
-                Set.of(7721, 9650, 6935, 9662, 7585, 9663),
-                Set.of(9947, 9948)
+                7620L,
+                Set.of(7721L, 9650L, 6935L, 9662L, 7585L, 9663L),
+                Set.of(9947L, 9948L)
             ));
 
         //when

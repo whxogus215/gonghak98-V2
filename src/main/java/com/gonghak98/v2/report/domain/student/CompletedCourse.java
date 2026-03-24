@@ -9,7 +9,7 @@ import lombok.Getter;
 @EqualsAndHashCode(of = "id")
 public class CompletedCourse implements Comparable<CompletedCourse> {
 
-    private int id;
+    private Long id;
 
     private String name;
 

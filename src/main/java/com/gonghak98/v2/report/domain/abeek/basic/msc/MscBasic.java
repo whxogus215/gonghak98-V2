@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class MscBasic implements Basic {
 
     private final Set<Course> essentialCourses;
-    private final Set<Integer> essentialCourseIds;
+    private final Set<Long> essentialCourseIds;
 
     public MscBasic(Set<Course> essentialCourses) {
         this.essentialCourses = essentialCourses;
@@ -24,7 +24,7 @@ public class MscBasic implements Basic {
     @Override
     public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
         // MSC(Math, Science, Computing) 검사 로직 구현
-        Set<Integer> completedCourseIds = completedCourses.stream()
+        Set<Long> completedCourseIds = completedCourses.stream()
                                                           .map(CompletedCourse::getId)
                                                           .collect(Collectors.toSet());
 

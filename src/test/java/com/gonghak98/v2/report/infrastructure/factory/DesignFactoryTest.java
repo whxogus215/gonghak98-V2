@@ -39,13 +39,13 @@ class DesignFactoryTest {
         DepartmentEntity departmentEntity = new DepartmentEntity(testDepartmentName);
         jpaDepartmentRepository.save(departmentEntity);
 
-        CourseEntity baseCourseEntity = new CourseEntity(1, "기초설계", 3.0);
+        CourseEntity baseCourseEntity = new CourseEntity(1L, "기초설계", 3.0);
         jpaCourseRepository.save(baseCourseEntity);
 
-        CourseEntity elementCourseEntity = new CourseEntity(2, "요소설계", 3.0);
+        CourseEntity elementCourseEntity = new CourseEntity(2L, "요소설계", 3.0);
         jpaCourseRepository.save(elementCourseEntity);
 
-        CourseEntity comprehensiveCourseEntity = new CourseEntity(3, "종합설계", 3.0);
+        CourseEntity comprehensiveCourseEntity = new CourseEntity(3L, "종합설계", 3.0);
         jpaCourseRepository.save(comprehensiveCourseEntity);
 
         jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AreaType.DESIGN, CourseType.DESIGN_BASIC, baseCourseEntity));

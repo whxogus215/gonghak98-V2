@@ -19,12 +19,12 @@ class PointCalculatorTest {
         // given
         AreaType areaType = AreaType.MSC;
         CompletedCourse course1 = CompletedCourse.builder()
-                                                 .id(1)
+                                                 .id(1L)
                                                  .name("미적분학1")
                                                  .point(3)
                                                  .build();
         CompletedCourse course2 = CompletedCourse.builder()
-                                                 .id(2)
+                                                 .id(2L)
                                                  .name("일반물리1")
                                                  .point(3)
                                                  .build();

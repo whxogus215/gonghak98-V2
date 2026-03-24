@@ -48,7 +48,7 @@ public class ExcelFileService implements FileService {
         validateExcelFileFormat(file, extension); //업로드 파일 검증
 
         //엑셀 내용 검증
-        Sheet worksheet = createWorkSheet(file, extension);
+        Sheet worksheet = createWorkSheet(file);
         templateValidator.validate(worksheet);
 
         //추출한 데이터를 FileResponse로 변환
@@ -71,6 +71,7 @@ public class ExcelFileService implements FileService {
 
         try (InputStream is = file.getInputStream()) {
             Tika tika = new Tika();
+
             String mimeType = tika.detect(is);
             if (!mimeType.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
                 && !mimeType.equals("application/x-tika-ooxml")) {
@@ -81,7 +82,7 @@ public class ExcelFileService implements FileService {
         }
     }
 
-    private Sheet createWorkSheet(MultipartFile file, String extension) {
+    private Sheet createWorkSheet(MultipartFile file) {
         ZipSecureFile.setMinInflateRatio(0.01d);
         ZipSecureFile.setMaxEntrySize(10L * 1024 * 1024); // 해당 값은 MAX_FILE_SIZE와 최대 압축률의 값을 고려해서 설정해야 합니다.
         ZipSecureFile.setMaxTextSize(1_000_000L);
@@ -108,7 +109,7 @@ public class ExcelFileService implements FileService {
             int semester = SemesterConst.getSemester(dataFormatter.formatCellValue(row.getCell(SEMESTER_COL_NUM - 1))).getValue();
 
             String parsedCourseId = dataFormatter.formatCellValue(row.getCell(COURSE_ID_COL_NUM - 1));
-            int courseId = convertCourseId(parsedCourseId);
+            Long courseId = convertCourseId(parsedCourseId);
 
             String courseName = dataFormatter.formatCellValue(row.getCell(COURSE_NAME_COL_NUM - 1));
 
@@ -119,14 +120,14 @@ public class ExcelFileService implements FileService {
         return new FileResponse(fileDatas);
     }
 
-    private int convertCourseId(String parsedCourseId) {
+    private Long convertCourseId(String parsedCourseId) {
         if (!Character.isDigit(parsedCourseId.charAt(0))) {
             if (parsedCourseId.charAt(0) == 'P') {
                 parsedCourseId = '0' + parsedCourseId.substring(1);
             } else {
-                return 0;
+                return null;
             }
         }
-        return Integer.parseInt(parsedCourseId);
+        return Long.parseLong(parsedCourseId);
     }
 }

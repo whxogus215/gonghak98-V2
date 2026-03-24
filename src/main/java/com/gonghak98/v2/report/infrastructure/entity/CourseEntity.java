@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class CourseEntity {
 
     @Id @Getter
-    private Integer id;
+    private Long id;
 
     @Getter
     private String name;
@@ -26,7 +26,7 @@ public class CourseEntity {
                      .build();
     }
 
-    public CourseEntity(Integer id, String name, double point) {
+    public CourseEntity(Long id, String name, double point) {
         this.id = id;
         this.name = name;
         this.point = point;

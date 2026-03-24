@@ -73,7 +73,7 @@ public class DesignFactory {
         }
     }
 
-    private DesignCourse toDesignCourse(final GonghakCourseEntity entity, final Map<Integer, Integer> designPointByCourse) {
+    private DesignCourse toDesignCourse(final GonghakCourseEntity entity, final Map<Long, Integer> designPointByCourse) {
         final CourseEntity courseEntity = entity.getCourse();
         double point = designPointByCourse.getOrDefault(courseEntity.getId(), 0);
         return new DesignCourse(courseEntity.toDomain(), point);

@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 public class PrerequisiteConfig {
 
     private String departmentName;
-    private Map<Integer, Integer> nonDesignPrerequisiteCourseIds;
+    private Map<Long, Long> nonDesignPrerequisiteCourseIds;
     private DesignPrerequisiteConfig designPrerequisiteCourseIds;
 
     @Getter
     @NoArgsConstructor
     public static class DesignPrerequisiteConfig {
-        private Integer basicCourseId;
-        private Set<Integer> elementCourseIds;
-        private Set<Integer> comprehensiveCourseIds;
+        private Long basicCourseId;
+        private Set<Long> elementCourseIds;
+        private Set<Long> comprehensiveCourseIds;
     }
 }

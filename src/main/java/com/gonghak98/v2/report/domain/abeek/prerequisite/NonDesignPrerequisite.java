@@ -11,15 +11,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NonDesignPrerequisite {
 
-    private final Map<Integer, Integer> prerequisiteCourseIds;
+    private final Map<Long, Long> prerequisiteCourseIds;
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<Integer, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
-        Map<Integer, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getId, c -> c));
+        Map<Long, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+        Map<Long, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getId, c -> c));
 
         for (CompletedCourse completedCourse : completedCourses) {
-            Integer afterCourseId = completedCourse.getId();
-            Integer beforeCourseId = prerequisiteCourseIds.get(afterCourseId);
+            Long afterCourseId = completedCourse.getId();
+            Long beforeCourseId = prerequisiteCourseIds.get(afterCourseId);
             if (beforeCourseId == null) {
                 continue;
             }

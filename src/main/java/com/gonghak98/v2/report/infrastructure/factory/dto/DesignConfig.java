@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DesignConfig {
 
-    private Map<Integer, Integer> designPointByCourse;
+    private Map<Long, Integer> designPointByCourse;
     private Double minDesignPoint;
 }
