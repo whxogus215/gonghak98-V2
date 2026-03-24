@@ -8,12 +8,12 @@ import java.util.Set;
 
 public class LabMajor {
 
-    private final Set<Integer> courseIds;
+    private final Set<Long> courseIds;
 
     private final int minCount;
 
     @JsonCreator
-    public LabMajor(@JsonProperty("courseIds") final Set<Integer> courseIds,
+    public LabMajor(@JsonProperty("courseIds") final Set<Long> courseIds,
                     @JsonProperty("minCount") final int minCount) {
         this.courseIds = courseIds;
         this.minCount = minCount;
@@ -22,8 +22,8 @@ public class LabMajor {
     public boolean check(List<CompletedCourse> completedCourses) {
         int count = 0;
         for (CompletedCourse course : completedCourses) {
-            for (Integer courseId : courseIds) {
-                if (courseId == course.getId()) {
+            for (Long courseId : courseIds) {
+                if (courseId.equals(course.getId())) {
                     count++;
                 }
             }

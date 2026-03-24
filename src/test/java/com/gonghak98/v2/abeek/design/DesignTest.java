@@ -3,10 +3,10 @@ package com.gonghak98.v2.abeek.design;
 import static com.gonghak98.v2.abeek.fixture.DesignFixture.createDesign;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.AreaType;
 import com.gonghak98.v2.report.domain.abeek.design.Design;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
-import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
@@ -48,23 +48,23 @@ class DesignTest {
     }
 
     private static List<CompletedCourse> createBasicDesignCourses() {
-        return List.of(CompletedCourse.builder().id(7620).name("기초설계").build());
+        return List.of(CompletedCourse.builder().id(7620L).name("기초설계").build());
     }
 
     private static List<CompletedCourse> createElementDesignCourses() {
         return List.of(
-            CompletedCourse.builder().id(7721).name("전자소자설계").build(),
-            CompletedCourse.builder().id(9650).name("데이터통신설계").build(),
-            CompletedCourse.builder().id(6935).name("정보시스템설계").build(),
-            CompletedCourse.builder().id(9662).name("전자회로설계").build(),
-            CompletedCourse.builder().id(7585).name("통신시스템설계").build(),
-            CompletedCourse.builder().id(9663).name("멀티미디어설계").build());
+            CompletedCourse.builder().id(7721L).name("전자소자설계").build(),
+            CompletedCourse.builder().id(9650L).name("데이터통신설계").build(),
+            CompletedCourse.builder().id(6935L).name("정보시스템설계").build(),
+            CompletedCourse.builder().id(9662L).name("전자회로설계").build(),
+            CompletedCourse.builder().id(7585L).name("통신시스템설계").build(),
+            CompletedCourse.builder().id(9663L).name("멀티미디어설계").build());
     }
 
     private static List<CompletedCourse> createComprehensiveDesignCourses() {
         return List.of(
-            CompletedCourse.builder().id(9947).name("캡스톤디자인A").build(),
-            CompletedCourse.builder().id(9948).name("캡스톤디자인B").build());
+            CompletedCourse.builder().id(9947L).name("캡스톤디자인A").build(),
+            CompletedCourse.builder().id(9948L).name("캡스톤디자인B").build());
     }
 
     private static Stream<Arguments> provideAllSatisfiedDesignCourseCombinations() {

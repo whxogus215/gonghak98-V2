@@ -42,8 +42,8 @@ class DesignPrerequisiteTest {
         @ParameterizedTest
         void 설계_선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(afterYear).semester(afterSemester).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(afterYear).semester(afterSemester).build();
 
             //when
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), requirementResult);
@@ -56,10 +56,10 @@ class DesignPrerequisiteTest {
         @Test
         void 설계_선후수_조건_검사2() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(2025).semester(1).build();
-            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().id(9650).year(2025).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(2026).semester(1).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(2024).semester(2).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(2025).semester(1).build();
+            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().id(9650L).year(2025).semester(2).build();
+            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947L).year(2026).semester(1).build();
 
             final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
             design.checkAllCourses(allCompletedCourses, requirementResult);
@@ -76,10 +76,10 @@ class DesignPrerequisiteTest {
         @Test
         void 설계_선후수_조건_검사3() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(2025).semester(1).build();
-            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().id(9650).year(2026).semester(1).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(2026).semester(1).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(2024).semester(2).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(2025).semester(1).build();
+            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().id(9650L).year(2026).semester(1).build();
+            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947L).year(2026).semester(1).build();
 
             final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
             design.checkAllCourses(allCompletedCourses, requirementResult);
@@ -96,10 +96,10 @@ class DesignPrerequisiteTest {
         @Test
         void 설계_선후수_조건_검사4() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(2025).semester(2).build();
-            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().id(9650).year(2025).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(2026).semester(1).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(2024).semester(2).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(2025).semester(2).build();
+            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().id(9650L).year(2025).semester(2).build();
+            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947L).year(2026).semester(1).build();
 
             final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
             design.checkAllCourses(allCompletedCourses, requirementResult);
@@ -130,8 +130,8 @@ class DesignPrerequisiteTest {
         @ParameterizedTest
         void 설계_선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(afterYear).semester(afterSemester).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(afterYear).semester(afterSemester).build();
 
             //when
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), requirementResult);
@@ -146,8 +146,8 @@ class DesignPrerequisiteTest {
         @ParameterizedTest
         void 설계_선후수_조건_검사2(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(afterYear).semester(afterSemester).build();
+            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947L).year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(afterYear).semester(afterSemester).build();
 
             //when
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), requirementResult);
@@ -161,9 +161,9 @@ class DesignPrerequisiteTest {
         @Test
         void 설계_선후수_조건_검사3() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(2025).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(2025).semester(2).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(2024).semester(2).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(2025).semester(2).build();
+            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947L).year(2025).semester(2).build();
 
             //when
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, comprehensiveCompletedCourse), requirementResult);
@@ -176,8 +176,8 @@ class DesignPrerequisiteTest {
         @Test
         void 설계_선후수_조건_동시수강_검사1() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721).year(2024).semester(2).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(2024).semester(2).build();
+            CompletedCourse elementCompletedCourse = CompletedCourse.builder().id(7721L).year(2024).semester(2).build();
 
             //when
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), requirementResult);
@@ -190,8 +190,8 @@ class DesignPrerequisiteTest {
         @Test
         void 설계_선후수_조건_동시수강_검사2() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620).year(2024).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947).year(2024).semester(2).build();
+            CompletedCourse basicCompletedCourse = CompletedCourse.builder().id(7620L).year(2024).semester(2).build();
+            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().id(9947L).year(2024).semester(2).build();
 
             //when
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), requirementResult);

@@ -14,7 +14,7 @@ public class ProGyoyang implements Gyoyang {
     private final List<Course> essentialCourses;
     private final List<Course> electiveCourses;
 
-    private final Set<Integer> courseIds;
+    private final Set<Long> courseIds;
 
     private final double minPoint;
 
@@ -31,7 +31,7 @@ public class ProGyoyang implements Gyoyang {
 
     @Override
     public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Set<Integer> completedCourseIds = completedCourses.stream()
+        Set<Long> completedCourseIds = completedCourses.stream()
                                                           .map(CompletedCourse::getId)
                                                           .collect(Collectors.toSet());
         int completedEssentialCount = 0;

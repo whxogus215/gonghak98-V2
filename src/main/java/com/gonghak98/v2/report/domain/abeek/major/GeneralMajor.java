@@ -4,16 +4,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class GeneralMajor {
 
-    private final Set<Integer> courseIds;
+    private final Set<Long> courseIds;
 
     private final double minPoint;
 
     @JsonCreator
-    public GeneralMajor(@JsonProperty("courseIds") final Set<Integer> courseIds,
+    public GeneralMajor(@JsonProperty("courseIds") final Set<Long> courseIds,
                         @JsonProperty("minPoint") final double minPoint) {
         this.courseIds = courseIds;
         this.minPoint = minPoint;
@@ -22,8 +23,8 @@ public class GeneralMajor {
     public boolean check(List<CompletedCourse> completedCourses) {
         double pointSum = 0.0;
         for (CompletedCourse course : completedCourses) {
-            for (Integer courseId : courseIds) {
-                if (courseId == course.getId()) {
+            for (Long courseId : courseIds) {
+                if (Objects.equals(courseId, course.getId())) {
                     pointSum += course.getPoint();
                 }
             }

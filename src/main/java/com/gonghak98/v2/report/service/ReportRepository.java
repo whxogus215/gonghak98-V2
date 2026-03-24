@@ -1,9 +1,9 @@
 package com.gonghak98.v2.report.service;
 
-import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.infrastructure.collection.Report;
 
 public interface ReportRepository {
 
-    ReportResponse save(CheckResult checkResult);
+    Report save(CheckResult checkResult);
 }

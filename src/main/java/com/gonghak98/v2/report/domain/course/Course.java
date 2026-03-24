@@ -7,14 +7,14 @@ import lombok.Getter;
 public class Course {
 
     @Getter
-    private int id;
+    private Long id;
 
     private String name;
 
     @Getter
     private double point;
 
-    public boolean isEqual(int id) {
-        return this.id == id;
+    public boolean isEqual(Long id) {
+        return this.id.equals(id);
     }
 }

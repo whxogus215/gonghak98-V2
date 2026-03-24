@@ -81,7 +81,7 @@ public class DevDataLoader implements ApplicationRunner {
                     while ((line = br.readLine()) != null) {
                         final String[] split = line.split(DELIMITER);
                         try {
-                            Integer courseId = Integer.parseInt(split[0]);
+                            Long courseId = Long.parseLong(split[0]);
                             String name = split[1];
                             Double point = Double.parseDouble(split[2]);
 
