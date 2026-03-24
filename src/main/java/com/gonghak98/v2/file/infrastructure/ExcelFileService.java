@@ -12,17 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ooxml.POIXMLException;
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ExcelFileService implements FileService {
+
+    private static final long MAX_FILE_SIZE = 30L * 1024;
 
     private static final int YEAR_COL_NUM = 2;
     private static final int SEMESTER_COL_NUM = 3;
@@ -31,9 +35,12 @@ public class ExcelFileService implements FileService {
     private static final int POINT_COL_NUM = 9;
 
     private final int firstRow;
+    private final ExcelTemplateValidator templateValidator;
 
-    public ExcelFileService(@Value("${excel.template.first-row}") int firstRow) {
+    public ExcelFileService(@Value("${excel.template.first-row}") int firstRow,
+                            ExcelTemplateValidator templateValidator) {
         this.firstRow = firstRow;
+        this.templateValidator = templateValidator;
     }
 
     @Override
@@ -42,12 +49,11 @@ public class ExcelFileService implements FileService {
         validateExcelFileFormat(file, extension); //업로드 파일 검증
 
         //엑셀 내용 검증
-        Workbook workbook = createWorkbook(file, extension);
-        Sheet worksheet = workbook.getSheetAt(0);
-        DataFormatter dataFormatter = new DataFormatter();
-        validateExcelContent(worksheet, dataFormatter);
+        Sheet worksheet = createWorkSheet(file, extension);
+        templateValidator.validate(worksheet);
 
         //추출한 데이터를 FileResponse로 변환
+        DataFormatter dataFormatter = new DataFormatter();
         return extractData(worksheet, dataFormatter);
     }
 
@@ -77,36 +83,45 @@ public class ExcelFileService implements FileService {
         if (file.isEmpty()) {
             throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
         }
-        if (!extension.equals("xlsx") && !extension.equals("xls")) { //엑셀파일이 아닐 때
+        if (file.getSize() > MAX_FILE_SIZE) {
+            throw new ExcelFileException(ExcelFileExceptionType.EXCEED_EXCEL_FILE_SIZE);
+        }
+        if (!extension.equals("xlsx")) { //엑셀파일이 아닐 때
             throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
         }
-    }
 
-    private void validateExcelContent(Sheet workSheet, DataFormatter dataFormatter) throws ExcelFileException {
-        if (workSheet == null) {
-            throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
-        }
-        Row row = workSheet.getRow(0);
-        if (row == null) {
-            throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
-        }
-        String data = dataFormatter.formatCellValue(row.getCell(0));
-        if (!data.equals("기이수성적")) {
-            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
-        }
-    }
-
-    private Workbook createWorkbook(MultipartFile file, String extension) {
         try (InputStream is = file.getInputStream()) {
-            if (extension.equals("xlsx")) {
-                return new XSSFWorkbook(is);
-            } else if (extension.equals("xls")) {
-                return new HSSFWorkbook(is);
+            Tika tika = new Tika();
+            String mimeType = tika.detect(is);
+            if (!mimeType.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                && !mimeType.equals("application/vnd.ms-excel")
+                && !mimeType.equals("application/x-tika-ooxml")) {
+                throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
             }
         } catch (IOException e) {
             throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
         }
-        throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+    }
+
+    private Sheet createWorkSheet(MultipartFile file, String extension) {
+        ZipSecureFile.setMinInflateRatio(0.01d);
+        ZipSecureFile.setMaxEntrySize(10L * 1024 * 1024); // 해당 값은 MAX_FILE_SIZE와 최대 압축률의 값을 고려해서 설정해야 합니다.
+        ZipSecureFile.setMaxTextSize(1_000_000L);
+
+        try (InputStream is = file.getInputStream()) {
+            if (extension.equals("xlsx")) {
+                return new XSSFWorkbook(is).getSheetAt(0);
+            } else { // 확장자가 xls일 때
+                return new HSSFWorkbook(is).getSheetAt(0);
+            }
+        } catch (IOException e) {
+            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
+        } catch (POIXMLException e) {
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+        } catch (Exception e) {
+            // TODO 추후 로그 남기기
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+        }
     }
 
     private int convertCourseId(String parsedCourseId) {

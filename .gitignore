@@ -47,3 +47,6 @@ scripts
 *.properties
 
 src/main/resources/static/docs
+
+*.xlsx
+*.yml
