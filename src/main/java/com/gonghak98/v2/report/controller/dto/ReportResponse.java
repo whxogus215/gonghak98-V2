@@ -24,6 +24,7 @@ public class ReportResponse {
 
         private ResponseAreaType areaType;
 
+        @Getter(onMethod_ = {@JsonProperty("isPassed")})
         private boolean isPassed;
 
         public static PassResultDto from(AreaType areaType, boolean isPassed) {
