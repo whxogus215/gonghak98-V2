@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.gonghak98.v2.file.exception.ExcelFileException;
+import com.gonghak98.v2.file.exception.ExcelFileExceptionType;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -80,12 +81,13 @@ class ExcelFileServiceTest {
     @DisplayName("30KB가 초과하는 파일을 업로드하면, 예외가 발생한다.")
     void fileServiceTest5() {
         //given
-        byte[] content = new byte[30 * 1024];
-        MockMultipartFile testFile = new MockMultipartFile("file", "large.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", content);
+        MockMultipartFile testFile = 업로드_파일_생성("file/30KB_초과_샘플.xlsx");
 
         //when & then
         assertThatThrownBy(() -> fileService.getFileData(testFile))
-            .isInstanceOf(ExcelFileException.class);
+            .isInstanceOf(ExcelFileException.class)
+            .extracting("exceptionType")
+            .isEqualTo(ExcelFileExceptionType.EXCEED_EXCEL_FILE_SIZE);
     }
 
     @Test
