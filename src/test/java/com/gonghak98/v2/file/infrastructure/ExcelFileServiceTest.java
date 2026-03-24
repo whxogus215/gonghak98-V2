@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mockito;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -20,12 +21,14 @@ import org.springframework.test.context.ActiveProfiles;
 class ExcelFileServiceTest {
 
     private static final int TEST_FILE_ROW_SIZE = 31;
+    private ExcelTemplateValidator mockValidator;
     private FileService fileService;
 
     @BeforeEach
     void setUp() {
         int firstRow = 4;
-        fileService = new ExcelFileService(firstRow);
+        mockValidator = Mockito.mock(ExcelTemplateValidator.class);
+        fileService = new ExcelFileService(firstRow, mockValidator);
     }
 
     @Test
