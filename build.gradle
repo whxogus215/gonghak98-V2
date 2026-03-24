@@ -33,8 +33,8 @@ dependencies {
     // 엑셀 파일 조작 라이브러리
     implementation 'org.apache.poi:poi-ooxml:5.5.1'
     // 범용 파일 검증 라이브러리
-    implementation 'org.apache.tika:tika-core:3.2.3'
-    implementation 'org.apache.tika:tika-parsers:3.2.3'
+    implementation 'org.apache.tika:tika-core:3.3.0'
+    implementation 'org.apache.tika:tika-parsers-standard-package:3.3.0'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'
