@@ -13,7 +13,7 @@ public class Design {
     private final DesignCourse basicDesignCourse;
     private final List<DesignCourse> elementDesignCourses;
     private final List<DesignCourse> comprehensiveDesignCourses;
-    private final Set<Integer> designCourseIds;
+    private final Set<Long> designCourseIds;
 
     private final double minDesignPoint;
 
@@ -66,7 +66,7 @@ public class Design {
                                .toList();
     }
 
-    private boolean isDesignCourse(int courseId) {
+    private boolean isDesignCourse(Long courseId) {
         return designCourseIds.contains(courseId);
     }
 

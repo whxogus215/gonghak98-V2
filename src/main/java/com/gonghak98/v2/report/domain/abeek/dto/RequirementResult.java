@@ -5,6 +5,6 @@ import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import java.util.Map;
 
 public record RequirementResult(Map<AreaType, Boolean> passResults,
-                                Map<Integer, NonPassMessage> nonPassResults) {
+                                Map<Long, NonPassMessage> nonPassResults) {
 
 }

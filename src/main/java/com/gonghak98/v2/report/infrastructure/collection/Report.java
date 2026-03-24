@@ -26,16 +26,16 @@ public class Report {
     private Date updateTime;
 
     private Map<AreaType, Boolean> passResults;
-    private Map<Integer, NonPassMessage> nonPassResults;
+    private Map<Long, NonPassMessage> nonPassResults;
     private Map<AreaType, AreaCreditSummary> creditSummaries;
 
-    public Report(final Map<AreaType, Boolean> passResults, final Map<Integer, NonPassMessage> nonPassResults) {
+    public Report(final Map<AreaType, Boolean> passResults, final Map<Long, NonPassMessage> nonPassResults) {
         this.passResults = passResults;
         this.nonPassResults = nonPassResults;
     }
 
     public Report(Map<AreaType, Boolean> passResults,
-                  Map<Integer, NonPassMessage> nonPassResults,
+                  Map<Long, NonPassMessage> nonPassResults,
                   Map<AreaType, AreaCreditSummary> creditSummaries) {
         this.passResults = passResults;
         this.nonPassResults = nonPassResults;
