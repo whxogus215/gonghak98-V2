@@ -9,28 +9,29 @@ import com.gonghak98.v2.file.exception.ExcelFileException;
 import com.gonghak98.v2.file.exception.ExcelFileExceptionType;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.ConfigDataApplicationContextInitializer;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ActiveProfiles("test")
+@ExtendWith(SpringExtension.class)
+@EnableConfigurationProperties(ExcelTemplateProperties.class)
+@ContextConfiguration(classes = {ExcelFileService.class, ExcelTemplateValidator.class}, initializers = ConfigDataApplicationContextInitializer.class)
 class ExcelFileServiceTest {
 
     private static final int TEST_FILE_ROW_SIZE = 31;
-    private ExcelTemplateValidator mockValidator;
-    private FileService fileService;
 
-    @BeforeEach
-    void setUp() {
-        int firstRow = 4;
-        mockValidator = Mockito.mock(ExcelTemplateValidator.class);
-        fileService = new ExcelFileService(firstRow, mockValidator);
-    }
+    @Autowired
+    private FileService fileService;
 
     @Test
     @DisplayName("사용자가 업로드한 파일의 확장자가 엑셀(xlsx, xls)이 아니면 예외가 발생한다.")
