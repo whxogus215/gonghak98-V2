@@ -16,10 +16,10 @@ public class PointCalculator {
         Map<AreaType, AreaCreditSummary> summaries = new EnumMap<>(AreaType.class);
 
         for (AreaType areaType : AreaType.values()) {
-            List<CompletedCourse> areaCourses = coursesByArea.getOrDefault(areaType, null);
-            if (areaCourses == null) {
+            if (!coursesByArea.containsKey(areaType)) {
                 continue;
             }
+            List<CompletedCourse> areaCourses = coursesByArea.get(areaType);
             double completedCredits = calculateTotalCredits(areaCourses);
             double requiredPoint = requiredPoints.getOrDefault(areaType, 0.0);
 
