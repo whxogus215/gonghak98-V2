@@ -5,7 +5,7 @@
   "designRequirement": {
     "minCredit": 9
   },
-  "mscRequirement": {
+  "basicRequirement": {
     "minCredit": 30,
     "components": [
       {
@@ -17,7 +17,7 @@
       }
     ]
   },
-  "basicRequirement": {
+  "majorRequirement": {
     "minCredit": 45,
     "components": [
       {
@@ -33,13 +33,6 @@
         "conditionType": "MIN_POINT",
         "conditionValue": 24,
         "targetCourses": ["004114", "005246", "007620", "004111", "007453", "004474", "009649"]
-      },
-      {
-        "name": "mandatoryMajor",
-        "description": "필수 전공 모두 이수 (요구 과목 개수와 동일하게 조건 설정)",
-        "conditionType": "MUST_TAKE_ALL",
-        "conditionValue": 3,
-        "targetCourses": ["001001", "001002", "001003"]
       }
     ]
   },
