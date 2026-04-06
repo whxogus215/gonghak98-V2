@@ -6,10 +6,10 @@ import lombok.Getter;
 
 @Builder
 @Getter
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "code")
 public class CompletedCourse implements Comparable<CompletedCourse> {
 
-    private Long id;
+    private String code;
 
     private String name;
 

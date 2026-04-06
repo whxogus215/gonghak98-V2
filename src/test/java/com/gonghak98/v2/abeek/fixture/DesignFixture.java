@@ -8,18 +8,18 @@ import java.util.List;
 public class DesignFixture {
 
     public static Design createDesign() {
-        Course basicCourse = Course.builder().id(7620L).name("기초설계").build();
+        Course basicCourse = Course.builder().code("007620").name("기초설계").build();
         List<Course> elementCourses = List.of(
-            Course.builder().id(7721L).name("전자소자설계").build(), // 전자소자설계 -> 반도체소자설계
-            Course.builder().id(9650L).name("데이터통신설계").build(),
-            Course.builder().id(6935L).name("정보시스템설계").build(),
-            Course.builder().id(9662L).name("전자회로설계").build(),
-            Course.builder().id(7585L).name("통신시스템설계").build(),
-            Course.builder().id(9663L).name("멀티미디어설계").build()
+            Course.builder().code("007721").name("전자소자설계").build(), // 전자소자설계 -> 반도체소자설계
+            Course.builder().code("009650").name("데이터통신설계").build(),
+            Course.builder().code("006935").name("정보시스템설계").build(),
+            Course.builder().code("009662").name("전자회로설계").build(),
+            Course.builder().code("007585").name("통신시스템설계").build(),
+            Course.builder().code("009663").name("멀티미디어설계").build()
         );
         List<Course> comprehensiveCourses = List.of(
-            Course.builder().id(9947L).name("캡스톤디자인A").build(),
-            Course.builder().id(9948L).name("캡스톤디자인B").build()
+            Course.builder().code("009947").name("캡스톤디자인A").build(),
+            Course.builder().code("009948").name("캡스톤디자인B").build()
         );
 
         DesignCourse basicDesignCourse = DesignCourse.builder().course(basicCourse).designPoint(3.0).build();

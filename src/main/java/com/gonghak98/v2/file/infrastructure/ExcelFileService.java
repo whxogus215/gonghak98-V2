@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.ooxml.POIXMLException;
 import org.apache.poi.openxml4j.util.ZipSecureFile;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @Service
 public class ExcelFileService implements FileService {
 
@@ -94,6 +96,7 @@ public class ExcelFileService implements FileService {
         } catch (POIXMLException e) {
             throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
         } catch (Exception e) {
+            log.info("에러 메시지 {}", e.getMessage());
             // TODO 추후 로그 남기기
             throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
         }
@@ -108,26 +111,14 @@ public class ExcelFileService implements FileService {
             int year = Integer.parseInt(dataFormatter.formatCellValue(row.getCell(YEAR_COL_NUM - 1))) % 100;
             int semester = SemesterConst.getSemester(dataFormatter.formatCellValue(row.getCell(SEMESTER_COL_NUM - 1))).getValue();
 
-            String parsedCourseId = dataFormatter.formatCellValue(row.getCell(COURSE_ID_COL_NUM - 1));
-            Long courseId = convertCourseId(parsedCourseId);
+            String courseCode = dataFormatter.formatCellValue(row.getCell(COURSE_ID_COL_NUM - 1));
 
             String courseName = dataFormatter.formatCellValue(row.getCell(COURSE_NAME_COL_NUM - 1));
 
             double point = Double.parseDouble(dataFormatter.formatCellValue(row.getCell(POINT_COL_NUM - 1)));
 
-            fileDatas.add(new FileData(courseId, courseName, year, semester, point));
+            fileDatas.add(new FileData(courseCode, courseName, year, semester, point));
         }
         return new FileResponse(fileDatas);
-    }
-
-    private Long convertCourseId(String parsedCourseId) {
-        if (!Character.isDigit(parsedCourseId.charAt(0))) {
-            if (parsedCourseId.charAt(0) == 'P') {
-                parsedCourseId = '0' + parsedCourseId.substring(1);
-            } else {
-                return null;
-            }
-        }
-        return Long.parseLong(parsedCourseId);
     }
 }

@@ -14,12 +14,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 class LabMajorTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"5611, 디지털논리회로", "9658, 전기회로실험", "8076, 기초광학및실험", "-1, 전자소자공정실험", "9666, 마이크로컴퓨터실험"})
+    @CsvSource(value = {"005611, 디지털논리회로", "009658, 전기회로실험", "008076, 기초광학및실험", "999999, 전자소자공정실험", "009666, 마이크로컴퓨터실험"})
     @DisplayName("지정된 실험교과목을 1과목 이상 이수하면, 실험 교과목 이수조건을 만족한다.")
-    void 한_개_과목이상_이수(Long courseId, String studentCourseName) {
+    void 한_개_과목이상_이수(String courseCode, String studentCourseName) {
         //given
         List<CompletedCourse> studentCourses = 랜덤이름을_가진_기이수_과목_특정_개수만큼_생성(5);
-        studentCourses.add(CompletedCourse.builder().id(courseId).name(studentCourseName).build());
+        studentCourses.add(CompletedCourse.builder().code(courseCode).name(studentCourseName).build());
         LabMajor labMajor = createLabMajor();
 
         //when

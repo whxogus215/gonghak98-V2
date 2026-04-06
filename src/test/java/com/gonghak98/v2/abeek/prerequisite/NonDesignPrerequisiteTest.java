@@ -29,10 +29,10 @@ class NonDesignPrerequisiteTest {
         void 선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
             RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
-            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).year(afterYear).semester(afterSemester).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
-            Map<Long, Long> prerequisiteCourseIds = new HashMap<>();
+            Map<String, String> prerequisiteCourseIds = new HashMap<>();
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
             NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
 
@@ -48,7 +48,7 @@ class NonDesignPrerequisiteTest {
     class 선후수_조건을_만족하지_않는_경우 {
 
         private RequirementResult requirementResult;
-        private Map<Long, Long> prerequisiteCourseIds;
+        private Map<String, String> prerequisiteCourseIds;
         private NonDesignPrerequisite nonDesignPrerequisite;
 
         @BeforeEach
@@ -62,8 +62,8 @@ class NonDesignPrerequisiteTest {
         @Test
         void 선후수_조건_검사1() {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").build();
 
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
@@ -79,8 +79,8 @@ class NonDesignPrerequisiteTest {
         @ParameterizedTest
         void 선후수_조건_검사2(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).year(afterYear).semester(afterSemester).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
@@ -98,8 +98,8 @@ class NonDesignPrerequisiteTest {
             int year = 2026;
             int semester = 1;
 
-            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).year(year).semester(semester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).year(year).semester(semester).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(year).semester(semester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(year).semester(semester).build();
 
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 

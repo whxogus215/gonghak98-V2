@@ -19,12 +19,12 @@ class PointCalculatorTest {
         // given
         AbeekType abeekType = AbeekType.MSC;
         CompletedCourse course1 = CompletedCourse.builder()
-                                                 .code(1L)
+                                                 .code("000001")
                                                  .name("미적분학1")
                                                  .point(3)
                                                  .build();
         CompletedCourse course2 = CompletedCourse.builder()
-                                                 .code(2L)
+                                                 .code("000002")
                                                  .name("일반물리1")
                                                  .point(3)
                                                  .build();

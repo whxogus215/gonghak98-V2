@@ -22,10 +22,10 @@ class MajorFactoryTest {
         final DepartmentEntity departmentEntity = new DepartmentEntity("전자정보통신공학과");
 
         Major expected = new Major(
-            new LabMajor(Set.of(5611L, 9658L, 8076L, 9666L), 1),
+            new LabMajor(Set.of("005611", "009658", "008076", "009666"), 1),
             new GeneralMajor(
-                Set.of(4114L, 5246L, 7620L, 4111L, 7453L, 4474L, 9649L, 7806L,
-                       4699L, 4600L, 4829L, 3284L, 8086L, 6294L, 6132L),
+                Set.of("004114", "005246", "007620", "004111", "007453", "004474", "009649", "007806",
+                       "004699", "004600", "004829", "003284", "008086", "006294", "006132"),
                 24
             ),
             45

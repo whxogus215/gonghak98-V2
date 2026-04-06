@@ -68,20 +68,20 @@ class ProGyoyangTest {
 
         private static List<CompletedCourse> createEssentialCourses() {
             return List.of(
-                CompletedCourse.builder().code(9067L).name("문제해결을위한글쓰기와발표").build(),
-                CompletedCourse.builder().code(9068L).name("서양철학:쟁점과토론").build(),
-                CompletedCourse.builder().code(11304L).name("대학영어").build()
+                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
+                CompletedCourse.builder().code("011304").name("대학영어").build()
             );
         }
 
         private static List<CompletedCourse> createAllElectiveCourses() {
             return List.of(
-                CompletedCourse.builder().code(11307L).name("세계사").build(),
-                CompletedCourse.builder().code(11305L).name("동서양의사상과윤리").build(),
-                CompletedCourse.builder().code(11313L).name("경제학").build(),
-                CompletedCourse.builder().code(11312L).name("경영학").build(),
-                CompletedCourse.builder().code(11317L).name("컴퓨터게임과메타버스").build(),
-                CompletedCourse.builder().code(11316L).name("융합예술의이해").build()
+                CompletedCourse.builder().code("011307").name("세계사").build(),
+                CompletedCourse.builder().code("011305").name("동서양의사상과윤리").build(),
+                CompletedCourse.builder().code("011313").name("경제학").build(),
+                CompletedCourse.builder().code("011312").name("경영학").build(),
+                CompletedCourse.builder().code("011317").name("컴퓨터게임과메타버스").build(),
+                CompletedCourse.builder().code("011316").name("융합예술의이해").build()
             );
         }
 

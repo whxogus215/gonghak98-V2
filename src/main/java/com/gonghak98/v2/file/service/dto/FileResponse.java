@@ -8,7 +8,7 @@ public record FileResponse(List<FileData> fileDatas) {
     public List<CompletedCourse> toCompletedCourses() {
         return fileDatas.stream()
                         .map(fileData -> CompletedCourse.builder()
-                                                        .id(fileData.courseId())
+                                                        .code(fileData.courseCode())
                                                         .name(fileData.courseName())
                                                         .semester(fileData.semester())
                                                         .year(fileData.year())

@@ -1,6 +1,6 @@
 package com.gonghak98.v2.common;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
@@ -81,14 +81,14 @@ public class DevDataLoader implements ApplicationRunner {
                     while ((line = br.readLine()) != null) {
                         final String[] split = line.split(DELIMITER);
                         try {
-                            Long courseId = Long.parseLong(split[0]);
+                            String courseCode = String.format("%06d", Long.parseLong(split[0]));
                             String name = split[1];
                             Double point = Double.parseDouble(split[2]);
 
-                            if (jpaCourseRepository.existsById(courseId)) {
+                            if (jpaCourseRepository.existsByCode(courseCode)) {
                                 continue;
                             }
-                            jpaCourseRepository.save(new CourseEntity(courseId, name, point));
+                            jpaCourseRepository.save(new CourseEntity(courseCode, name, point));
                         } catch (NumberFormatException ne) {
                             log.info("변환에 실패한 데이터 : {}", line); // 학수번호에 문자가 들어가는 과목은 포함하지 않습니다. ex) 현장실습12 : P00048
                         }
@@ -154,7 +154,7 @@ public class DevDataLoader implements ApplicationRunner {
             CourseEntity courseEntity = jpaCourseRepository.findByName(courseName)
                                                            .orElseThrow(() -> new IllegalArgumentException("해당 과목이 존재하지 않습니다."));
             jpaGonghakCourseRepository.save(new GonghakCourseEntity(department,
-                                                                    AreaType.getByName(areaType),
+                                                                    AbeekType.getByName(areaType),
                                                                     CourseType.getByName(courseType),
                                                                     courseEntity));
         } catch (NumberFormatException ne) {

@@ -21,7 +21,7 @@ public class DesignPrerequisite {
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
         Map<AbeekType, Boolean> passResults = requirementResult.passResults();
-        Map<Long, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+        Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = completedCourses.stream()
                                                                          .filter(completedCourse -> basicCourseId.equals(completedCourse.getCode()))
@@ -45,7 +45,7 @@ public class DesignPrerequisite {
     }
 
     private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
-                                             Map<Long, NonPassMessage> nonPassResults) {
+                                             Map<String, NonPassMessage> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedElementCourse : completedElementCourses) {
@@ -64,7 +64,7 @@ public class DesignPrerequisite {
     }
 
     private boolean checkComprehensivePrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
-                                                   List<CompletedCourse> completedComprehensiveCourses, Map<Long, NonPassMessage> nonPassResults) {
+                                                   List<CompletedCourse> completedComprehensiveCourses, Map<String, NonPassMessage> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {

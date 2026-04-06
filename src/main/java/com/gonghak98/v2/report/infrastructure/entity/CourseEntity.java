@@ -1,5 +1,6 @@
 package com.gonghak98.v2.report.infrastructure.entity;
 
+import com.gonghak98.v2.report.domain.course.Course;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,4 +30,19 @@ public class CourseEntity {
 
     @Column(name = "credit")
     private double credit;
+
+    public CourseEntity(String code, String name, double credit) {
+        this.code = code;
+        this.name = name;
+        this.credit = credit;
+    }
+
+    public static Course toDomain(CourseEntity courseEntity) {
+        return Course.builder()
+                     .id(courseEntity.getId())
+                     .code(courseEntity.getCode())
+                     .name(courseEntity.getName())
+                     .point(courseEntity.getCredit())
+                     .build();
+    }
 }

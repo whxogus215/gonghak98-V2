@@ -13,11 +13,11 @@ public class DesignCourse {
     @Getter
     private final double designPoint;
 
-    public boolean isEqual(Long id) {
-        return course.isEqual(id);
+    public boolean isEqual(String code) {
+        return course.isEqual(code);
     }
 
-    public Long getCourseId() {
-        return course.getId();
+    public String getCourseCode() {
+        return course.getCode();
     }
 }
