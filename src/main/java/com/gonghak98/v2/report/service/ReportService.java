@@ -9,7 +9,6 @@ import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
 import com.gonghak98.v2.report.domain.abeek.Abeek;
 import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
-import com.gonghak98.v2.report.infrastructure.collection.Report;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,24 +20,20 @@ public class ReportService {
 
     private final FileService fileService;
     private final AbeekService abeekService;
-    private final ReportRepository reportRepository;
 
-    public ReportResponse createReport(String departmentName, MultipartFile file) {
+    public ReportResponse getReport(String departmentName, MultipartFile file) {
         FileResponse fileResponse = fileService.getFileData(file);
         List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
 
         Abeek abeek = abeekService.getAbeek(departmentName);
         CheckResult checkResult = abeek.checkAllCourses(completedCourses);
 
-        Report savedReport = reportRepository.save(checkResult);
-
         return ReportResponse.builder()
-                             .id(savedReport.getId())
-                             .passResults(savedReport.getPassResults().entrySet().stream().map(e -> PassResultDto.from(e.getKey(), e.getValue())).toList())
+                             .passResults(checkResult.passResults().entrySet().stream().map(e -> PassResultDto.from(e.getKey(), e.getValue())).toList())
                              .nonPassResults(
-                                 savedReport.getNonPassResults().entrySet().stream().map(e -> NonPassResultDto.from(e.getKey(), e.getValue())).toList())
+                                 checkResult.nonPassResults().entrySet().stream().map(e -> NonPassResultDto.from(e.getKey(), e.getValue())).toList())
                              .creditSummaries(
-                                 savedReport.getCreditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList())
+                                 checkResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList())
                              .build();
     }
 }
