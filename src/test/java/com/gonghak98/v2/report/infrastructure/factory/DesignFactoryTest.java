@@ -20,7 +20,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DesignFactoryTest {
 
-    private String testDepartmentName = "전자정보통신공학과";
+    private final double testMinDesignCredit = 9.0;
+    private final String testDepartmentName = "전자정보통신공학과";
 
     @Autowired
     private JpaGonghakCourseRepository jpaGonghakCourseRepository;
@@ -39,18 +40,19 @@ class DesignFactoryTest {
         DepartmentEntity departmentEntity = new DepartmentEntity(testDepartmentName);
         jpaDepartmentRepository.save(departmentEntity);
 
-        CourseEntity baseCourseEntity = new CourseEntity(1L, "기초설계", 3.0);
+        CourseEntity baseCourseEntity = new CourseEntity("000001", "기초설계", 3.0);
         jpaCourseRepository.save(baseCourseEntity);
 
-        CourseEntity elementCourseEntity = new CourseEntity(2L, "요소설계", 3.0);
+        CourseEntity elementCourseEntity = new CourseEntity("000002", "요소설계", 3.0);
         jpaCourseRepository.save(elementCourseEntity);
 
-        CourseEntity comprehensiveCourseEntity = new CourseEntity(3L, "종합설계", 3.0);
+        CourseEntity comprehensiveCourseEntity = new CourseEntity("000003", "종합설계", 3.0);
         jpaCourseRepository.save(comprehensiveCourseEntity);
 
         jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_BASIC, baseCourseEntity));
         jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_ELEMENT, elementCourseEntity));
-        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_COMPREHENSIVE, comprehensiveCourseEntity));
+        jpaGonghakCourseRepository.save(
+            new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_COMPREHENSIVE, comprehensiveCourseEntity));
     }
 
     @AfterEach
@@ -66,6 +68,6 @@ class DesignFactoryTest {
         final DepartmentEntity departmentEntity = jpaDepartmentRepository.findByName(testDepartmentName).orElseThrow();
 
         //when & then
-        assertThatCode(() -> designFactory.create(departmentEntity)).doesNotThrowAnyException();
+        assertThatCode(() -> designFactory.create(departmentEntity, testMinDesignCredit)).doesNotThrowAnyException();
     }
 }

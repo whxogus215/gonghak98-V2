@@ -11,26 +11,26 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NonDesignPrerequisite {
 
-    private final Map<Long, Long> prerequisiteCourseIds;
+     private final Map<String, String> prerequisiteCourseCodes;
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<Long, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
-        Map<Long, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getId, c -> c));
+        Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+        Map<String, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getCode, c -> c));
 
         for (CompletedCourse completedCourse : completedCourses) {
-            Long afterCourseId = completedCourse.getId();
-            Long beforeCourseId = prerequisiteCourseIds.get(afterCourseId);
-            if (beforeCourseId == null) {
+            String afterCourseCode = completedCourse.getCode();
+            String beforeCourseCode = prerequisiteCourseCodes.get(afterCourseCode);
+            if (beforeCourseCode == null) {
                 continue;
             }
-            if (completedCourseTable.containsKey(beforeCourseId)) {
-                CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseId);
-                CompletedCourse afterCourse = completedCourseTable.get(afterCourseId);
+            if (completedCourseTable.containsKey(beforeCourseCode)) {
+                CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseCode);
+                CompletedCourse afterCourse = completedCourseTable.get(afterCourseCode);
                 if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse,afterCourse)) {
-                    nonPassResults.put(afterCourseId, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                    nonPassResults.put(afterCourseCode, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 }
             } else {
-                nonPassResults.put(afterCourseId, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.put(afterCourseCode, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
             }
         }
     }

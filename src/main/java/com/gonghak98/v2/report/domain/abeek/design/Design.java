@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.abeek.design;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -13,7 +13,7 @@ public class Design {
     private final DesignCourse basicDesignCourse;
     private final List<DesignCourse> elementDesignCourses;
     private final List<DesignCourse> comprehensiveDesignCourses;
-    private final Set<Long> designCourseIds;
+    private final Set<String> courseCodes;
 
     private final double minDesignPoint;
 
@@ -26,12 +26,12 @@ public class Design {
         this.comprehensiveDesignCourses = comprehensiveDesignCourses;
         this.minDesignPoint = minDesignPoint;
 
-        this.designCourseIds = new HashSet<>();
+        this.courseCodes = new HashSet<>();
         if (basicDesignCourse != null) {
-            this.designCourseIds.add(basicDesignCourse.getCourseId());
+            this.courseCodes.add(basicDesignCourse.getCourseCode());
         }
-        elementDesignCourses.forEach(c -> this.designCourseIds.add(c.getCourseId()));
-        comprehensiveDesignCourses.forEach(c -> this.designCourseIds.add(c.getCourseId()));
+        elementDesignCourses.forEach(c -> this.courseCodes.add(c.getCourseCode()));
+        comprehensiveDesignCourses.forEach(c -> this.courseCodes.add(c.getCourseCode()));
     }
 
     public void checkAllCourses(List<CompletedCourse> studentCourses, RequirementResult requirementResult) {
@@ -39,17 +39,17 @@ public class Design {
         boolean isBasicPassed = false;
         boolean isComprehensivePassed = false;
         for (CompletedCourse course : studentCourses) {
-            if (basicDesignCourse.isEqual(course.getId())) {
+            if (basicDesignCourse.isEqual(course.getCode())) {
                 isBasicPassed = true;
                 designPointSum += basicDesignCourse.getDesignPoint();
             }
             for (DesignCourse elementDesignCourse : elementDesignCourses) {
-                if (elementDesignCourse.isEqual(course.getId())) {
+                if (elementDesignCourse.isEqual(course.getCode())) {
                     designPointSum += elementDesignCourse.getDesignPoint();
                 }
             }
             for (DesignCourse comprehensiveDesignCourse : comprehensiveDesignCourses) {
-                if (comprehensiveDesignCourse.isEqual(course.getId())) {
+                if (comprehensiveDesignCourse.isEqual(course.getCode())) {
                     designPointSum += comprehensiveDesignCourse.getDesignPoint();
                     isComprehensivePassed = true;
                 }
@@ -57,17 +57,13 @@ public class Design {
         }
         boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignPoint);
 
-        requirementResult.passResults().put(AreaType.DESIGN, isAllSatisfied);
+        requirementResult.passResults().put(AbeekType.DESIGN, isAllSatisfied);
     }
 
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
         return completedCourses.stream()
-                               .filter(c -> isDesignCourse(c.getId()))
+                               .filter(c -> courseCodes.contains(c.getCode()))
                                .toList();
-    }
-
-    private boolean isDesignCourse(Long courseId) {
-        return designCourseIds.contains(courseId);
     }
 
     public Double getRequiredPoints() {

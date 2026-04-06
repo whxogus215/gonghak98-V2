@@ -9,22 +9,22 @@ import java.util.Set;
 
 public class GeneralMajor {
 
-    private final Set<Long> courseIds;
+    private final Set<String> courseCodes;
 
     private final double minPoint;
 
     @JsonCreator
-    public GeneralMajor(@JsonProperty("courseIds") final Set<Long> courseIds,
+    public GeneralMajor(@JsonProperty("courseIds") final Set<String> courseCodes,
                         @JsonProperty("minPoint") final double minPoint) {
-        this.courseIds = courseIds;
+        this.courseCodes = courseCodes;
         this.minPoint = minPoint;
     }
 
     public boolean check(List<CompletedCourse> completedCourses) {
         double pointSum = 0.0;
         for (CompletedCourse course : completedCourses) {
-            for (Long courseId : courseIds) {
-                if (Objects.equals(courseId, course.getId())) {
+            for (String courseId : courseCodes) {
+                if (Objects.equals(courseId, course.getCode())) {
                     pointSum += course.getPoint();
                 }
             }
@@ -34,7 +34,7 @@ public class GeneralMajor {
     
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
         return completedCourses.stream()
-                .filter(course -> courseIds.contains(course.getId()))
+                .filter(course -> courseCodes.contains(course.getCode()))
                 .toList();
     }
 }

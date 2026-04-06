@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.abeek.gyoyang;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.course.Course;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -14,7 +14,7 @@ public class ProGyoyang implements Gyoyang {
     private final List<Course> essentialCourses;
     private final List<Course> electiveCourses;
 
-    private final Set<Long> courseIds;
+    private final Set<String> courseCodes;
 
     private final double minPoint;
 
@@ -24,28 +24,28 @@ public class ProGyoyang implements Gyoyang {
         this.essentialCourses = essentialCourses;
         this.electiveCourses = electiveCourses;
         this.minPoint = minPoint;
-        this.courseIds = new HashSet<>();
-        essentialCourses.forEach(course -> this.courseIds.add(course.getId()));
-        electiveCourses.forEach(course -> this.courseIds.add(course.getId()));
+        this.courseCodes = new HashSet<>();
+        essentialCourses.forEach(course -> this.courseCodes.add(course.getCode()));
+        electiveCourses.forEach(course -> this.courseCodes.add(course.getCode()));
     }
 
     @Override
     public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Set<Long> completedCourseIds = completedCourses.stream()
-                                                          .map(CompletedCourse::getId)
+        Set<String> completedCourseIds = completedCourses.stream()
+                                                          .map(CompletedCourse::getCode)
                                                           .collect(Collectors.toSet());
         int completedEssentialCount = 0;
         int completedElectiveCount = 0;
         double totalPoint = 0.0;
 
         for (Course course : essentialCourses) {
-            if (completedCourseIds.contains(course.getId())) {
+            if (completedCourseIds.contains(course.getCode())) {
                 completedEssentialCount++;
                 totalPoint += course.getPoint();
             }
         }
         for (Course course : electiveCourses) {
-            if (completedCourseIds.contains(course.getId())) {
+            if (completedCourseIds.contains(course.getCode())) {
                 completedElectiveCount++;
                 totalPoint += course.getPoint();
             }
@@ -56,13 +56,13 @@ public class ProGyoyang implements Gyoyang {
         boolean isMinPointSatisfied = totalPoint >= minPoint;
         boolean isAllSatisfied = isMinPointSatisfied && isEssentialSatisfied && isElectiveSatisfied;
 
-        requirementResult.passResults().put(AreaType.GYOYANG, isAllSatisfied);
+        requirementResult.passResults().put(AbeekType.GYOYANG, isAllSatisfied);
     }
 
     @Override
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
         return completedCourses.stream()
-                               .filter(course -> courseIds.contains(course.getId()))
+                               .filter(course -> courseCodes.contains(course.getCode()))
                                .toList();
     }
 

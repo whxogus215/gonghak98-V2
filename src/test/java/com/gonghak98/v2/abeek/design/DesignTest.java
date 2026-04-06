@@ -48,23 +48,23 @@ class DesignTest {
     }
 
     private static List<CompletedCourse> createBasicDesignCourses() {
-        return List.of(CompletedCourse.builder().code(7620L).name("기초설계").build());
+        return List.of(CompletedCourse.builder().code("007620").name("기초설계").build());
     }
 
     private static List<CompletedCourse> createElementDesignCourses() {
         return List.of(
-            CompletedCourse.builder().code(7721L).name("전자소자설계").build(),
-            CompletedCourse.builder().code(9650L).name("데이터통신설계").build(),
-            CompletedCourse.builder().code(6935L).name("정보시스템설계").build(),
-            CompletedCourse.builder().code(9662L).name("전자회로설계").build(),
-            CompletedCourse.builder().code(7585L).name("통신시스템설계").build(),
-            CompletedCourse.builder().code(9663L).name("멀티미디어설계").build());
+            CompletedCourse.builder().code("007721").name("전자소자설계").build(),
+            CompletedCourse.builder().code("009650").name("데이터통신설계").build(),
+            CompletedCourse.builder().code("006935").name("정보시스템설계").build(),
+            CompletedCourse.builder().code("009662").name("전자회로설계").build(),
+            CompletedCourse.builder().code("007585").name("통신시스템설계").build(),
+            CompletedCourse.builder().code("009663").name("멀티미디어설계").build());
     }
 
     private static List<CompletedCourse> createComprehensiveDesignCourses() {
         return List.of(
-            CompletedCourse.builder().code(9947L).name("캡스톤디자인A").build(),
-            CompletedCourse.builder().code(9948L).name("캡스톤디자인B").build());
+            CompletedCourse.builder().code("009947").name("캡스톤디자인A").build(),
+            CompletedCourse.builder().code("009948").name("캡스톤디자인B").build());
     }
 
     private static Stream<Arguments> provideAllSatisfiedDesignCourseCombinations() {

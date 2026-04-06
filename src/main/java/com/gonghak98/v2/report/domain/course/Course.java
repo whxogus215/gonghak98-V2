@@ -4,17 +4,18 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Builder
+@Getter
 public class Course {
 
-    @Getter
-    private Long id;
+    private Integer id;
 
     private String name;
 
-    @Getter
+    private String code;
+
     private double point;
 
-    public boolean isEqual(Long id) {
-        return this.id.equals(id);
+    public boolean isEqual(String code) {
+        return this.code.equals(code);
     }
 }

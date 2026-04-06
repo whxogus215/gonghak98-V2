@@ -38,7 +38,7 @@ class JpaGonghakCourseRepositoryTest {
         departmentEntity = new DepartmentEntity(testDepartmentName);
         jpaDepartmentRepository.save(departmentEntity);
 
-        courseEntity = new CourseEntity(1234L, "테스트", 3.0);
+        courseEntity = new CourseEntity("001234", "테스트", 3.0);
         jpaCourseRepository.save(courseEntity);
 
         gonghakCourseEntity = new GonghakCourseEntity(departmentEntity, AbeekType.GYOYANG, CourseType.ESSENTIAL, courseEntity);

@@ -8,22 +8,22 @@ import java.util.Set;
 
 public class LabMajor {
 
-    private final Set<Long> courseIds;
+    private final Set<String> courseCodes;
 
     private final int minCount;
 
     @JsonCreator
-    public LabMajor(@JsonProperty("courseIds") final Set<Long> courseIds,
+    public LabMajor(@JsonProperty("courseIds") final Set<String> courseCodes,
                     @JsonProperty("minCount") final int minCount) {
-        this.courseIds = courseIds;
+        this.courseCodes = courseCodes;
         this.minCount = minCount;
     }
 
     public boolean check(List<CompletedCourse> completedCourses) {
         int count = 0;
         for (CompletedCourse course : completedCourses) {
-            for (Long courseId : courseIds) {
-                if (courseId.equals(course.getId())) {
+            for (String courseId : courseCodes) {
+                if (courseId.equals(course.getCode())) {
                     count++;
                 }
             }
@@ -33,7 +33,7 @@ public class LabMajor {
 
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
         return completedCourses.stream()
-                               .filter(course -> courseIds.contains(course.getId()))
+                               .filter(course -> courseCodes.contains(course.getCode()))
                                .toList();
     }
 }

@@ -21,11 +21,11 @@ public class MajorTest {
     class 전자정보통신공학과 {
 
         @DisplayName("전공영역은 설계, 실험, 일반, 선후수 세부요건을 검사할 수 있다.")
-        @CsvSource(value = {"5611, 디지털논리회로", "9658, 전기회로실험", "8076, 기초광학및실험", "-1, 전자소자공정실험", "9666, 마이크로컴퓨터실험"})
+        @CsvSource(value = {"005611, 디지털논리회로", "009658, 전기회로실험", "008076, 기초광학및실험", "999999, 전자소자공정실험", "009666, 마이크로컴퓨터실험"})
         @ParameterizedTest
-        void 전공영역_검사(Long courseId, String studentLabCourseName) {
+        void 전공영역_검사(String courseCode, String studentLabCourseName) {
             //given
-            CompletedCourse completedCourse = CompletedCourse.builder().code(courseId)
+            CompletedCourse completedCourse = CompletedCourse.builder().code(courseCode)
                                                              .name(studentLabCourseName)
                                                              .build();
             Major major = new Major(createLabMajor(),

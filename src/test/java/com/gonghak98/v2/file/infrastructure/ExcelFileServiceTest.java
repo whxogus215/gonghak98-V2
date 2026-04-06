@@ -125,7 +125,8 @@ class ExcelFileServiceTest {
         //then
         assertThat(response.fileDatas()).hasSize(TEST_FILE_ROW_SIZE);
         assertThat(response.fileDatas()).allSatisfy(data -> {
-            assertThat(data.courseId()).isNotZero();
+            assertThat(data.courseCode()).isNotBlank();
+            assertThat(data.courseName()).isNotBlank();
             assertThat(data.semester()).isNotZero();
             assertThat(data.year()).isNotZero();
             assertThat(data.point()).isNotZero();

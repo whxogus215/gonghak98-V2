@@ -6,9 +6,9 @@ import java.util.Set;
 public class PrerequisiteFixture {
 
     public static DesignPrerequisite createDesignPrerequisite() {
-        Long basicCourseId = 7620L;
-        Set<Long> elementCourseIds = Set.of(7721L, 9650L, 6935L, 9662L, 7585L, 9663L);
-        Set<Long> comprehensiveCourseIds = Set.of(9947L, 9948L);
+        String basicCourseId = "007620";
+        Set<String> elementCourseIds = Set.of("007721", "009650", "006935", "009662", "007585", "009663");
+        Set<String> comprehensiveCourseIds = Set.of("009947", "009948");
 
         return new DesignPrerequisite(basicCourseId, elementCourseIds, comprehensiveCourseIds);
     }
