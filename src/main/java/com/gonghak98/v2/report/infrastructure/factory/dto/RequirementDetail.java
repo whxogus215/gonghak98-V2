@@ -8,6 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RequirementDetail {
 
+    private BasicRequirement totalRequirement;
+    private BasicRequirement designRequirement;
+
+    private AreaRequirement basicRequirement;
+    private AreaRequirement majorRequirement;
+    private PrerequisiteRequirement prerequisiteRequirement;
+
     @Getter
     @NoArgsConstructor
     public static class BasicRequirement {

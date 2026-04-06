@@ -22,7 +22,7 @@ public class GyoyangFactory {
     private final JpaGonghakCourseRepository gonghakCourseRepository;
 
     public Gyoyang create(DepartmentEntity department) {
-        final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndCategory(department, AbeekType.GYOYANG);
+        final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndAbeekType(department, AbeekType.GYOYANG);
 
         if (gonghakCourses.isEmpty()) {
             throw new AbeekException(ExceptionMessage.EMPTY_GONGHAK_COURSE.getMessage());
