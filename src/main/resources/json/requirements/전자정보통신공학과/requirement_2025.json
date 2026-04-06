@@ -1,0 +1,42 @@
+{
+  "totalRequirement": {
+    "minCredit": 86
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 27,
+    "components": [ ]
+  },
+  "majorRequirement": {
+    "minCredit": 45,
+    "components": [
+      {
+        "name": "labMajor",
+        "description": "실험교과목 최소 1과목 이수",
+        "conditionType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": ["005611", "009658", "008076", "009666"]
+      },
+      {
+        "name": "generalMajor",
+        "description": "일반영역 최소 24학점 이수",
+        "conditionType": "MIN_POINT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "007620", "004114", "005246", "004111", "007453", "004474", "009649", "007806",
+          "004699", "004600", "004829", "003284", "008086", "006294", "006132"]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      { "afterCode": "004111", "beforeCode": "001357" },
+      { "afterCode": "007722", "beforeCode": "007453" },
+      { "afterCode": "009659", "beforeCode": "009649" },
+      { "afterCode": "004600", "beforeCode": "005246" },
+      { "afterCode": "004474", "beforeCode": "005246" }
+    ]
+  }
+}
