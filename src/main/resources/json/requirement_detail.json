@@ -1,4 +1,10 @@
 {
+  "totalRequirement": {
+    "minCredit": 86
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
   "mscRequirement": {
     "minCredit": 30,
     "components": [
@@ -11,7 +17,7 @@
       }
     ]
   },
-  "majorRequirement": {
+  "basicRequirement": {
     "minCredit": 45,
     "components": [
       {
@@ -37,7 +43,7 @@
       }
     ]
   },
-  "preRequisiteRequirement": {
+  "prerequisiteRequirement": {
     "targetCourses": [
       { "afterCode": "004111", "beforeCode": "001357" },
       { "afterCode": "007722", "beforeCode": "007453" },
@@ -45,11 +51,5 @@
       { "afterCode": "004600", "beforeCode": "005246" },
       { "afterCode": "004474", "beforeCode": "005246" }
     ]
-  },
-  "totalRequirement": {
-    "minCredit": 86
-  },
-  "designRequirement": {
-    "minCredit": 9
   }
 }

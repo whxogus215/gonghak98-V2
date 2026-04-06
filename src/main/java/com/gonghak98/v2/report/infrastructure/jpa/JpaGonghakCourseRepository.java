@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaGonghakCourseRepository extends JpaRepository<GonghakCourseEntity, Integer> {
 
-    List<GonghakCourseEntity> findByDepartmentAndCategory(DepartmentEntity department, AbeekType gyoyang);
+    List<GonghakCourseEntity> findByDepartmentAndAbeekType(DepartmentEntity department, AbeekType abeekType);
 }

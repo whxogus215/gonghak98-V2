@@ -21,7 +21,7 @@ import org.hibernate.type.SqlTypes;
 @Table(name = "gonghak_requirement")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class GonghakRequirement {
+public class GonghakRequirementEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "SMALLINT UNSIGNED")
@@ -38,4 +38,10 @@ public class GonghakRequirement {
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "detail", columnDefinition = "JSON", nullable = false)
     private RequirementDetail detail;
+
+    public GonghakRequirementEntity(DepartmentEntity department, Short entranceYear, RequirementDetail detail) {
+        this.department = department;
+        this.entranceYear = entranceYear;
+        this.detail = detail;
+    }
 }

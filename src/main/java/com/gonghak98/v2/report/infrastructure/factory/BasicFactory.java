@@ -25,7 +25,7 @@ public class BasicFactory {
 
     public Basic create(DepartmentEntity department) {
         final AbeekType basicType = AbeekType.getBasicType(department.getName());
-        final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndCategory(department, basicType);
+        final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndAbeekType(department, basicType);
 
         if (gonghakCourses.isEmpty()) {
             throw new AbeekException(ExceptionMessage.EMPTY_GONGHAK_COURSE.getMessage());

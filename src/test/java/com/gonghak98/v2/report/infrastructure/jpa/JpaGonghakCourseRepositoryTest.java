@@ -59,7 +59,7 @@ class JpaGonghakCourseRepositoryTest {
         final DepartmentEntity department = jpaDepartmentRepository.findByName(testDepartmentName)
                                                                    .orElseThrow();
         //when
-        final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findByDepartmentAndCategory(department, AbeekType.GYOYANG);
+        final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findByDepartmentAndAbeekType(department, AbeekType.GYOYANG);
 
         //then
         assertThat(gonghakCourses).hasSize(1);

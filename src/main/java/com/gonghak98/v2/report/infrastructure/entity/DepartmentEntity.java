@@ -21,7 +21,7 @@ public class DepartmentEntity {
     private Integer id;
 
     @Getter
-    @Column(name = "id", length = 20, nullable = false, unique = true)
+    @Column(name = "name", length = 20, nullable = false, unique = true)
     private String name;
 
     public DepartmentEntity(String name) {
