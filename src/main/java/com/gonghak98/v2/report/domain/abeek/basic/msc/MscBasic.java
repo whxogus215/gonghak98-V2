@@ -48,7 +48,7 @@ public class MscBasic implements Basic {
     @Override
     public Double getRequiredPoints() {
         return essentialCourses.stream()
-                               .mapToDouble(Course::getPoint)
+                               .mapToDouble(Course::getCredit)
                                .sum();
     }
 }
