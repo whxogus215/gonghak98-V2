@@ -1,5 +1,10 @@
 package com.gonghak98.v2.common;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gonghak98.v2.report.infrastructure.entity.GonghakRequirementEntity;
+import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail;
+import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
+import java.util.stream.Collectors;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
@@ -8,6 +13,8 @@ import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaCourseRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
+import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
+import jakarta.persistence.EntityManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
@@ -34,12 +42,16 @@ public class DevDataLoader implements ApplicationRunner {
     private final JpaDepartmentRepository jpaDepartmentRepository;
     private final JpaCourseRepository jpaCourseRepository;
     private final JpaGonghakCourseRepository jpaGonghakCourseRepository;
+    private final JpaGonghakRequirementRepository jpaGonghakRequirementRepository;
+
+    private final ObjectMapper objectMapper;
 
     @Override
     public void run(final ApplicationArguments args) {
         createDepartment();
         createCourse();
         createGonghakCourse();
+        createGonghakRequirement();
     }
 
     private void createDepartment() {
@@ -81,7 +93,7 @@ public class DevDataLoader implements ApplicationRunner {
                     while ((line = br.readLine()) != null) {
                         final String[] split = line.split(DELIMITER);
                         try {
-                            String courseCode = String.format("%06d", Long.parseLong(split[0]));
+                            String courseCode = split[0];
                             String name = split[1];
                             Double point = Double.parseDouble(split[2]);
 
@@ -90,7 +102,7 @@ public class DevDataLoader implements ApplicationRunner {
                             }
                             jpaCourseRepository.save(new CourseEntity(courseCode, name, point));
                         } catch (NumberFormatException ne) {
-                            log.info("변환에 실패한 데이터 : {}", line); // 학수번호에 문자가 들어가는 과목은 포함하지 않습니다. ex) 현장실습12 : P00048
+                            log.info("변환에 실패한 데이터 : {}", line);
                         }
 
                     }
@@ -165,6 +177,45 @@ public class DevDataLoader implements ApplicationRunner {
         } catch (RuntimeException re) {
             log.info("변환에 실패한 데이터 : {}", line);
             log.error("변환 중 예외 발생", re);
+        }
+    }
+    
+    private void createGonghakRequirement() {
+        String directoryPath = "json/requirements";
+        ClassPathResource resource = new ClassPathResource(directoryPath);
+        if (!resource.exists()) {
+            throw new IllegalArgumentException(directoryPath + "을 찾을 수 없습니다.");
+        }
+
+        try (DirectoryStream<Path> departmentDirs = Files.newDirectoryStream(resource.getFile().toPath())) {
+            for (Path dirPath : departmentDirs) {
+                if (!Files.isDirectory(dirPath)) {
+                    continue;
+                }
+
+                String departmentName = dirPath.getFileName().toString();
+                DepartmentEntity department = jpaDepartmentRepository.findByName(departmentName)
+                        .orElseThrow(() -> new IllegalArgumentException("해당 이름의 학과가 존재하지 않습니다: " + departmentName));
+
+                try (DirectoryStream<Path> jsonFiles = Files.newDirectoryStream(dirPath, "*.json")) {
+                    for (Path jsonPath : jsonFiles) {
+                        log.info("공학인증 요건 JSON 파일 읽기 시작 : {}", jsonPath);
+                        try (BufferedReader br = new BufferedReader(Files.newBufferedReader(jsonPath, StandardCharsets.UTF_8))) {
+                            String fileName = jsonPath.getFileName().toString();
+                            String[] parts = fileName.split("_");
+                            Short entranceYear = Short.parseShort(parts[1].substring(0, parts[1].indexOf(".")));
+                            RequirementDetail detail = objectMapper.readValue(br, RequirementDetail.class);
+
+                            jpaGonghakRequirementRepository.save(new GonghakRequirementEntity(department, entranceYear, detail));
+                        } catch (IOException e) {
+                            throw new IllegalArgumentException(e);
+                        }
+                        log.info("공학인증 요건 JSON 파일 읽기 종료 : {}", jsonPath);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
