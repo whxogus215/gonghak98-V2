@@ -2,7 +2,7 @@ package com.gonghak98.v2.report.infrastructure.factory;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
@@ -48,9 +48,9 @@ class DesignFactoryTest {
         CourseEntity comprehensiveCourseEntity = new CourseEntity(3L, "종합설계", 3.0);
         jpaCourseRepository.save(comprehensiveCourseEntity);
 
-        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AreaType.DESIGN, CourseType.DESIGN_BASIC, baseCourseEntity));
-        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AreaType.DESIGN, CourseType.DESIGN_ELEMENT, elementCourseEntity));
-        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AreaType.DESIGN, CourseType.DESIGN_COMPREHENSIVE, comprehensiveCourseEntity));
+        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_BASIC, baseCourseEntity));
+        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_ELEMENT, elementCourseEntity));
+        jpaGonghakCourseRepository.save(new GonghakCourseEntity(departmentEntity, AbeekType.DESIGN, CourseType.DESIGN_COMPREHENSIVE, comprehensiveCourseEntity));
     }
 
     @AfterEach

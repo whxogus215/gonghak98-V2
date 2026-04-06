@@ -2,7 +2,7 @@ package com.gonghak98.v2.abeek.prerequisite;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.NonDesignPrerequisite;
@@ -28,19 +28,19 @@ class NonDesignPrerequisiteTest {
         @ParameterizedTest
         void 선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
-            CompletedCourse beforeCourse = CompletedCourse.builder().id(1L).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().id(2L).year(afterYear).semester(afterSemester).build();
+            RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).year(afterYear).semester(afterSemester).build();
 
             Map<Long, Long> prerequisiteCourseIds = new HashMap<>();
-            prerequisiteCourseIds.put(afterCourse.getId(), beforeCourse.getId());
+            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
             NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
 
             //when
             nonDesignPrerequisite.check(List.of(beforeCourse, afterCourse), requirementResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
     }
     
@@ -53,7 +53,7 @@ class NonDesignPrerequisiteTest {
 
         @BeforeEach
         void setUp() {
-            requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
+            requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
             prerequisiteCourseIds = new HashMap<>();
             nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
         }
@@ -62,16 +62,16 @@ class NonDesignPrerequisiteTest {
         @Test
         void 선후수_조건_검사1() {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().id(1L).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().id(2L).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).build();
 
-            prerequisiteCourseIds.put(afterCourse.getId(), beforeCourse.getId());
+            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
             nonDesignPrerequisite.check(List.of(afterCourse), requirementResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
 
         @DisplayName("필수 선수과목을 후수 과목보다 나중에 들었을 때")
@@ -79,16 +79,16 @@ class NonDesignPrerequisiteTest {
         @ParameterizedTest
         void 선후수_조건_검사2(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().id(1L).year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().id(2L).year(afterYear).semester(afterSemester).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).year(beforeYear).semester(beforeSemester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).year(afterYear).semester(afterSemester).build();
 
-            prerequisiteCourseIds.put(afterCourse.getId(), beforeCourse.getId());
+            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
             nonDesignPrerequisite.check(List.of(afterCourse), requirementResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
 
         @DisplayName("후수 과목을 필수 선수 과목과 동시에 들었을 때")
@@ -98,16 +98,16 @@ class NonDesignPrerequisiteTest {
             int year = 2026;
             int semester = 1;
 
-            CompletedCourse beforeCourse = CompletedCourse.builder().id(1L).year(year).semester(semester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().id(2L).year(year).semester(semester).build();
+            CompletedCourse beforeCourse = CompletedCourse.builder().code(1L).year(year).semester(semester).build();
+            CompletedCourse afterCourse = CompletedCourse.builder().code(2L).year(year).semester(semester).build();
 
-            prerequisiteCourseIds.put(afterCourse.getId(), beforeCourse.getId());
+            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
             nonDesignPrerequisite.check(List.of(beforeCourse, afterCourse), requirementResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(requirementResult.nonPassResults()).containsEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
     }
 }

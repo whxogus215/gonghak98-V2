@@ -5,7 +5,7 @@ import static com.gonghak98.v2.abeek.fixture.MajorFixture.createLabMajor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -25,7 +25,7 @@ public class MajorTest {
         @ParameterizedTest
         void 전공영역_검사(Long courseId, String studentLabCourseName) {
             //given
-            CompletedCourse completedCourse = CompletedCourse.builder().id(courseId)
+            CompletedCourse completedCourse = CompletedCourse.builder().code(courseId)
                                                              .name(studentLabCourseName)
                                                              .build();
             Major major = new Major(createLabMajor(),
@@ -38,7 +38,7 @@ public class MajorTest {
             major.checkAllCourses(List.of(completedCourse), requirementResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AreaType.MAJOR)).isFalse();
+            assertThat(requirementResult.passResults().get(AbeekType.MAJOR)).isFalse();
         }
     }
 }

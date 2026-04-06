@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.counting;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.EnumMap;
@@ -11,22 +11,22 @@ public class PointCalculator {
 
     private PointCalculator() {}
 
-    public static CountingResult calculateCredits(Map<AreaType, List<CompletedCourse>> coursesByArea,
-                                                  Map<AreaType, Double> requiredPoints) {
-        Map<AreaType, AreaCreditSummary> summaries = new EnumMap<>(AreaType.class);
+    public static CountingResult calculateCredits(Map<AbeekType, List<CompletedCourse>> coursesByArea,
+                                                  Map<AbeekType, Double> requiredPoints) {
+        Map<AbeekType, AreaCreditSummary> summaries = new EnumMap<>(AbeekType.class);
 
-        for (AreaType areaType : AreaType.values()) {
-            if (!coursesByArea.containsKey(areaType)) {
+        for (AbeekType abeekType : AbeekType.values()) {
+            if (!coursesByArea.containsKey(abeekType)) {
                 continue;
             }
-            List<CompletedCourse> areaCourses = coursesByArea.get(areaType);
+            List<CompletedCourse> areaCourses = coursesByArea.get(abeekType);
             double completedCredits = calculateTotalCredits(areaCourses);
-            double requiredPoint = requiredPoints.getOrDefault(areaType, 0.0);
+            double requiredPoint = requiredPoints.getOrDefault(abeekType, 0.0);
 
             PointCountResult pointCountResult = new PointCountResult(completedCredits, requiredPoint);
-            AreaCreditSummary summary = new AreaCreditSummary(areaType, pointCountResult, areaCourses);
+            AreaCreditSummary summary = new AreaCreditSummary(abeekType, pointCountResult, areaCourses);
 
-            summaries.put(areaType, summary);
+            summaries.put(abeekType, summary);
         }
 
         return new CountingResult(summaries);

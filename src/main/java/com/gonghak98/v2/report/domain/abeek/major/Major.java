@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.abeek.major;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Major {
         boolean generalResult = generalMajor.check(completedCourses);
         boolean labResult = labMajor.check(completedCourses);
 
-        requirementResult.passResults().put(AreaType.MAJOR, generalResult && labResult);
+        requirementResult.passResults().put(AbeekType.MAJOR, generalResult && labResult);
     }
     
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {

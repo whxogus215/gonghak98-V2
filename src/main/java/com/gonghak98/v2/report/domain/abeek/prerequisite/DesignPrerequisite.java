@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -15,25 +15,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DesignPrerequisite {
 
-    private final Long basicCourseId;
-    private final Set<Long> elementCourseIds;
-    private final Set<Long> comprehensiveCourseIds;
+    private final String basicCourseId;
+    private final Set<String> elementCourseIds;
+    private final Set<String> comprehensiveCourseIds;
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<AreaType, Boolean> passResults = requirementResult.passResults();
+        Map<AbeekType, Boolean> passResults = requirementResult.passResults();
         Map<Long, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = completedCourses.stream()
-                                                                         .filter(completedCourse -> basicCourseId.equals(completedCourse.getId()))
+                                                                         .filter(completedCourse -> basicCourseId.equals(completedCourse.getCode()))
                                                                          .findFirst();
 
         List<CompletedCourse> completedElementCourses = completedCourses.stream()
-                                                                        .filter(completedCourse -> elementCourseIds.contains(completedCourse.getId()))
+                                                                        .filter(completedCourse -> elementCourseIds.contains(completedCourse.getCode()))
                                                                         .toList();
 
         List<CompletedCourse> completedComprehensiveCourses = completedCourses.stream()
                                                                               .filter(
-                                                                                  completedCourse -> comprehensiveCourseIds.contains(completedCourse.getId()))
+                                                                                  completedCourse -> comprehensiveCourseIds.contains(completedCourse.getCode()))
                                                                               .collect(Collectors.toList());
 
         boolean isElementPassed = checkElementPrerequisite(completedBasicCourse, completedElementCourses, nonPassResults);
@@ -41,7 +41,7 @@ public class DesignPrerequisite {
                                                                        nonPassResults);
 
         boolean isAllSatisfied = isComprehensivePassed && isElementPassed;
-        passResults.put(AreaType.DESIGN, passResults.getOrDefault(AreaType.DESIGN, false) && isAllSatisfied);
+        passResults.put(AbeekType.DESIGN, passResults.getOrDefault(AbeekType.DESIGN, false) && isAllSatisfied);
     }
 
     private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
@@ -49,14 +49,14 @@ public class DesignPrerequisite {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedElementCourse : completedElementCourses) {
-                nonPassResults.put(completedElementCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.put(completedElementCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
             }
             return false;
         }
         CompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
         for (CompletedCourse completedElementCourse : completedElementCourses) {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedElementCourse)) {
-                nonPassResults.put(completedElementCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.put(completedElementCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 return false;
             }
         }
@@ -68,7 +68,7 @@ public class DesignPrerequisite {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
-                nonPassResults.put(completedComprehensiveCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.put(completedComprehensiveCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
             }
             return false;
         }
@@ -76,7 +76,7 @@ public class DesignPrerequisite {
 
         for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedComprehensiveCourse)) {
-                nonPassResults.put(completedComprehensiveCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.put(completedComprehensiveCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 return false;
             }
         }
@@ -89,7 +89,7 @@ public class DesignPrerequisite {
         CompletedCourse completedComprehensiveCourse = completedComprehensiveCourses.get(0);
         for (CompletedCourse completedElementCourse : completedElementCourses) {
             if (!PrerequisiteChecker.isSatisfiedDesignPrerequisite(completedElementCourse, completedComprehensiveCourse)) {
-                nonPassResults.put(completedComprehensiveCourse.getId(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.put(completedComprehensiveCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
                 return false;
             }
         }

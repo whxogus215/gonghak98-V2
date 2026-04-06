@@ -1,7 +1,7 @@
 package com.gonghak98.v2.report.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.counting.AreaCreditSummary;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -27,9 +27,9 @@ public class ReportResponse {
         @Getter(onMethod_ = {@JsonProperty("isPassed")})
         private boolean isPassed;
 
-        public static PassResultDto from(AreaType areaType, boolean isPassed) {
+        public static PassResultDto from(AbeekType abeekType, boolean isPassed) {
             return PassResultDto.builder()
-                                .areaType(ResponseAreaType.from(areaType))
+                                .areaType(ResponseAreaType.from(abeekType))
                                 .isPassed(isPassed)
                                 .build();
         }
@@ -39,12 +39,12 @@ public class ReportResponse {
     @Builder
     public static class NonPassResultDto {
 
-        private Long courseId;
+        private String courseCode;
         private String reason;
 
-        public static NonPassResultDto from(Long courseId, NonPassMessage reason) {
+        public static NonPassResultDto from(String courseCode, NonPassMessage reason) {
             return NonPassResultDto.builder()
-                                   .courseId(courseId)
+                                   .courseCode(courseCode)
                                    .reason(reason.name())
                                    .build();
         }
@@ -59,9 +59,9 @@ public class ReportResponse {
         private double requiredPoints;
         private List<RelatedCourseDto> relatedCourses;
 
-        public static CreditSummaryDto from(AreaType areaType, AreaCreditSummary summary) {
+        public static CreditSummaryDto from(AbeekType abeekType, AreaCreditSummary summary) {
             return CreditSummaryDto.builder()
-                                   .areaType(areaType.name())
+                                   .areaType(abeekType.name())
                                    .completedPoints(summary.getPointCountResult().completedPoints())
                                    .requiredPoints(summary.getPointCountResult().requiredPoints())
                                    .relatedCourses(summary.getRelatedCourses().stream().map(RelatedCourseDto::from).toList())
@@ -73,7 +73,7 @@ public class ReportResponse {
     @Builder
     public static class RelatedCourseDto {
 
-        private Long courseId;
+        private String courseCode;
         private String name;
         private int year;
         private int semester;
@@ -81,7 +81,7 @@ public class ReportResponse {
 
         public static RelatedCourseDto from(CompletedCourse completedCourse) {
             return RelatedCourseDto.builder()
-                                   .courseId(completedCourse.getId())
+                                   .courseCode(completedCourse.getCode())
                                    .name(completedCourse.getName())
                                    .year(completedCourse.getYear())
                                    .semester(completedCourse.getSemester())

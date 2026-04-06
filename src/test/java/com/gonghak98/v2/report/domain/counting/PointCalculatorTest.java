@@ -2,7 +2,7 @@ package com.gonghak98.v2.report.domain.counting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.EnumMap;
@@ -17,29 +17,29 @@ class PointCalculatorTest {
     @DisplayName("영역별 이수 과목과 요구 학점을 기반으로 계산 결과가 올바르게 생성되어야 한다")
     void calculateCreditsTest() {
         // given
-        AreaType areaType = AreaType.MSC;
+        AbeekType abeekType = AbeekType.MSC;
         CompletedCourse course1 = CompletedCourse.builder()
-                                                 .id(1L)
+                                                 .code(1L)
                                                  .name("미적분학1")
                                                  .point(3)
                                                  .build();
         CompletedCourse course2 = CompletedCourse.builder()
-                                                 .id(2L)
+                                                 .code(2L)
                                                  .name("일반물리1")
                                                  .point(3)
                                                  .build();
 
-        Map<AreaType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AreaType.class);
-        coursesByArea.put(areaType, List.of(course1, course2));
+        Map<AbeekType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AbeekType.class);
+        coursesByArea.put(abeekType, List.of(course1, course2));
 
-        Map<AreaType, Double> requiredPoints = new EnumMap<>(AreaType.class);
-        requiredPoints.put(areaType, 30.0);
+        Map<AbeekType, Double> requiredPoints = new EnumMap<>(AbeekType.class);
+        requiredPoints.put(abeekType, 30.0);
 
         // when
         CountingResult result = PointCalculator.calculateCredits(coursesByArea, requiredPoints);
 
         // then
-        final AreaCreditSummary areaCreditSummary = result.creditSummaries().get(areaType);
+        final AreaCreditSummary areaCreditSummary = result.creditSummaries().get(abeekType);
         final PointCountResult pointCountResult = areaCreditSummary.getPointCountResult();
         final List<CompletedCourse> relatedCourses = areaCreditSummary.getRelatedCourses();
 

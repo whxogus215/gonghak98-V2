@@ -2,7 +2,7 @@ package com.gonghak98.v2.report.infrastructure.jpa;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
@@ -41,7 +41,7 @@ class JpaGonghakCourseRepositoryTest {
         courseEntity = new CourseEntity(1234L, "테스트", 3.0);
         jpaCourseRepository.save(courseEntity);
 
-        gonghakCourseEntity = new GonghakCourseEntity(departmentEntity, AreaType.GYOYANG, CourseType.ESSENTIAL, courseEntity);
+        gonghakCourseEntity = new GonghakCourseEntity(departmentEntity, AbeekType.GYOYANG, CourseType.ESSENTIAL, courseEntity);
         jpaGonghakCourseRepository.save(gonghakCourseEntity);
     }
 
@@ -59,7 +59,7 @@ class JpaGonghakCourseRepositoryTest {
         final DepartmentEntity department = jpaDepartmentRepository.findByName(testDepartmentName)
                                                                    .orElseThrow();
         //when
-        final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findByDepartmentAndCategory(department, AreaType.GYOYANG);
+        final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findByDepartmentAndCategory(department, AbeekType.GYOYANG);
 
         //then
         assertThat(gonghakCourses).hasSize(1);

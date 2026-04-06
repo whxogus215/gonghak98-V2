@@ -28,8 +28,8 @@ public class Abeek {
     public CheckResult checkAllCourses(List<CompletedCourse> completedCourses) {
         RequirementResult requirementResult = checkAreaRequirements(completedCourses);
 
-        Map<AreaType, List<CompletedCourse>> coursesByArea = categorizeCompletedCourses(completedCourses);
-        Map<AreaType, Double> requiredCredits = collectRequiredPoints();
+        Map<AbeekType, List<CompletedCourse>> coursesByArea = categorizeCompletedCourses(completedCourses);
+        Map<AbeekType, Double> requiredCredits = collectRequiredPoints();
         CountingResult creditCountingResult = PointCalculator.calculateCredits(coursesByArea, requiredCredits);
 
         return new CheckResult(
@@ -40,7 +40,7 @@ public class Abeek {
     }
 
     private RequirementResult checkAreaRequirements(List<CompletedCourse> completedCourses) {
-        RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AreaType.class), new HashMap<>());
+        RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
 
         gyoyang.checkAllCourses(completedCourses, requirementResult);
         basic.checkAllCourses(completedCourses, requirementResult);
@@ -51,28 +51,28 @@ public class Abeek {
         return requirementResult;
     }
 
-    private Map<AreaType, List<CompletedCourse>> categorizeCompletedCourses(List<CompletedCourse> completedCourses) {
-        Map<AreaType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AreaType.class);
+    private Map<AbeekType, List<CompletedCourse>> categorizeCompletedCourses(List<CompletedCourse> completedCourses) {
+        Map<AbeekType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AbeekType.class);
 
-        coursesByArea.put(AreaType.GYOYANG, gyoyang.getRelatedCourses(completedCourses));
-        coursesByArea.put(AreaType.MAJOR, major.getRelatedCourses(completedCourses));
-        coursesByArea.put(AreaType.DESIGN, design.getRelatedCourses(completedCourses));
+        coursesByArea.put(AbeekType.GYOYANG, gyoyang.getRelatedCourses(completedCourses));
+        coursesByArea.put(AbeekType.MAJOR, major.getRelatedCourses(completedCourses));
+        coursesByArea.put(AbeekType.DESIGN, design.getRelatedCourses(completedCourses));
 
-        AreaType basicAreaType = basic.getBasicAreaType();
-        coursesByArea.put(basicAreaType, basic.getRelatedCourses(completedCourses));
+        AbeekType basicAbeekType = basic.getBasicAreaType();
+        coursesByArea.put(basicAbeekType, basic.getRelatedCourses(completedCourses));
 
         return coursesByArea;
     }
 
-    private Map<AreaType, Double> collectRequiredPoints() {
-        Map<AreaType, Double> requiredPoints = new EnumMap<>(AreaType.class);
+    private Map<AbeekType, Double> collectRequiredPoints() {
+        Map<AbeekType, Double> requiredPoints = new EnumMap<>(AbeekType.class);
 
-        requiredPoints.put(AreaType.GYOYANG, gyoyang.getRequiredPoints());
-        requiredPoints.put(AreaType.MAJOR, major.getRequiredPoints());
-        requiredPoints.put(AreaType.DESIGN, design.getRequiredPoints());
+        requiredPoints.put(AbeekType.GYOYANG, gyoyang.getRequiredPoints());
+        requiredPoints.put(AbeekType.MAJOR, major.getRequiredPoints());
+        requiredPoints.put(AbeekType.DESIGN, design.getRequiredPoints());
 
-        AreaType basicAreaType = basic.getBasicAreaType();
-        requiredPoints.put(basicAreaType, basic.getRequiredPoints());
+        AbeekType basicAbeekType = basic.getBasicAreaType();
+        requiredPoints.put(basicAbeekType, basic.getRequiredPoints());
 
         return requiredPoints;
     }
