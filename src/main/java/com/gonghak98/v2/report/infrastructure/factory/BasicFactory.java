@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.infrastructure.factory;
 
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
 import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
@@ -24,7 +24,7 @@ public class BasicFactory {
     private final JpaGonghakCourseRepository gonghakCourseRepository;
 
     public Basic create(DepartmentEntity department) {
-        final AreaType basicType = AreaType.getBasicType(department.getName());
+        final AbeekType basicType = AbeekType.getBasicType(department.getName());
         final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndCategory(department, basicType);
 
         if (gonghakCourses.isEmpty()) {
@@ -32,7 +32,7 @@ public class BasicFactory {
         }
 
         Set<Course> essentialCourses = gonghakCourses.stream()
-                                                     .filter(c -> c.getSubCategory() == CourseType.ESSENTIAL)
+                                                     .filter(c -> c.getCourseType() == CourseType.ESSENTIAL)
                                                      .map(GonghakCourseEntity::getCourse)
                                                      .map(CourseEntity::toDomain)
                                                      .collect(Collectors.toSet());

@@ -6,7 +6,7 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum AreaType {
+public enum AbeekType {
 
     MSC(Set.of("전자정보통신공학과"), "MSC"),
     BSM(Collections.emptySet(), "BSM"),
@@ -17,7 +17,7 @@ public enum AreaType {
     private final Set<String> departmentNames;
     private final String detail;
 
-    public static AreaType getBasicType(String departmentName) {
+    public static AbeekType getBasicType(String departmentName) {
         return Arrays.stream(values())
                      .filter(areaType -> (areaType == MSC || areaType == BSM))
                      .filter(areaType -> areaType.departmentNames.contains(departmentName))
@@ -25,7 +25,7 @@ public enum AreaType {
                      .orElse(null);
     }
 
-    public static AreaType getByName(String name) {
+    public static AbeekType getByName(String name) {
         return Arrays.stream(values())
                      .filter(areaType -> areaType.detail.equals(name))
                      .findFirst()

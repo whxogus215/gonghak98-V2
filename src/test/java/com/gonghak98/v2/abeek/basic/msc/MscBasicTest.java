@@ -4,7 +4,7 @@ import static com.gonghak98.v2.abeek.fixture.BasicFixture.createMscBasic;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -33,7 +33,7 @@ class MscBasicTest {
             basic.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AreaType.MSC)).isTrue();
+            assertThat(requirementResult.passResults().get(AbeekType.MSC)).isTrue();
         }
 
         @DisplayName("지정된 MSC 교과목을 모두 이수하지 못하면, MSC 영역을 만족하지 못한다.")
@@ -48,24 +48,24 @@ class MscBasicTest {
             basic.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AreaType.MSC)).isFalse();
+            assertThat(requirementResult.passResults().get(AbeekType.MSC)).isFalse();
         }
 
         private static Stream<Arguments> provideAllEssentialMscCourses() {
             List<CompletedCourse> essentialCourses = List.of(
-                CompletedCourse.builder().id(11300L).name("고급프로그래밍활용").build(),
-                CompletedCourse.builder().id(7330L).name("확률및통계").build(),
-                CompletedCourse.builder().id(9912L).name("C프로그래밍및실습").build(),
-                CompletedCourse.builder().id(1357L).name("미적분학1").build(),
-                CompletedCourse.builder().id(304L).name("공업수학1").build(),
-                CompletedCourse.builder().id(9913L).name("고급C프로그래밍및실습").build(),
-                CompletedCourse.builder().id(1725L).name("선형대수").build(),
-                CompletedCourse.builder().id(11320L).name("인공지능과빅데이터").build(),
-                CompletedCourse.builder().id(11678L).name("기초전자물리").build()
+                CompletedCourse.builder().code(11300L).name("고급프로그래밍활용").build(),
+                CompletedCourse.builder().code(7330L).name("확률및통계").build(),
+                CompletedCourse.builder().code(9912L).name("C프로그래밍및실습").build(),
+                CompletedCourse.builder().code(1357L).name("미적분학1").build(),
+                CompletedCourse.builder().code(304L).name("공업수학1").build(),
+                CompletedCourse.builder().code(9913L).name("고급C프로그래밍및실습").build(),
+                CompletedCourse.builder().code(1725L).name("선형대수").build(),
+                CompletedCourse.builder().code(11320L).name("인공지능과빅데이터").build(),
+                CompletedCourse.builder().code(11678L).name("기초전자물리").build()
             );
 
             List<CompletedCourse> otherCourses = List.of(
-                CompletedCourse.builder().id(Long.MAX_VALUE).name("테스트과목").build()
+                CompletedCourse.builder().code(Long.MAX_VALUE).name("테스트과목").build()
             );
 
             return Stream.of(
@@ -75,15 +75,15 @@ class MscBasicTest {
 
         private static Stream<Arguments> provideNotAllEssentialMscCourses() {
             List<CompletedCourse> essentialCourses = List.of(
-                CompletedCourse.builder().id(11300L).name("고급프로그래밍활용").build(),
-                CompletedCourse.builder().id(7330L).name("확률및통계").build(),
-                CompletedCourse.builder().id(9912L).name("C프로그래밍및실습").build(),
-                CompletedCourse.builder().id(1357L).name("미적분학1").build(),
-                CompletedCourse.builder().id(304L).name("공업수학1").build()
+                CompletedCourse.builder().code(11300L).name("고급프로그래밍활용").build(),
+                CompletedCourse.builder().code(7330L).name("확률및통계").build(),
+                CompletedCourse.builder().code(9912L).name("C프로그래밍및실습").build(),
+                CompletedCourse.builder().code(1357L).name("미적분학1").build(),
+                CompletedCourse.builder().code(304L).name("공업수학1").build()
             );
 
             List<CompletedCourse> otherCourses = List.of(
-                CompletedCourse.builder().id(Long.MAX_VALUE).name("테스트과목").build()
+                CompletedCourse.builder().code(Long.MAX_VALUE).name("테스트과목").build()
             );
 
             return Stream.of(

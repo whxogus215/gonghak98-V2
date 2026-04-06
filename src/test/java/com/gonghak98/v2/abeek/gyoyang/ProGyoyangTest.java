@@ -4,7 +4,7 @@ import static com.gonghak98.v2.abeek.fixture.GyoyangFixture.createProGyoyang;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
-import com.gonghak98.v2.report.domain.abeek.AreaType;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
 import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
@@ -33,7 +33,7 @@ class ProGyoyangTest {
             gyoyang.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AreaType.GYOYANG)).isTrue();
+            assertThat(requirementResult.passResults().get(AbeekType.GYOYANG)).isTrue();
         }
 
         @DisplayName("필수 과목을 모두 이수하지 않으면, 선택 교과목 중 2과목 이상을 포함해도, 전문교양 영역을 만족하지 못한다.")
@@ -48,7 +48,7 @@ class ProGyoyangTest {
             gyoyang.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AreaType.GYOYANG)).isFalse();
+            assertThat(requirementResult.passResults().get(AbeekType.GYOYANG)).isFalse();
         }
 
         @DisplayName("필수 과목을 모두 이수해도, 선택 교과목 중 2과목 미만으로 이수하면, 전문교양 영역을 만족하지 못한다.")
@@ -63,25 +63,25 @@ class ProGyoyangTest {
             gyoyang.checkAllCourses(studentCourses, requirementResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AreaType.GYOYANG)).isFalse();
+            assertThat(requirementResult.passResults().get(AbeekType.GYOYANG)).isFalse();
         }
 
         private static List<CompletedCourse> createEssentialCourses() {
             return List.of(
-                CompletedCourse.builder().id(9067L).name("문제해결을위한글쓰기와발표").build(),
-                CompletedCourse.builder().id(9068L).name("서양철학:쟁점과토론").build(),
-                CompletedCourse.builder().id(11304L).name("대학영어").build()
+                CompletedCourse.builder().code(9067L).name("문제해결을위한글쓰기와발표").build(),
+                CompletedCourse.builder().code(9068L).name("서양철학:쟁점과토론").build(),
+                CompletedCourse.builder().code(11304L).name("대학영어").build()
             );
         }
 
         private static List<CompletedCourse> createAllElectiveCourses() {
             return List.of(
-                CompletedCourse.builder().id(11307L).name("세계사").build(),
-                CompletedCourse.builder().id(11305L).name("동서양의사상과윤리").build(),
-                CompletedCourse.builder().id(11313L).name("경제학").build(),
-                CompletedCourse.builder().id(11312L).name("경영학").build(),
-                CompletedCourse.builder().id(11317L).name("컴퓨터게임과메타버스").build(),
-                CompletedCourse.builder().id(11316L).name("융합예술의이해").build()
+                CompletedCourse.builder().code(11307L).name("세계사").build(),
+                CompletedCourse.builder().code(11305L).name("동서양의사상과윤리").build(),
+                CompletedCourse.builder().code(11313L).name("경제학").build(),
+                CompletedCourse.builder().code(11312L).name("경영학").build(),
+                CompletedCourse.builder().code(11317L).name("컴퓨터게임과메타버스").build(),
+                CompletedCourse.builder().code(11316L).name("융합예술의이해").build()
             );
         }
 
