@@ -10,7 +10,7 @@ public class AbeekService {
 
     private final AbeekRepository abeekRepository;
 
-    public Abeek getAbeek(String departmentName) {
-        return abeekRepository.findAbeek(departmentName);
+    public Abeek getAbeek(String departmentName, Short entranceYear) {
+        return abeekRepository.findAbeek(departmentName, entranceYear);
     }
 }

@@ -4,5 +4,5 @@ import com.gonghak98.v2.report.domain.abeek.Abeek;
 
 public interface AbeekRepository {
 
-    Abeek findAbeek(String departmentName);
+    Abeek findAbeek(String departmentName, Short entranceYear);
 }

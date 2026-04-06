@@ -20,8 +20,9 @@ public class ReportController {
 
     @GetMapping
     public ResponseEntity<ReportResponse> createReport(@RequestPart String departmentName,
+                                                       @RequestPart Short entranceYear,
                                                        @RequestPart MultipartFile file) {
-        ReportResponse response = reportService.getReport(departmentName, file);
+        ReportResponse response = reportService.getReport(departmentName, entranceYear, file);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
