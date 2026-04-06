@@ -7,13 +7,11 @@ import lombok.Getter;
 @Getter
 public class Course {
 
-    private Integer id;
-
     private String name;
 
     private String code;
 
-    private double point;
+    private double credit;
 
     public boolean isEqual(String code) {
         return this.code.equals(code);

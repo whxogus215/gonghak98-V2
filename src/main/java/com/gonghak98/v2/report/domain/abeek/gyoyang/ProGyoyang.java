@@ -41,13 +41,13 @@ public class ProGyoyang implements Gyoyang {
         for (Course course : essentialCourses) {
             if (completedCourseIds.contains(course.getCode())) {
                 completedEssentialCount++;
-                totalPoint += course.getPoint();
+                totalPoint += course.getCredit();
             }
         }
         for (Course course : electiveCourses) {
             if (completedCourseIds.contains(course.getCode())) {
                 completedElectiveCount++;
-                totalPoint += course.getPoint();
+                totalPoint += course.getCredit();
             }
         }
 

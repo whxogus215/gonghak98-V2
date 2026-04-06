@@ -37,12 +37,11 @@ public class CourseEntity {
         this.credit = credit;
     }
 
-    public static Course toDomain(CourseEntity courseEntity) {
+    public Course toDomain() {
         return Course.builder()
-                     .id(courseEntity.getId())
-                     .code(courseEntity.getCode())
-                     .name(courseEntity.getName())
-                     .point(courseEntity.getCredit())
+                     .code(code)
+                     .name(name)
+                     .credit(credit)
                      .build();
     }
 }
