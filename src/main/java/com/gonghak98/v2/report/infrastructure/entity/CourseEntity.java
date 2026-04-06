@@ -1,34 +1,32 @@
 package com.gonghak98.v2.report.infrastructure.entity;
 
-import com.gonghak98.v2.report.domain.course.Course;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
+@Table(name = "course")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class CourseEntity {
 
-    @Id @Getter
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "MEDIUMINT UNSIGNED")
+    private Integer id;
 
-    @Getter
+    @Column(name = "code", length = 20, nullable = false, unique = true)
+    private String code;
+
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    private double point;
-
-    public Course toDomain() {
-        return Course.builder()
-                     .id(id)
-                     .name(name)
-                     .point(point)
-                     .build();
-    }
-
-    public CourseEntity(Long id, String name, double point) {
-        this.id = id;
-        this.name = name;
-        this.point = point;
-    }
+    @Column(name = "credit")
+    private double credit;
 }
