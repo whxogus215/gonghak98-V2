@@ -21,11 +21,13 @@ public class ReportService {
     private final FileService fileService;
     private final AbeekService abeekService;
 
-    public ReportResponse getReport(String departmentName, MultipartFile file) {
+    public ReportResponse getReport(String departmentName,
+                                    Short entranceYear,
+                                    MultipartFile file) {
         FileResponse fileResponse = fileService.getFileData(file);
         List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
 
-        Abeek abeek = abeekService.getAbeek(departmentName);
+        Abeek abeek = abeekService.getAbeek(departmentName, entranceYear);
         CheckResult checkResult = abeek.checkAllCourses(completedCourses);
 
         return ReportResponse.builder()
