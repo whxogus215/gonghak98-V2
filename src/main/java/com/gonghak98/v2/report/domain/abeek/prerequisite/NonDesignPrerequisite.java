@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NonDesignPrerequisite {
 
-     private final Map<String, String> prerequisiteCourseCodes;
+     private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
         Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();

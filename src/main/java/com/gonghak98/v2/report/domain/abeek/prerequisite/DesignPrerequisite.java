@@ -15,25 +15,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DesignPrerequisite {
 
-    private final String basicCourseId;
-    private final Set<String> elementCourseIds;
-    private final Set<String> comprehensiveCourseIds;
+    private final String basicCourseCode;
+    private final Set<String> elementCourseCodes;
+    private final Set<String> comprehensiveCourseCodes;
 
     public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
         Map<AbeekType, Boolean> passResults = requirementResult.passResults();
         Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = completedCourses.stream()
-                                                                         .filter(completedCourse -> basicCourseId.equals(completedCourse.getCode()))
+                                                                         .filter(completedCourse -> basicCourseCode.equals(completedCourse.getCode()))
                                                                          .findFirst();
 
         List<CompletedCourse> completedElementCourses = completedCourses.stream()
-                                                                        .filter(completedCourse -> elementCourseIds.contains(completedCourse.getCode()))
+                                                                        .filter(completedCourse -> elementCourseCodes.contains(completedCourse.getCode()))
                                                                         .toList();
 
         List<CompletedCourse> completedComprehensiveCourses = completedCourses.stream()
                                                                               .filter(
-                                                                                  completedCourse -> comprehensiveCourseIds.contains(completedCourse.getCode()))
+                                                                                  completedCourse -> comprehensiveCourseCodes.contains(completedCourse.getCode()))
                                                                               .collect(Collectors.toList());
 
         boolean isElementPassed = checkElementPrerequisite(completedBasicCourse, completedElementCourses, nonPassResults);

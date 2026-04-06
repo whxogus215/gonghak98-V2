@@ -38,14 +38,15 @@ public class AbeekRepositoryImpl implements AbeekRepository {
         final DepartmentEntity findDepartment = jpaDepartmentRepository.findByName(departmentName)
                                                                        .orElseThrow(() -> new AbeekException("학과가 존재하지 않습니다."));
         final RequirementDetail findRequirementDetail = jpaGonghakRequirementRepository.findByDepartmentAndEntranceYear(findDepartment, entranceYear)
-                                                                                       .orElseThrow(() -> new IllegalArgumentException("공학인증 요건 정보가 존재하지 않습니다."))
+                                                                                       .orElseThrow(
+                                                                                           () -> new IllegalArgumentException("공학인증 요건 정보가 존재하지 않습니다."))
                                                                                        .getDetail();
 
         Gyoyang gyoyang = gyoyangFactory.create(findDepartment);
         Basic basic = basicFactory.create(findDepartment);
-        Major major = majorFactory.create(findDepartment);
+        Major major = majorFactory.create(findRequirementDetail.getMajorRequirement());
         Design design = designFactory.create(findDepartment, findRequirementDetail.getDesignRequirement().getMinCredit());
-        Prerequisite prerequisite = prerequisiteFactory.create(findDepartment);
+        Prerequisite prerequisite = prerequisiteFactory.create(findDepartment, findRequirementDetail.getPrerequisiteRequirement());
 
         return new Abeek(gyoyang, basic, major, design, prerequisite);
     }

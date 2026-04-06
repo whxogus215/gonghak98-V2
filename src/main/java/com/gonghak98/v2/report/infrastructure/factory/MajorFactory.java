@@ -1,38 +1,36 @@
 package com.gonghak98.v2.report.infrastructure.factory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gonghak98.v2.report.domain.abeek.major.GeneralMajor;
 import com.gonghak98.v2.report.domain.abeek.major.LabMajor;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
-import java.io.IOException;
+import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail.AreaRequirement;
+import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail.ComponentRule;
+import java.util.HashSet;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class MajorFactory {
 
-    private final ObjectMapper objectMapper;
+    public Major create(AreaRequirement requirement) {
+        LabMajor labMajor = null;
+        GeneralMajor generalMajor = null;
 
-    public Major create(DepartmentEntity department) {
-        LabMajor labMajor;
-        GeneralMajor generalMajor;
-        double minPoint;
-        String departmentName = department.getName();
-
-        try {
-            JsonNode majorConfig = objectMapper.readTree(new ClassPathResource("json/major-config/" + departmentName + ".json")
-                                                             .getInputStream())
-                                               .get("components");
-            labMajor = objectMapper.treeToValue(majorConfig.get("labMajor"), LabMajor.class);
-            generalMajor = objectMapper.treeToValue(majorConfig.get("generalMajor"), GeneralMajor.class);
-            minPoint = objectMapper.treeToValue(majorConfig.get("minPoint"), Double.class);
-        } catch (IOException e) {
-            throw new IllegalArgumentException("파일을 읽어오는 중 에러가 발생했습니다.");
+        final List<ComponentRule> components = requirement.getComponents();
+        for (ComponentRule rule : components) {
+            if (rule.getName().equals("labMajor")) {
+                labMajor = new LabMajor(new HashSet<>(rule.getTargetCourses()),
+                                        rule.getConditionValue());
+            }
+            if (rule.getName().equals("generalMajor")) {
+                generalMajor = new GeneralMajor(new HashSet<>(rule.getTargetCourses()),
+                                                rule.getConditionValue());
+            }
         }
-        return new Major(labMajor, generalMajor, minPoint);
+        double minCredit = requirement.getMinCredit();
+
+        return new Major(labMajor, generalMajor, minCredit);
     }
 }
