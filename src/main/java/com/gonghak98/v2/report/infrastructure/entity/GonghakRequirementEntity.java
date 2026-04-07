@@ -24,6 +24,7 @@ import org.hibernate.type.SqlTypes;
 public class GonghakRequirementEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JdbcTypeCode(SqlTypes.SMALLINT)
     @Column(name = "id", columnDefinition = "SMALLINT UNSIGNED")
     private Integer id;
 

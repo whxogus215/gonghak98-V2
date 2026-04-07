@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.sql.Types;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
 @Table(name = "department")
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class DepartmentEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JdbcTypeCode(Types.SMALLINT)
     @Column(name = "id", columnDefinition = "SMALLINT UNSIGNED")
     private Integer id;
 
