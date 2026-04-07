@@ -68,25 +68,25 @@ class ReportsApiAcceptanceTest {
     class 기이수_성적파일_업로드_성공 {
 
         @Test
-        @DisplayName("201 Created와 영역별 검사 결과가 반환된다.")
+        @DisplayName("200 OK와 영역별 검사 결과가 반환된다.")
         void 성적_업로드_성공_테스트() throws IOException {
             //when
             final Response response = RestAssured.given(spec)
-                                                     .filter(document("create-report", requestParts(
-                                                         partWithName("departmentName").description("학과명 (예: 전자정보통신공학과)"),
-                                                         partWithName("entranceYear").description("입학년도 (예: 2026)"),
-                                                         partWithName("file").description("기이수 성적 파일 (.xlsx)")
-                                                     )))
-                                                     .multiPart(department)
-                                                     .multiPart(entranceYear)
-                                                     .multiPart("file", 인수테스트_업로드_파일_생성("/file/acceptance/졸업생_기이수성적조회.xlsx"))
+                                                 .filter(document("create-report", requestParts(
+                                                     partWithName("departmentName").description("학과명 (예: 전자정보통신공학과)"),
+                                                     partWithName("entranceYear").description("입학년도 (예: 2026)"),
+                                                     partWithName("file").description("기이수 성적 파일 (.xlsx)")
+                                                 )))
+                                                 .multiPart(department)
+                                                 .multiPart(entranceYear)
+                                                 .multiPart("file", 인수테스트_업로드_파일_생성("/file/acceptance/졸업생_기이수성적조회.xlsx"))
                                                  .when().log().all()
-                                                    .post("/api/reports")
+                                                 .post("/api/reports")
                                                  .then().log().all()
-                                                    .extract().response();
+                                                 .extract().response();
 
             //then
-            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED.value());
+            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
         }
     }
 
