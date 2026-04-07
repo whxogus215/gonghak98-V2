@@ -3,7 +3,6 @@ package com.gonghak98.v2.report.controller;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.service.ReportService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +23,6 @@ public class ReportController {
                                                     @RequestParam Short entranceYear,
                                                     @RequestPart MultipartFile file) {
         ReportResponse response = reportService.getReport(departmentName, entranceYear, file);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.ok(response);
     }
 }
