@@ -28,7 +28,7 @@ public class CourseEntity {
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "credit")
+    @Column(name = "credit", nullable = false)
     private double credit;
 
     public CourseEntity(String code, String name, double credit) {

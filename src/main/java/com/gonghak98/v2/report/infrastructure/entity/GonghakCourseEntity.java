@@ -55,7 +55,7 @@ public class GonghakCourseEntity {
     @Column(name = "course_type", length = 30, nullable = false)
     private CourseType courseType;
 
-    @Column(name = "design_credit")
+    @Column(name = "design_credit", nullable = false)
     private double designCredit;
 
     public GonghakCourseEntity(DepartmentEntity department, AbeekType abeekType, CourseType courseType, CourseEntity course) {
