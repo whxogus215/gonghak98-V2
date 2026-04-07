@@ -16,6 +16,8 @@ import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(
@@ -37,10 +39,12 @@ public class GonghakCourseEntity {
 
     @ManyToOne
     @JoinColumn(name = "department_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private DepartmentEntity department;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private CourseEntity course;
 
     @Enumerated(value = EnumType.STRING)
