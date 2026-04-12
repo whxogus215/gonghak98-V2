@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tika.Tika;
+import org.apache.tika.io.TikaInputStream;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -74,7 +75,7 @@ public class ExcelFileService implements FileService {
         try (InputStream is = file.getInputStream()) {
             Tika tika = new Tika();
 
-            String mimeType = tika.detect(is);
+            String mimeType = tika.detect(TikaInputStream.get(is));
             if (!mimeType.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
                 && !mimeType.equals("application/x-tika-ooxml")) {
                 throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
