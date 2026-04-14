@@ -75,7 +75,10 @@ public class ExcelFileService implements FileService {
         try (InputStream is = file.getInputStream()) {
             Tika tika = new Tika();
 
-            String mimeType = tika.detect(TikaInputStream.get(is));
+            String mimeType;
+            try (TikaInputStream tis = TikaInputStream.get(is)) {
+                mimeType = tika.detect(tis);
+            }
             if (!mimeType.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
                 && !mimeType.equals("application/x-tika-ooxml")) {
                 throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
