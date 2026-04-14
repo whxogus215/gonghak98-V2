@@ -53,3 +53,5 @@ src/main/resources/static/docs
 *.sh
 
 /.gemini/
+
+lambda-test.json
