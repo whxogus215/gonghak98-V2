@@ -31,10 +31,10 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Profile({"dev", "acceptance"})
+@Profile({"db"})
 @RequiredArgsConstructor
 @Component
-public class DevDataLoader implements ApplicationRunner {
+public class DatabaseDataLoader implements ApplicationRunner {
 
     private static final String DELIMITER = "\\|";
 
