@@ -1,29 +1,28 @@
 package com.gonghak98.v2.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gonghak98.v2.report.infrastructure.entity.GonghakRequirementEntity;
-import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail;
-import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
-import java.util.stream.Collectors;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
+import com.gonghak98.v2.report.infrastructure.entity.GonghakRequirementEntity;
+import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaCourseRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
-import jakarta.persistence.EntityManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.StreamSupport;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
@@ -84,7 +83,11 @@ public class DevDataLoader implements ApplicationRunner {
         }
 
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(resource.getFile().toPath())) {
-            for (Path path : paths) {
+            // CSV 파일 이름 내림차순 정렬 ex) 2026-1 => 2025-2
+            List<Path> sortedPaths = StreamSupport.stream(paths.spliterator(), false)
+                                                  .sorted(Comparator.comparing(Path::getFileName, Comparator.reverseOrder()))
+                                                  .toList();
+            for (Path path : sortedPaths) {
                 log.info("과목 CSV 파일 읽기 시작 : {}", path);
                 try (BufferedReader br = new BufferedReader(Files.newBufferedReader(path, StandardCharsets.UTF_8))) {
                     final String headerLine = br.readLine(); // 맨 첫 줄은 헤더이므로 사용하지 않습니다.
@@ -93,16 +96,16 @@ public class DevDataLoader implements ApplicationRunner {
                     while ((line = br.readLine()) != null) {
                         final String[] split = line.split(DELIMITER);
                         try {
-                            String courseCode = split[0];
+                            String courseCode = split[0].trim().replaceAll("^\"|\"$", ""); // ex) "예술,역사를만나다-근대와모던" -> 예술,역사를만나다-근대와모던
                             String name = split[1];
-                            Double point = Double.parseDouble(split[2]);
+                            double credit = Double.parseDouble(split[2]);
 
                             if (jpaCourseRepository.existsByCode(courseCode)) {
                                 continue;
                             }
-                            jpaCourseRepository.save(new CourseEntity(courseCode, name, point));
-                        } catch (NumberFormatException ne) {
-                            log.info("변환에 실패한 데이터 : {}", line);
+                            jpaCourseRepository.save(new CourseEntity(courseCode, name, credit));
+                        } catch (RuntimeException exception) {
+                            log.info("변환에 실패한 데이터 : {}", line, exception);
                         }
 
                     }
@@ -179,7 +182,7 @@ public class DevDataLoader implements ApplicationRunner {
             log.error("변환 중 예외 발생", re);
         }
     }
-    
+
     private void createGonghakRequirement() {
         String directoryPath = "json/requirements";
         ClassPathResource resource = new ClassPathResource(directoryPath);
@@ -195,7 +198,8 @@ public class DevDataLoader implements ApplicationRunner {
 
                 String departmentName = dirPath.getFileName().toString();
                 DepartmentEntity department = jpaDepartmentRepository.findByName(departmentName)
-                        .orElseThrow(() -> new IllegalArgumentException("해당 이름의 학과가 존재하지 않습니다: " + departmentName));
+                                                                     .orElseThrow(
+                                                                         () -> new IllegalArgumentException("해당 이름의 학과가 존재하지 않습니다: " + departmentName));
 
                 try (DirectoryStream<Path> jsonFiles = Files.newDirectoryStream(dirPath, "*.json")) {
                     for (Path jsonPath : jsonFiles) {
