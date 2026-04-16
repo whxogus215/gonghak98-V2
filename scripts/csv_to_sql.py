@@ -117,7 +117,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
       next(reader)  # 첫 줄 헤더 건너뛰기
 
       for row in reader:
-        if len(row) < 4: continue;
+        if len(row) < 5: continue;
         course_name = row[1].strip().replace("'", "''")
         abeek_type = ABEEK_MAP.get(row[2].strip(), row[2].strip())
         course_type = COURSE_MAP.get(row[3].strip(), row[3].strip())
