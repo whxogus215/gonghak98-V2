@@ -44,7 +44,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
 
       for row in reader:
         if not row: continue  # 빈 줄 건너뛰기
-        name = row[0].strip()
+        name = row[0].strip().replace("'", "''")
         sql_file.write(
           f"INSERT INTO department (name) VALUES ('{name}');\n")
   sql_file.write("\n")
@@ -91,7 +91,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
       next(reader)
       for row in reader:
         if len(row) < 4: continue
-        target_course_name = row[1].strip()
+        target_course_name = row[1].strip().replace("'", "''")
 
         if target_course_name not in valid_course_names:
           mismatched_courses.add((os.path.basename(g_file), target_course_name))
