@@ -40,10 +40,6 @@ out/
 ### VS Code ###
 .vscode/
 
-
-### Ignore Files for Deploy ###
-scripts
-
 *.properties
 
 src/main/resources/static/docs
