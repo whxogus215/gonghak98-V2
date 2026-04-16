@@ -20,7 +20,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
   sql_file.write("-- 🚀 자동 생성된 마스터 데이터 마이그레이션 스크립트\n\n")
 
   # 1. 학과 INSERT SQL 변환
-  sql_file.write("-- [1] DepartmentEntity 적재\n")
+  sql_file.write("-- [1] department 테이블 적재\n")
   department_csv = os.path.join(CSV_DIR, 'department.csv')
 
   if os.path.exists(department_csv):
@@ -32,11 +32,11 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
         if not row: continue  # 빈 줄 건너뛰기
         name = row[0].strip()
         sql_file.write(
-          f"INSERT INTO department_entity (name) VALUES ('{name}');\n")
+          f"INSERT INTO department (name) VALUES ('{name}');\n")
   sql_file.write("\n")
 
   # 2. 과목 INSERT SQL 변환
-  sql_file.write("-- [2] CourseEntity 적재\n")
+  sql_file.write("-- [2] course 테이블\n")
   course_files = glob.glob(os.path.join(CSV_DIR, 'course', '*.csv'))
   # 파일명 기준 내림차순 정렬 (최신 학기 파일이 먼저 처리되도록)
   course_files.sort(reverse=True)
@@ -59,13 +59,13 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
         course_codes.add(course_code)
 
         sql_file.write(
-          f"INSERT INTO course_entity (code, name, credit) "
+          f"INSERT INTO course (code, name, credit) "
           f"VALUES ('{course_code}', '{course_name}', {credit});\n"
         )
   sql_file.write("\n")
 
   # 3. 공학인증 과목 INSERT SQL 변환
-  sql_file.write("-- [3] GonghakCourseEntity 적재\n")
+  sql_file.write("-- [3] gonghak_course 테이블 적재\n")
   gonghak_course_files = glob.glob(
     os.path.join(CSV_DIR, 'gonghak_course', '*.csv'))
 
@@ -85,10 +85,10 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
 
         # 서브 쿼리를 활용해 FK 찾기
         sql_file.write(
-          f"INSERT INTO gonghak_course_entity (department_id, course_id, abeek_type, course_type, design_credit) "
+          f"INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) "
           f"VALUES ("
-          f"(SELECT id FROM department_entity WHERE name = '{department_name}'),"
-          f"(SELECT id FROM course_entity WHERE name = '{course_name}' LIMIT 1),"
+          f"(SELECT id FROM department WHERE name = '{department_name}'),"
+          f"(SELECT id FROM course WHERE name = '{course_name}' LIMIT 1),"
           f"'{abeek_type}', "
           f"'{course_type}', "
           f"{design_credit}"
@@ -97,7 +97,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
   sql_file.write("\n")
 
   # [4] 공학인증 요건 (GonghakRequirement JSON) 변환
-  sql_file.write("-- [4] GonghakRequirementEntity 적재\n")
+  sql_file.write("-- [4] gonghak_requirement 테이블 적재\n")
   JSON_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'json',
                           'requirements')
   if os.path.exists(JSON_DIR):
@@ -117,9 +117,9 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
           json_data = f.read().strip().replace("'", "''")  # 작은따옴표 이스케이프
 
           sql_file.write(
-            f"INSERT INTO gonghak_requirement_entity (department_id, entrance_year, detail) "
+            f"INSERT INTO gonghak_requirement (department_id, entrance_year, detail) "
             f"VALUES ("
-            f"(SELECT id FROM department_entity WHERE name = '{dept_name}'), "
+            f"(SELECT id FROM department WHERE name = '{dept_name}'), "
             f"{entrance_year}, "
             f"'{json_data}'"
             f");\n"

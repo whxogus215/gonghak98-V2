@@ -1,12 +1,12 @@
 -- 1. department (학과) : 부모 테이블
-DROP TABLE department IF EXISTS;
+DROP TABLE IF EXISTS department;
 CREATE TABLE department (
 	id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(20) NOT NULL UNIQUE COMMENT '학과명'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. course (학교 전체 과목 테이블) : 부모 테이블
-DROP TABLE course IF EXISTS;
+DROP TABLE IF EXISTS course;
 CREATE TABLE course (
 	id MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	code VARCHAR(20) NOT NULL UNIQUE COMMENT '학수번호',
@@ -15,7 +15,7 @@ CREATE TABLE course (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 3. gonghak_course (공학인증 과목 테이블) : 자식 테이블
-DROP TABLE gonghak_course IF EXISTS;
+DROP TABLE IF EXISTS gonghak_course;
 CREATE TABLE gonghak_course (
 	id MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	course_id MEDIUMINT UNSIGNED NOT NULL COMMENT '과목 ID',
@@ -33,7 +33,7 @@ CREATE TABLE gonghak_course (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 4. gonghak_requirement
-DROP TABLE gonghak_requirement IF EXISTS;
+DROP TABLE IF EXISTS gonghak_requirement;
 CREATE TABLE gonghak_requirement (
 	id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	department_id SMALLINT UNSIGNED NOT NULL COMMENT '학과 ID',
