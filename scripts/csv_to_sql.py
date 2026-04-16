@@ -14,6 +14,20 @@ version = datetime.now().strftime("%Y%m%d_%H%M%S")
 sql_filename = f"V{version}__init_master_data.sql"
 sql_filepath = os.path.join(MIGRATION_DIR, sql_filename)
 
+ABEEK_MAP = {
+  '전문교양': 'GYOYANG',
+  '전공': 'MAJOR',
+  '설계': 'DESIGN'
+}
+
+COURSE_MAP = {
+  '필수': 'ESSENTIAL',
+  '선택': 'ELECTIVE',
+  '기초설계': 'DESIGN_BASIC',
+  '요소설계': 'DESIGN_ELEMENT',
+  '종합설계': 'DESIGN_COMPREHENSIVE'
+}
+
 print(f"SQL 변환을 시작합니다. 결과 파일 : {sql_filename}")
 
 with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
@@ -42,6 +56,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
   course_files.sort(reverse=True)
 
   course_codes = set()
+  valid_course_names = set()
 
   for c_file in course_files:
     with open(c_file, 'r', encoding='utf-8') as f:
@@ -57,6 +72,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
         if course_code in course_codes:
           continue
         course_codes.add(course_code)
+        valid_course_names.add(course_name)
 
         sql_file.write(
           f"INSERT INTO course (code, name, credit) "
@@ -64,10 +80,34 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
         )
   sql_file.write("\n")
 
-  # 3. 공학인증 과목 INSERT SQL 변환
+  # 3-1. 공학인증 과목명과 실제 강의명과 일치하는지 사전 검증
+  print("🔍 데이터 정합성 검사를 시작합니다...")
+  mismatched_courses = set()
+
+  gonghak_course_files = glob.glob(os.path.join(CSV_DIR, 'gonghak_course', '*.csv'))
+  for g_file in gonghak_course_files:
+    with open(g_file, 'r', encoding='utf-8') as f:
+      reader = csv.reader(f, delimiter='|')
+      next(reader)
+      for row in reader:
+        if len(row) < 4: continue
+        target_course_name = row[1].strip()
+
+        if target_course_name not in valid_course_names:
+          mismatched_courses.add((os.path.basename(g_file), target_course_name))
+  if mismatched_courses:
+    print("\n🚨 [ERROR] 기초 과목(course) CSV에 존재하지 않는 과목이 공학인증 CSV에서 발견되었습니다!")
+    print("SQL 생성을 중단합니다. 아래 과목들의 이름을 실제 홈페이지와 비교하여 CSV를 수정해 주세요.\n")
+    
+    for filename, course_name in sorted(mismatched_courses):
+      print(f" - 파일 : {filename} / 매칭 실패 과목명 : '{course_name}'")
+      
+    exit(1)
+  else:
+    print("✅ 검증 통과! 매칭되지 않는 과목이 없습니다.\n")
+
+  # 3-2. 공학인증 과목 INSERT SQL 변환
   sql_file.write("-- [3] gonghak_course 테이블 적재\n")
-  gonghak_course_files = glob.glob(
-    os.path.join(CSV_DIR, 'gonghak_course', '*.csv'))
 
   for g_file in gonghak_course_files:
     department_name = os.path.basename(g_file).replace('.csv', '')
@@ -79,8 +119,9 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
       for row in reader:
         if len(row) < 4: continue;
         course_name = row[1].strip().replace("'", "''")
-        abeek_type = row[2].strip()
-        course_type = row[3].strip()
+        abeek_type = ABEEK_MAP.get(row[2].strip(), row[2].strip())
+        course_type = COURSE_MAP.get(row[3].strip(), row[3].strip())
+
         design_credit = float(row[4].strip())
 
         # 서브 쿼리를 활용해 FK 찾기
@@ -96,7 +137,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
         )
   sql_file.write("\n")
 
-  # [4] 공학인증 요건 (GonghakRequirement JSON) 변환
+  # 4. 공학인증 요건 (GonghakRequirement JSON) 변환
   sql_file.write("-- [4] gonghak_requirement 테이블 적재\n")
   JSON_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'json',
                           'requirements')
