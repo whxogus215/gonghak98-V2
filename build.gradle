@@ -35,9 +35,6 @@ dependencies {
     implementation 'org.apache.tika:tika-core:3.3.0'
     implementation 'org.apache.tika:tika-parsers-standard-package:3.3.0'
 
-    // AWS Lambda SpringBoot 컨테이너 라이브러리
-    implementation 'com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.1.5'
-
     // Flyway
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.flywaydb:flyway-mysql'
@@ -86,9 +83,4 @@ tasks.named('bootBuildImage') {
 
 tasks.named('test') {
     useJUnitPlatform()
-}
-
-task copyDependencies(type: Copy) {
-    from configurations.runtimeClasspath
-    into 'build/dependency'
 }

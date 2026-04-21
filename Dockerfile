@@ -1,8 +1,11 @@
-FROM public.ecr.aws/lambda/java:17
+FROM amazoncorretto:17
 
-COPY build/classes/java/main/ ${LAMBDA_TASK_ROOT}/
-COPY build/resources/main/ ${LAMBDA_TASK_ROOT}/
+WORKDIR /app
 
-COPY build/dependency/* ${LAMBDA_TASK_ROOT}/lib/
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.0.0-x86_64 /lambda-adapter /opt/extensions/lambda-adapter
 
-CMD ["com.gonghak98.v2.StreamLambdaHandler::handleRequest"]
+COPY build/libs/*-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
