@@ -85,7 +85,7 @@ public class ReportResponse {
                                    .name(completedCourse.getName())
                                    .year(completedCourse.getYear())
                                    .semester(completedCourse.getSemester())
-                                   .point(completedCourse.getPoint())
+                                   .point(completedCourse.getCredit())
                                    .build();
         }
     }

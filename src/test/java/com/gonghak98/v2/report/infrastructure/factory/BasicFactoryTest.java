@@ -18,13 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
-class MajorFactoryTest {
+class BasicFactoryTest {
 
     private final String testDepartmentName = "전자정보통신공학과";
     private final Short entranceYear = 2025;
 
     @Autowired
-    private MajorFactory majorFactory;
+    private BasicFactory basicFactory;
 
     @Autowired
     private JpaDepartmentRepository departmentRepository;
@@ -53,14 +53,14 @@ class MajorFactoryTest {
     }
 
     @Test
-    @DisplayName("세부요건 JSON 데이터를 조회하여 전공영역 검사 객체를 생성할 수 있다.")
+    @DisplayName("세부요건 JSON 데이터를 조회하여 MSC 영역 검사 객체를 생성할 수 있다.")
     void createTest() {
         //given
         final GonghakRequirementEntity findRequirement = gonghakRequirementRepository.findByDepartmentAndEntranceYear(department, entranceYear)
                                                                                      .orElseThrow();
 
         //when & then
-        assertThatCode(() -> majorFactory.create(findRequirement.getDetail().getMajorRequirement())).doesNotThrowAnyException();
+        assertThatCode(() -> basicFactory.create(department, findRequirement.getDetail().getBasicRequirement())).doesNotThrowAnyException();
     }
 
     private String createDetailJson() {
@@ -74,33 +74,29 @@ class MajorFactoryTest {
               },
               "basicRequirement": {
                 "minCredit": 30,
-                "components": [ ]
+                "components": [
+                       {
+                         "name": "msdBasic",
+                         "description": "주어진 MSC 과목 모두 이수",
+                         "ruleType": "MUST_TAKE_ALL",
+                         "conditionValue": 9,
+                         "targetCourses": [
+                           "011300",
+                           "007330",
+                           "009912",
+                           "001357",
+                           "000304",
+                           "009913",
+                           "001725",
+                           "011320",
+                           "011678"
+                         ]
+                       }
+                     ]
               },
               "majorRequirement": {
                 "minCredit": 45,
-                "components": [
-                  {
-                    "name": "labMajor",
-                    "description": "전공실험 최소 1과목 이수",
-                    "ruleType": "MIN_COUNT",
-                    "conditionValue": 1,
-                    "targetCourses": ["005611", "009658", "008076", "009666"]
-                  },
-                  {
-                    "name": "generalMajor",
-                    "description": "일반전공 최소 24학점 이수",
-                    "ruleType": "MIN_CREDIT",
-                    "conditionValue": 24,
-                    "targetCourses": ["004114", "005246", "007620", "004111", "007453", "004474", "009649"]
-                  },
-                  {
-                    "name": "mandatoryMajor",
-                    "description": "필수 전공 모두 이수 (요구 과목 개수와 동일하게 조건 설정)",
-                    "ruleType": "MUST_TAKE_ALL",
-                    "conditionValue": 3,
-                    "targetCourses": ["001001", "001002", "001003"]
-                  }
-                ]
+                "components": [ ]
               },
               "prerequisiteRequirement": {
                 "targetCourses": [ ]

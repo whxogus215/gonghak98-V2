@@ -1,9 +1,13 @@
 package com.gonghak98.v2.abeek.fixture;
 
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
-import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
+import com.gonghak98.v2.report.domain.abeek.rule.RequirementRule;
+import com.gonghak98.v2.report.domain.abeek.rule.RuleType;
 import com.gonghak98.v2.report.domain.course.Course;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class BasicFixture {
 
@@ -21,6 +25,13 @@ public class BasicFixture {
             Course.builder().code("011678").name("기초전자물리").build()
         );
 
-        return new MscBasic(essentialCourses);
+        return new Basic(AbeekType.MSC,
+                         List.of(new RequirementRule(
+                             "MSC_BASIC",
+                             essentialCourses.stream().map(Course::getCode).collect(Collectors.toSet()),
+                             9,
+                             RuleType.MUST_TAKE_ALL
+                         )),
+                         27);
     }
 }

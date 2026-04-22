@@ -1,5 +1,6 @@
 package com.gonghak98.v2.report.infrastructure.factory.dto;
 
+import com.gonghak98.v2.report.domain.abeek.rule.RuleType;
 import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,7 @@ public class RequirementDetail {
 
         private String name;
         private String description;
-        private ConditionType conditionType;
+        private RuleType ruleType;
         private Integer conditionValue;
         private List<String> targetCourses;
     }

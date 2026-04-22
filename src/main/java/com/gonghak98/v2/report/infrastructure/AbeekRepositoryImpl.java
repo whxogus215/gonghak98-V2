@@ -43,7 +43,7 @@ public class AbeekRepositoryImpl implements AbeekRepository {
                                                                                        .getDetail();
 
         Gyoyang gyoyang = gyoyangFactory.create(findDepartment);
-        Basic basic = basicFactory.create(findDepartment);
+        Basic basic = basicFactory.create(findDepartment, findRequirementDetail.getBasicRequirement());
         Major major = majorFactory.create(findRequirementDetail.getMajorRequirement());
         Design design = designFactory.create(findDepartment, findRequirementDetail.getDesignRequirement().getMinCredit());
         Prerequisite prerequisite = prerequisiteFactory.create(findDepartment, findRequirementDetail.getPrerequisiteRequirement());
