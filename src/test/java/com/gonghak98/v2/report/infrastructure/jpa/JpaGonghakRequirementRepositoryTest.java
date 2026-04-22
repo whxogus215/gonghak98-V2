@@ -32,7 +32,7 @@ class JpaGonghakRequirementRepositoryTest {
     private EntityManager entityManager;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         final DepartmentEntity department = departmentRepository.save(new DepartmentEntity(testDepartmentName));
 
         entityManager.createNativeQuery(
@@ -79,7 +79,7 @@ class JpaGonghakRequirementRepositoryTest {
                   {
                     "name": "math",
                     "description": "수학 영역 최소 9학점 이수",
-                    "conditionType": "MIN_POINT",
+                    "ruleType": "MIN_CREDIT",
                     "conditionValue": 9,
                     "targetCourses": ["002001", "002002", "002003"]
                   }
@@ -91,21 +91,21 @@ class JpaGonghakRequirementRepositoryTest {
                   {
                     "name": "labMajor",
                     "description": "전공실험 최소 1과목 이수",
-                    "conditionType": "MIN_COUNT",
+                    "ruleType": "MIN_COUNT",
                     "conditionValue": 1,
                     "targetCourses": ["005611", "009658", "008076", "009666"]
                   },
                   {
                     "name": "generalMajor",
                     "description": "일반전공 최소 24학점 이수",
-                    "conditionType": "MIN_POINT",
+                    "ruleType": "MIN_CREDIT",
                     "conditionValue": 24,
                     "targetCourses": ["004114", "005246", "007620", "004111", "007453", "004474", "009649"]
                   },
                   {
                     "name": "mandatoryMajor",
                     "description": "필수 전공 모두 이수 (요구 과목 개수와 동일하게 조건 설정)",
-                    "conditionType": "MUST_TAKE_ALL",
+                    "ruleType": "MUST_TAKE_ALL",
                     "conditionValue": 3,
                     "targetCourses": ["001001", "001002", "001003"]
                   }

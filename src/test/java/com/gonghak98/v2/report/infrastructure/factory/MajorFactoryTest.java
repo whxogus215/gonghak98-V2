@@ -38,7 +38,7 @@ class MajorFactoryTest {
     private DepartmentEntity department;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         department = departmentRepository.save(new DepartmentEntity(testDepartmentName));
 
         entityManager.createNativeQuery(
@@ -53,7 +53,7 @@ class MajorFactoryTest {
     }
 
     @Test
-    @DisplayName("세부요건 JSON 데이터를 조회하여 선후수 검사 객체를 생성할 수 있다.")
+    @DisplayName("세부요건 JSON 데이터를 조회하여 전공영역 검사 객체를 생성할 수 있다.")
     void createTest() {
         //given
         final GonghakRequirementEntity findRequirement = gonghakRequirementRepository.findByDepartmentAndEntranceYear(department, entranceYear)
@@ -74,15 +74,7 @@ class MajorFactoryTest {
               },
               "basicRequirement": {
                 "minCredit": 30,
-                "components": [
-                  {
-                    "name": "math",
-                    "description": "수학 영역 최소 9학점 이수",
-                    "conditionType": "MIN_POINT",
-                    "conditionValue": 9,
-                    "targetCourses": ["002001", "002002", "002003"]
-                  }
-                ]
+                "components": [ ]
               },
               "majorRequirement": {
                 "minCredit": 45,
@@ -90,34 +82,28 @@ class MajorFactoryTest {
                   {
                     "name": "labMajor",
                     "description": "전공실험 최소 1과목 이수",
-                    "conditionType": "MIN_COUNT",
+                    "ruleType": "MIN_COUNT",
                     "conditionValue": 1,
                     "targetCourses": ["005611", "009658", "008076", "009666"]
                   },
                   {
                     "name": "generalMajor",
                     "description": "일반전공 최소 24학점 이수",
-                    "conditionType": "MIN_POINT",
+                    "ruleType": "MIN_CREDIT",
                     "conditionValue": 24,
                     "targetCourses": ["004114", "005246", "007620", "004111", "007453", "004474", "009649"]
                   },
                   {
                     "name": "mandatoryMajor",
                     "description": "필수 전공 모두 이수 (요구 과목 개수와 동일하게 조건 설정)",
-                    "conditionType": "MUST_TAKE_ALL",
+                    "ruleType": "MUST_TAKE_ALL",
                     "conditionValue": 3,
                     "targetCourses": ["001001", "001002", "001003"]
                   }
                 ]
               },
               "prerequisiteRequirement": {
-                "targetCourses": [
-                  { "afterCode": "004111", "beforeCode": "001357" },
-                  { "afterCode": "007722", "beforeCode": "007453" },
-                  { "afterCode": "009659", "beforeCode": "009649" },
-                  { "afterCode": "004600", "beforeCode": "005246" },
-                  { "afterCode": "004474", "beforeCode": "005246" }
-                ]
+                "targetCourses": [ ]
               }
             }
             """;
