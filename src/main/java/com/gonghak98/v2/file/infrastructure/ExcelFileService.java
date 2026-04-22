@@ -60,7 +60,6 @@ public class ExcelFileService implements FileService {
     }
 
     //업로드 파일 검증
-
     private void validateExcelFileFormat(MultipartFile file, String extension) throws ExcelFileException {
         if (file.isEmpty()) {
             throw new ExcelFileException(ExcelFileExceptionType.EMPTY_EXCEL_FILE);
@@ -84,7 +83,7 @@ public class ExcelFileService implements FileService {
                 throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
             }
         } catch (IOException e) {
-            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
+            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE, e);
         }
     }
 
@@ -96,13 +95,13 @@ public class ExcelFileService implements FileService {
         try (InputStream is = file.getInputStream()) {
             return new XSSFWorkbook(is).getSheetAt(0);
         } catch (IOException e) {
-            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE);
+            throw new ExcelFileException(ExcelFileExceptionType.RETRY_EXCEL_FILE, e);
         } catch (POIXMLException e) {
-            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE, e);
         } catch (Exception e) {
             log.info("에러 메시지 {}", e.getMessage());
             // TODO 추후 로그 남기기
-            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE);
+            throw new ExcelFileException(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE, e);
         }
     }
 
