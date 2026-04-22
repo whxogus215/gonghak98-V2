@@ -21,12 +21,12 @@ class PointCalculatorTest {
         CompletedCourse course1 = CompletedCourse.builder()
                                                  .code("000001")
                                                  .name("미적분학1")
-                                                 .point(3)
+                                                 .credit(3)
                                                  .build();
         CompletedCourse course2 = CompletedCourse.builder()
                                                  .code("000002")
                                                  .name("일반물리1")
-                                                 .point(3)
+                                                 .credit(3)
                                                  .build();
 
         Map<AbeekType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AbeekType.class);

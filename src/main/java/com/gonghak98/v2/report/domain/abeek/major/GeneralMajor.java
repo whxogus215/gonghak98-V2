@@ -25,7 +25,7 @@ public class GeneralMajor {
         for (CompletedCourse course : completedCourses) {
             for (String courseId : courseCodes) {
                 if (Objects.equals(courseId, course.getCode())) {
-                    pointSum += course.getPoint();
+                    pointSum += course.getCredit();
                 }
             }
         }

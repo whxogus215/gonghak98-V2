@@ -34,7 +34,7 @@ public class PointCalculator {
 
     private static double calculateTotalCredits(List<CompletedCourse> courses) {
         return courses.stream()
-                      .mapToDouble(CompletedCourse::getPoint)
+                      .mapToDouble(CompletedCourse::getCredit)
                       .sum();
     }
 }
