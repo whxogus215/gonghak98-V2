@@ -7,7 +7,25 @@
   },
   "basicRequirement": {
     "minCredit": 27,
-    "components": [ ]
+    "components": [
+      {
+        "name": "msdBasic",
+        "description": "주어진 MSC 과목 모두 이수",
+        "conditionType": "MUST_TAKE_ALL",
+        "conditionValue": 9,
+        "targetCourses": [
+          "011300",
+          "007330",
+          "009912",
+          "001357",
+          "000304",
+          "009913",
+          "001725",
+          "011320",
+          "011678"
+        ]
+      }
+    ]
   },
   "majorRequirement": {
     "minCredit": 45,
@@ -17,7 +35,12 @@
         "description": "실험교과목 최소 1과목 이수",
         "conditionType": "MIN_COUNT",
         "conditionValue": 1,
-        "targetCourses": ["005611", "009658", "008076", "009666"]
+        "targetCourses": [
+          "005611",
+          "009658",
+          "008076",
+          "009666"
+        ]
       },
       {
         "name": "generalMajor",
@@ -25,18 +48,47 @@
         "conditionType": "MIN_POINT",
         "conditionValue": 24,
         "targetCourses": [
-          "007620", "004114", "005246", "004111", "007453", "004474", "009649", "007806",
-          "004699", "004600", "004829", "003284", "008086", "006294", "006132"]
+          "007620",
+          "004114",
+          "005246",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
       }
     ]
   },
   "prerequisiteRequirement": {
     "targetCourses": [
-      { "afterCode": "004111", "beforeCode": "001357" },
-      { "afterCode": "007722", "beforeCode": "007453" },
-      { "afterCode": "009659", "beforeCode": "009649" },
-      { "afterCode": "004600", "beforeCode": "005246" },
-      { "afterCode": "004474", "beforeCode": "005246" }
+      {
+        "afterCode": "004111",
+        "beforeCode": "001357"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
     ]
   }
 }
