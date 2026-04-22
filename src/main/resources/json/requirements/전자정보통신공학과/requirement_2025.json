@@ -9,9 +9,9 @@
     "minCredit": 27,
     "components": [
       {
-        "name": "msdBasic",
+        "name": "MSC_BASIC",
         "description": "주어진 MSC 과목 모두 이수",
-        "conditionType": "MUST_TAKE_ALL",
+        "ruleType": "MUST_TAKE_ALL",
         "conditionValue": 9,
         "targetCourses": [
           "011300",
@@ -31,9 +31,9 @@
     "minCredit": 45,
     "components": [
       {
-        "name": "labMajor",
+        "name": "LAB_MAJOR",
         "description": "실험교과목 최소 1과목 이수",
-        "conditionType": "MIN_COUNT",
+        "ruleType": "MIN_COUNT",
         "conditionValue": 1,
         "targetCourses": [
           "005611",
@@ -43,9 +43,9 @@
         ]
       },
       {
-        "name": "generalMajor",
+        "name": "GENERAL_MAJOR",
         "description": "일반영역 최소 24학점 이수",
-        "conditionType": "MIN_POINT",
+        "ruleType": "MIN_CREDIT",
         "conditionValue": 24,
         "targetCourses": [
           "007620",

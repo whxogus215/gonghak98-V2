@@ -20,7 +20,7 @@ public class Basic {
         boolean isSatisfied = rules.stream()
                                    .allMatch(rule -> rule.isSatisfied(completedCourses));
 
-        requirementResult.passResults().put(AbeekType.MSC, isSatisfied);
+        requirementResult.passResults().put(abeekType, isSatisfied);
     }
 
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
