@@ -2,16 +2,41 @@ package com.gonghak98.v2.report.domain.abeek.basic;
 
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.rule.RequirementRule;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
-public interface Basic {
+@RequiredArgsConstructor
+public class Basic {
 
-    void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult);
+    private final AbeekType abeekType;
+    private final List<RequirementRule> rules;
+    private final double minCredit;
 
-    List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses);
+    public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
+        boolean isSatisfied = rules.stream()
+                                   .allMatch(rule -> rule.isSatisfied(completedCourses));
 
-    AbeekType getBasicAreaType();
+        requirementResult.passResults().put(AbeekType.MSC, isSatisfied);
+    }
 
-    Double getRequiredPoints();
+    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
+        Set<String> allTargetCourseCodes = rules.stream()
+                                                .flatMap(rule -> rule.getTargetCourseCodes().stream())
+                                                .collect(Collectors.toSet());
+        return completedCourses.stream()
+                               .filter(course -> allTargetCourseCodes.contains(course.getCode()))
+                               .toList();
+    }
+
+    public AbeekType getBasicAreaType() {
+        return abeekType;
+    }
+
+    public Double getRequiredPoints() {
+        return minCredit;
+    }
 }

@@ -1,19 +1,16 @@
 package com.gonghak98.v2.report.infrastructure.factory;
 
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
-import com.gonghak98.v2.report.domain.abeek.CourseType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
-import com.gonghak98.v2.report.domain.abeek.basic.msc.MscBasic;
 import com.gonghak98.v2.report.domain.abeek.exception.AbeekException;
 import com.gonghak98.v2.report.domain.abeek.exception.ExceptionMessage;
-import com.gonghak98.v2.report.domain.course.Course;
-import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
+import com.gonghak98.v2.report.domain.abeek.rule.RequirementRule;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
+import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail.AreaRequirement;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +20,7 @@ public class BasicFactory {
 
     private final JpaGonghakCourseRepository gonghakCourseRepository;
 
-    public Basic create(DepartmentEntity department) {
+    public Basic create(DepartmentEntity department, AreaRequirement requirement) {
         final AbeekType basicType = AbeekType.getBasicType(department.getName());
         final List<GonghakCourseEntity> gonghakCourses = gonghakCourseRepository.findByDepartmentAndAbeekType(department, basicType);
 
@@ -31,12 +28,16 @@ public class BasicFactory {
             throw new AbeekException(ExceptionMessage.EMPTY_GONGHAK_COURSE.getMessage());
         }
 
-        Set<Course> essentialCourses = gonghakCourses.stream()
-                                                     .filter(c -> c.getCourseType() == CourseType.ESSENTIAL)
-                                                     .map(GonghakCourseEntity::getCourse)
-                                                     .map(CourseEntity::toDomain)
-                                                     .collect(Collectors.toSet());
+        final List<RequirementRule> rules = requirement.getComponents().stream()
+                                                       .map(component -> new RequirementRule(
+                                                           component.getName(),
+                                                           new HashSet<>(component.getTargetCourses()),
+                                                           component.getConditionValue(),
+                                                           component.getRuleType()
+                                                       ))
+                                                       .toList();
+        double minCredit = requirement.getMinCredit();
 
-        return new MscBasic(essentialCourses);
+        return new Basic(basicType, rules, minCredit);
     }
 }
