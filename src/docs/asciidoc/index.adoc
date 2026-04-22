@@ -36,7 +36,7 @@ include::{snippets}/create-fail-report/response-fields.adoc[]
 | 400
 | INVALID_EXCEL_FILE_TYPE
 | 올바른 기이수 성적 파일을 업로드해주세요.
-| `.xlsx`, `.xls` 가 아니거나 기이수 성적 파일을 수정했을 경우
+| `.xlsx`가 아니거나 기이수 성적 파일을 수정했을 경우
 
 | 400
 | EMPTY_EXCEL_FILE
