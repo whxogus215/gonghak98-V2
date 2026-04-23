@@ -35,15 +35,25 @@ include::{snippets}/create-fail-report/response-fields.adoc[]
 
 | 400
 | INVALID_EXCEL_FILE_TYPE
-| 올바른 기이수 성적 파일을 업로드해주세요.
-| `.xlsx`가 아니거나 기이수 성적 파일을 수정했을 경우
+| 올바른 파일 형식이 아닙니다.
+| 업로드 한 파일이 `.xlsx`가 아닐 경우
+
+| 400
+| INVALID_STUDENT
+| 재학생 인증에 실패했습니다.
+| 업로드 한 기이수 성적 파일의 양식이 올바르지 않은 경우
 
 | 400
 | EMPTY_EXCEL_FILE
 | 기이수 성적 파일을 업로드해주세요.
 | 비어있는 파일을 업로드할 경우
 
-| 400
+| 413
+| EXCEED_EXCEL_FILE_SIZE
+| 업로드 파일 크기는 최대 30KB를 초과할 수 없습니다.
+| 업로드한 파일 크기가 30KB를 초과하는 경우
+
+| 500
 | RETRY_EXCEL_FILE
 | 업로드 과정에서 오류가 발생했습니다. 다시 시도해주세요.
 | 파일 처리 과정에서 발생한 오류로 다시 업로드 시도
