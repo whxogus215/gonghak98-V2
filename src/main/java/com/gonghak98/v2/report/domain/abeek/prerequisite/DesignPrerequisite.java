@@ -2,7 +2,7 @@ package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
 import java.util.List;
@@ -19,9 +19,9 @@ public class DesignPrerequisite {
     private final Set<String> elementCourseCodes;
     private final Set<String> comprehensiveCourseCodes;
 
-    public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<AbeekType, Boolean> passResults = requirementResult.passResults();
-        Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+    public void check(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult) {
+        Map<AbeekType, Boolean> passResults = areaCheckResult.passResults();
+        Map<String, NonPassMessage> nonPassResults = areaCheckResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = completedCourses.stream()
                                                                          .filter(completedCourse -> basicCourseCode.equals(completedCourse.getCode()))

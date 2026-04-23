@@ -1,7 +1,7 @@
 package com.gonghak98.v2.report.domain.abeek.gyoyang;
 
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.course.Course;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.HashSet;
@@ -30,7 +30,7 @@ public class ProGyoyang implements Gyoyang {
     }
 
     @Override
-    public void checkAllCourses(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
+    public void checkAllCourses(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult) {
         Set<String> completedCourseIds = completedCourses.stream()
                                                           .map(CompletedCourse::getCode)
                                                           .collect(Collectors.toSet());
@@ -56,7 +56,7 @@ public class ProGyoyang implements Gyoyang {
         boolean isMinPointSatisfied = totalPoint >= minPoint;
         boolean isAllSatisfied = isMinPointSatisfied && isEssentialSatisfied && isElectiveSatisfied;
 
-        requirementResult.passResults().put(AbeekType.GYOYANG, isAllSatisfied);
+        areaCheckResult.passResults().put(AbeekType.GYOYANG, isAllSatisfied);
     }
 
     @Override

@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
@@ -32,13 +32,13 @@ public class MajorTest {
                                     createGeneralMajor(),
                                     45);
 
-            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
 
             //when
-            major.checkAllCourses(List.of(completedCourse), requirementResult);
+            major.checkAllCourses(List.of(completedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AbeekType.MAJOR)).isFalse();
+            assertThat(areaCheckResult.passResults().get(AbeekType.MAJOR)).isFalse();
         }
     }
 }

@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.gonghak98.v2.abeek.fixture.GivenObjectFixture;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
@@ -26,14 +26,14 @@ class BasicTest {
         @ParameterizedTest
         void MSC_영역_검사(List<CompletedCourse> studentCourses) {
             //given
-            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
             Basic basic = createMscBasic();
 
             //when
-            basic.checkAllCourses(studentCourses, requirementResult);
+            basic.checkAllCourses(studentCourses, areaCheckResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AbeekType.MSC)).isTrue();
+            assertThat(areaCheckResult.passResults().get(AbeekType.MSC)).isTrue();
         }
 
         @DisplayName("지정된 MSC 교과목을 모두 이수하지 못하면, MSC 영역을 만족하지 못한다.")
@@ -41,14 +41,14 @@ class BasicTest {
         @ParameterizedTest
         void MSC_영역_검사2(List<CompletedCourse> studentCourses) {
             //given
-            RequirementResult requirementResult = GivenObjectFixture.createCheckResult();
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
             Basic basic = createMscBasic();
 
             //when
-            basic.checkAllCourses(studentCourses, requirementResult);
+            basic.checkAllCourses(studentCourses, areaCheckResult);
 
             //then
-            assertThat(requirementResult.passResults().get(AbeekType.MSC)).isFalse();
+            assertThat(areaCheckResult.passResults().get(AbeekType.MSC)).isFalse();
         }
 
         private static Stream<Arguments> provideAllEssentialMscCourses() {

@@ -1,7 +1,7 @@
 package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +13,8 @@ public class NonDesignPrerequisite {
 
      private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
 
-    public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+    public void check(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult) {
+        Map<String, NonPassMessage> nonPassResults = areaCheckResult.nonPassResults();
         Map<String, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getCode, c -> c));
 
         for (CompletedCourse completedCourse : completedCourses) {

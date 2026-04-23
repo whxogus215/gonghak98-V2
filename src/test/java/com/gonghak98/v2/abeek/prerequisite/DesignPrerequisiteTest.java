@@ -7,7 +7,7 @@ import com.gonghak98.v2.abeek.fixture.PrerequisiteFixture;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.design.Design;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.DesignPrerequisite;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -26,13 +26,13 @@ class DesignPrerequisiteTest {
     @Nested
     class 선후수_조건을_만족하는_경우 {
 
-        private RequirementResult requirementResult;
+        private AreaCheckResult areaCheckResult;
         private DesignPrerequisite designPrerequisite;
         private Design design;
 
         @BeforeEach
         void setUp() {
-            requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class), new HashMap<>());
             designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
             design = DesignFixture.createDesign();
         }
@@ -46,10 +46,10 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(afterYear).semester(afterSemester).build();
 
             //when
-            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), requirementResult);
+            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
         }
 
         @DisplayName("기초설계 -> 요소1 -> 요소 2 -> 종합설계 순으로 들었을 때")
@@ -62,14 +62,14 @@ class DesignPrerequisiteTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
             final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
-            design.checkAllCourses(allCompletedCourses, requirementResult);
+            design.checkAllCourses(allCompletedCourses, areaCheckResult);
 
             //when
-            designPrerequisite.check(allCompletedCourses, requirementResult);
+            designPrerequisite.check(allCompletedCourses, areaCheckResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
         }
 
         @DisplayName("기초설계 -> 요소1 -> 요소 2 + 종합설계 순으로 들었을 때")
@@ -82,14 +82,14 @@ class DesignPrerequisiteTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
             final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
-            design.checkAllCourses(allCompletedCourses, requirementResult);
+            design.checkAllCourses(allCompletedCourses, areaCheckResult);
 
             //when
-            designPrerequisite.check(allCompletedCourses, requirementResult);
+            designPrerequisite.check(allCompletedCourses, areaCheckResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
         }
 
         @DisplayName("기초설계 -> 요소1 + 요소 2 -> 종합설계 순으로 들었을 때")
@@ -102,26 +102,26 @@ class DesignPrerequisiteTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
             final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
-            design.checkAllCourses(allCompletedCourses, requirementResult);
+            design.checkAllCourses(allCompletedCourses, areaCheckResult);
 
             //when
-            designPrerequisite.check(allCompletedCourses, requirementResult);
+            designPrerequisite.check(allCompletedCourses, areaCheckResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
         }
     }
 
     @Nested
     class 선후수_조건을_만족하지_않는_경우 {
 
-        private RequirementResult requirementResult;
+        private AreaCheckResult areaCheckResult;
         private DesignPrerequisite designPrerequisite;
 
         @BeforeEach
         void setUp() {
-            requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class), new HashMap<>());
             designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
         }
 
@@ -134,11 +134,11 @@ class DesignPrerequisiteTest {
             CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
 
             //when
-            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), requirementResult);
+            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).containsEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
+            assertThat(areaCheckResult.nonPassResults()).containsEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
 
         @DisplayName("기초설계를 이수하기 전에 종합설계를 먼저 들었을 때")
@@ -150,11 +150,11 @@ class DesignPrerequisiteTest {
             CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
 
             //when
-            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), requirementResult);
+            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.nonPassResults()).containsEntry(comprehensiveCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
+            assertThat(areaCheckResult.nonPassResults()).containsEntry(comprehensiveCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
 
         @DisplayName("요소설계 2과목 이상 이수하기 전에 종합설계를 들었을 때")
@@ -166,10 +166,10 @@ class DesignPrerequisiteTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2025).semester(2).build();
 
             //when
-            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, comprehensiveCompletedCourse), requirementResult);
+            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, comprehensiveCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
 
         @DisplayName("기초설계와 요소설계를 동시에 수강했을 때")
@@ -180,10 +180,10 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2024).semester(2).build();
 
             //when
-            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), requirementResult);
+            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
 
         @DisplayName("기초설계와 종합설계를 동시에 수강했을 때")
@@ -194,10 +194,10 @@ class DesignPrerequisiteTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2024).semester(2).build();
 
             //when
-            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), requirementResult);
+            designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(requirementResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
+            assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
     }
 
