@@ -1,13 +1,15 @@
 package com.gonghak98.v2.common.exception;
 
 import com.gonghak98.v2.file.exception.ExcelFileExceptionType;
-import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -20,8 +22,8 @@ public class GlobalExceptionHandler {
                                                          exceptionType.errorMessage()));
     }
 
-    @ExceptionHandler(FileSizeLimitExceededException.class)
-    public ResponseEntity<ExceptionResponse> handleFileSizeLimitExceededException(FileSizeLimitExceededException exception) {
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity<ExceptionResponse> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException exception) {
         final BaseExceptionType exceptionType = ExcelFileExceptionType.EXCEED_EXCEL_FILE_SIZE;
         return ResponseEntity.status(exceptionType.httpStatus())
                              .body(new ExceptionResponse(exceptionType.httpStatus().value(),
@@ -40,6 +42,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponse> handleException(Exception exception) {
         final BaseExceptionType exceptionType = CommonExceptionType.SERVER_ERROR;
+        log.warn("서버 에러가 발생했습니다.", exception);
         return ResponseEntity.status(exceptionType.httpStatus())
                              .body(new ExceptionResponse(exceptionType.httpStatus().value(),
                                                          exceptionType.errorCode(),
