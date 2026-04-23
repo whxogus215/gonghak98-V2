@@ -54,6 +54,9 @@ public class DesignPrerequisite {
             for (CompletedCourse completedElementCourse : completedElementCourses) {
                 nonPassResults.add(new NonPassResult(completedElementCourse.getCode(),
                                                      completedElementCourse.getName(),
+                                                     completedElementCourse.getYear(),
+                                                     completedElementCourse.getSemester(),
+                                                     completedElementCourse.getCredit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
@@ -65,6 +68,9 @@ public class DesignPrerequisite {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedElementCourse)) {
                 nonPassResults.add(new NonPassResult(completedElementCourse.getCode(),
                                                      completedElementCourse.getName(),
+                                                     completedElementCourse.getYear(),
+                                                     completedElementCourse.getSemester(),
+                                                     completedElementCourse.getCredit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
@@ -83,6 +89,9 @@ public class DesignPrerequisite {
             for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
                 nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
                                                      completedComprehensiveCourse.getName(),
+                                                     completedComprehensiveCourse.getYear(),
+                                                     completedComprehensiveCourse.getSemester(),
+                                                     completedComprehensiveCourse.getCredit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
@@ -95,6 +104,9 @@ public class DesignPrerequisite {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedComprehensiveCourse)) {
                 nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
                                                      completedComprehensiveCourse.getName(),
+                                                     completedComprehensiveCourse.getYear(),
+                                                     completedComprehensiveCourse.getSemester(),
+                                                     completedComprehensiveCourse.getCredit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
@@ -112,6 +124,9 @@ public class DesignPrerequisite {
             if (!PrerequisiteChecker.isSatisfiedDesignPrerequisite(completedElementCourse, completedComprehensiveCourse)) {
                 nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
                                                      completedComprehensiveCourse.getName(),
+                                                     completedComprehensiveCourse.getYear(),
+                                                     completedComprehensiveCourse.getSemester(),
+                                                     completedComprehensiveCourse.getCredit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );

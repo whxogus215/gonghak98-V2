@@ -46,6 +46,9 @@ class NonDesignPrerequisiteTest {
             //then
             assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.getCode(),
                                                                                           afterCourse.getName(),
+                                                                                          afterCourse.getYear(),
+                                                                                          afterCourse.getSemester(),
+                                                                                          afterCourse.getCredit(),
                                                                                           NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                         )
             );
@@ -84,6 +87,9 @@ class NonDesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(
                                                                       afterCourse.getCode(),
                                                                       afterCourse.getName(),
+                                                                      afterCourse.getYear(),
+                                                                      afterCourse.getSemester(),
+                                                                      afterCourse.getCredit(),
                                                                       NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                   )
             );
@@ -106,6 +112,9 @@ class NonDesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(
                                                                       afterCourse.getCode(),
                                                                       afterCourse.getName(),
+                                                                      afterCourse.getYear(),
+                                                                      afterCourse.getSemester(),
+                                                                      afterCourse.getCredit(),
                                                                       NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                   )
             );
@@ -130,6 +139,9 @@ class NonDesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(
                                                                       afterCourse.getCode(),
                                                                       afterCourse.getName(),
+                                                                      afterCourse.getYear(),
+                                                                      afterCourse.getSemester(),
+                                                                      afterCourse.getCredit(),
                                                                       NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                   )
             );

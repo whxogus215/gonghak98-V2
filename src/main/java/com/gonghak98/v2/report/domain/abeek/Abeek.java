@@ -75,7 +75,14 @@ public class Abeek {
                                                                         .collect(Collectors.toSet());
         for (CompletedCourse course : completedCourses) {
             if (!categorizedCompletedCourses.contains(course)) {
-                areaCheckResult.notCheckedResults().add(new NotCheckedResult(course.getCode(), course.getName()));
+                areaCheckResult.notCheckedResults().add(new NotCheckedResult(
+                                                            course.getCode(),
+                                                            course.getName(),
+                                                            course.getYear(),
+                                                            course.getSemester(),
+                                                            course.getCredit()
+                                                        )
+                );
             }
         }
         return coursesByArea;

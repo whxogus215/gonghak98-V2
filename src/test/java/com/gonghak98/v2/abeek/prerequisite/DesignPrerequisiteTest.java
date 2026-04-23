@@ -54,6 +54,9 @@ class DesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
                                                                             elementCompletedCourse.getCode(),
                                                                             elementCompletedCourse.getName(),
+                                                                            elementCompletedCourse.getYear(),
+                                                                            elementCompletedCourse.getSemester(),
+                                                                            elementCompletedCourse.getCredit(),
                                                                             NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                         )
             );
@@ -79,6 +82,9 @@ class DesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
                                                                             elementCompletedCourse.getCode(),
                                                                             elementCompletedCourse.getName(),
+                                                                            elementCompletedCourse.getYear(),
+                                                                            elementCompletedCourse.getSemester(),
+                                                                            elementCompletedCourse.getCredit(),
                                                                             NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                         )
             );
@@ -105,6 +111,9 @@ class DesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
                                                                             elementCompletedCourse.getCode(),
                                                                             elementCompletedCourse.getName(),
+                                                                            elementCompletedCourse.getYear(),
+                                                                            elementCompletedCourse.getSemester(),
+                                                                            elementCompletedCourse.getCredit(),
                                                                             NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                         )
             );
@@ -131,6 +140,9 @@ class DesignPrerequisiteTest {
             assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
                                                                             elementCompletedCourse.getCode(),
                                                                             elementCompletedCourse.getName(),
+                                                                            elementCompletedCourse.getYear(),
+                                                                            elementCompletedCourse.getSemester(),
+                                                                            elementCompletedCourse.getCredit(),
                                                                             NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                         )
             );
@@ -166,6 +178,9 @@ class DesignPrerequisiteTest {
             //then
             assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(elementCompletedCourse.getCode(),
                                                                                     elementCompletedCourse.getName(),
+                                                                                    elementCompletedCourse.getYear(),
+                                                                                    elementCompletedCourse.getSemester(),
+                                                                                    elementCompletedCourse.getCredit(),
                                                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                   )
             );
@@ -186,6 +201,9 @@ class DesignPrerequisiteTest {
             //then
             assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(comprehensiveCompletedCourse.getCode(),
                                                                                     comprehensiveCompletedCourse.getName(),
+                                                                                    comprehensiveCompletedCourse.getYear(),
+                                                                                    comprehensiveCompletedCourse.getSemester(),
+                                                                                    comprehensiveCompletedCourse.getCredit(),
                                                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                   )
             );

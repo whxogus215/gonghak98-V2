@@ -32,11 +32,17 @@ public class NonDesignPrerequisite {
                 if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse, afterCourse)) {
                     nonPassResults.add(new NonPassResult(afterCourseCode,
                                                          afterCourse.getName(),
+                                                         afterCourse.getYear(),
+                                                         afterCourse.getSemester(),
+                                                         afterCourse.getCredit(),
                                                          NonPassMessage.NOT_SATISFIED_PREREQUISITE));
                 }
             } else {
-                nonPassResults.add(new NonPassResult(afterCourseCode,
+                nonPassResults.add(new NonPassResult(completedCourse.getCode(),
                                                      completedCourse.getName(),
+                                                     completedCourse.getYear(),
+                                                     completedCourse.getSemester(),
+                                                     completedCourse.getCredit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE));
             }
         }
