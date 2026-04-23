@@ -2,6 +2,7 @@ package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +12,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NonDesignPrerequisite {
 
-     private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
+    private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
 
     public void check(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult) {
-        Map<String, NonPassMessage> nonPassResults = areaCheckResult.nonPassResults();
-        Map<String, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getCode, c -> c));
+        List<NonPassResult> nonPassResults = areaCheckResult.nonPassResults();
+        Map<String, CompletedCourse> completedCourseTable = completedCourses.stream()
+                                                                            .collect(Collectors.toMap(
+                                                                                CompletedCourse::getCode, c -> c));
 
         for (CompletedCourse completedCourse : completedCourses) {
             String afterCourseCode = completedCourse.getCode();
@@ -26,11 +29,15 @@ public class NonDesignPrerequisite {
             if (completedCourseTable.containsKey(beforeCourseCode)) {
                 CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseCode);
                 CompletedCourse afterCourse = completedCourseTable.get(afterCourseCode);
-                if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse,afterCourse)) {
-                    nonPassResults.put(afterCourseCode, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse, afterCourse)) {
+                    nonPassResults.add(new NonPassResult(afterCourseCode,
+                                                         afterCourse.getName(),
+                                                         NonPassMessage.NOT_SATISFIED_PREREQUISITE));
                 }
             } else {
-                nonPassResults.put(afterCourseCode, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(new NonPassResult(afterCourseCode,
+                                                     completedCourse.getName(),
+                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE));
             }
         }
     }

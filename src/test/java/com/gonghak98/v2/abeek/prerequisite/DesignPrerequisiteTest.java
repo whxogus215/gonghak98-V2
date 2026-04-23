@@ -8,11 +8,11 @@ import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.design.Design;
 import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.DesignPrerequisite;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,9 @@ class DesignPrerequisiteTest {
 
         @BeforeEach
         void setUp() {
-            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
+                                                  new ArrayList<>(),
+                                                  new ArrayList<>());
             designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
             design = DesignFixture.createDesign();
         }
@@ -49,7 +51,12 @@ class DesignPrerequisiteTest {
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
+                                                                            elementCompletedCourse.getCode(),
+                                                                            elementCompletedCourse.getName(),
+                                                                            NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                        )
+            );
         }
 
         @DisplayName("기초설계 -> 요소1 -> 요소 2 -> 종합설계 순으로 들었을 때")
@@ -61,14 +68,20 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().code("009650").year(2025).semester(2).build();
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
-            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
+            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2,
+                                                                                     comprehensiveCompletedCourse);
             design.checkAllCourses(allCompletedCourses, areaCheckResult);
 
             //when
             designPrerequisite.check(allCompletedCourses, areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
+                                                                            elementCompletedCourse.getCode(),
+                                                                            elementCompletedCourse.getName(),
+                                                                            NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                        )
+            );
             assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
         }
 
@@ -81,14 +94,20 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().code("009650").year(2026).semester(1).build();
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
-            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
+            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2,
+                                                                                     comprehensiveCompletedCourse);
             design.checkAllCourses(allCompletedCourses, areaCheckResult);
 
             //when
             designPrerequisite.check(allCompletedCourses, areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
+                                                                            elementCompletedCourse.getCode(),
+                                                                            elementCompletedCourse.getName(),
+                                                                            NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                        )
+            );
             assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
         }
 
@@ -101,14 +120,20 @@ class DesignPrerequisiteTest {
             CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().code("009650").year(2025).semester(2).build();
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
-            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2, comprehensiveCompletedCourse);
+            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse, elementCompletedCourse2,
+                                                                                     comprehensiveCompletedCourse);
             design.checkAllCourses(allCompletedCourses, areaCheckResult);
 
             //when
             designPrerequisite.check(allCompletedCourses, areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(
+                                                                            elementCompletedCourse.getCode(),
+                                                                            elementCompletedCourse.getName(),
+                                                                            NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                        )
+            );
             assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
         }
     }
@@ -121,7 +146,9 @@ class DesignPrerequisiteTest {
 
         @BeforeEach
         void setUp() {
-            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
+                                                  new ArrayList<>(),
+                                                  new ArrayList<>());
             designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
         }
 
@@ -137,7 +164,11 @@ class DesignPrerequisiteTest {
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, elementCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).containsEntry(elementCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(elementCompletedCourse.getCode(),
+                                                                                    elementCompletedCourse.getName(),
+                                                                                    NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                  )
+            );
             assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
 
@@ -153,7 +184,11 @@ class DesignPrerequisiteTest {
             designPrerequisite.check(getAllCompletedCourses(basicCompletedCourse, comprehensiveCompletedCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).containsEntry(comprehensiveCompletedCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(comprehensiveCompletedCourse.getCode(),
+                                                                                    comprehensiveCompletedCourse.getName(),
+                                                                                    NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                  )
+            );
             assertThat(areaCheckResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
         }
 

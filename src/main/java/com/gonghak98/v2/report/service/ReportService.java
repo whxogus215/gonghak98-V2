@@ -5,6 +5,7 @@ import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
+import com.gonghak98.v2.report.controller.dto.ReportResponse.NotCheckedResultDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
 import com.gonghak98.v2.report.domain.abeek.Abeek;
 import com.gonghak98.v2.report.domain.abeek.dto.AbeekCheckResult;
@@ -31,11 +32,18 @@ public class ReportService {
         AbeekCheckResult abeekCheckResult = abeek.checkAllCourses(completedCourses);
 
         return ReportResponse.builder()
-                             .passResults(abeekCheckResult.passResults().entrySet().stream().map(e -> PassResultDto.from(e.getKey(), e.getValue())).toList())
+                             .passResults(abeekCheckResult.passResults().entrySet().stream().map(
+                                 e -> PassResultDto.from(e.getKey(), e.getValue())).toList()
+                             )
                              .nonPassResults(
-                                 abeekCheckResult.nonPassResults().entrySet().stream().map(e -> NonPassResultDto.from(e.getKey(), e.getValue())).toList())
+                                 abeekCheckResult.nonPassResults().stream().map(NonPassResultDto::from).toList()
+                             )
+                             .notCheckedResults(
+                                 abeekCheckResult.notCheckedResults().stream().map(NotCheckedResultDto::from).toList()
+                             )
                              .creditSummaries(
-                                 abeekCheckResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList())
+                                 abeekCheckResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList()
+                             )
                              .build();
     }
 }

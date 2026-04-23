@@ -7,6 +7,7 @@ import java.util.Map;
 
 public record AbeekCheckResult(Map<AbeekType, Boolean> passResults,
                                List<NonPassResult> nonPassResults,
+                               List<NotCheckedResult> notCheckedResults,
                                Map<AbeekType, AreaCreditSummary> creditSummaries) {
 
 }

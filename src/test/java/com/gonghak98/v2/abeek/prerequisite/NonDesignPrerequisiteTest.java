@@ -5,8 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
 import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.NonDesignPrerequisite;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +21,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class NonDesignPrerequisiteTest {
-    
+
     @Nested
     class 선후수_조건을_만족하는_경우 {
 
@@ -28,7 +30,9 @@ class NonDesignPrerequisiteTest {
         @ParameterizedTest
         void 선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            AreaCheckResult areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            AreaCheckResult areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
+                                                                  new ArrayList<>(),
+                                                                  new ArrayList<>());
             CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
             CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
@@ -40,10 +44,14 @@ class NonDesignPrerequisiteTest {
             nonDesignPrerequisite.check(List.of(beforeCourse, afterCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).doesNotContainEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.getCode(),
+                                                                                          afterCourse.getName(),
+                                                                                          NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                        )
+            );
         }
     }
-    
+
     @Nested
     class 선후수_조건을_만족하지_않는_경우 {
 
@@ -53,7 +61,9 @@ class NonDesignPrerequisiteTest {
 
         @BeforeEach
         void setUp() {
-            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+            areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
+                                                  new ArrayList<>(),
+                                                  new ArrayList<>());
             prerequisiteCourseIds = new HashMap<>();
             nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
         }
@@ -71,7 +81,12 @@ class NonDesignPrerequisiteTest {
             nonDesignPrerequisite.check(List.of(afterCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).containsEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(
+                                                                      afterCourse.getCode(),
+                                                                      afterCourse.getName(),
+                                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                  )
+            );
         }
 
         @DisplayName("필수 선수과목을 후수 과목보다 나중에 들었을 때")
@@ -88,7 +103,12 @@ class NonDesignPrerequisiteTest {
             nonDesignPrerequisite.check(List.of(afterCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).containsEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(
+                                                                      afterCourse.getCode(),
+                                                                      afterCourse.getName(),
+                                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                  )
+            );
         }
 
         @DisplayName("후수 과목을 필수 선수 과목과 동시에 들었을 때")
@@ -107,7 +127,12 @@ class NonDesignPrerequisiteTest {
             nonDesignPrerequisite.check(List.of(beforeCourse, afterCourse), areaCheckResult);
 
             //then
-            assertThat(areaCheckResult.nonPassResults()).containsEntry(afterCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+            assertThat(areaCheckResult.nonPassResults()).contains(new NonPassResult(
+                                                                      afterCourse.getCode(),
+                                                                      afterCourse.getName(),
+                                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                  )
+            );
         }
     }
 }

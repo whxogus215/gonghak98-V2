@@ -6,6 +6,6 @@ import java.util.Map;
 
 public record AreaCheckResult(Map<AbeekType, Boolean> passResults,
                               List<NonPassResult> nonPassResults,
-                              List<NonPassResult> notCheckedResults) {
+                              List<NotCheckedResult> notCheckedResults) {
 
 }
