@@ -18,7 +18,9 @@ public class NonDesignPrerequisite {
         List<NonPassResult> nonPassResults = areaCheckResult.nonPassResults();
         Map<String, CompletedCourse> completedCourseTable = completedCourses.stream()
                                                                             .collect(Collectors.toMap(
-                                                                                CompletedCourse::getCode, c -> c));
+                                                                                CompletedCourse::getCode,
+                                                                                c -> c,
+                                                                                (c1, c2) -> c1.compareTo(c2) <= 0 ? c2 : c1));
 
         for (CompletedCourse completedCourse : completedCourses) {
             String afterCourseCode = completedCourse.getCode();
