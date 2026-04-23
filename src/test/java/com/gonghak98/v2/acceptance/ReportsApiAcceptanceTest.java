@@ -10,6 +10,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.requestP
 import static org.springframework.restdocs.restassured.RestAssuredRestDocumentation.document;
 import static org.springframework.restdocs.restassured.RestAssuredRestDocumentation.documentationConfiguration;
 
+import com.gonghak98.v2.file.exception.ExcelFileExceptionType;
 import io.restassured.RestAssured;
 import io.restassured.builder.MultiPartSpecBuilder;
 import io.restassured.builder.RequestSpecBuilder;
@@ -94,8 +95,31 @@ class ReportsApiAcceptanceTest {
     class 기이수_성적파일_업로드_실패 {
 
         @Test
-        @DisplayName("400 BadRequest와 에러 응답이 반환된다.")
+        @DisplayName("xlsx 확장자가 아닌 파일을 업로드하면, 400 BadRequest와 에러 응답이 반환된다.")
         void 성적_업로드_예외_테스트() throws IOException {
+            //when
+            final Response response = RestAssured.given(spec)
+                                                 .filter(document("create-fail-report", responseFields(
+                                                     fieldWithPath("httpStatusCode").description("HTTP 상태 코드"),
+                                                     fieldWithPath("errorCode").description("에러 코드"),
+                                                     fieldWithPath("errorMessage").description("에러 메시지"))
+                                                 ))
+                                                 .multiPart(department)
+                                                 .multiPart(entranceYear)
+                                                 .multiPart("file", 인수테스트_업로드_파일_생성("/file/PDF샘플자료.pdf"))
+                                                 .when()
+                                                 .post("/api/reports")
+                                                 .then().log().all()
+                                                 .extract().response();
+
+            //then
+            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+            assertThat(response.getBody().jsonPath().getString("errorCode")).isEqualTo(ExcelFileExceptionType.INVALID_EXCEL_FILE_TYPE.name());
+        }
+
+        @Test
+        @DisplayName("기이수 성적파일이 아닌 다른 엑셀 파일을 업로드하면, 400 BadRequest와 에러 응답이 반환된다.")
+        void 성적_업로드_예외_테스트2() throws IOException {
             //when
             final Response response = RestAssured.given(spec)
                                                  .filter(document("create-fail-report", responseFields(
@@ -113,6 +137,25 @@ class ReportsApiAcceptanceTest {
 
             //then
             assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+            assertThat(response.getBody().jsonPath().getString("errorCode")).isEqualTo(ExcelFileExceptionType.INVALID_STUDENT.name());
+        }
+
+        @Test
+        @DisplayName("업로드 파일이 최대 업로드 크기를 초과하면, 413 Payload Too Large와 에러 응답이 반환된다.")
+        void 성적_업로드_예외_테스트3() throws IOException {
+            //when
+            final Response response = RestAssured.given(spec)
+                                                 .multiPart(department)
+                                                 .multiPart(entranceYear)
+                                                 .multiPart("file", 인수테스트_업로드_파일_생성("/file/30KB_초과_샘플.xlsx"))
+                                                 .when()
+                                                 .post("/api/reports")
+                                                 .then().log().all()
+                                                 .extract().response();
+
+            //then
+            assertThat(response.getStatusCode()).isEqualTo(HttpStatus.PAYLOAD_TOO_LARGE.value());
+            assertThat(response.getBody().jsonPath().getString("errorCode")).isEqualTo(ExcelFileExceptionType.EXCEED_EXCEL_FILE_SIZE.name());
         }
     }
 }

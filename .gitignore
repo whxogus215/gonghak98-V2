@@ -43,6 +43,7 @@ out/
 *.properties
 
 src/main/resources/static/docs
+src/test/resources/file
 
 *.xlsx
 *.yml
