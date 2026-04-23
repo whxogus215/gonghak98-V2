@@ -3,6 +3,7 @@ package com.gonghak98.v2.report.domain.student;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
@@ -18,6 +19,9 @@ public class CompletedCourse implements Comparable<CompletedCourse> {
     private int semester;
 
     private double credit;
+
+    @Setter
+    private double designCredit;
 
     @Override
     public int compareTo(CompletedCourse other) {

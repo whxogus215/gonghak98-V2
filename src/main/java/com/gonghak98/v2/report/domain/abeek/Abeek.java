@@ -8,7 +8,7 @@ import com.gonghak98.v2.report.domain.abeek.dto.NotCheckedResult;
 import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.Prerequisite;
-import com.gonghak98.v2.report.domain.counting.PointCalculator;
+import com.gonghak98.v2.report.domain.counting.CreditCalculator;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class Abeek {
 
         Map<AbeekType, List<CompletedCourse>> coursesByArea = categorizeCompletedCourses(completedCourses, areaCheckResult);
         Map<AbeekType, Double> requiredCredits = collectRequiredPoints();
-        CountingResult creditCountingResult = PointCalculator.calculateCredits(coursesByArea, requiredCredits);
+        CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByArea, requiredCredits);
 
         return new AbeekCheckResult(
             areaCheckResult.passResults(),

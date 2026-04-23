@@ -13,6 +13,6 @@ import lombok.RequiredArgsConstructor;
 public class AreaCreditSummary {
 
     private final AbeekType abeekType;
-    private final PointCountResult pointCountResult;
+    private final CreditCountResult creditCountResult;
     private final List<CompletedCourse> relatedCourses;
 }

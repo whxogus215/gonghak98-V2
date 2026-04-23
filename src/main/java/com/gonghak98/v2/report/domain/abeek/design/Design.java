@@ -42,15 +42,18 @@ public class Design {
             if (basicDesignCourse.isEqual(course.getCode())) {
                 isBasicPassed = true;
                 designPointSum += basicDesignCourse.getDesignPoint();
+                course.setDesignCredit(basicDesignCourse.getDesignPoint());
             }
             for (DesignCourse elementDesignCourse : elementDesignCourses) {
                 if (elementDesignCourse.isEqual(course.getCode())) {
                     designPointSum += elementDesignCourse.getDesignPoint();
+                    course.setDesignCredit(elementDesignCourse.getDesignPoint());
                 }
             }
             for (DesignCourse comprehensiveDesignCourse : comprehensiveDesignCourses) {
                 if (comprehensiveDesignCourse.isEqual(course.getCode())) {
                     designPointSum += comprehensiveDesignCourse.getDesignPoint();
+                    course.setDesignCredit(comprehensiveDesignCourse.getDesignPoint());
                     isComprehensivePassed = true;
                 }
             }

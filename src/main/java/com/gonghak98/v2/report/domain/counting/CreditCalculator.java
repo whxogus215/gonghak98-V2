@@ -7,9 +7,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class PointCalculator {
+public class CreditCalculator {
 
-    private PointCalculator() {}
+    private CreditCalculator() {
+    }
 
     public static CountingResult calculateCredits(Map<AbeekType, List<CompletedCourse>> coursesByArea,
                                                   Map<AbeekType, Double> requiredPoints) {
@@ -20,11 +21,11 @@ public class PointCalculator {
                 continue;
             }
             List<CompletedCourse> areaCourses = coursesByArea.get(abeekType);
-            double completedCredits = calculateTotalCredits(areaCourses);
+            double completedCredits = calculateTotalCredits(areaCourses, abeekType);
             double requiredPoint = requiredPoints.getOrDefault(abeekType, 0.0);
 
-            PointCountResult pointCountResult = new PointCountResult(completedCredits, requiredPoint);
-            AreaCreditSummary summary = new AreaCreditSummary(abeekType, pointCountResult, areaCourses);
+            CreditCountResult creditCountResult = new CreditCountResult(completedCredits, requiredPoint);
+            AreaCreditSummary summary = new AreaCreditSummary(abeekType, creditCountResult, areaCourses);
 
             summaries.put(abeekType, summary);
         }
@@ -32,9 +33,15 @@ public class PointCalculator {
         return new CountingResult(summaries);
     }
 
-    private static double calculateTotalCredits(List<CompletedCourse> courses) {
-        return courses.stream()
-                      .mapToDouble(CompletedCourse::getCredit)
-                      .sum();
+    private static double calculateTotalCredits(List<CompletedCourse> courses, AbeekType abeekType) {
+        if (abeekType.equals(AbeekType.DESIGN)) {
+            return courses.stream()
+                          .mapToDouble(CompletedCourse::getDesignCredit)
+                          .sum();
+        } else {
+            return courses.stream()
+                          .mapToDouble(CompletedCourse::getCredit)
+                          .sum();
+        }
     }
 }

@@ -93,8 +93,8 @@ public class ReportResponse {
         public static CreditSummaryDto from(AbeekType abeekType, AreaCreditSummary summary) {
             return CreditSummaryDto.builder()
                                    .areaType(abeekType.name())
-                                   .completedCredits(summary.getPointCountResult().completedPoints())
-                                   .requiredCredits(summary.getPointCountResult().requiredPoints())
+                                   .completedCredits(summary.getCreditCountResult().completedPoints())
+                                   .requiredCredits(summary.getCreditCountResult().requiredPoints())
                                    .relatedCourses(summary.getRelatedCourses().stream().map(RelatedCourseDto::from).toList())
                                    .build();
         }
