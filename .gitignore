@@ -43,6 +43,7 @@ out/
 *.properties
 
 src/main/resources/static/docs
+src/main/resources/db/migration-dev
 src/test/resources/file
 
 *.xlsx

@@ -11,7 +11,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PointCalculatorTest {
+class CreditCalculatorTest {
 
     @Test
     @DisplayName("영역별 이수 과목과 요구 학점을 기반으로 계산 결과가 올바르게 생성되어야 한다")
@@ -36,15 +36,15 @@ class PointCalculatorTest {
         requiredPoints.put(abeekType, 30.0);
 
         // when
-        CountingResult result = PointCalculator.calculateCredits(coursesByArea, requiredPoints);
+        CountingResult result = CreditCalculator.calculateCredits(coursesByArea, requiredPoints);
 
         // then
         final AreaCreditSummary areaCreditSummary = result.creditSummaries().get(abeekType);
-        final PointCountResult pointCountResult = areaCreditSummary.getPointCountResult();
+        final CreditCountResult creditCountResult = areaCreditSummary.getCreditCountResult();
         final List<CompletedCourse> relatedCourses = areaCreditSummary.getRelatedCourses();
 
-        assertThat(pointCountResult.requiredPoints()).isEqualTo(30.0);
-        assertThat(pointCountResult.completedPoints()).isEqualTo(6.0);
+        assertThat(creditCountResult.requiredPoints()).isEqualTo(30.0);
+        assertThat(creditCountResult.completedPoints()).isEqualTo(6.0);
         assertThat(relatedCourses).hasSize(2);
     }
 }

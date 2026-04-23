@@ -2,18 +2,22 @@ package com.gonghak98.v2.report.domain.abeek;
 
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
 import com.gonghak98.v2.report.domain.abeek.design.Design;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AbeekCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.NotCheckedResult;
 import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.Prerequisite;
-import com.gonghak98.v2.report.domain.counting.PointCalculator;
+import com.gonghak98.v2.report.domain.counting.CreditCalculator;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -25,33 +29,37 @@ public class Abeek {
     private final Design design;
     private final Prerequisite prerequisite;
 
-    public CheckResult checkAllCourses(List<CompletedCourse> completedCourses) {
-        RequirementResult requirementResult = checkAreaRequirements(completedCourses);
+    public AbeekCheckResult checkAllCourses(List<CompletedCourse> completedCourses) {
+        AreaCheckResult areaCheckResult = checkAreaRequirements(completedCourses);
 
-        Map<AbeekType, List<CompletedCourse>> coursesByArea = categorizeCompletedCourses(completedCourses);
+        Map<AbeekType, List<CompletedCourse>> coursesByArea = categorizeCompletedCourses(completedCourses, areaCheckResult);
         Map<AbeekType, Double> requiredCredits = collectRequiredPoints();
-        CountingResult creditCountingResult = PointCalculator.calculateCredits(coursesByArea, requiredCredits);
+        CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByArea, requiredCredits);
 
-        return new CheckResult(
-            requirementResult.passResults(),
-            requirementResult.nonPassResults(),
+        return new AbeekCheckResult(
+            areaCheckResult.passResults(),
+            areaCheckResult.nonPassResults(),
+            areaCheckResult.notCheckedResults(),
             creditCountingResult.creditSummaries()
         );
     }
 
-    private RequirementResult checkAreaRequirements(List<CompletedCourse> completedCourses) {
-        RequirementResult requirementResult = new RequirementResult(new EnumMap<>(AbeekType.class), new HashMap<>());
+    private AreaCheckResult checkAreaRequirements(List<CompletedCourse> completedCourses) {
+        AreaCheckResult areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
+                                                              new ArrayList<>(),
+                                                              new ArrayList<>());
 
-        gyoyang.checkAllCourses(completedCourses, requirementResult);
-        basic.checkAllCourses(completedCourses, requirementResult);
-        major.checkAllCourses(completedCourses, requirementResult);
-        design.checkAllCourses(completedCourses, requirementResult);
-        prerequisite.checkAllCourses(completedCourses, requirementResult);
+        gyoyang.checkAllCourses(completedCourses, areaCheckResult);
+        basic.checkAllCourses(completedCourses, areaCheckResult);
+        major.checkAllCourses(completedCourses, areaCheckResult);
+        design.checkAllCourses(completedCourses, areaCheckResult);
+        prerequisite.checkAllCourses(completedCourses, areaCheckResult);
 
-        return requirementResult;
+        return areaCheckResult;
     }
 
-    private Map<AbeekType, List<CompletedCourse>> categorizeCompletedCourses(List<CompletedCourse> completedCourses) {
+    private Map<AbeekType, List<CompletedCourse>> categorizeCompletedCourses(List<CompletedCourse> completedCourses,
+                                                                             AreaCheckResult areaCheckResult) {
         Map<AbeekType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AbeekType.class);
 
         coursesByArea.put(AbeekType.GYOYANG, gyoyang.getRelatedCourses(completedCourses));
@@ -61,6 +69,15 @@ public class Abeek {
         AbeekType basicAbeekType = basic.getBasicAreaType();
         coursesByArea.put(basicAbeekType, basic.getRelatedCourses(completedCourses));
 
+        // 기이수 과목 중 Pass/NonPass에 속하지 않는 과목들을 존재하지 않는 과목으로 분류 (NonChecked)
+        Set<CompletedCourse> categorizedCompletedCourses = coursesByArea.values().stream()
+                                                                        .flatMap(Collection::stream)
+                                                                        .collect(Collectors.toSet());
+        for (CompletedCourse course : completedCourses) {
+            if (!categorizedCompletedCourses.contains(course)) {
+                areaCheckResult.notCheckedResults().add(NotCheckedResult.from(course));
+            }
+        }
         return coursesByArea;
     }
 

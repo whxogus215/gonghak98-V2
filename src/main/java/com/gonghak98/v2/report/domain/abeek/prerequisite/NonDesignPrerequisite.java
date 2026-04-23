@@ -1,7 +1,8 @@
 package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.Map;
@@ -11,26 +12,29 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NonDesignPrerequisite {
 
-     private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
+    private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
 
-    public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
-        Map<String, CompletedCourse> completedCourseTable = completedCourses.stream().collect(Collectors.toMap(CompletedCourse::getCode, c -> c));
+    public void check(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult) {
+        List<NonPassResult> nonPassResults = areaCheckResult.nonPassResults();
+        Map<String, CompletedCourse> completedCourseTable = completedCourses.stream()
+                                                                            .collect(Collectors.toMap(
+                                                                                CompletedCourse::getCode,
+                                                                                c -> c,
+                                                                                (c1, c2) -> c1.compareTo(c2) <= 0 ? c2 : c1));
 
-        for (CompletedCourse completedCourse : completedCourses) {
-            String afterCourseCode = completedCourse.getCode();
+        for (CompletedCourse afterCourse : completedCourses) {
+            String afterCourseCode = afterCourse.getCode();
             String beforeCourseCode = prerequisiteCourseCodes.get(afterCourseCode);
             if (beforeCourseCode == null) {
                 continue;
             }
             if (completedCourseTable.containsKey(beforeCourseCode)) {
                 CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseCode);
-                CompletedCourse afterCourse = completedCourseTable.get(afterCourseCode);
-                if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse,afterCourse)) {
-                    nonPassResults.put(afterCourseCode, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse, afterCourse)) {
+                    nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
                 }
             } else {
-                nonPassResults.put(afterCourseCode, NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
             }
         }
     }

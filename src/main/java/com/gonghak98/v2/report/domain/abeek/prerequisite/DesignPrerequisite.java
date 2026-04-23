@@ -2,7 +2,8 @@ package com.gonghak98.v2.report.domain.abeek.prerequisite;
 
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.NonPassMessage;
-import com.gonghak98.v2.report.domain.abeek.dto.RequirementResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
 import java.util.List;
@@ -19,9 +20,9 @@ public class DesignPrerequisite {
     private final Set<String> elementCourseCodes;
     private final Set<String> comprehensiveCourseCodes;
 
-    public void check(List<CompletedCourse> completedCourses, RequirementResult requirementResult) {
-        Map<AbeekType, Boolean> passResults = requirementResult.passResults();
-        Map<String, NonPassMessage> nonPassResults = requirementResult.nonPassResults();
+    public void check(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult) {
+        Map<AbeekType, Boolean> passResults = areaCheckResult.passResults();
+        List<NonPassResult> nonPassResults = areaCheckResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = completedCourses.stream()
                                                                          .filter(completedCourse -> basicCourseCode.equals(completedCourse.getCode()))
@@ -33,7 +34,8 @@ public class DesignPrerequisite {
 
         List<CompletedCourse> completedComprehensiveCourses = completedCourses.stream()
                                                                               .filter(
-                                                                                  completedCourse -> comprehensiveCourseCodes.contains(completedCourse.getCode()))
+                                                                                  completedCourse -> comprehensiveCourseCodes.contains(
+                                                                                      completedCourse.getCode()))
                                                                               .collect(Collectors.toList());
 
         boolean isElementPassed = checkElementPrerequisite(completedBasicCourse, completedElementCourses, nonPassResults);
@@ -44,31 +46,55 @@ public class DesignPrerequisite {
         passResults.put(AbeekType.DESIGN, passResults.getOrDefault(AbeekType.DESIGN, false) && isAllSatisfied);
     }
 
-    private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
-                                             Map<String, NonPassMessage> nonPassResults) {
+    private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse,
+                                             List<CompletedCourse> completedElementCourses,
+                                             List<NonPassResult> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedElementCourse : completedElementCourses) {
-                nonPassResults.put(completedElementCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(new NonPassResult(completedElementCourse.getCode(),
+                                                     completedElementCourse.getName(),
+                                                     completedElementCourse.getYear(),
+                                                     completedElementCourse.getSemester(),
+                                                     completedElementCourse.getCredit(),
+                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                   )
+                );
             }
             return false;
         }
         CompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
         for (CompletedCourse completedElementCourse : completedElementCourses) {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedElementCourse)) {
-                nonPassResults.put(completedElementCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(new NonPassResult(completedElementCourse.getCode(),
+                                                     completedElementCourse.getName(),
+                                                     completedElementCourse.getYear(),
+                                                     completedElementCourse.getSemester(),
+                                                     completedElementCourse.getCredit(),
+                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                   )
+                );
                 return false;
             }
         }
         return true;
     }
 
-    private boolean checkComprehensivePrerequisite(Optional<CompletedCourse> completedBasicCourse, List<CompletedCourse> completedElementCourses,
-                                                   List<CompletedCourse> completedComprehensiveCourses, Map<String, NonPassMessage> nonPassResults) {
+    private boolean checkComprehensivePrerequisite(Optional<CompletedCourse> completedBasicCourse,
+                                                   List<CompletedCourse> completedElementCourses,
+                                                   List<CompletedCourse> completedComprehensiveCourses,
+                                                   List<NonPassResult> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
             for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
-                nonPassResults.put(completedComprehensiveCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
+                                                     completedComprehensiveCourse.getName(),
+                                                     completedComprehensiveCourse.getYear(),
+                                                     completedComprehensiveCourse.getSemester(),
+                                                     completedComprehensiveCourse.getCredit(),
+                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                   )
+                );
             }
             return false;
         }
@@ -76,7 +102,14 @@ public class DesignPrerequisite {
 
         for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedComprehensiveCourse)) {
-                nonPassResults.put(completedComprehensiveCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
+                                                     completedComprehensiveCourse.getName(),
+                                                     completedComprehensiveCourse.getYear(),
+                                                     completedComprehensiveCourse.getSemester(),
+                                                     completedComprehensiveCourse.getCredit(),
+                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                   )
+                );
                 return false;
             }
         }
@@ -89,7 +122,14 @@ public class DesignPrerequisite {
         CompletedCourse completedComprehensiveCourse = completedComprehensiveCourses.get(0);
         for (CompletedCourse completedElementCourse : completedElementCourses) {
             if (!PrerequisiteChecker.isSatisfiedDesignPrerequisite(completedElementCourse, completedComprehensiveCourse)) {
-                nonPassResults.put(completedComprehensiveCourse.getCode(), NonPassMessage.NOT_SATISFIED_PREREQUISITE);
+                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
+                                                     completedComprehensiveCourse.getName(),
+                                                     completedComprehensiveCourse.getYear(),
+                                                     completedComprehensiveCourse.getSemester(),
+                                                     completedComprehensiveCourse.getCredit(),
+                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                   )
+                );
                 return false;
             }
         }

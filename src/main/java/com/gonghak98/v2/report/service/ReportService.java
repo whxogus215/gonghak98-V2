@@ -5,9 +5,10 @@ import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
+import com.gonghak98.v2.report.controller.dto.ReportResponse.NotCheckedResultDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
 import com.gonghak98.v2.report.domain.abeek.Abeek;
-import com.gonghak98.v2.report.domain.abeek.dto.CheckResult;
+import com.gonghak98.v2.report.domain.abeek.dto.AbeekCheckResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +29,21 @@ public class ReportService {
         List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
 
         Abeek abeek = abeekService.getAbeek(departmentName, entranceYear);
-        CheckResult checkResult = abeek.checkAllCourses(completedCourses);
+        AbeekCheckResult abeekCheckResult = abeek.checkAllCourses(completedCourses);
 
         return ReportResponse.builder()
-                             .passResults(checkResult.passResults().entrySet().stream().map(e -> PassResultDto.from(e.getKey(), e.getValue())).toList())
+                             .passResults(abeekCheckResult.passResults().entrySet().stream().map(
+                                 e -> PassResultDto.from(e.getKey(), e.getValue())).toList()
+                             )
                              .nonPassResults(
-                                 checkResult.nonPassResults().entrySet().stream().map(e -> NonPassResultDto.from(e.getKey(), e.getValue())).toList())
+                                 abeekCheckResult.nonPassResults().stream().map(NonPassResultDto::from).toList()
+                             )
+                             .notCheckedResults(
+                                 abeekCheckResult.notCheckedResults().stream().map(NotCheckedResultDto::from).toList()
+                             )
                              .creditSummaries(
-                                 checkResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList())
+                                 abeekCheckResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList()
+                             )
                              .build();
     }
 }
