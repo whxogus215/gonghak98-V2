@@ -22,30 +22,19 @@ public class NonDesignPrerequisite {
                                                                                 c -> c,
                                                                                 (c1, c2) -> c1.compareTo(c2) <= 0 ? c2 : c1));
 
-        for (CompletedCourse completedCourse : completedCourses) {
-            String afterCourseCode = completedCourse.getCode();
+        for (CompletedCourse afterCourse : completedCourses) {
+            String afterCourseCode = afterCourse.getCode();
             String beforeCourseCode = prerequisiteCourseCodes.get(afterCourseCode);
             if (beforeCourseCode == null) {
                 continue;
             }
             if (completedCourseTable.containsKey(beforeCourseCode)) {
                 CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseCode);
-                CompletedCourse afterCourse = completedCourseTable.get(afterCourseCode);
                 if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse, afterCourse)) {
-                    nonPassResults.add(new NonPassResult(afterCourseCode,
-                                                         afterCourse.getName(),
-                                                         afterCourse.getYear(),
-                                                         afterCourse.getSemester(),
-                                                         afterCourse.getCredit(),
-                                                         NonPassMessage.NOT_SATISFIED_PREREQUISITE));
+                    nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
                 }
             } else {
-                nonPassResults.add(new NonPassResult(completedCourse.getCode(),
-                                                     completedCourse.getName(),
-                                                     completedCourse.getYear(),
-                                                     completedCourse.getSemester(),
-                                                     completedCourse.getCredit(),
-                                                     NonPassMessage.NOT_SATISFIED_PREREQUISITE));
+                nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
             }
         }
     }
