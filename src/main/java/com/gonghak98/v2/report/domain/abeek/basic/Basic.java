@@ -5,8 +5,6 @@ import com.gonghak98.v2.report.domain.abeek.dto.AreaCheckResult;
 import com.gonghak98.v2.report.domain.abeek.rule.RequirementRule;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -24,11 +22,8 @@ public class Basic {
     }
 
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        Set<String> allTargetCourseCodes = rules.stream()
-                                                .flatMap(rule -> rule.getTargetCourseCodes().stream())
-                                                .collect(Collectors.toSet());
         return completedCourses.stream()
-                               .filter(course -> allTargetCourseCodes.contains(course.getCode()))
+                               .filter(course -> course.getAbeekType().equals(abeekType))
                                .toList();
     }
 
