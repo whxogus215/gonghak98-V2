@@ -33,7 +33,7 @@ public class Abeek {
         AreaCheckResult areaCheckResult = checkAreaRequirements(completedCourses);
 
         Map<AbeekType, List<CompletedCourse>> coursesByArea = categorizeCompletedCourses(completedCourses, areaCheckResult);
-        Map<AbeekType, Double> requiredCredits = collectRequiredPoints();
+        Map<AbeekType, Double> requiredCredits = collectRequiredCredits();
         CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByArea, requiredCredits);
 
         return new AbeekCheckResult(
@@ -81,15 +81,15 @@ public class Abeek {
         return coursesByArea;
     }
 
-    private Map<AbeekType, Double> collectRequiredPoints() {
+    private Map<AbeekType, Double> collectRequiredCredits() {
         Map<AbeekType, Double> requiredPoints = new EnumMap<>(AbeekType.class);
 
-        requiredPoints.put(AbeekType.GYOYANG, gyoyang.getRequiredPoints());
-        requiredPoints.put(AbeekType.MAJOR, major.getRequiredPoints());
-        requiredPoints.put(AbeekType.DESIGN, design.getRequiredPoints());
+        requiredPoints.put(AbeekType.GYOYANG, gyoyang.getRequiredCredits());
+        requiredPoints.put(AbeekType.MAJOR, major.getRequiredCredits());
+        requiredPoints.put(AbeekType.DESIGN, design.getRequiredCredits());
 
         AbeekType basicAbeekType = basic.getBasicAreaType();
-        requiredPoints.put(basicAbeekType, basic.getRequiredPoints());
+        requiredPoints.put(basicAbeekType, basic.getRequiredCredits());
 
         return requiredPoints;
     }

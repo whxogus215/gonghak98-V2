@@ -36,7 +36,7 @@ public class Basic {
         return abeekType;
     }
 
-    public Double getRequiredPoints() {
+    public Double getRequiredCredits() {
         return minCredit;
     }
 }

@@ -16,14 +16,14 @@ public class ProGyoyang implements Gyoyang {
 
     private final Set<String> courseCodes;
 
-    private final double minPoint;
+    private final double minCredit;
 
     public ProGyoyang(List<Course> essentialCourses,
                       List<Course> electiveCourses,
-                      double minPoint) {
+                      double minCredit) {
         this.essentialCourses = essentialCourses;
         this.electiveCourses = electiveCourses;
-        this.minPoint = minPoint;
+        this.minCredit = minCredit;
         this.courseCodes = new HashSet<>();
         essentialCourses.forEach(course -> this.courseCodes.add(course.getCode()));
         electiveCourses.forEach(course -> this.courseCodes.add(course.getCode()));
@@ -36,25 +36,25 @@ public class ProGyoyang implements Gyoyang {
                                                           .collect(Collectors.toSet());
         int completedEssentialCount = 0;
         int completedElectiveCount = 0;
-        double totalPoint = 0.0;
+        double totalCredit = 0.0;
 
         for (Course course : essentialCourses) {
             if (completedCourseIds.contains(course.getCode())) {
                 completedEssentialCount++;
-                totalPoint += course.getCredit();
+                totalCredit += course.getCredit();
             }
         }
         for (Course course : electiveCourses) {
             if (completedCourseIds.contains(course.getCode())) {
                 completedElectiveCount++;
-                totalPoint += course.getCredit();
+                totalCredit += course.getCredit();
             }
         }
 
         boolean isEssentialSatisfied = (completedEssentialCount == essentialCourses.size());
         boolean isElectiveSatisfied = completedElectiveCount >= 2;
-        boolean isMinPointSatisfied = totalPoint >= minPoint;
-        boolean isAllSatisfied = isMinPointSatisfied && isEssentialSatisfied && isElectiveSatisfied;
+        boolean isMinCreditSatisfied = totalCredit >= minCredit;
+        boolean isAllSatisfied = isMinCreditSatisfied && isEssentialSatisfied && isElectiveSatisfied;
 
         areaCheckResult.passResults().put(AbeekType.GYOYANG, isAllSatisfied);
     }
@@ -67,7 +67,7 @@ public class ProGyoyang implements Gyoyang {
     }
 
     @Override
-    public Double getRequiredPoints() {
-        return minPoint;
+    public Double getRequiredCredits() {
+        return minCredit;
     }
 }

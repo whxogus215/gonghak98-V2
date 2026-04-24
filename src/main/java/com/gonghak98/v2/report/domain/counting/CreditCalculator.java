@@ -13,7 +13,7 @@ public class CreditCalculator {
     }
 
     public static CountingResult calculateCredits(Map<AbeekType, List<CompletedCourse>> coursesByArea,
-                                                  Map<AbeekType, Double> requiredPoints) {
+                                                  Map<AbeekType, Double> requiredCredits) {
         Map<AbeekType, AreaCreditSummary> summaries = new EnumMap<>(AbeekType.class);
 
         for (AbeekType abeekType : AbeekType.values()) {
@@ -22,9 +22,9 @@ public class CreditCalculator {
             }
             List<CompletedCourse> areaCourses = coursesByArea.get(abeekType);
             double completedCredits = calculateTotalCredits(areaCourses, abeekType);
-            double requiredPoint = requiredPoints.getOrDefault(abeekType, 0.0);
+            double requiredCredit = requiredCredits.getOrDefault(abeekType, 0.0);
 
-            CreditCountResult creditCountResult = new CreditCountResult(completedCredits, requiredPoint);
+            CreditCountResult creditCountResult = new CreditCountResult(completedCredits, requiredCredit);
             AreaCreditSummary summary = new AreaCreditSummary(abeekType, creditCountResult, areaCourses);
 
             summaries.put(abeekType, summary);

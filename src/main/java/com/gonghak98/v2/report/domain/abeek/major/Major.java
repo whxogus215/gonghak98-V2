@@ -31,7 +31,7 @@ public class Major {
                                .toList();
     }
 
-    public Double getRequiredPoints() {
+    public Double getRequiredCredits() {
         return minCredit;
     }
 }
