@@ -2552,286 +2552,1649 @@ INSERT INTO course (code, name, credit) VALUES ('011253', '디지털역사학응
 INSERT INTO course (code, name, credit) VALUES ('011008', '조향기초설계', 3.0);
 INSERT INTO course (code, name, credit) VALUES ('011296', 'BA 캡스톤디자인', 6.0);
 INSERT INTO course (code, name, credit) VALUES ('011119', '시스템생명공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009789', '프로그래밍입문-P', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009790', '고급프로그래밍입문-P', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009791', '고급프로그래밍입문-C', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009799', '소프트웨어기초코딩', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009939', '동서양종교의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010132', '유니스토리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010528', '컴퓨팅사고기반기초코딩', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010669', '한국전쟁을통해보는한국의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004546', '패션디자인의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008896', '언어와사회의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010135', '재난대응과안전리더십', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010362', '푸른바다생물이야기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501346', '돈의역사를통해살펴본투자의지혜', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600022', '성공하는문화콘텐츠소재개발전략', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600029', '저작권과스마트폰의이해', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('002649', '일반물리학및실험2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002703', '일반화학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002723', '일반화학및실험2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010140', '일변수미적분학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010141', '다변수미적분학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011182', '대학생활과진로탐색', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008358', '한국어어문생활의실제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008491', '한국어화용론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007825', '창의적영어읽기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010382', '일본문학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007622', '교통경제학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010473', 'PR캠페인기획', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010850', '소셜미디어분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007990', '사회보험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008560', '레저스포츠경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010826', 'HTM 캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011203', 'TPDM 캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009119', '식품유통물류관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501325', '항공.크루즈산업', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009396', '호텔외식식품유통물류관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010172', '글로벌서양요리실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010173', '외식원가관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010878', '전산수학실습1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004584', '회귀진단', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009819', '응용통계학특강2(종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009821', '나노소자및광학실험(종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008588', '분자모델링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007609', '식품일반미생물학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005636', '멀티미디어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008667', '모바일시스템보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006308', '근대건축사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004607', '동양건축사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004711', 'PS콘크리트공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008155', '전산지구물리학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008480', '전기전자탐사공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010209', '지하유체환경학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009314', '암반사면공학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008138', '에너지공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008927', '항해계기학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009305', '항공작전', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009302', '항공우주추진공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009801', '모의장비비행2', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009309', '인공위성시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010028', '월드뮤직연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007696', '국제통상학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001134', '무역실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010783', '전공실기2(K-Pop Dance)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010788', '사운드디자인실무2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010759', '코스메틱브랜드이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010700', 'BA 비즈니스애널리틱스프로젝트', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011255', 'ST-서비스운영관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011219', '단백체학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010990', '졸업프로젝트1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011240', 'K-MOOC:미디어빅뱅시대의예술', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010416', '자기주도창의교양Ⅳ', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010417', '자기주도창의교양Ⅴ', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010426', '두뇌로알아보는우리의삶', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011239', 'K-MOOC:예술가와디자이너를위한아트코딩', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010402', '인간과우주', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010800', '라틴아메리카의언어와문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('500398', '지구촌문화의이해와테마여행', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501286', '생활재테크', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600021', '전략적의사결정과문제해결', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600040', '취업리더쉽1:성공DNA', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('000929', '독어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009769', '국제개발협력과해외봉사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002647', '일반물리학및실험1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002719', '일반화학및실험1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011110', '신입생세미나', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('007822', '영어문장의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009083', '일문학강독1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010465', '어플리케이션기획', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006694', '스타마케팅', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010618', '조직의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009894', '기초카지노경영실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010679', 'SFM 딥러닝기반빅데이터분석기초', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010853', '호텔외식서비스마케팅', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009391', '외식기업경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010167', '글로벌동양요리실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010171', '메뉴기획과디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001445', '복소수해석학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004027', '회귀분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009685', '진화의학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005868', '건축개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007454', '공학설계입문', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007414', '건축드로잉', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006578', '현대건축론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004855', '토목시공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009146', '신재생에너지', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009190', 'WebGIS및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009564', '암반공학설계및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009581', '원자로안전공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009800', '모의장비비행1', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009294', '비행안전', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009306', '항공전자시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010010', '남성복캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011235', '통합예술교육콘텐츠기획실습', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010360', '청년에게들려주는통일이야기', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009452', '창업과기업가정신2', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009784', '기후변화와창조경영', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010403', '동양사상산책', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010406', '인물로보는세계사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501339', '보고즐기는미술산책', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600011', '글로벌시대의예술과가치', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600039', '미래소비사회와상품', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009707', '생명시스템공학입문', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009030', '취업역량개발론', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008375', '영미문화탐방', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009097', '글로벌커뮤니케이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009095', '일문학강독3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008743', '중국사상과역사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009511', '통상중국어회화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003593', '한국사회경제사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010456', '금융경제세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009911', '대화와가십', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008431', '프리젠테이션실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010499', 'Practices of Venture Creation', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009897', '고급카지노경영실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501290', '페스티벌이벤트경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010162', '양식조리실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010165', '레스토랑주방시설관리론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001786', '수리통계학2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010316', '자기주도형전공설계1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008583', '금속착물화학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005145', '천연물화학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007469', '나노식품공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009709', '자원식물공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010440', '문제해결기법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006143', '디지털사운드', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009996', '데이터분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010084', '오픈소스SW공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010623', 'Capstone디자인B(융합프로덕트종합설계)', 6.0);
+INSERT INTO course (code, name, credit) VALUES ('004272', '물리전자공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010232', '센서소자및시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('P00019', '전공인턴십7', 6.0);
+INSERT INTO course (code, name, credit) VALUES ('010688', '디지털모션스튜디오2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010674', '영상컨셉디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010290', '3D애니메이션종합설계2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010586', '3D제작스튜디오2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004614', '하수및폐수처리공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005239', '전산구조해석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007754', '강구조공학2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008242', '공업교과교재연구및지도법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008326', '공업논리및논술', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010266', '토질역학2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010268', '철근콘크리트공학2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005223', '환경수리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006223', '현장실습', 0.0);
+INSERT INTO course (code, name, credit) VALUES ('007710', '디지털지도', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005601', '측지학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009189', '공간DBMS및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007795', '지구물리탐사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009562', '암석역학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009315', '자원개발공학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009018', '산학협동강좌2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010505', '유기전자소자', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009847', '원자력고등수학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009293', '군사교리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010464', '일반비행절차', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009304', '항공법', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009534', '항공생리훈련', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('003384', '판화2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008847', '무용교육', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010965', '댄스리터러시와교수방법', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('006175', '촬영조명2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008784', '판례민법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009716', 'ES-디지털스토리텔링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009723', 'ES-콜라보레이션 크리에이티브', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010090', 'GMSW-자연어처리와프로그래밍언어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010091', 'GMSW-IT기술영작문(심화)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010117', 'SM-소셜미디어기초프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010424', 'SM-소프트웨어상품혁신론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011105', '과학기술커뮤니케이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011012', '세라믹앤쥬얼리디자인이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010763', '아트앤디자인믹스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011000', '문화재원기획운용론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011109', '북극거버넌스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011031', 'BA 데이터애널리틱스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010699', 'BA 회계애널리틱스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010625', 'ST-스마트투어리즘경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010634', 'ST-컨설팅방법론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011057', '생물소재가공설계학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010717', '뉴미디어모션디자인2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010987', 'CGI제작기초2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010351', '대학생활과진로설계', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010404', '유대인의창의성과리더십', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501309', '가족스트레스와대처', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600031', '철학과인간가치', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006096', '한일교류사', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('501274', '한글의세계화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600018', '문화콘텐츠스토리텔링전략', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600020', '음식과세계문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501266', '사회적기업의이해와창업', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600015', '생태친화적기업경영', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010411', 'K-MOOC:모빌리티디자인방법론', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010799', '세종인을위한합창', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('501338', '유튜브영상편집기초', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005572', '일문학입문', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008390', '한일문화의교류현장', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008409', '일통번역의이론과실제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009501', '중국어회화1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007954', '중국기업경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008759', '중국경제신문독해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009107', '공공거버넌스와네트워크', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009286', 'Asian Business Culture', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('000619', '국제경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007980', '의사결정론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009871', 'International Retailing', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010616', '비즈니스프로세스관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009883', 'Global Business Negotiation', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501337', '문화엔터테인먼트관광', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009407', '호텔외식관리회계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010157', '한식조리실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010158', '글로벌식재료연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005399', '현대물리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008566', '기초현대물리학실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010317', '자기주도형전공설계2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009143', '응용화학연구및실험1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007640', 'VHDL프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005618', '네트워크프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008668', '임베디드시스템보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010247', '무인비행체제어실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010622', 'Capstone디자인A(융합프로덕트종합설계)', 6.0);
+INSERT INTO course (code, name, credit) VALUES ('011087', '디지털모션스튜디오1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011091', '비주얼디벨롭먼트', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010289', '3D애니메이션종합설계1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010585', '3D제작스튜디오1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009794', '졸업작품(P/NP)-종합설계', 0.0);
+INSERT INTO course (code, name, credit) VALUES ('008643', '구조역학및연습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010265', '토질역학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010267', '철근콘크리트공학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004453', '상수및정수처리공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007670', '강구조공학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007841', '공업교과교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009558', '자원지질학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009572', '핵융합개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009848', '원자력발전및방사선실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009853', '모의장비이론및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009308', '항공영어', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010463', '항공군수산업', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('010003', '공간연구1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('004459', '판화1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009210', '멀티미디어와회화3', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('004468', '패션일러스트레이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010641', '실용건반화성', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010033', '음악극워크샵', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010964', '무용작품비평및교육', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010963', '통합예술교육콘텐츠기획', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008729', '시장경제와법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009721', 'ES-3D프린팅의실무와활용', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010085', 'GMSW-IT기술영작문(기초)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010100', 'GMSW-영어데이터프로젝트', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010116', 'SM-소셜미디어서비스기획', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010119', 'SM-소셜미디어분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010347', 'SM-소셜비즈니스모델', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010776', '사운드디자인실무1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011018', '뉴미디어콜라보레이션1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011019', '공연예술현장연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010747', '아트앤컬쳐스터디투어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011006', '친환경디자인이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011046', '북극정책', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011033', 'BA 빅데이터비즈니스모델', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011034', 'BA 마케팅애널리틱스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010630', 'ST-수익관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010632', 'ST-사례연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010705', '뉴미디어모션디자인1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010983', 'CGI제작기초1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010985', '융합캡스톤디자인1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('011083', '창업금융론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008624', '무선네트워크', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('P00011', 'ICT인턴십3', 9.0);
+INSERT INTO course (code, name, credit) VALUES ('P00012', 'ICT인턴십4', 12.0);
+INSERT INTO course (code, name, credit) VALUES ('P00024', '전공인턴십12', 12.0);
+INSERT INTO course (code, name, credit) VALUES ('010637', 'K-MOOC:파이썬을이용한기계학습개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006716', '경력개발과멘토링', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('007495', '동서양음식문화사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008303', 'English Composition 1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008304', 'English Composition 2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008377', '전산개론-I', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008380', '전산개론-M', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010544', 'K-MOOC:빅데이터와텍스트마이닝', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('501270', '인간행동의심리적이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501273', '예술기행세계의박물관', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501300', '인간관계심리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501302', '컴퓨터활용', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501305', '영화로영어말하기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501307', '컬러테라피', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501316', '저는주식투자가처음인데요', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501322', '혼자떠나는여행일본어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501327', '음악감상과함께하는대중음악사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600005', 'UCC(디지털동영상)기획,제작,편집및활용', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600016', '21세기기업의인재상', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('600030', '문화행정론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('P00036', '일반인턴십12', 12.0);
+INSERT INTO course (code, name, credit) VALUES ('001993', '심리학의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010665', '빅데이터로세상보기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004796', '과학철학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010529', 'Technical Writing기초2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('007568', '컴퓨터게임과문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501331', '디지털게임의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501253', '영화및사진치료', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501277', 'TOEIC R/C', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600028', '생활속의계약과협상', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600033', '테크노경영학(스타트업종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005173', '생명의거시적세계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010396', 'K-MOOC:알기쉬운드론항법제어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501245', '팝으로영어청취하기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501330', '생활중국어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008879', '미국문학의흐름', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010323', '코퍼스속의영어어휘', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010367', '미래융합:캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009502', '중국어회화2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009110', '중국무역실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009504', '영상중국어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009512', '중국산업과금융', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006389', '동양중세의사회와문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004575', '산업혁명과제국주의', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004576', '쟁점한국사2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006296', '무역실무영어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008423', '금융경제론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010450', '부동산자산경제론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008424', '환경경제론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010459', '인구와경제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007522', 'PR캠페인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006804', '전략경영', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009275', '경영정보보안및감사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010490', '정보분석과의사결정', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009282', 'Leadership & Entrepreneurship in Korea', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009287', 'IT Industry in Korea', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008454', '외식식품산업의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010154', '조리기초실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009144', '응용화학연구및실험2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007760', '최신식품동향연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008603', '실험면역학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009864', '식물유전공학및실험(종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009865', '식물육종학및실험(종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004698', '유선통신공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007588', '방송시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003272', '컴파일러', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008666', '정보보호특강2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010245', '무인비행체제어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010286', '만화연출', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006573', '건축구조해석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007599', '유체역학2및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008026', '연료및연소공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009547', '지반정보시스템및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008118', '항공우주공학실험2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009569', '원자로공학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005943', '패키지디자인2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008507', '응용패턴설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007420', '소재디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008510', '패션브랜드디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001830', '스키', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('007011', '골프2', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('000853', '농구', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('001423', '배드민턴', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('003196', '체력육성', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('001050', '레크레이션', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008863', '커뮤니티댄스', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010042', '애니메이션워크샵-종합설계2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010044', '만화워크샵-종합설계2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007036', '신체소리구성법2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010051', 'Movement와몸언어2(전통연희)', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010608', '소셜벤처', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009972', 'ES-기초프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010122', 'SM-소셜미디어운영전략', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010784', '트렌드댄스연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010796', 'K-POP댄스2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010786', '안무원리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010787', '공연예술ICT콜라보레이션2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010792', '크리에이터마스터2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010793', '오디션워크샵2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010769', '디자인CAD1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010758', '세라믹·보석디자인이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010761', '가죽제품디자인2(중급)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010762', '디자인CAD3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010766', '럭셔리패션브랜드제품디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010768', '럭셔리브랜드디자인포트폴리오', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010628', 'ST-알고리즘', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010546', 'ST-의사결정방법론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010720', '3D제작기초2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010722', '디지털애니메이션2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010723', '3D제작고급2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010725', '영상디자인종합설계워크샵2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010726', '뉴미디어디자인콜라보레이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010737', '박물관미술관경영학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010738', '문화예술조직경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010739', '문화예술교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010740', '예술경매론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010743', '예술매체비평론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010744', '문화소비론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010108', '주제탐구와발표(SHP)', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009782', '플랜트엔지니어링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010109', '컨텐츠산업동향의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009733', '프로그래밍입문', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010409', 'K-MOOC:게임인공지능', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008379', '전산개론-C', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006271', '현대철학의문제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004490', '인간과문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007319', '현대인의삶과와인', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('500695', '역사에담긴지식의즐거움', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501248', '한국어문법교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600032', '채움과비움(나이듦의인문학적이해)', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('500214', '커뮤니케이션의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('500842', '여성과현대사회', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501263', '부동산경매', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501280', '놀이치료', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600009', '문화콘텐츠마케팅전략의수립과집행', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('600013', '고객관계관리전략', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006100', '반도체개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501281', '뇌과학과심리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002066', '에어로빅', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('500191', '예술과생활', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501238', '음악감상의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501293', '애니메이션역사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501324', '영화의이해와감상', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('500432', '영어권문화의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001108', '무관후보생교육2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('001112', '무관후보생교육4', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008357', '국어국문학의현재와미래', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010325', 'IT기반로컬라이제이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010376', '일본기업경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010389', '아시아태평양시장마케팅론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009513', '동아시아경제론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004573', '근대한국사회와제국주의', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004574', '동아시아의근대화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004442', '조선시대의생활사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008736', '인문학과교육', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003740', '현대교육사상', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008420', '응용미시경제학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008421', '개방거시경제학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003529', '한국무역론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007517', '방송제작기초', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007518', 'PR실무론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008432', '인터랙티브광고론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006808', '생산운영관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008238', '상업정보교과교재연구및지도법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008323', '상업정보논리및논술', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010104', 'Business Research Methods', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009886', '기업지배구조와회계부정', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005279', '와인과소몰리에론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004297', '호텔관광경영세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008563', '호텔프로젝트관리론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008564', '관광법규정책', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009635', '벤처창업론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009763', '제과·제빵실습2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007529', '외식기업사례연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501231', '커피학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501326', '관광자원상품기획', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501226', '서비스매너', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004306', '공업화학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009844', '바이오융합공학캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009856', '바이오자원공학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008095', '반도체에너지공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008612', '전기전자재료공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010535', 'K-MOOC:이동통신의원리와응용', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008073', '심화프로그래밍설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008066', '모바일프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009177', '소프트웨어공학과보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009179', '보안경진대회트레이닝2', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009995', '고급실시간그래픽스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001082', '마이크로컴퓨터', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010223', '창의융합노마드', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010243', '유체공기역학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001030', '디자인사', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010277', '디지털드로잉', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010287', '비주얼프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010315', '디자인인모션2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010285', '디지털제작과제연구(P/NP)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010502', '컬러&라이팅', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010503', '리깅&애니메이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010536', '지능형웹툰소프트웨어실무제작', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010537', '지능형웹툰스토리텔링워크샵', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004612', '토질역학및실험2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004613', '철근콘크리트공학및실험2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006671', '지구의구조및진화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008030', '환경기기분석및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009546', '석유지질학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007161', '메카트로닉스기초설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009194', '항공우주공학연구2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009202', '나노신소재창의연구2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010105', '원자력법령', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009003', '원자로동역학및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009592', '원자로보호및감시', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008772', '유도/수중무기시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009208', '수중음향학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010004', '공간연구2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('001715', '서예', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008959', '회화와일러스트레이션', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009211', '멀티미디어와회화4', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009213', '제품및운송기기디자인2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009461', '디지털미디어디자인1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008246', '디자인.공예교과교재연구및지도법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008330', '디자인.공예논리및논술', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009943', '제품디자인스튜디오2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009944', '디자인경영', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009463', '디지털미디어디자인3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005562', '패션코디네이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007539', '오케스트라2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010023', '대중음악사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007540', '오케스트라4', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('003310', '클래스피아노2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010024', '실용음악화성학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007541', '오케스트라6', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('001683', '서양음악사2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007542', '오케스트라8', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010021', '실용음악공연워크샵2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008534', '육상(필드)', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('003201', '체육관리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001417', '배구', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('006334', '모던째즈댄스', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('003370', '특수체육', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008848', '무용제작실습', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008861', '캐릭터댄스', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008214', '디지털만화제작2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008808', '3D애니메이션제작고급2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008810', '시각효과고급2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008812', '애니메이션액팅고급2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010037', '사운드프로덕션-종합설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010038', '산학협력만화캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010045', '프로덕션디자인-캡스톤디자인', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('006342', '영화이론비평세미나2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007078', '연극영화교육론', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('004928', '공중보건학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009417', '화장품학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009447', '헤어컬러링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009439', '전공실무연수8', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009594', '뷰티살롱테크닉실습2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009595', '뷰티컬렉션리서치', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009599', '어드밴스드뷰티테크닉2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009360', '창업기회의발견과벤처파이낸싱', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010071', '창업아이디어의사업화2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010074', '창업실무의이해2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009361', '사업계획서작성프로젝트', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010075', '특허기술사업화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009488', 'ES-3D애니메이션SW의활용', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009718', 'ES-디지털영상의합성과편집', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010425', 'ES-엔터테인먼트SW미디어프로젝트', 6.0);
+INSERT INTO course (code, name, credit) VALUES ('010089', 'GMSW-크로스미디어매체기획SW실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010484', 'GMSW-오픈소스와언어분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010125', 'SM-소셜미디어프로젝트', 6.0);
+INSERT INTO course (code, name, credit) VALUES ('010128', 'SM-소셜인텔리전스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009737', '중국한류와문화콘텐츠', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010137', 'K-MOOC:4차산업혁명과사물인터넷입문', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('007672', '동남아의정치경제와사회', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008893', '제3세계의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010405', '철학오딧세이', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007358', '문화재의이해와보존', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('500397', '글로벌시대의화법과문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501306', '문학치료', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501308', '가족학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009940', '정치와생활', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501310', '4차산업혁명의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501311', '기초회계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501313', '광고홍보전략', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501314', '알기쉬운금융용어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501315', '인터넷을이용한주식거래', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600014', '기업경영과비즈니스전략', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('600025', '감성정부론', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('005820', '암과예방', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501318', '코딩기초', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006429', '연기예술의이해', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('007351', '현대시의이해와감상', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008261', '디지털영상제작의기초', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501304', '초급영어통번역', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501312', '주류의세계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001106', '무관후보생교육1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('001110', '무관후보생교육3', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('000590', '국어사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010322', '언어데이터와텍스트마이닝', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008953', '영어의기원과발달', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010324', '멀티미디어영어교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008389', '세계속의일본어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010378', '일본경제세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005169', '동아시아국제관계론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009499', '중국근현대사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009500', '중국어독해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010388', '동아시아문화비교론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004443', '서양근대사회와시민혁명', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004444', '근세의동아시아', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004447', '쟁점한국사1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008735', '대학과진로', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010442', '마음,뇌,교육', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005160', '한국사상과교육', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007905', '청소년교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007632', '평생교육실습(P/NP)', 0.0);
+INSERT INTO course (code, name, credit) VALUES ('004060', '재정학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007852', '한국산업론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010452', '정보통신경제학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009910', '정치와행정', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006862', '여론조사이론및실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006863', '광고기획', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006461', '광고와소비자', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007410', '방송제작워크샵', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008430', 'PR작문법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007838', '상업정보교과교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009878', '프랜차이즈시스템관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010489', 'R을이용한정보활용', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010493', '조직과의사결정', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010497', 'Global Human Resource Management', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010498', 'Practices of Innovation in a Global Context', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010487', '국제재무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008556', '호텔경영정보시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009617', '세계주류문화의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009627', '여행항공경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009891', '서비스스케줄링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009893', '지역관광계획개발론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009521', '외식식품구매유통관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008459', '외식생산관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008460', '외식마케팅조사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009522', '외식프랜차이즈경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006140', '케이터링경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501303', '외식창업론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009125', 'HRT프랜차이즈상권분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501230', '레스토랑디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501244', '축제속의술문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009394', '호텔외식프랜차이즈경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010152', '한국음식의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501317', '조리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006496', '나노화학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008114', '재료화학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008584', '화학과소프트웨어2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009145', '크로마토그래피실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001924', '식품미생물학및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009862', '식물생리학및실험(종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009863', '생화학및실험(종합설계)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009677', '식물대사공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006557', '멀티미디어통신', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008279', '태양전지공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009987', '임베디드시스템및보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009988', '데이터베이스및보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010444', '보안경진대회트레이닝', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008654', '리버스엔지니어링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008665', '정보보호특강1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009180', '네트워크보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010460', '소프트웨어교육1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008292', '패턴인식개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004879', '발상과표현', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010274', '라이프드로잉', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006205', '해부학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010275', '비쥬얼씽킹', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010313', '웹프로그래밍&웹퍼블리싱', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008218', '컨셉디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008789', '디지털제작도구연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009508', '자바프로그래밍', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010280', '만화제작', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010500', '모델링&텍스처링', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007378', '유체역학1및연습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004452', '철근콘크리트공학및실험1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007669', '수리학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007416', '해석사진측정', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007417', '지구원격탐사및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005860', '조정계산론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008172', '원격탐사설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009561', '지열에너지개발공학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008144', '구조지질학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008151', '에너지원격탐사및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008481', '물리검층', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009550', '광물금속자원학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009570', '원자로공학2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009575', '원자력안전규제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009203', '해양스포츠', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009209', '미술경영', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009212', '제품및운송기기디자인1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009942', '제품디자인스튜디오1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006547', '인포메이션디자인2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('006922', '기초패키지디자인', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('007844', '디자인.공예교과교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005922', '패키지디자인1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009462', '디지털미디어디자인2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010009', '디자인창업', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('005666', '텍스타일디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008509', '고급패턴설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009645', '디지털패션CAD', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009646', '기초니트설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005203', '고급패턴제작', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008520', '창작패턴설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008521', '패션컬렉션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007422', '오케스트라1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009917', '실용음악감상법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009926', '미디기초및기초악전(사보)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007481', '오케스트라3', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('003307', '클래스피아노1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007482', '오케스트라5', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('001681', '서양음악사1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009922', '실용음악합주5', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010026', '실용음악분석법1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007483', '오케스트라7', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010031', '재즈음악사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002029', '야영', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('007008', '골프1', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('000718', '기계체조', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008535', '뉴스포츠지도법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008537', '리듬체조', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008833', '무용작품분석', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008199', '디지털만화제작1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008807', '3D애니메이션제작고급1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008809', '시각효과고급1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008811', '애니메이션액팅고급1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010039', '산학실무애니메이션캡스톤디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010041', '애니메이션워크샵-종합설계1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010043', '만화워크샵-종합설계1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006914', '신체소리구성법1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('010052', 'Movement와몸언어1(댄스)', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('004731', '시나리오작법2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006908', '동양및한국연극사', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009438', '전공실무연수7', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009589', '크리에이티브커트', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009591', '퍼스널이미지메이킹', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009593', '뷰티살롱테크닉실습1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009598', '어드밴스드뷰티테크닉1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004581', '창업과사업성검토', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010066', '기술발전과미래동향', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010070', '창업아이디어의사업화1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010073', '창업실무의이해1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010064', '문화예술융합창업마케팅', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010068', '창업시장조사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010072', '창업아이디어의사업화3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009720', 'ES-영상처리소프트웨어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010481', 'ES-디지털다큐멘터리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010087', 'GMSW-빅데이터와영어텍스트마이닝', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009063', 'English for Professional Purposes 1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009064', 'English for Professional Purposes 2', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009055', 'IT-패션융합디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009783', '언어와생명체가들려주는미래사회이야기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010076', '소셜벤처의이론과실제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007325', '미적분학및연습1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007326', '미적분학및연습2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007553', '범죄심리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501282', '사이버중독심리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501283', '인공지능과인터넷심리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501298', '윤리학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('600024', '나이의문화사', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('007556', '우리의음식문화사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501241', '음식과관광', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501278', '한국의현대문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003731', '헌법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005831', '교양민법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501249', '상담이론과실제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501251', '청소년상담', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501252', '학교상담', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501275', 'Reading in Business', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501279', '가족상담및치료', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501284', '가족생활교육', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501285', '가족복지', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501287', '실전재테크', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501288', '홍보학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501289', '가치투자입문', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501291', '사물인터넷개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501292', '클라우드시스템개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007336', '일상생활속의예술', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007765', '춤과사랑이야기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501276', 'Role Play English', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501294', '공연제작과비즈니스', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501295', '뮤직비즈니스개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010408', 'Technical Writing실무', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009773', '학교폭력예방의이론과실제', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('004491', '한국어의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006436', '문학과언어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009099', '일본의근대문학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005843', '일본어작문2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008393', '고급일본어2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008392', '일본의시대별문학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004570', '역사학이란무엇인가', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004807', '기독교와봉건제사회', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008738', '국제·다문화교육제도', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007975', '무역결제론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009104', '국제통상학세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010348', '정치와정책', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007405', '기획취재', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007524', 'VJ제작', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007526', '광고와사회', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010103', 'Practices of Venture Business in Korea', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007270', '물류관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009283', 'Strategies for Asian Emerging Markets', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008561', '카지노고급실무론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009392', '와인과소믈리에론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007508', '호텔경영세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('000313', '관광경영세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007512', '여행사창업론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005610', '급식경영', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006366', '푸드코디론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501228', '소믈리에실무', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501242', '메뉴디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007189', '고객관계관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006760', '천문관측및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008573', '나노소자및광학실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008042', '중력과우주', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009526', '화학과소프트웨어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006317', '분자바이러스학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006320', '동물유전공학및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004832', '전자공학특강2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008097', '전자공학종합설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010422', 'K-MOOC:파이썬을이용한빅데이터분석', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008648', '시스템관리및보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008284', '인터넷보안', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008670', '사이버전쟁과테러리즘', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009183', '리버싱2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008289', '컴퓨터그래픽스2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010278', '창의융합노마드(P/NP)', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009187', '부동산개발론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007593', '빌딩시스템', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007165', '전산지구정보및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006895', '암반역학및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007582', '응용원격탐사및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008012', '수질환경분석및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008173', '지구동력학실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008160', '경제성평가', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009317', '에너지지하저장설계및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007267', '항공기설계및CAD', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009199', '반도체와고분자화학기초실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009852', '핵연료성능평가', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009320', '해양학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006448', '인포메이션디자인1', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('009454', '제품조형스튜디오', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005668', '창작의상디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006550', '니트디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009647', '디지털패션디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009921', '실용음악합주4', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009923', '실용음악합주6', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009933', '레코딩실습4', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003320', '태권도', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('008788', '네러티브워크샵2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008795', '3D애니메이션제작기초2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008800', '애니메이션액팅기초2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008806', '디지털제작기법연구', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004872', '영화미술', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007074', '연기실습Project2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009444', '모발및두피관리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009427', '뷰티디자인실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009437', '전공실무연수6', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009446', '메디컬스킨케어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009448', '아트메이크업', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010092', 'GMSW-영상프로덕션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010098', 'GMSW-IT기술을활용한로컬라이제이션', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010423', 'SM-소셜HCI', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008891', '인체와생명', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004540', '실용한문', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007342', '우리의전통주이야기', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('007362', '한옥과전통문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007364', '궁중건축돌아보기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('000381', '관광학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('001430', '법학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004668', '사회복지학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004762', '증권투자의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009336', '저작권의이해', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003146', '지리학개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005561', '패션산업개론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005566', '무용과생활', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('501243', '머천다이징', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008352', '한국어의사소통기법', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008354', '한국어문법론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008362', '한국어교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006850', '한국어의미론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008487', '한국어의역사', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010385', '세계화와국제관계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007178', '시사경영영어', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007652', '영어에세이읽기', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010365', '언어데이터와텍스트마이닝', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004806', '일본어작문1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008387', '고급일본어1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004439', '한국고대의사회와문화', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004441', '동양문명의기원', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007906', '그리스·로마문명', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004579', '인지심리학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('000263', '고등교육론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009103', '후생경제학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009907', '행정과경제', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003721', '행정학연습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009877', 'Practices of Innovation in Korea', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006441', '인터넷마케팅', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009289', 'Comparative Managment', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009613', '호텔관광경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007442', '관광인터넷마케팅', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009344', 'Hospitality전략경영세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009343', '호텔및MICE법규', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009551', '외식주방경영론', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007263', '미분기하학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004503', '열및통계물리학2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007102', '식품물성학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009335', '동물자원식품학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009348', '바이오융합공학연구2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006117', '분자면역학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009161', '육종학및실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008605', '시스템생물학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009163', '바이오자원공학1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004684', '영상통신', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('004685', '전자공학특강1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008099', '오디오및음성신호처리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008280', '반도체공정설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009248', '캡스톤설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006980', '광디스플레이', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009983', '기초컴퓨터네트워크', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('002010', '알고리즘', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009175', '보안경진대회트레이닝1', 1.0);
+INSERT INTO course (code, name, credit) VALUES ('009181', '소프트웨어보안2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009182', '리버싱1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007687', '콘텐츠저작설계', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008288', '컴퓨터그래픽스1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007641', '측량자료처리및실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008031', '환경에너지세미나2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008594', '고급하폐수처리', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009318', '에너지자원공학세미나', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008116', '항공우주공학실험1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009197', '금속과세라믹기초실험', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('007762', '공학전산', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009019', '광전자소자', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('000785', '기초시각디자인2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006368', '기초산업디자인2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003279', '컴퓨터그래픽', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('005927', '남성복디자인', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009918', '실용음악합주1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009920', '실용음악합주3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('003469', '피아노문헌3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009932', '레코딩실습3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010036', '무용테크놀로지워크샵', 2.0);
+INSERT INTO course (code, name, credit) VALUES ('008787', '네러티브워크샵1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008794', '3D애니메이션제작기초1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008799', '애니메이션액팅기초1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006909', '연기실습Project1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008685', '보컬트레이닝2', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('006169', '영화이론비평세미나1', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('008690', '매체연기실습3', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009433', '기초드라이실습', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009421', '피부미용학', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009423', '뷰티메이크업', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009424', '크리에이티브네일', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009426', '실무업스타일', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009428', '전공실무연수5', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('009726', 'ES-미디어퍼포먼스프로젝트', 3.0);
+INSERT INTO course (code, name, credit) VALUES ('010088', 'GMSW-콜로키움', 3.0);
 
 -- [3] gonghak_course 테이블 적재
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '문제해결을위한글쓰기와발표' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '프로그래밍활용-C' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '미적분학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반물리학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '선형대수' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'English Listening Practice 1' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'English Reading Practice 1' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '대학영어' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '서양철학:쟁점과토론' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '공업수학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반물리학2' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반화학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '인공지능과빅데이터' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '공업수학2' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '확률및랜덤변수' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전기회로' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'MATLAB프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털논리회로' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '세계사:인간과문명' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '동서양의윤리' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '경제학' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '경영학' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '신호및시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '물리전자공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'JAVA프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '컴퓨터구조론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전기회로실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초설계' LIMIT 1),'DESIGN', 'DESIGN_BASIC', 3.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자회로1' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '통신이론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자기1' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초반도체' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털신호처리' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '하드웨어프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터구조론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '랜덤프로세스' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '자동제어' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터통신' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초광학및실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광전자공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '컴퓨터네트워크' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털통신시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '음성처리' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '영상처리' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터분석과도표작성' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자회로2' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디스플레이공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자기2' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '반도체공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '임베디드시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '정보이론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '반도체소자설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터통신설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '정보시스템설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '졸업연구및진로1' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자정보통신공학특강A' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '집적회로' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '초고주파공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '무선통신공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '시스템반도체' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광통신공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '인공지능' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '음향공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '반도체공정실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '마이크로컴퓨터실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자회로설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '통신시스템설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '멀티미디어설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '캡스톤디자인A' LIMIT 1),'DESIGN', 'DESIGN_COMPREHENSIVE', 3.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '졸업연구및진로2' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자정보통신공학특강B' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '응용광학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '수치해석' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '안테나공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광반도체및LED공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '차세대이동통신' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광통신시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털제어' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '패턴인식' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '캡스톤디자인B' LIMIT 1),'DESIGN', 'DESIGN_COMPREHENSIVE', 3.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '문제해결을위한글쓰기와발표' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '비판적사고와창의적글쓰기' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '고급프로그래밍활용' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '확률및통계' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '서양철학:쟁점과토론' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '세계사:인간과문명' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '세종사회봉사1' LIMIT 1),'GYOYANG', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '경영학' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '경제학' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '동서양의사상과윤리' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '동서양의윤리' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '세계사' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '융합예술의이해' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '컴퓨터게임과메타버스' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '현대예술의이해' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'C프로그래밍및실습' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '고급C프로그래밍및실습' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '고급인공지능활용' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '고급프로그래밍입문-C' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '고급프로그래밍활용' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '공업수학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '공업수학2' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '미적분학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '선형대수' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '인공지능과빅데이터' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반물리학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반물리학2' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반물리학및실험1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반물리학및실험2' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일반화학1' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '일변수미적분학' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '프로그래밍' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '프로그래밍활용-C' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '확률및랜덤변수' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '확률및통계' LIMIT 1),'MSC', 'ESSENTIAL', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초전자물리' LIMIT 1),'MSC', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '컴퓨터게임과메타버스' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
-INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '현대예술의이해' LIMIT 1),'GYOYANG', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'JAVA프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = 'MATLAB프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '객체지향프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광반도체및LED공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광전자공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광통신공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '광통신시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초광학및실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초반도체' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터구조론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터분석과도표작성' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터통신' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디스플레이공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털논리회로' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털신호처리' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털제어' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '디지털통신시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '랜덤프로세스' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '마이크로컴퓨터실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '무선통신공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '물리전자공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '반도체공정실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '반도체공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '수치해석' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '시스템반도체' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '신호및시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '안테나공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '영상처리' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '음성처리' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '음향공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '응용광학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '인공지능' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
 INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '인공지능수학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '임베디드시스템' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '자동제어' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전기회로' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전기회로실험' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자기1' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자기2' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자정보통신공학특강A' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자정보통신공학특강B' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자회로1' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자회로2' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '정보이론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '졸업연구및진로1' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '졸업연구및진로2' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '집적회로' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '차세대이동통신' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '초고주파공학' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '컴퓨터구조론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '컴퓨터네트워크' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '통신이론' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '패턴인식' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '하드웨어프로그래밍' LIMIT 1),'MAJOR', 'ELECTIVE', 0.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '기초설계' LIMIT 1),'DESIGN', 'DESIGN_BASIC', 3.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '데이터통신설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '멀티미디어설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '반도체소자설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '전자회로설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '정보시스템설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '통신시스템설계' LIMIT 1),'DESIGN', 'DESIGN_ELEMENT', 2.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '캡스톤디자인A' LIMIT 1),'DESIGN', 'DESIGN_COMPREHENSIVE', 3.0);
+INSERT INTO gonghak_course (department_id, course_id, abeek_type, course_type, design_credit) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'),(SELECT id FROM course WHERE name = '캡스톤디자인B' LIMIT 1),'DESIGN', 'DESIGN_COMPREHENSIVE', 3.0);
 
 -- [4] gonghak_requirement 테이블 적재
+INSERT INTO gonghak_requirement (department_id, entrance_year, detail) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'), 2020, '{
+  "totalRequirement": {
+    "minCredit": 98
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 30,
+    "components": [
+      {
+        "name": "MSC_BASIC",
+        "description": "주어진 MSC 과목 모두 이수",
+        "ruleType": "MUST_TAKE_ALL",
+        "conditionValue": 10,
+        "targetCourses": [
+          "010140",
+          "000304",
+          "000307",
+          "001725",
+          "008622",
+          "002647",
+          "002649",
+          "002703",
+          "009791",
+          "003430"
+        ]
+      }
+    ]
+  },
+  "majorRequirement": {
+    "minCredit": 54,
+    "components": [
+      {
+        "name": "LAB_MAJOR",
+        "description": "실험교과목 최소 1과목 이수",
+        "ruleType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": [
+          "002647",
+          "002649",
+          "005611",
+          "009658",
+          "008076",
+          "009661",
+          "009666"
+        ]
+      },
+      {
+        "name": "GENERAL_MAJOR",
+        "description": "일반영역 최소 24학점 이수",
+        "ruleType": "MIN_CREDIT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "004114",
+          "005246",
+          "007620",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      {
+        "afterCode": "004111",
+        "beforeCode": "010140"
+      },
+      {
+        "afterCode": "009649",
+        "beforeCode": "002649"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
+    ]
+  }
+}');
+INSERT INTO gonghak_requirement (department_id, entrance_year, detail) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'), 2021, '{
+  "totalRequirement": {
+    "minCredit": 98
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 30,
+    "components": [
+      {
+        "name": "MSC_BASIC",
+        "description": "주어진 MSC 과목 모두 이수",
+        "ruleType": "MUST_TAKE_ALL",
+        "conditionValue": 10,
+        "targetCourses": [
+          "010140",
+          "000304",
+          "000307",
+          "001725",
+          "008622",
+          "002647",
+          "002649",
+          "002703",
+          "009791",
+          "003430"
+        ]
+      }
+    ]
+  },
+  "majorRequirement": {
+    "minCredit": 54,
+    "components": [
+      {
+        "name": "LAB_MAJOR",
+        "description": "실험교과목 최소 1과목 이수",
+        "ruleType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": [
+          "002647",
+          "002649",
+          "005611",
+          "009658",
+          "008076",
+          "009661",
+          "009666"
+        ]
+      },
+      {
+        "name": "GENERAL_MAJOR",
+        "description": "일반영역 최소 24학점 이수",
+        "ruleType": "MIN_CREDIT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "004114",
+          "005246",
+          "007620",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      {
+        "afterCode": "004111",
+        "beforeCode": "010140"
+      },
+      {
+        "afterCode": "009649",
+        "beforeCode": "002649"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
+    ]
+  }
+}');
+INSERT INTO gonghak_requirement (department_id, entrance_year, detail) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'), 2022, '{
+  "totalRequirement": {
+    "minCredit": 98
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 30,
+    "components": [
+      {
+        "name": "MSC_BASIC",
+        "description": "주어진 MSC 과목 모두 이수",
+        "ruleType": "MUST_TAKE_ALL",
+        "conditionValue": 10,
+        "targetCourses": [
+          "011299",
+          "001725",
+          "001357",
+          "002638",
+          "002641",
+          "000304",
+          "000307",
+          "002705",
+          "011320",
+          "008622"
+        ]
+      }
+    ]
+  },
+  "majorRequirement": {
+    "minCredit": 54,
+    "components": [
+      {
+        "name": "LAB_MAJOR",
+        "description": "실험교과목 최소 1과목 이수",
+        "ruleType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": [
+          "002647",
+          "002649",
+          "005611",
+          "009658",
+          "008076",
+          "009661",
+          "009666"
+        ]
+      },
+      {
+        "name": "GENERAL_MAJOR",
+        "description": "일반영역 최소 24학점 이수",
+        "ruleType": "MIN_CREDIT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "004114",
+          "005246",
+          "007620",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      {
+        "afterCode": "004111",
+        "beforeCode": "010140"
+      },
+      {
+        "afterCode": "009649",
+        "beforeCode": "002649"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
+    ]
+  }
+}');
+INSERT INTO gonghak_requirement (department_id, entrance_year, detail) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'), 2023, '{
+  "totalRequirement": {
+    "minCredit": 98
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 30,
+    "components": [
+      {
+        "name": "MSC_BASIC",
+        "description": "주어진 MSC 과목 모두 이수",
+        "ruleType": "MUST_TAKE_ALL",
+        "conditionValue": 10,
+        "targetCourses": [
+          "011299",
+          "001725",
+          "001357",
+          "002638",
+          "002641",
+          "000304",
+          "000307",
+          "002705",
+          "011320",
+          "008622"
+        ]
+      }
+    ]
+  },
+  "majorRequirement": {
+    "minCredit": 54,
+    "components": [
+      {
+        "name": "LAB_MAJOR",
+        "description": "실험교과목 최소 1과목 이수",
+        "ruleType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": [
+          "002647",
+          "002649",
+          "005611",
+          "009658",
+          "008076",
+          "009661",
+          "009666"
+        ]
+      },
+      {
+        "name": "GENERAL_MAJOR",
+        "description": "일반영역 최소 24학점 이수",
+        "ruleType": "MIN_CREDIT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "004114",
+          "005246",
+          "007620",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      {
+        "afterCode": "004111",
+        "beforeCode": "001357"
+      },
+      {
+        "afterCode": "009649",
+        "beforeCode": "002641"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
+    ]
+  }
+}');
 INSERT INTO gonghak_requirement (department_id, entrance_year, detail) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'), 2024, '{
   "totalRequirement": {
-      "minCredit": 86
-    },
-    "designRequirement": {
-      "minCredit": 9
-    },
-    "basicRequirement": {
-      "minCredit": 27,
-      "components": [
-        {
-          "name": "MSC_BASIC",
-          "description": "주어진 MSC 과목 모두 이수",
-          "ruleType": "MUST_TAKE_ALL",
-          "conditionValue": 9,
-          "targetCourses": [
-            "011300",
-            "007330",
-            "009912",
-            "001357",
-            "000304",
-            "009913",
-            "001725",
-            "011320",
-            "011678"
-          ]
-        }
-      ]
-    },
-    "majorRequirement": {
-      "minCredit": 45,
-      "components": [
-        {
-          "name": "LAB_MAJOR",
-          "description": "실험교과목 최소 1과목 이수",
-          "ruleType": "MIN_COUNT",
-          "conditionValue": 1,
-          "targetCourses": [
-            "005611",
-            "009658",
-            "008076",
-            "009666"
-          ]
-        },
-        {
-          "name": "GENERAL_MAJOR",
-          "description": "일반영역 최소 24학점 이수",
-          "ruleType": "MIN_CREDIT",
-          "conditionValue": 24,
-          "targetCourses": [
-            "007620",
-            "004114",
-            "005246",
-            "004111",
-            "007453",
-            "004474",
-            "009649",
-            "007806",
-            "004699",
-            "004600",
-            "004829",
-            "003284",
-            "008086",
-            "006294",
-            "006132"
-          ]
-        }
-      ]
-    },
-    "prerequisiteRequirement": {
-      "targetCourses": [
-        {
-          "afterCode": "004111",
-          "beforeCode": "001357"
-        },
-        {
-          "afterCode": "007722",
-          "beforeCode": "007453"
-        },
-        {
-          "afterCode": "009659",
-          "beforeCode": "009649"
-        },
-        {
-          "afterCode": "004600",
-          "beforeCode": "005246"
-        },
-        {
-          "afterCode": "004474",
-          "beforeCode": "005246"
-        }
-      ]
-    }
+    "minCredit": 86
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 27,
+    "components": [
+      {
+        "name": "MSC_BASIC",
+        "description": "주어진 MSC 과목 모두 이수",
+        "ruleType": "MUST_TAKE_ALL",
+        "conditionValue": 9,
+        "targetCourses": [
+          "011300",
+          "007330",
+          "009912",
+          "001357",
+          "000304",
+          "009913",
+          "001725",
+          "011320",
+          "011678"
+        ]
+      }
+    ]
+  },
+  "majorRequirement": {
+    "minCredit": 45,
+    "components": [
+      {
+        "name": "LAB_MAJOR",
+        "description": "실험교과목 최소 1과목 이수",
+        "ruleType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": [
+          "005611",
+          "009658",
+          "008076",
+          "009666"
+        ]
+      },
+      {
+        "name": "GENERAL_MAJOR",
+        "description": "일반영역 최소 24학점 이수",
+        "ruleType": "MIN_CREDIT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "007620",
+          "004114",
+          "005246",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      {
+        "afterCode": "004111",
+        "beforeCode": "001357"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
+    ]
+  }
 }');
-
 INSERT INTO gonghak_requirement (department_id, entrance_year, detail) VALUES ((SELECT id FROM department WHERE name = '전자정보통신공학과'), 2025, '{
   "totalRequirement": {
-      "minCredit": 86
-    },
-    "designRequirement": {
-      "minCredit": 9
-    },
-    "basicRequirement": {
-      "minCredit": 27,
-      "components": [
-        {
-          "name": "MSC_BASIC",
-          "description": "주어진 MSC 과목 모두 이수",
-          "ruleType": "MUST_TAKE_ALL",
-          "conditionValue": 9,
-          "targetCourses": [
-            "011300",
-            "007330",
-            "009912",
-            "001357",
-            "000304",
-            "009913",
-            "001725",
-            "011320",
-            "011678"
-          ]
-        }
-      ]
-    },
-    "majorRequirement": {
-      "minCredit": 45,
-      "components": [
-        {
-          "name": "LAB_MAJOR",
-          "description": "실험교과목 최소 1과목 이수",
-          "ruleType": "MIN_COUNT",
-          "conditionValue": 1,
-          "targetCourses": [
-            "005611",
-            "009658",
-            "008076",
-            "009666"
-          ]
-        },
-        {
-          "name": "GENERAL_MAJOR",
-          "description": "일반영역 최소 24학점 이수",
-          "ruleType": "MIN_CREDIT",
-          "conditionValue": 24,
-          "targetCourses": [
-            "007620",
-            "004114",
-            "005246",
-            "004111",
-            "007453",
-            "004474",
-            "009649",
-            "007806",
-            "004699",
-            "004600",
-            "004829",
-            "003284",
-            "008086",
-            "006294",
-            "006132"
-          ]
-        }
-      ]
-    },
-    "prerequisiteRequirement": {
-      "targetCourses": [
-        {
-          "afterCode": "004111",
-          "beforeCode": "001357"
-        },
-        {
-          "afterCode": "007722",
-          "beforeCode": "007453"
-        },
-        {
-          "afterCode": "009659",
-          "beforeCode": "009649"
-        },
-        {
-          "afterCode": "004600",
-          "beforeCode": "005246"
-        },
-        {
-          "afterCode": "004474",
-          "beforeCode": "005246"
-        }
-      ]
-    }
+    "minCredit": 86
+  },
+  "designRequirement": {
+    "minCredit": 9
+  },
+  "basicRequirement": {
+    "minCredit": 27,
+    "components": [
+      {
+        "name": "MSC_BASIC",
+        "description": "주어진 MSC 과목 모두 이수",
+        "ruleType": "MUST_TAKE_ALL",
+        "conditionValue": 9,
+        "targetCourses": [
+          "011300",
+          "007330",
+          "009912",
+          "001357",
+          "000304",
+          "009913",
+          "001725",
+          "011320",
+          "011678"
+        ]
+      }
+    ]
+  },
+  "majorRequirement": {
+    "minCredit": 45,
+    "components": [
+      {
+        "name": "LAB_MAJOR",
+        "description": "실험교과목 최소 1과목 이수",
+        "ruleType": "MIN_COUNT",
+        "conditionValue": 1,
+        "targetCourses": [
+          "005611",
+          "009658",
+          "008076",
+          "009666"
+        ]
+      },
+      {
+        "name": "GENERAL_MAJOR",
+        "description": "일반영역 최소 24학점 이수",
+        "ruleType": "MIN_CREDIT",
+        "conditionValue": 24,
+        "targetCourses": [
+          "007620",
+          "004114",
+          "005246",
+          "004111",
+          "007453",
+          "004474",
+          "009649",
+          "007806",
+          "004699",
+          "004600",
+          "004829",
+          "003284",
+          "008086",
+          "006294",
+          "006132"
+        ]
+      }
+    ]
+  },
+  "prerequisiteRequirement": {
+    "targetCourses": [
+      {
+        "afterCode": "004111",
+        "beforeCode": "001357"
+      },
+      {
+        "afterCode": "007722",
+        "beforeCode": "007453"
+      },
+      {
+        "afterCode": "009659",
+        "beforeCode": "009649"
+      },
+      {
+        "afterCode": "004600",
+        "beforeCode": "005246"
+      },
+      {
+        "afterCode": "004474",
+        "beforeCode": "005246"
+      }
+    ]
+  }
 }');
