@@ -1,5 +1,6 @@
 package com.gonghak98.v2.report.domain.student;
 
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,6 +23,9 @@ public class CompletedCourse implements Comparable<CompletedCourse> {
 
     @Setter
     private double designCredit;
+
+    @Setter
+    private AbeekType abeekType;
 
     @Override
     public int compareTo(CompletedCourse other) {

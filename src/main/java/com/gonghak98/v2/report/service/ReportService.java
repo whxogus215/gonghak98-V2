@@ -27,7 +27,11 @@ public class ReportService {
                                     MultipartFile file) {
         FileResponse fileResponse = fileService.getFileData(file);
         List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
-
+        
+        // 기이수 과목에 Abeek Type 할당
+        abeekService.addAbeekTypeToCompletedCourse(completedCourses, departmentName);
+        
+        // 기이수 과목을 각 세부 영역별로 검사
         Abeek abeek = abeekService.getAbeek(departmentName, entranceYear);
         AbeekCheckResult abeekCheckResult = abeek.checkAllCourses(completedCourses);
 

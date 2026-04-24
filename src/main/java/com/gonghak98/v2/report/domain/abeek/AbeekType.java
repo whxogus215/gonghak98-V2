@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum AbeekType {
-
+    
+    NONE(Collections.emptySet(), "공학인증에 포함되지 않는 과목"),
+    
     MSC(Set.of("전자정보통신공학과"), "MSC"),
     BSM(Collections.emptySet(), "BSM"),
     MAJOR(Collections.emptySet(), "전공"),
