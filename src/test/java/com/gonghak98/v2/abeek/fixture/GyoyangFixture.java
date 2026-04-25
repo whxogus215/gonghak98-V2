@@ -10,6 +10,10 @@ public class GyoyangFixture {
     public static Gyoyang createProGyoyang() {
 
         List<Course> essentialCourses = List.of(
+            Course.builder().code("010352").name("English Listening Practice 1").credit(2.0).build(),
+            Course.builder().code("010354").name("English Reading Practice 1").credit(2.0).build(),
+            Course.builder().code("008364").name("세종사회봉사1").credit(1.0).build(),
+            Course.builder().code("009489").name("세계사:인간과문명").credit(3.0).build(),
             Course.builder().code("009067").name("문제해결을위한글쓰기와발표").credit(3.0).build(),
             Course.builder().code("009068").name("서양철학:쟁점과토론").credit(3.0).build(),
             Course.builder().code("011304").name("대학영어").credit(2.0).build()
