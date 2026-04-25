@@ -18,7 +18,7 @@ public class Major {
                                    .allMatch(rule -> rule.isSatisfied(completedCourses));
 
         double majorTotalCredit = completedCourses.stream()
-                                                  .filter(course -> course.getAbeekType().equals(AbeekType.MAJOR))
+                                                  .filter(course -> course.getAbeekType() == AbeekType.MAJOR)
                                                   .mapToDouble(CompletedCourse::getCredit)
                                                   .sum();
 
@@ -27,7 +27,7 @@ public class Major {
 
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
         return completedCourses.stream()
-                               .filter(course -> course.getAbeekType().equals(AbeekType.MAJOR))
+                               .filter(course -> course.getAbeekType() == AbeekType.MAJOR)
                                .toList();
     }
 

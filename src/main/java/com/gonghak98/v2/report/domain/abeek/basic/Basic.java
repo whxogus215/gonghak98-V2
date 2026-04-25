@@ -23,7 +23,7 @@ public class Basic {
 
     public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
         return completedCourses.stream()
-                               .filter(course -> course.getAbeekType().equals(abeekType))
+                               .filter(course -> course.getAbeekType() == abeekType)
                                .toList();
     }
 
