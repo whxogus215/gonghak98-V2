@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -19,7 +20,79 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ProGyoyangTest {
 
     @Nested
-    class 전자정보통신공학과 {
+    @DisplayName("2021년 이전의 전문교양 영역 조건 검사")
+    class Until2021 {
+
+        @DisplayName("필수 과목을 모두 이수하면, 전문교양 영역을 만족한다.")
+        @Test
+        void 전문교양_영역_검사() {
+            //given
+            List<CompletedCourse> studentCourses = List.of(
+                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
+                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build()
+            );
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
+            Gyoyang gyoyang = createProGyoyang();
+
+            //when
+            gyoyang.checkAllCourses(studentCourses, areaCheckResult);
+
+            //then
+            assertThat(areaCheckResult.passResults().get(AbeekType.GYOYANG)).isTrue();
+        }
+
+        @DisplayName("필수 과목을 모두 이수하고, 선택 과목을 추가로 이수하더라도 전문교양 영역을 만족한다.")
+        @Test
+        void 전문교양_영역_검사2() {
+            //given
+            List<CompletedCourse> studentCourses = List.of(
+                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
+                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
+
+                CompletedCourse.builder().code("011313").name("경제학").build()
+            );
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
+            Gyoyang gyoyang = createProGyoyang();
+
+            //when
+            gyoyang.checkAllCourses(studentCourses, areaCheckResult);
+
+            //then
+            assertThat(areaCheckResult.passResults().get(AbeekType.GYOYANG)).isTrue();
+        }
+
+        @DisplayName("필수 과목을 모두 이수하지 못하면, 전문교양 영역을 만족하지 못한다.")
+        @Test
+        void 전문교양_영역_실패() {
+            //given
+            List<CompletedCourse> studentCourses = List.of(
+                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build()
+            );
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
+            Gyoyang gyoyang = createProGyoyang();
+
+            //when
+            gyoyang.checkAllCourses(studentCourses, areaCheckResult);
+
+            //then
+            assertThat(areaCheckResult.passResults().get(AbeekType.GYOYANG)).isFalse();
+        }
+    }
+
+    @Nested
+    @DisplayName("2022년 이후의 전문교양 영역 조건 검사")
+    class From2022 {
 
         @DisplayName("필수 과목을 모두 이수하고, 선택 교과목 중 2과목 이상을 포함해 14학점 이상 이수하면, 전문교양 영역을 만족한다.")
         @MethodSource("provideAllEssentialAndSufficientElectiveCourses")
