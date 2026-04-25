@@ -12,20 +12,20 @@ public class CreditCalculator {
     private CreditCalculator() {
     }
 
-    public static CountingResult calculateCredits(Map<AbeekType, List<CompletedCourse>> coursesByArea,
-                                                  Map<AbeekType, Double> requiredPoints) {
+    public static CountingResult calculateCredits(Map<AbeekType, List<CompletedCourse>> coursesByAbeekType,
+                                                  Map<AbeekType, Double> requiredCredits) {
         Map<AbeekType, AreaCreditSummary> summaries = new EnumMap<>(AbeekType.class);
 
         for (AbeekType abeekType : AbeekType.values()) {
-            if (!coursesByArea.containsKey(abeekType)) {
+            if (!coursesByAbeekType.containsKey(abeekType)) {
                 continue;
             }
-            List<CompletedCourse> areaCourses = coursesByArea.get(abeekType);
-            double completedCredits = calculateTotalCredits(areaCourses, abeekType);
-            double requiredPoint = requiredPoints.getOrDefault(abeekType, 0.0);
+            List<CompletedCourse> mappedAbeekTypeCourses = coursesByAbeekType.get(abeekType);
+            double completedCredits = calculateTotalCredits(mappedAbeekTypeCourses, abeekType);
+            double requiredCredit = requiredCredits.getOrDefault(abeekType, 0.0);
 
-            CreditCountResult creditCountResult = new CreditCountResult(completedCredits, requiredPoint);
-            AreaCreditSummary summary = new AreaCreditSummary(abeekType, creditCountResult, areaCourses);
+            CreditCountResult creditCountResult = new CreditCountResult(completedCredits, requiredCredit);
+            AreaCreditSummary summary = new AreaCreditSummary(abeekType, creditCountResult, mappedAbeekTypeCourses);
 
             summaries.put(abeekType, summary);
         }

@@ -43,8 +43,8 @@ class CreditCalculatorTest {
         final CreditCountResult creditCountResult = areaCreditSummary.getCreditCountResult();
         final List<CompletedCourse> relatedCourses = areaCreditSummary.getRelatedCourses();
 
-        assertThat(creditCountResult.requiredPoints()).isEqualTo(30.0);
-        assertThat(creditCountResult.completedPoints()).isEqualTo(6.0);
+        assertThat(creditCountResult.requiredCredits()).isEqualTo(30.0);
+        assertThat(creditCountResult.completedCredits()).isEqualTo(6.0);
         assertThat(relatedCourses).hasSize(2);
     }
 }

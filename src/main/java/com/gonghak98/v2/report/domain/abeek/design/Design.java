@@ -15,16 +15,16 @@ public class Design {
     private final List<DesignCourse> comprehensiveDesignCourses;
     private final Set<String> courseCodes;
 
-    private final double minDesignPoint;
+    private final double minDesignCredit;
 
     public Design(DesignCourse basicDesignCourse,
                   List<DesignCourse> elementDesignCourses,
                   List<DesignCourse> comprehensiveDesignCourses,
-                  double minDesignPoint) {
+                  double minDesignCredit) {
         this.basicDesignCourse = basicDesignCourse;
         this.elementDesignCourses = elementDesignCourses;
         this.comprehensiveDesignCourses = comprehensiveDesignCourses;
-        this.minDesignPoint = minDesignPoint;
+        this.minDesignCredit = minDesignCredit;
 
         this.courseCodes = new HashSet<>();
         if (basicDesignCourse != null) {
@@ -58,7 +58,7 @@ public class Design {
                 }
             }
         }
-        boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignPoint);
+        boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignCredit);
 
         areaCheckResult.passResults().put(AbeekType.DESIGN, isAllSatisfied);
     }
@@ -69,7 +69,7 @@ public class Design {
                                .toList();
     }
 
-    public Double getRequiredPoints() {
-        return minDesignPoint;
+    public Double getRequiredCredits() {
+        return minDesignCredit;
     }
 }

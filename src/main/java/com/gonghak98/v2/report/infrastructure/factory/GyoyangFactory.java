@@ -39,7 +39,7 @@ public class GyoyangFactory {
                                                      .map(CourseEntity::toDomain)
                                                      .toList();
 
-        int minPoint = 14;
-        return new ProGyoyang(essentialCourses, electiveCourses, minPoint);
+        int minCredit = 14;
+        return new ProGyoyang(essentialCourses, electiveCourses, minCredit);
     }
 }

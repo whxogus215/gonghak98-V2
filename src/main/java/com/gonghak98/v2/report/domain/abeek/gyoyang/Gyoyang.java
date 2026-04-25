@@ -10,5 +10,5 @@ public interface Gyoyang {
     
     List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses);
 
-    Double getRequiredPoints();
+    Double getRequiredCredits();
 }

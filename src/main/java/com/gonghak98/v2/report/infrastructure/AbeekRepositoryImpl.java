@@ -1,13 +1,16 @@
 package com.gonghak98.v2.report.infrastructure;
 
 import com.gonghak98.v2.report.domain.abeek.Abeek;
+import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.basic.Basic;
 import com.gonghak98.v2.report.domain.abeek.design.Design;
 import com.gonghak98.v2.report.domain.abeek.exception.AbeekException;
 import com.gonghak98.v2.report.domain.abeek.gyoyang.Gyoyang;
 import com.gonghak98.v2.report.domain.abeek.major.Major;
 import com.gonghak98.v2.report.domain.abeek.prerequisite.Prerequisite;
+import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.report.infrastructure.factory.BasicFactory;
 import com.gonghak98.v2.report.infrastructure.factory.DesignFactory;
 import com.gonghak98.v2.report.infrastructure.factory.GyoyangFactory;
@@ -15,8 +18,13 @@ import com.gonghak98.v2.report.infrastructure.factory.MajorFactory;
 import com.gonghak98.v2.report.infrastructure.factory.PrerequisiteFactory;
 import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
+import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
 import com.gonghak98.v2.report.service.AbeekRepository;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +34,7 @@ public class AbeekRepositoryImpl implements AbeekRepository {
 
     private final JpaDepartmentRepository jpaDepartmentRepository;
     private final JpaGonghakRequirementRepository jpaGonghakRequirementRepository;
+    private final JpaGonghakCourseRepository jpaGonghakCourseRepository;
 
     private final GyoyangFactory gyoyangFactory;
     private final BasicFactory basicFactory;
@@ -49,5 +58,22 @@ public class AbeekRepositoryImpl implements AbeekRepository {
         Prerequisite prerequisite = prerequisiteFactory.create(findDepartment, findRequirementDetail.getPrerequisiteRequirement());
 
         return new Abeek(gyoyang, basic, major, design, prerequisite);
+    }
+
+    @Override
+    public Map<String, AbeekType> findAbeekTypeOfCompletedCourse(List<CompletedCourse> completedCourses, String departmentName) {
+        if (completedCourses == null || completedCourses.isEmpty()) {
+            return Collections.emptyMap();
+        }
+        List<String> courseCodes = completedCourses.stream()
+                                                   .map(CompletedCourse::getCode)
+                                                   .toList();
+
+        List<GonghakCourseEntity> findCompletedGonghakCourses = jpaGonghakCourseRepository.findAllByDepartmentNameAndCourseCodeIn(departmentName, courseCodes);
+        return findCompletedGonghakCourses.stream()
+                                          .collect(Collectors.toMap(
+                                              gc -> gc.getCourse().getCode(),
+                                              GonghakCourseEntity::getAbeekType
+                                          ));
     }
 }
