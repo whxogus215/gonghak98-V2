@@ -45,6 +45,30 @@ class ProGyoyangTest {
             assertThat(areaCheckResult.passResults().get(AbeekType.GYOYANG)).isTrue();
         }
 
+        @DisplayName("필수 과목을 모두 이수하고, 선택 과목을 추가로 이수하더라도 전문교양 영역을 만족한다.")
+        @Test
+        void 전문교양_영역_검사2() {
+            //given
+            List<CompletedCourse> studentCourses = List.of(
+                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
+                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
+
+                CompletedCourse.builder().code("011313").name("경제학").build()
+            );
+            AreaCheckResult areaCheckResult = GivenObjectFixture.createCheckResult();
+            Gyoyang gyoyang = createProGyoyang();
+
+            //when
+            gyoyang.checkAllCourses(studentCourses, areaCheckResult);
+
+            //then
+            assertThat(areaCheckResult.passResults().get(AbeekType.GYOYANG)).isTrue();
+        }
+
         @DisplayName("필수 과목을 모두 이수하지 못하면, 전문교양 영역을 만족하지 못한다.")
         @Test
         void 전문교양_영역_실패() {
