@@ -30,7 +30,10 @@ public class Abeek {
         AreaCheckResult areaCheckResult = checkAreaRequirements(completedCourses);
 
         Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = completedCourses.stream()
-                                                                                   .collect(Collectors.groupingBy(CompletedCourse::getAbeekType));
+                                                                                   .collect(Collectors.groupingBy(CompletedCourse::getAbeekType,
+                                                                                                                  () -> new EnumMap<>(AbeekType.class),
+                                                                                                                  Collectors.toList()
+                                                                                   ));
         Map<AbeekType, Double> requiredCredits = collectRequiredCredits();
         CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByAbeekType, requiredCredits);
 
