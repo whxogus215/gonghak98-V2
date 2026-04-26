@@ -18,9 +18,9 @@ public class Major {
                                    .allMatch(rule -> rule.isSatisfied(completedCourses));
 
         double totalCredit = completedCourses.stream()
-                                                  .filter(course -> (course.getAbeekType() == AbeekType.MAJOR) || (course.getAbeekType() == AbeekType.DESIGN))
-                                                  .mapToDouble(CompletedCourse::getCredit)
-                                                  .sum();
+                                             .filter(course -> (course.getAbeekType() == AbeekType.MAJOR) || (course.getAbeekType() == AbeekType.DESIGN))
+                                             .mapToDouble(CompletedCourse::getCredit)
+                                             .sum();
 
         areaCheckResult.passResults().put(AbeekType.MAJOR, isSatisfied && (totalCredit >= minCredit));
     }
