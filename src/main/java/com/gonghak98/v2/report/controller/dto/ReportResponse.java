@@ -86,6 +86,7 @@ public class ReportResponse {
         private int year;
         private int semester;
         private double credit;
+        private double designCredit;
 
         public static RelatedCourseDto from(CompletedCourse completedCourse) {
             return RelatedCourseDto.builder()
@@ -94,6 +95,7 @@ public class ReportResponse {
                                    .year(completedCourse.getYear())
                                    .semester(completedCourse.getSemester())
                                    .credit(completedCourse.getCredit())
+                                   .designCredit(completedCourse.getDesignCredit())
                                    .build();
         }
     }

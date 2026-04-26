@@ -17,12 +17,12 @@ public class Major {
         boolean isSatisfied = rules.stream()
                                    .allMatch(rule -> rule.isSatisfied(completedCourses));
 
-        double majorTotalCredit = completedCourses.stream()
-                                                  .filter(course -> course.getAbeekType() == AbeekType.MAJOR)
-                                                  .mapToDouble(CompletedCourse::getCredit)
-                                                  .sum();
+        double totalCredit = completedCourses.stream()
+                                             .filter(course -> (course.getAbeekType() == AbeekType.MAJOR) || (course.getAbeekType() == AbeekType.DESIGN))
+                                             .mapToDouble(CompletedCourse::getCredit)
+                                             .sum();
 
-        areaCheckResult.passResults().put(AbeekType.MAJOR, isSatisfied && (majorTotalCredit >= minCredit));
+        areaCheckResult.passResults().put(AbeekType.MAJOR, isSatisfied && (totalCredit >= minCredit));
     }
 
     public Double getRequiredCredits() {
