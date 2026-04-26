@@ -31,8 +31,8 @@ class NonDesignPrerequisiteTest {
         void 선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
             AreaCheckResult areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
-                                                                  new ArrayList<>(),
-                                                                  new ArrayList<>());
+                                                                  new ArrayList<>()
+            );
             CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
             CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
@@ -65,8 +65,8 @@ class NonDesignPrerequisiteTest {
         @BeforeEach
         void setUp() {
             areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
-                                                  new ArrayList<>(),
-                                                  new ArrayList<>());
+                                                  new ArrayList<>()
+            );
             prerequisiteCourseIds = new HashMap<>();
             nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
         }

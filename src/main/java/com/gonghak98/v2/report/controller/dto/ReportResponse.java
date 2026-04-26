@@ -3,7 +3,6 @@ package com.gonghak98.v2.report.controller.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gonghak98.v2.report.domain.abeek.AbeekType;
 import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
-import com.gonghak98.v2.report.domain.abeek.dto.NotCheckedResult;
 import com.gonghak98.v2.report.domain.counting.AreaCreditSummary;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
@@ -17,7 +16,6 @@ public class ReportResponse {
     private String id;
     private List<PassResultDto> passResults;
     private List<NonPassResultDto> nonPassResults;
-    private List<NotCheckedResultDto> notCheckedResults;
     private List<CreditSummaryDto> creditSummaries;
 
     @Getter
@@ -57,27 +55,6 @@ public class ReportResponse {
                                    .credit(nonPassResult.credit())
                                    .reason(nonPassResult.nonPassMessage().name())
                                    .build();
-        }
-    }
-
-    @Getter
-    @Builder
-    public static class NotCheckedResultDto {
-
-        private String courseCode;
-        private String courseName;
-        private int year;
-        private int semester;
-        private double credit;
-
-        public static NotCheckedResultDto from(NotCheckedResult notCheckedResult) {
-            return NotCheckedResultDto.builder()
-                                      .courseCode(notCheckedResult.courseCode())
-                                      .courseName(notCheckedResult.courseName())
-                                      .year(notCheckedResult.year())
-                                      .semester(notCheckedResult.semester())
-                                      .credit(notCheckedResult.credit())
-                                      .build();
         }
     }
 

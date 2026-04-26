@@ -33,8 +33,8 @@ class DesignPrerequisiteTest {
         @BeforeEach
         void setUp() {
             areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
-                                                  new ArrayList<>(),
-                                                  new ArrayList<>());
+                                                  new ArrayList<>()
+            );
             designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
             design = DesignFixture.createDesign();
         }
@@ -159,8 +159,8 @@ class DesignPrerequisiteTest {
         @BeforeEach
         void setUp() {
             areaCheckResult = new AreaCheckResult(new EnumMap<>(AbeekType.class),
-                                                  new ArrayList<>(),
-                                                  new ArrayList<>());
+                                                  new ArrayList<>()
+            );
             designPrerequisite = PrerequisiteFixture.createDesignPrerequisite();
         }
 
