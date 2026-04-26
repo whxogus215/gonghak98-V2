@@ -63,12 +63,6 @@ public class Design {
         areaCheckResult.passResults().put(AbeekType.DESIGN, isAllSatisfied);
     }
 
-    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        return completedCourses.stream()
-                               .filter(c -> courseCodes.contains(c.getCode()))
-                               .toList();
-    }
-
     public Double getRequiredCredits() {
         return minDesignCredit;
     }

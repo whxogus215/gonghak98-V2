@@ -8,7 +8,5 @@ public interface Gyoyang {
 
     void checkAllCourses(List<CompletedCourse> completedCourses, AreaCheckResult areaCheckResult);
     
-    List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses);
-
     Double getRequiredCredits();
 }
