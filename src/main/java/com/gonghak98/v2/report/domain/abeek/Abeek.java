@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -29,11 +28,7 @@ public class Abeek {
     public AbeekCheckResult checkAllCourses(List<CompletedCourse> completedCourses) {
         AreaCheckResult areaCheckResult = checkAreaRequirements(completedCourses);
 
-        Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = completedCourses.stream()
-                                                                                   .collect(Collectors.groupingBy(CompletedCourse::getAbeekType,
-                                                                                                                  () -> new EnumMap<>(AbeekType.class),
-                                                                                                                  Collectors.toList()
-                                                                                   ));
+        Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = categorizeCompletedCourseByAbeekType(completedCourses);
         Map<AbeekType, Double> requiredCredits = collectRequiredCredits();
         CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByAbeekType, requiredCredits);
 
@@ -42,6 +37,19 @@ public class Abeek {
             areaCheckResult.nonPassResults(),
             creditCountingResult.creditSummaries()
         );
+    }
+
+    private Map<AbeekType, List<CompletedCourse>> categorizeCompletedCourseByAbeekType(List<CompletedCourse> completedCourses) {
+        Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = new EnumMap<>(AbeekType.class);
+        for (CompletedCourse course : completedCourses) {
+            AbeekType abeekType = course.getAbeekType();
+            if (abeekType == AbeekType.DESIGN) {
+                // 설계 기이수 과목은 전공 영역에도 포함
+                coursesByAbeekType.computeIfAbsent(AbeekType.MAJOR, k -> new ArrayList<>()).add(course);
+            }
+            coursesByAbeekType.computeIfAbsent(abeekType, k -> new ArrayList<>()).add(course);
+        }
+        return coursesByAbeekType;
     }
 
     private AreaCheckResult checkAreaRequirements(List<CompletedCourse> completedCourses) {
