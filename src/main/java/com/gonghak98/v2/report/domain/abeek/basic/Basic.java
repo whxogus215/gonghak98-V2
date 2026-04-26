@@ -21,12 +21,6 @@ public class Basic {
         areaCheckResult.passResults().put(abeekType, isSatisfied);
     }
 
-    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        return completedCourses.stream()
-                               .filter(course -> course.getAbeekType() == abeekType)
-                               .toList();
-    }
-
     public AbeekType getBasicAreaType() {
         return abeekType;
     }

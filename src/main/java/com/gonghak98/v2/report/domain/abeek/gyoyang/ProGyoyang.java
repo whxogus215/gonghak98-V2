@@ -69,13 +69,6 @@ public class ProGyoyang implements Gyoyang {
     }
 
     @Override
-    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        return completedCourses.stream()
-                               .filter(course -> courseCodes.contains(course.getCode()))
-                               .toList();
-    }
-
-    @Override
     public Double getRequiredCredits() {
         return minCredit;
     }

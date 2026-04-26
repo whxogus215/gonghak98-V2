@@ -25,12 +25,6 @@ public class Major {
         areaCheckResult.passResults().put(AbeekType.MAJOR, isSatisfied && (majorTotalCredit >= minCredit));
     }
 
-    public List<CompletedCourse> getRelatedCourses(List<CompletedCourse> completedCourses) {
-        return completedCourses.stream()
-                               .filter(course -> course.getAbeekType() == AbeekType.MAJOR)
-                               .toList();
-    }
-
     public Double getRequiredCredits() {
         return minCredit;
     }

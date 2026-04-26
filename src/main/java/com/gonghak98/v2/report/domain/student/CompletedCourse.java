@@ -34,4 +34,11 @@ public class CompletedCourse implements Comparable<CompletedCourse> {
         }
         return Integer.compare(this.year, other.year);
     }
+
+    public AbeekType getAbeekType() {
+        if (abeekType == null) {
+            return AbeekType.NONE;
+        }
+        return abeekType;
+    }
 }

@@ -11,7 +11,6 @@ public class GivenObjectFixture {
 
     public static AreaCheckResult createCheckResult() {
         return new AreaCheckResult(new EnumMap<>(AbeekType.class),
-                                   new ArrayList<>(),
                                    new ArrayList<>()
         );
     }

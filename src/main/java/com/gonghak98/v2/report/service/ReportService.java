@@ -5,7 +5,6 @@ import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
-import com.gonghak98.v2.report.controller.dto.ReportResponse.NotCheckedResultDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
 import com.gonghak98.v2.report.domain.abeek.Abeek;
 import com.gonghak98.v2.report.domain.abeek.dto.AbeekCheckResult;
@@ -27,10 +26,10 @@ public class ReportService {
                                     MultipartFile file) {
         FileResponse fileResponse = fileService.getFileData(file);
         List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
-        
+
         // 기이수 과목에 Abeek Type 할당
         abeekService.addAbeekTypeToCompletedCourse(completedCourses, departmentName);
-        
+
         // 기이수 과목을 각 세부 영역별로 검사
         Abeek abeek = abeekService.getAbeek(departmentName, entranceYear);
         AbeekCheckResult abeekCheckResult = abeek.checkAllCourses(completedCourses);
@@ -41,9 +40,6 @@ public class ReportService {
                              )
                              .nonPassResults(
                                  abeekCheckResult.nonPassResults().stream().map(NonPassResultDto::from).toList()
-                             )
-                             .notCheckedResults(
-                                 abeekCheckResult.notCheckedResults().stream().map(NotCheckedResultDto::from).toList()
                              )
                              .creditSummaries(
                                  abeekCheckResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList()
