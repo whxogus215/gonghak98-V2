@@ -13,8 +13,8 @@
 }
 */
 
-update gonghak_requirement
-set detail = '{
+UPDATE gonghak_requirement
+SET detail = '{
   "totalRequirement": {
     "minCredit": 98
   },
@@ -117,4 +117,4 @@ set detail = '{
   }
 }
 '
-where id = 3;
+WHERE department_id = (SELECT id FROM department WHERE name = '전자정보통신공학과') AND entrance_year = 2022;
