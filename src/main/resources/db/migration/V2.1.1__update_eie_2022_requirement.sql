@@ -1,4 +1,20 @@
+-- 전자정보통신공학과 2022학년도 선후수 중 일반물리학및실험2 -> 전자기1이 아니라 일반물리학2 -> 전자기1로 변경
+/*
+변경 전
 {
+    "afterCode": "009649",
+    "beforeCode": "002649"
+}
+
+변경 후
+{
+    "afterCode": "009649",
+    "beforeCode": "002641"
+}
+*/
+
+UPDATE gonghak_requirement
+SET detail = '{
   "totalRequirement": {
     "minCredit": 98
   },
@@ -100,3 +116,5 @@
     ]
   }
 }
+'
+WHERE department_id = (SELECT id FROM department WHERE name = '전자정보통신공학과') AND entrance_year = 2022;
