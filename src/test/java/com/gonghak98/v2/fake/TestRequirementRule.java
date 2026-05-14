@@ -1,6 +1,6 @@
 package com.gonghak98.v2.fake;
 
-import com.gonghak98.v2.report.domain.abeek.rule.Rule;
+import com.gonghak98.v2.audit.domain.rule.Rule;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
 import java.util.List;

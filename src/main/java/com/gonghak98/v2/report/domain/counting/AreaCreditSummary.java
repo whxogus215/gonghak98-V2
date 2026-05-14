@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.counting;
 
-import com.gonghak98.v2.report.domain.abeek.AbeekType;
+import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import lombok.EqualsAndHashCode;

@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.infrastructure.entity;
 
-import com.gonghak98.v2.report.infrastructure.factory.dto.RequirementDetail;
+import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

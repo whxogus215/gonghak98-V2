@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.controller.dto;
 
-import com.gonghak98.v2.report.domain.abeek.AbeekType;
+import com.gonghak98.v2.audit.domain.constant.AbeekType;
 
 public enum ResponseAreaType {
 

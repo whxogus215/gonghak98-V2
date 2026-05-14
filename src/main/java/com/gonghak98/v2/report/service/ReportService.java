@@ -1,13 +1,14 @@
 package com.gonghak98.v2.report.service;
 
+import com.gonghak98.v2.audit.application.QualificationAuditService;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
-import com.gonghak98.v2.report.domain.abeek.Abeek;
-import com.gonghak98.v2.report.domain.abeek.dto.AbeekCheckResult;
+import com.gonghak98.v2.audit.domain.QualificationAudit;
+import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReportService {
 
     private final FileService fileService;
-    private final AbeekService abeekService;
+    private final QualificationAuditService qualificationAuditService;
 
     public ReportResponse getReport(String departmentName,
                                     Short entranceYear,
@@ -28,21 +29,21 @@ public class ReportService {
         List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
 
         // 기이수 과목에 Abeek Type 할당
-        abeekService.addAbeekTypeToCompletedCourse(completedCourses, departmentName);
+        qualificationAuditService.addAbeekTypeToCompletedCourse(completedCourses, departmentName);
 
         // 기이수 과목을 각 세부 영역별로 검사
-        Abeek abeek = abeekService.getAbeek(departmentName, entranceYear);
-        AbeekCheckResult abeekCheckResult = abeek.checkAllCourses(completedCourses);
+        QualificationAudit qualificationAudit = qualificationAuditService.getQualificationAudit(departmentName, entranceYear);
+        QualificationResult qualificationResult = qualificationAudit.getQualificationResult(completedCourses);
 
         return ReportResponse.builder()
-                             .passResults(abeekCheckResult.passResults().entrySet().stream().map(
+                             .passResults(qualificationResult.passResults().entrySet().stream().map(
                                  e -> PassResultDto.from(e.getKey(), e.getValue())).toList()
                              )
                              .nonPassResults(
-                                 abeekCheckResult.nonPassResults().stream().map(NonPassResultDto::from).toList()
+                                 qualificationResult.nonPassResults().stream().map(NonPassResultDto::from).toList()
                              )
                              .creditSummaries(
-                                 abeekCheckResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList()
+                                 qualificationResult.creditSummaries().entrySet().stream().map(e -> CreditSummaryDto.from(e.getKey(), e.getValue())).toList()
                              )
                              .build();
     }
