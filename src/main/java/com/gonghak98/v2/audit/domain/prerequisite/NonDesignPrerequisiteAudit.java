@@ -18,7 +18,7 @@ public class NonDesignPrerequisiteAudit implements PrerequisiteAuditable {
     private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
 
     @Override
-    public PrerequisiteAuditResult auditPrerequisite(List<CompletedCourse> courses) {
+    public PrerequisiteAuditResult audit(List<CompletedCourse> courses) {
         PrerequisiteAuditResult prerequisiteAuditResult = new PrerequisiteAuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
         List<NonPassResult> nonPassResults = prerequisiteAuditResult.nonPassResults();
         Map<String, CompletedCourse> completedCourseTable = courses.stream()

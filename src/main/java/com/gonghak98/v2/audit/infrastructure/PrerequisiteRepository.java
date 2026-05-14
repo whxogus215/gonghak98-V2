@@ -34,7 +34,7 @@ public class PrerequisiteRepository {
         final List<GonghakCourseEntity> findDesignCourses = gonghakCourseRepository.findByDepartmentAndAbeekType(department, AbeekType.DESIGN);
         final DesignPrerequisiteAudit designPrerequisiteAudit = getDesignPrerequisite(findDesignCourses);
 
-        return new PrerequisiteAudit(nonDesignPrerequisiteAudit, designPrerequisiteAudit);
+        return new PrerequisiteAudit(List.of(nonDesignPrerequisiteAudit, designPrerequisiteAudit));
     }
 
     private static DesignPrerequisiteAudit getDesignPrerequisite(List<GonghakCourseEntity> findDesignCourses) {

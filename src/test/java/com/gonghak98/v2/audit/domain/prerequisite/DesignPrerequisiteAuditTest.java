@@ -6,7 +6,6 @@ import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
-import com.gonghak98.v2.audit.domain.prerequisite.DesignPrerequisiteAudit;
 import com.gonghak98.v2.audit.fixture.PrerequisiteFixture;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -39,8 +38,8 @@ class DesignPrerequisiteAuditTest {
             CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(afterYear).semester(afterSemester).build();
 
             //when
-            PrerequisiteAuditResult auditResult = designPrerequisiteAudit.auditPrerequisite(getAllCompletedCourses(basicCompletedCourse,
-                                                                                                                   elementCompletedCourse));
+            PrerequisiteAuditResult auditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
+                                                                                                       elementCompletedCourse));
 
             //then
             assertThat(auditResult.nonPassResults()).doesNotContain(new NonPassResult(
@@ -69,7 +68,7 @@ class DesignPrerequisiteAuditTest {
                                                                                      comprehensiveCompletedCourse);
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(allCompletedCourses);
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(allCompletedCourses);
 
             //then
             assertThat(prerequisiteAuditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
@@ -90,7 +89,7 @@ class DesignPrerequisiteAuditTest {
                                                                                      comprehensiveCompletedCourse);
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(allCompletedCourses);
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(allCompletedCourses);
 
             //then
             assertThat(prerequisiteAuditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
@@ -111,7 +110,7 @@ class DesignPrerequisiteAuditTest {
                                                                                      comprehensiveCompletedCourse);
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(allCompletedCourses);
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(allCompletedCourses);
 
             //then
             assertThat(prerequisiteAuditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.TRUE);
@@ -137,8 +136,8 @@ class DesignPrerequisiteAuditTest {
             CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(getAllCompletedCourses(basicCompletedCourse,
-                                                                                                                               elementCompletedCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
+                                                                                                                   elementCompletedCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(elementCompletedCourse.getCode(),
@@ -161,8 +160,8 @@ class DesignPrerequisiteAuditTest {
             CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(getAllCompletedCourses(basicCompletedCourse,
-                                                                                                                               comprehensiveCompletedCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
+                                                                                                                   comprehensiveCompletedCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(comprehensiveCompletedCourse.getCode(),
@@ -184,9 +183,9 @@ class DesignPrerequisiteAuditTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2025).semester(2).build();
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(getAllCompletedCourses(basicCompletedCourse,
-                                                                                                                               elementCompletedCourse,
-                                                                                                                               comprehensiveCompletedCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
+                                                                                                                   elementCompletedCourse,
+                                                                                                                   comprehensiveCompletedCourse));
 
             //then
             assertThat(prerequisiteAuditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
@@ -200,8 +199,8 @@ class DesignPrerequisiteAuditTest {
             CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2024).semester(2).build();
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.auditPrerequisite(getAllCompletedCourses(basicCompletedCourse,
-                                                                                                                               elementCompletedCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
+                                                                                                                   elementCompletedCourse));
 
             //then
             assertThat(prerequisiteAuditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
@@ -215,8 +214,8 @@ class DesignPrerequisiteAuditTest {
             CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2024).semester(2).build();
 
             //when
-            PrerequisiteAuditResult auditResult = designPrerequisiteAudit.auditPrerequisite(getAllCompletedCourses(basicCompletedCourse,
-                                                                                                                   comprehensiveCompletedCourse));
+            PrerequisiteAuditResult auditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
+                                                                                                       comprehensiveCompletedCourse));
 
             //then
             assertThat(auditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);

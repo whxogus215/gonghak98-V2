@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PrerequisiteAuditable {
 
-    PrerequisiteAuditResult auditPrerequisite(List<CompletedCourse> courses);
+    PrerequisiteAuditResult audit(List<CompletedCourse> courses);
 }

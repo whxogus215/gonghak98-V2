@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
-import com.gonghak98.v2.audit.domain.prerequisite.NonDesignPrerequisiteAudit;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +34,7 @@ class NonDesignPrerequisiteAuditAuditTest {
             NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(prerequisiteCourseIds);
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.auditPrerequisite(List.of(beforeCourse, afterCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse, afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.getCode(),
@@ -71,7 +70,7 @@ class NonDesignPrerequisiteAuditAuditTest {
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.auditPrerequisite(List.of(afterCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(
@@ -96,7 +95,7 @@ class NonDesignPrerequisiteAuditAuditTest {
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.auditPrerequisite(List.of(afterCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(
@@ -123,7 +122,7 @@ class NonDesignPrerequisiteAuditAuditTest {
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
-            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.auditPrerequisite(List.of(beforeCourse, afterCourse));
+            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse, afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(

@@ -23,7 +23,7 @@ public class DesignPrerequisiteAudit implements PrerequisiteAuditable {
     private final Set<String> comprehensiveCourseCodes;
 
     @Override
-    public PrerequisiteAuditResult auditPrerequisite(List<CompletedCourse> courses) {
+    public PrerequisiteAuditResult audit(List<CompletedCourse> courses) {
         PrerequisiteAuditResult prerequisiteAuditResult = new PrerequisiteAuditResult(new EnumMap<>(AbeekType.class),
                                                                                       new ArrayList<>());
 
