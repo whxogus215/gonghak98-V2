@@ -1,12 +1,12 @@
-package com.gonghak98.v2.audit;
+package com.gonghak98.v2.audit.abeek;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.gonghak98.v2.audit.domain.abeek.Major;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.fixture.GivenObjectFixture;
 import com.gonghak98.v2.fake.TestRequirementRule;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
-import com.gonghak98.v2.audit.domain.Major;
 import com.gonghak98.v2.audit.domain.rule.Rule;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ class MajorTest {
         Major major = new Major(rules, 3 * 5);
 
         //when
-        AuditResult auditResult = major.audit(completedCourses);
+        AbeekAreaAuditResult auditResult = major.audit(completedCourses);
 
         //then
         assertThat(auditResult.passResults().get(AbeekType.MAJOR)).isTrue();
@@ -47,7 +47,7 @@ class MajorTest {
         Major major = new Major(rules, 3 * 5);
 
         //when
-        AuditResult auditResult = major.audit(completedCourses);
+        AbeekAreaAuditResult auditResult = major.audit(completedCourses);
 
         //then
         assertThat(auditResult.passResults().get(AbeekType.MAJOR)).isFalse();

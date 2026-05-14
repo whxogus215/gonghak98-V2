@@ -1,6 +1,6 @@
 package com.gonghak98.v2.audit.fixture;
 
-import com.gonghak98.v2.audit.domain.ProGyoyang;
+import com.gonghak98.v2.audit.domain.abeek.ProGyoyang;
 import com.gonghak98.v2.report.domain.course.Course;
 import java.util.List;
 

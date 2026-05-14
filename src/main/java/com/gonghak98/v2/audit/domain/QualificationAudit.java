@@ -1,7 +1,8 @@
 package com.gonghak98.v2.audit.domain;
 
+import com.gonghak98.v2.audit.domain.abeek.AbeekAreaAudit;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.report.domain.counting.CreditCalculator;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
@@ -15,20 +16,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QualificationAudit {
 
-    private final List<Auditable> areas;
+    private final AbeekAreaAudit abeekAreaAudit;
 
     public QualificationResult getQualificationResult(List<CompletedCourse> userCourses) {
-        AuditResult auditResult = areas.stream()
-                                       .map(area -> area.audit(userCourses))
-                                       .reduce(new AuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>()), AuditResult::merge);
+        AbeekAreaAuditResult abeekAreaAuditResult = abeekAreaAudit.auditAbeekArea(userCourses);
+        Map<AbeekType, Double> requiredCredits = abeekAreaAudit.getRequiredCredits();
 
         Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = categorizeCompletedCourseByAbeekType(userCourses);
-        Map<AbeekType, Double> requiredCredits = collectRequiredCredits();
         CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByAbeekType, requiredCredits);
 
         return new QualificationResult(
-            auditResult.passResults(),
-            auditResult.nonPassResults(),
+            abeekAreaAuditResult.passResults(),
+            abeekAreaAuditResult.nonPassResults(),
             creditCountingResult.creditSummaries()
         );
     }
@@ -44,13 +43,5 @@ public class QualificationAudit {
             coursesByAbeekType.computeIfAbsent(abeekType, k -> new ArrayList<>()).add(course);
         }
         return coursesByAbeekType;
-    }
-
-    private Map<AbeekType, Double> collectRequiredCredits() {
-        Map<AbeekType, Double> requiredCredits = new EnumMap<>(AbeekType.class);
-        for (Auditable area : areas) {
-            requiredCredits.put(area.getAbeekType(), area.getRequiredCredits());
-        }
-        return requiredCredits;
     }
 }

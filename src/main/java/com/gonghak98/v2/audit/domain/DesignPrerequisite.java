@@ -1,8 +1,9 @@
 package com.gonghak98.v2.audit.domain;
 
+import com.gonghak98.v2.audit.domain.abeek.AbeekAuditable;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -16,18 +17,18 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DesignPrerequisite implements Auditable {
+public class DesignPrerequisite implements AbeekAuditable {
 
     private final String basicCourseCode;
     private final Set<String> elementCourseCodes;
     private final Set<String> comprehensiveCourseCodes;
 
     @Override
-    public AuditResult audit(List<CompletedCourse> courses) {
-        AuditResult auditResult = new AuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
+    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+        AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
 
-        Map<AbeekType, Boolean> passResults = auditResult.passResults();
-        List<NonPassResult> nonPassResults = auditResult.nonPassResults();
+        Map<AbeekType, Boolean> passResults = abeekAreaAuditResult.passResults();
+        List<NonPassResult> nonPassResults = abeekAreaAuditResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = courses.stream()
                                                                 .filter(completedCourse -> basicCourseCode.equals(completedCourse.getCode()))
@@ -48,7 +49,7 @@ public class DesignPrerequisite implements Auditable {
         boolean isAllSatisfied = isComprehensivePassed && isElementPassed;
 
         passResults.put(AbeekType.DESIGN, passResults.getOrDefault(AbeekType.DESIGN, false) && isAllSatisfied);
-        return auditResult;
+        return abeekAreaAuditResult;
     }
 
     private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse,

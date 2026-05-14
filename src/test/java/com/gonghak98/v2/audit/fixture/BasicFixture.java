@@ -1,7 +1,7 @@
 package com.gonghak98.v2.audit.fixture;
 
+import com.gonghak98.v2.audit.domain.abeek.Basic;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.Basic;
 import com.gonghak98.v2.audit.domain.rule.RequirementRule;
 import com.gonghak98.v2.audit.domain.rule.RuleType;
 import com.gonghak98.v2.report.domain.course.Course;

@@ -1,8 +1,9 @@
 package com.gonghak98.v2.audit.domain;
 
+import com.gonghak98.v2.audit.domain.abeek.AbeekAuditable;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
@@ -13,14 +14,14 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class NonDesignPrerequisite implements Auditable {
+public class NonDesignPrerequisite implements AbeekAuditable {
 
     private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
 
     @Override
-    public AuditResult audit(List<CompletedCourse> courses) {
-        AuditResult auditResult = new AuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
-        List<NonPassResult> nonPassResults = auditResult.nonPassResults();
+    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+        AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
+        List<NonPassResult> nonPassResults = abeekAreaAuditResult.nonPassResults();
         Map<String, CompletedCourse> completedCourseTable = courses.stream()
                                                                             .collect(Collectors.toMap(
                                                                                 CompletedCourse::getCode,
@@ -42,7 +43,7 @@ public class NonDesignPrerequisite implements Auditable {
                 nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
             }
         }
-        return auditResult;
+        return abeekAreaAuditResult;
     }
 
     @Override

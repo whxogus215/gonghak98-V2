@@ -1,12 +1,11 @@
-package com.gonghak98.v2.audit;
+package com.gonghak98.v2.audit.abeek;
 
 import static com.gonghak98.v2.audit.fixture.DesignFixture.createDesign;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.fixture.GivenObjectFixture;
+import com.gonghak98.v2.audit.domain.abeek.Design;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.Design;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
@@ -25,7 +24,7 @@ class DesignTest {
         Design design = createDesign();
 
         //when
-        AuditResult auditResult = design.audit(studentCourses);
+        AbeekAreaAuditResult auditResult = design.audit(studentCourses);
 
         //then
         assertThat(auditResult.passResults().get(AbeekType.DESIGN)).isTrue();
@@ -39,7 +38,7 @@ class DesignTest {
         Design design = createDesign();
 
         //when
-        AuditResult auditResult = design.audit(studentCourses);
+        AbeekAreaAuditResult auditResult = design.audit(studentCourses);
 
         //then
         assertThat(auditResult.passResults().get(AbeekType.DESIGN)).isFalse();

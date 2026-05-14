@@ -1,12 +1,11 @@
-package com.gonghak98.v2.audit;
+package com.gonghak98.v2.audit.abeek;
 
 import static com.gonghak98.v2.audit.fixture.BasicFixture.createMscBasic;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.fixture.GivenObjectFixture;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.Basic;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.abeek.Basic;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
@@ -29,10 +28,10 @@ class BasicTest {
             Basic basic = createMscBasic();
 
             //when
-            AuditResult auditResult = basic.audit(studentCourses);
+            AbeekAreaAuditResult abeekAreaAuditResult = basic.audit(studentCourses);
 
             //then
-            assertThat(auditResult.passResults().get(AbeekType.MSC)).isTrue();
+            assertThat(abeekAreaAuditResult.passResults().get(AbeekType.MSC)).isTrue();
         }
 
         @DisplayName("지정된 MSC 교과목을 모두 이수하지 못하면, MSC 영역을 만족하지 못한다.")
@@ -43,10 +42,10 @@ class BasicTest {
             Basic basic = createMscBasic();
 
             //when
-            AuditResult auditResult = basic.audit(studentCourses);
+            AbeekAreaAuditResult abeekAreaAuditResult = basic.audit(studentCourses);
 
             //then
-            assertThat(auditResult.passResults().get(AbeekType.MSC)).isFalse();
+            assertThat(abeekAreaAuditResult.passResults().get(AbeekType.MSC)).isFalse();
         }
 
         private static Stream<Arguments> provideAllEssentialMscCourses() {

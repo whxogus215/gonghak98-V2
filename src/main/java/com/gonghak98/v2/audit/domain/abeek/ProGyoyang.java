@@ -1,7 +1,7 @@
-package com.gonghak98.v2.audit.domain;
+package com.gonghak98.v2.audit.domain.abeek;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.report.domain.course.Course;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ProGyoyang implements Auditable {
+public class ProGyoyang implements AbeekAuditable {
 
     private static final int THREE_ESSENTIAL_TOTAL_CREDIT = 8; // 문제해결을위한글쓰기와발표(3) + 서양철학:쟁점과토론(3) + 대학영어(2)
     private static final int ELECTIVE_MIN_CREDIT = 6; // 3학점인 인증선택 과목을 최소 2개 수강
@@ -35,8 +35,8 @@ public class ProGyoyang implements Auditable {
     }
 
     @Override
-    public AuditResult audit(List<CompletedCourse> completedCourses) {
-        AuditResult auditResult = new AuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
+    public AbeekAreaAuditResult audit(List<CompletedCourse> completedCourses) {
+        AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
         Set<String> completedCourseIds = completedCourses.stream()
                                                          .map(CompletedCourse::getCode)
                                                          .collect(Collectors.toSet());
@@ -57,8 +57,8 @@ public class ProGyoyang implements Auditable {
         boolean isSatisfiedOnlyEssential = checkOnlyEssential(completedEssentialCredit);
         boolean isSatisfiedEssentialAndElective = checkEssentialAndElective(completedEssentialCredit, completedElectiveCredit);
 
-        auditResult.passResults().put(AbeekType.GYOYANG, (isSatisfiedOnlyEssential || isSatisfiedEssentialAndElective));
-        return auditResult;
+        abeekAreaAuditResult.passResults().put(AbeekType.GYOYANG, (isSatisfiedOnlyEssential || isSatisfiedEssentialAndElective));
+        return abeekAreaAuditResult;
     }
 
     @Override

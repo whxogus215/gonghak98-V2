@@ -1,21 +1,22 @@
 package com.gonghak98.v2.audit.infrastructure;
 
-import com.gonghak98.v2.audit.domain.ProGyoyang;
-import com.gonghak98.v2.audit.domain.QualificationAudit;
-import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.Basic;
-import com.gonghak98.v2.audit.domain.Design;
-import com.gonghak98.v2.audit.domain.exception.AbeekException;
-import com.gonghak98.v2.audit.domain.Major;
+import com.gonghak98.v2.audit.application.QualificationAuditRepository;
 import com.gonghak98.v2.audit.domain.Prerequisite;
+import com.gonghak98.v2.audit.domain.QualificationAudit;
+import com.gonghak98.v2.audit.domain.abeek.AbeekAreaAudit;
+import com.gonghak98.v2.audit.domain.abeek.Basic;
+import com.gonghak98.v2.audit.domain.abeek.Design;
+import com.gonghak98.v2.audit.domain.abeek.Major;
+import com.gonghak98.v2.audit.domain.abeek.ProGyoyang;
+import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.exception.AbeekException;
+import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
-import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
-import com.gonghak98.v2.audit.application.QualificationAuditRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class QualificationAuditRepositoryImpl implements QualificationAuditRepos
         Design design = designRepository.create(findDepartment, findRequirementDetail.getDesignRequirement().getMinCredit());
         Prerequisite prerequisite = prerequisiteRepository.create(findDepartment, findRequirementDetail.getPrerequisiteRequirement());
 
-        return new QualificationAudit(List.of(gyoyang, basic, major, design, prerequisite));
+        return new QualificationAudit(new AbeekAreaAudit(List.of(gyoyang, basic, major, design, prerequisite)));
     }
 
     @Override

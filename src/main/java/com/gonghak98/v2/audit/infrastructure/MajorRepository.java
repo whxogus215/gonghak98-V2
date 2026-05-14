@@ -1,6 +1,6 @@
 package com.gonghak98.v2.audit.infrastructure;
 
-import com.gonghak98.v2.audit.domain.Major;
+import com.gonghak98.v2.audit.domain.abeek.Major;
 import com.gonghak98.v2.audit.domain.rule.RequirementRule;
 import com.gonghak98.v2.audit.domain.rule.Rule;
 import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.AreaRequirement;

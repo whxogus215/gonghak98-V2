@@ -1,15 +1,12 @@
 package com.gonghak98.v2.audit.prerequisite;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
-import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.NonDesignPrerequisite;
+import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
+import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
-import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +35,7 @@ class NonDesignPrerequisiteTest {
             NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(prerequisiteCourseIds);
 
             //when
-            AuditResult auditResult = nonDesignPrerequisite.audit(List.of(beforeCourse, afterCourse));
+            AbeekAreaAuditResult auditResult = nonDesignPrerequisite.audit(List.of(beforeCourse, afterCourse));
 
             //then
             assertThat(auditResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.getCode(),
@@ -47,7 +44,7 @@ class NonDesignPrerequisiteTest {
                                                                                       afterCourse.getSemester(),
                                                                                       afterCourse.getCredit(),
                                                                                       NonPassMessage.NOT_SATISFIED_PREREQUISITE
-                                                                        )
+                                                                    )
             );
         }
     }
@@ -74,17 +71,17 @@ class NonDesignPrerequisiteTest {
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
-            AuditResult auditResult = nonDesignPrerequisite.audit(List.of(afterCourse));
+            AbeekAreaAuditResult auditResult = nonDesignPrerequisite.audit(List.of(afterCourse));
 
             //then
             assertThat(auditResult.nonPassResults()).contains(new NonPassResult(
-                                                                      afterCourse.getCode(),
-                                                                      afterCourse.getName(),
-                                                                      afterCourse.getYear(),
-                                                                      afterCourse.getSemester(),
-                                                                      afterCourse.getCredit(),
-                                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
-                                                                  )
+                                                                  afterCourse.getCode(),
+                                                                  afterCourse.getName(),
+                                                                  afterCourse.getYear(),
+                                                                  afterCourse.getSemester(),
+                                                                  afterCourse.getCredit(),
+                                                                  NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                              )
             );
         }
 
@@ -99,17 +96,17 @@ class NonDesignPrerequisiteTest {
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
-            AuditResult auditResult = nonDesignPrerequisite.audit(List.of(afterCourse));
+            AbeekAreaAuditResult auditResult = nonDesignPrerequisite.audit(List.of(afterCourse));
 
             //then
             assertThat(auditResult.nonPassResults()).contains(new NonPassResult(
-                                                                      afterCourse.getCode(),
-                                                                      afterCourse.getName(),
-                                                                      afterCourse.getYear(),
-                                                                      afterCourse.getSemester(),
-                                                                      afterCourse.getCredit(),
-                                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
-                                                                  )
+                                                                  afterCourse.getCode(),
+                                                                  afterCourse.getName(),
+                                                                  afterCourse.getYear(),
+                                                                  afterCourse.getSemester(),
+                                                                  afterCourse.getCredit(),
+                                                                  NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                              )
             );
         }
 
@@ -126,17 +123,17 @@ class NonDesignPrerequisiteTest {
             prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
 
             //when
-            AuditResult auditResult = nonDesignPrerequisite.audit(List.of(beforeCourse, afterCourse));
+            AbeekAreaAuditResult auditResult = nonDesignPrerequisite.audit(List.of(beforeCourse, afterCourse));
 
             //then
             assertThat(auditResult.nonPassResults()).contains(new NonPassResult(
-                                                                      afterCourse.getCode(),
-                                                                      afterCourse.getName(),
-                                                                      afterCourse.getYear(),
-                                                                      afterCourse.getSemester(),
-                                                                      afterCourse.getCredit(),
-                                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
-                                                                  )
+                                                                  afterCourse.getCode(),
+                                                                  afterCourse.getName(),
+                                                                  afterCourse.getYear(),
+                                                                  afterCourse.getSemester(),
+                                                                  afterCourse.getCredit(),
+                                                                  NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                              )
             );
         }
     }

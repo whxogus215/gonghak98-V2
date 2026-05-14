@@ -1,11 +1,11 @@
-package com.gonghak98.v2.audit;
+package com.gonghak98.v2.audit.abeek;
 
 import static com.gonghak98.v2.audit.fixture.GyoyangFixture.createProGyoyang;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.domain.ProGyoyang;
+import com.gonghak98.v2.audit.domain.abeek.ProGyoyang;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
@@ -37,7 +37,7 @@ class ProGyoyangTest {
             ProGyoyang gyoyang = createProGyoyang();
 
             //when
-            AuditResult auditResult = gyoyang.audit(studentCourses);
+            AbeekAreaAuditResult auditResult = gyoyang.audit(studentCourses);
 
             //then
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isTrue();
@@ -60,7 +60,7 @@ class ProGyoyangTest {
             ProGyoyang gyoyang = createProGyoyang();
 
             //when
-            AuditResult auditResult = gyoyang.audit(studentCourses);
+            AbeekAreaAuditResult auditResult = gyoyang.audit(studentCourses);
 
             //then
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isTrue();
@@ -79,7 +79,7 @@ class ProGyoyangTest {
             ProGyoyang gyoyang = createProGyoyang();
 
             //when
-            AuditResult auditResult = gyoyang.audit(studentCourses);
+            AbeekAreaAuditResult auditResult = gyoyang.audit(studentCourses);
 
             //then
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isFalse();
@@ -98,7 +98,7 @@ class ProGyoyangTest {
             ProGyoyang gyoyang = createProGyoyang();
 
             //when
-            AuditResult auditResult = gyoyang.audit(studentCourses);
+            AbeekAreaAuditResult auditResult = gyoyang.audit(studentCourses);
 
             //then
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isTrue();
@@ -112,7 +112,7 @@ class ProGyoyangTest {
             ProGyoyang gyoyang = createProGyoyang();
 
             //when
-            AuditResult auditResult = gyoyang.audit(studentCourses);
+            AbeekAreaAuditResult auditResult = gyoyang.audit(studentCourses);
 
             //then
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isFalse();
@@ -126,7 +126,7 @@ class ProGyoyangTest {
             ProGyoyang gyoyang = createProGyoyang();
 
             //when
-            AuditResult auditResult = gyoyang.audit(studentCourses);
+            AbeekAreaAuditResult auditResult = gyoyang.audit(studentCourses);
 
             //then
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isFalse();

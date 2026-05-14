@@ -1,7 +1,7 @@
-package com.gonghak98.v2.audit.domain;
+package com.gonghak98.v2.audit.domain.abeek;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.report.domain.course.DesignCourse;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Design implements Auditable {
+public class Design implements AbeekAuditable {
 
     private final DesignCourse basicDesignCourse;
     private final List<DesignCourse> elementDesignCourses;
@@ -37,8 +37,8 @@ public class Design implements Auditable {
     }
 
     @Override
-    public AuditResult audit(List<CompletedCourse> courses) {
-        AuditResult auditResult = new AuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
+    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+        AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
         double designPointSum = 0.0;
         boolean isBasicPassed = false;
         boolean isComprehensivePassed = false;
@@ -64,8 +64,8 @@ public class Design implements Auditable {
         }
         boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignCredit);
 
-        auditResult.passResults().put(AbeekType.DESIGN, isAllSatisfied);
-        return auditResult;
+        abeekAreaAuditResult.passResults().put(AbeekType.DESIGN, isAllSatisfied);
+        return abeekAreaAuditResult;
     }
 
     @Override

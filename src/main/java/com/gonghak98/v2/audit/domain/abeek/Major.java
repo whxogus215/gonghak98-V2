@@ -1,7 +1,7 @@
-package com.gonghak98.v2.audit.domain;
+package com.gonghak98.v2.audit.domain.abeek;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.dto.AuditResult;
+import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.domain.rule.Rule;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
@@ -10,14 +10,14 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class Major implements Auditable {
+public class Major implements AbeekAuditable {
 
     private final List<Rule> rules;
     private final double minCredit;
 
     @Override
-    public AuditResult audit(List<CompletedCourse> courses) {
-        AuditResult auditResult = new AuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
+    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+        AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
         boolean isSatisfied = rules.stream()
                                    .allMatch(rule -> rule.isSatisfied(courses));
 
@@ -26,8 +26,8 @@ public class Major implements Auditable {
                                     .mapToDouble(CompletedCourse::getCredit)
                                     .sum();
 
-        auditResult.passResults().put(AbeekType.MAJOR, isSatisfied && (totalCredit >= minCredit));
-        return auditResult;
+        abeekAreaAuditResult.passResults().put(AbeekType.MAJOR, isSatisfied && (totalCredit >= minCredit));
+        return abeekAreaAuditResult;
     }
 
     public Double getRequiredCredits() {
