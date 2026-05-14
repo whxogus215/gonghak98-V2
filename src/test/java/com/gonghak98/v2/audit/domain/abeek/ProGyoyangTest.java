@@ -1,4 +1,4 @@
-package com.gonghak98.v2.audit.abeek;
+package com.gonghak98.v2.audit.domain.abeek;
 
 import static com.gonghak98.v2.audit.fixture.GyoyangFixture.createProGyoyang;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,4 +1,4 @@
-package com.gonghak98.v2.audit.prerequisite;
+package com.gonghak98.v2.audit.domain.prerequisite;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
