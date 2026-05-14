@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
-class PrerequisiteRepositoryTest {
+class PrerequisiteAuditRepositoryTest {
 
     private final Short entranceYear = 2025;
 

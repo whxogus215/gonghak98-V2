@@ -1,9 +1,9 @@
 package com.gonghak98.v2.audit.infrastructure;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.audit.domain.DesignPrerequisite;
-import com.gonghak98.v2.audit.domain.NonDesignPrerequisite;
-import com.gonghak98.v2.audit.domain.Prerequisite;
+import com.gonghak98.v2.audit.domain.prerequisite.DesignPrerequisiteAudit;
+import com.gonghak98.v2.audit.domain.prerequisite.NonDesignPrerequisiteAudit;
+import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteComponent;
@@ -22,22 +22,22 @@ public class PrerequisiteRepository {
 
     private final JpaGonghakCourseRepository gonghakCourseRepository;
 
-    public Prerequisite create(final DepartmentEntity department, PrerequisiteRequirement requirement) {
-        NonDesignPrerequisite nonDesignPrerequisite = new NonDesignPrerequisite(requirement.getTargetCourses()
-                                                                                           .stream()
-                                                                                           .collect(Collectors.toMap(
+    public PrerequisiteAudit create(final DepartmentEntity department, PrerequisiteRequirement requirement) {
+        NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(requirement.getTargetCourses()
+                                                                                                          .stream()
+                                                                                                          .collect(Collectors.toMap(
                                                                                                PrerequisiteComponent::getAfterCode,
                                                                                                PrerequisiteComponent::getBeforeCode
                                                                                            ))
         );
 
         final List<GonghakCourseEntity> findDesignCourses = gonghakCourseRepository.findByDepartmentAndAbeekType(department, AbeekType.DESIGN);
-        final DesignPrerequisite designPrerequisite = getDesignPrerequisite(findDesignCourses);
+        final DesignPrerequisiteAudit designPrerequisiteAudit = getDesignPrerequisite(findDesignCourses);
 
-        return new Prerequisite(nonDesignPrerequisite, designPrerequisite);
+        return new PrerequisiteAudit(nonDesignPrerequisiteAudit, designPrerequisiteAudit);
     }
 
-    private static DesignPrerequisite getDesignPrerequisite(List<GonghakCourseEntity> findDesignCourses) {
+    private static DesignPrerequisiteAudit getDesignPrerequisite(List<GonghakCourseEntity> findDesignCourses) {
         String basicCourseCode = "";
         Set<String> elementCourseCodes = new HashSet<>();
         Set<String> comprehensiveCourseCodes = new HashSet<>();
@@ -49,8 +49,8 @@ public class PrerequisiteRepository {
                 case DESIGN_COMPREHENSIVE -> comprehensiveCourseCodes.add(gonghakCourse.getCourse().getCode());
             }
         }
-        return new DesignPrerequisite(basicCourseCode,
-                                      elementCourseCodes,
-                                      comprehensiveCourseCodes);
+        return new DesignPrerequisiteAudit(basicCourseCode,
+                                           elementCourseCodes,
+                                           comprehensiveCourseCodes);
     }
 }

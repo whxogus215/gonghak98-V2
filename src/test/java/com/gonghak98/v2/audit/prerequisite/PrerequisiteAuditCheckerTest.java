@@ -2,7 +2,7 @@ package com.gonghak98.v2.audit.prerequisite;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.domain.PrerequisiteChecker;
+import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteChecker;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class PrerequisiteCheckerTest {
+class PrerequisiteAuditCheckerTest {
     
     @Nested
     class 성공할때 {

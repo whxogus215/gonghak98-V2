@@ -1,10 +1,9 @@
-package com.gonghak98.v2.audit.domain;
+package com.gonghak98.v2.audit.domain.prerequisite;
 
-import com.gonghak98.v2.audit.domain.abeek.AbeekAuditable;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
-import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
+import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,18 +16,19 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DesignPrerequisite implements AbeekAuditable {
+public class DesignPrerequisiteAudit implements PrerequisiteAuditable {
 
     private final String basicCourseCode;
     private final Set<String> elementCourseCodes;
     private final Set<String> comprehensiveCourseCodes;
 
     @Override
-    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
-        AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
+    public PrerequisiteAuditResult auditPrerequisite(List<CompletedCourse> courses) {
+        PrerequisiteAuditResult prerequisiteAuditResult = new PrerequisiteAuditResult(new EnumMap<>(AbeekType.class),
+                                                                                      new ArrayList<>());
 
-        Map<AbeekType, Boolean> passResults = abeekAreaAuditResult.passResults();
-        List<NonPassResult> nonPassResults = abeekAreaAuditResult.nonPassResults();
+        Map<AbeekType, Boolean> passResults = prerequisiteAuditResult.passResults();
+        List<NonPassResult> nonPassResults = prerequisiteAuditResult.nonPassResults();
 
         Optional<CompletedCourse> completedBasicCourse = courses.stream()
                                                                 .filter(completedCourse -> basicCourseCode.equals(completedCourse.getCode()))
@@ -48,8 +48,8 @@ public class DesignPrerequisite implements AbeekAuditable {
                                                                        nonPassResults);
         boolean isAllSatisfied = isComprehensivePassed && isElementPassed;
 
-        passResults.put(AbeekType.DESIGN, passResults.getOrDefault(AbeekType.DESIGN, false) && isAllSatisfied);
-        return abeekAreaAuditResult;
+        passResults.put(AbeekType.DESIGN, isAllSatisfied);
+        return prerequisiteAuditResult;
     }
 
     private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse,
@@ -140,15 +140,5 @@ public class DesignPrerequisite implements AbeekAuditable {
             }
         }
         return true;
-    }
-
-    @Override
-    public Double getRequiredCredits() {
-        return 0.0;
-    }
-
-    @Override
-    public AbeekType getAbeekType() {
-        return AbeekType.DESIGN;
     }
 }

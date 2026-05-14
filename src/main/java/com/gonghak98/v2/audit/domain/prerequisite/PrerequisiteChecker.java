@@ -1,4 +1,4 @@
-package com.gonghak98.v2.audit.domain;
+package com.gonghak98.v2.audit.domain.prerequisite;
 
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 

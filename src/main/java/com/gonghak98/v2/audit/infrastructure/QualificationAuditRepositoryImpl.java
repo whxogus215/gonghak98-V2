@@ -1,7 +1,6 @@
 package com.gonghak98.v2.audit.infrastructure;
 
 import com.gonghak98.v2.audit.application.QualificationAuditRepository;
-import com.gonghak98.v2.audit.domain.Prerequisite;
 import com.gonghak98.v2.audit.domain.QualificationAudit;
 import com.gonghak98.v2.audit.domain.abeek.AbeekAreaAudit;
 import com.gonghak98.v2.audit.domain.abeek.Basic;
@@ -51,9 +50,9 @@ public class QualificationAuditRepositoryImpl implements QualificationAuditRepos
         Basic basic = basicRepository.create(findDepartment, findRequirementDetail.getBasicRequirement());
         Major major = majorRepository.create(findRequirementDetail.getMajorRequirement());
         Design design = designRepository.create(findDepartment, findRequirementDetail.getDesignRequirement().getMinCredit());
-        Prerequisite prerequisite = prerequisiteRepository.create(findDepartment, findRequirementDetail.getPrerequisiteRequirement());
 
-        return new QualificationAudit(new AbeekAreaAudit(List.of(gyoyang, basic, major, design, prerequisite)));
+        return new QualificationAudit(new AbeekAreaAudit(List.of(gyoyang, basic, major, design)),
+                                      prerequisiteRepository.create(findDepartment, findRequirementDetail.getPrerequisiteRequirement()));
     }
 
     @Override
