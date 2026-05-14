@@ -30,6 +30,7 @@ public class Major implements AbeekAuditable {
         return abeekAreaAuditResult;
     }
 
+    @Override
     public Double getRequiredCredits() {
         return minCredit;
     }
