@@ -1,14 +1,13 @@
 package com.gonghak98.v2.report.service;
 
 import com.gonghak98.v2.audit.application.QualificationAuditService;
+import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
-import com.gonghak98.v2.audit.domain.QualificationAudit;
-import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +31,7 @@ public class ReportService {
         qualificationAuditService.addAbeekTypeToCompletedCourse(completedCourses, departmentName);
 
         // 기이수 과목을 각 세부 영역별로 검사
-        QualificationAudit qualificationAudit = qualificationAuditService.getQualificationAudit(departmentName, entranceYear);
-        QualificationResult qualificationResult = qualificationAudit.getQualificationResult(completedCourses);
+        QualificationResult qualificationResult = qualificationAuditService.getQualificationAudit(departmentName, entranceYear, completedCourses);
 
         return ReportResponse.builder()
                              .passResults(qualificationResult.passResults().entrySet().stream().map(

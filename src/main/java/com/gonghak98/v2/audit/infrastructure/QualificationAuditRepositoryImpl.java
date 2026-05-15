@@ -38,7 +38,7 @@ public class QualificationAuditRepositoryImpl implements QualificationAuditRepos
     private final PrerequisiteRepository prerequisiteRepository;
 
     @Override
-    public QualificationAudit findAbeek(String departmentName, Short entranceYear) {
+    public QualificationAudit findQualificationAudit(String departmentName, Short entranceYear) {
         final DepartmentEntity findDepartment = jpaDepartmentRepository.findByName(departmentName)
                                                                        .orElseThrow(() -> new AbeekException("학과가 존재하지 않습니다."));
         final RequirementDetail findRequirementDetail = jpaGonghakRequirementRepository.findByDepartmentAndEntranceYear(findDepartment, entranceYear)

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface QualificationAuditRepository {
 
-    QualificationAudit findAbeek(String departmentName, Short entranceYear);
+    QualificationAudit findQualificationAudit(String departmentName, Short entranceYear);
 
     Map<String, AbeekType> findAbeekTypeOfCompletedCourse(List<CompletedCourse> completedCourses, String departmentName);
 }

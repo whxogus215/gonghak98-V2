@@ -2,6 +2,7 @@ package com.gonghak98.v2.audit.application;
 
 import com.gonghak98.v2.audit.domain.QualificationAudit;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,9 @@ public class QualificationAuditService {
 
     private final QualificationAuditRepository qualificationAuditRepository;
 
-    public QualificationAudit getQualificationAudit(String departmentName, Short entranceYear) {
-        return qualificationAuditRepository.findAbeek(departmentName, entranceYear);
+    public QualificationResult getQualificationAudit(String departmentName, Short entranceYear, List<CompletedCourse> completedCourses) {
+        QualificationAudit qualificationAudit = qualificationAuditRepository.findQualificationAudit(departmentName, entranceYear);
+        return qualificationAudit.getQualificationResult(completedCourses);
     }
 
     public void addAbeekTypeToCompletedCourse(List<CompletedCourse> completedCourses, String departmentName) {
