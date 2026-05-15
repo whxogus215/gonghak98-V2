@@ -37,9 +37,11 @@ public class NonDesignPrerequisiteAudit implements PrerequisiteAuditable {
                 CompletedCourse beforeCourse = completedCourseTable.get(beforeCourseCode);
                 if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse, afterCourse)) {
                     nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
+                    prerequisiteAuditResult.passResults().put(afterCourse.getAbeekType(), Boolean.FALSE);
                 }
             } else {
                 nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
+                prerequisiteAuditResult.passResults().put(afterCourse.getAbeekType(), Boolean.FALSE);
             }
         }
         return prerequisiteAuditResult;
