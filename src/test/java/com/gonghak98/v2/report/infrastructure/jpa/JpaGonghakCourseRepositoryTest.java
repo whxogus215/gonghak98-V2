@@ -2,8 +2,8 @@ package com.gonghak98.v2.report.infrastructure.jpa;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.report.domain.abeek.AbeekType;
-import com.gonghak98.v2.report.domain.abeek.CourseType;
+import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.constant.CourseType;
 import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;

@@ -1,8 +1,8 @@
 package com.gonghak98.v2.report.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gonghak98.v2.report.domain.abeek.AbeekType;
-import com.gonghak98.v2.report.domain.abeek.dto.NonPassResult;
+import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.report.domain.counting.AreaCreditSummary;
 import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.List;

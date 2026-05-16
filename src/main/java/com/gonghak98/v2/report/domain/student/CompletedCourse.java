@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.domain.student;
 
-import com.gonghak98.v2.report.domain.abeek.AbeekType;
+import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
