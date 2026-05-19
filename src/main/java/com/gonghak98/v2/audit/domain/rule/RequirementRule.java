@@ -1,6 +1,6 @@
 package com.gonghak98.v2.audit.domain.rule;
 
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;

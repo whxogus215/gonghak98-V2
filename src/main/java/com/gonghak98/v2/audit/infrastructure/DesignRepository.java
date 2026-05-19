@@ -2,8 +2,8 @@ package com.gonghak98.v2.audit.infrastructure;
 
 import com.gonghak98.v2.audit.domain.abeek.Design;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.report.domain.course.DesignCourse;
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.domain.course.DesignCourse;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
 import java.util.ArrayList;

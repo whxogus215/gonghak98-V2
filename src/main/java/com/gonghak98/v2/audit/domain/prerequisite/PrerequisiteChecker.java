@@ -1,6 +1,6 @@
 package com.gonghak98.v2.audit.domain.prerequisite;
 
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 
 public class PrerequisiteChecker {
 

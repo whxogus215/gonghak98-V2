@@ -1,6 +1,6 @@
 package com.gonghak98.v2.file.service.dto;
 
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.List;
 
 public record FileResponse(List<FileData> fileDatas) {

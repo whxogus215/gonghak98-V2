@@ -1,4 +1,4 @@
-package com.gonghak98.v2.core.course;
+package com.gonghak98.v2.core.domain.course;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
