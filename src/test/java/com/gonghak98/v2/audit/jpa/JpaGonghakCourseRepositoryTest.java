@@ -1,14 +1,15 @@
-package com.gonghak98.v2.report.infrastructure.jpa;
+package com.gonghak98.v2.audit.jpa;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.CourseType;
+import com.gonghak98.v2.audit.infrastructure.entity.GonghakCourseEntity;
+import com.gonghak98.v2.audit.infrastructure.jpa.JpaGonghakCourseRepository;
 import com.gonghak98.v2.core.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.core.infrastructure.jpa.JpaCourseRepository;
 import com.gonghak98.v2.core.infrastructure.jpa.JpaDepartmentRepository;
-import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

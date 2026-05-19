@@ -1,4 +1,4 @@
-package com.gonghak98.v2.report.infrastructure.entity;
+package com.gonghak98.v2.audit.infrastructure.entity;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.CourseType;
