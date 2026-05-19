@@ -1,4 +1,4 @@
-package com.gonghak98.v2.report.infrastructure.entity;
+package com.gonghak98.v2.audit.infrastructure.entity;
 
 import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail;
 import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
