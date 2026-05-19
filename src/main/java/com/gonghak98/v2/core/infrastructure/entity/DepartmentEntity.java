@@ -1,4 +1,4 @@
-package com.gonghak98.v2.report.infrastructure.entity;
+package com.gonghak98.v2.core.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

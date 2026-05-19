@@ -3,7 +3,7 @@ package com.gonghak98.v2.audit.domain.abeek;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.domain.rule.RequirementRule;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

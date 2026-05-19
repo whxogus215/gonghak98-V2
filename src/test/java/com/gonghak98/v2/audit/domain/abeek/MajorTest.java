@@ -2,13 +2,12 @@ package com.gonghak98.v2.audit.domain.abeek;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.domain.abeek.Major;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
 import com.gonghak98.v2.audit.fixture.GivenObjectFixture;
 import com.gonghak98.v2.fake.TestRequirementRule;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.rule.Rule;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

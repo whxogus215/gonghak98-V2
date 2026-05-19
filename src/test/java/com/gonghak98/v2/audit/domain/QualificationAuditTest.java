@@ -10,7 +10,7 @@ import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAuditable;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;

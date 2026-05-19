@@ -2,8 +2,7 @@ package com.gonghak98.v2.audit.domain.prerequisite;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteChecker;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.gonghak98.v2.audit.domain.dto;
 
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 
 public record NonPassResult(String courseCode,
                             String courseName,

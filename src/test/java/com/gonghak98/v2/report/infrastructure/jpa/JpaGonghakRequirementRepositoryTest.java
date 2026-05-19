@@ -2,7 +2,8 @@ package com.gonghak98.v2.report.infrastructure.jpa;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.infrastructure.jpa.JpaDepartmentRepository;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakRequirementEntity;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;

@@ -9,7 +9,7 @@ import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
 import com.gonghak98.v2.report.domain.counting.CreditCalculator;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;

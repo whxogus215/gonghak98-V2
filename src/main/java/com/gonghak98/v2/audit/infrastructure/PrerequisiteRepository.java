@@ -4,7 +4,7 @@ import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.prerequisite.DesignPrerequisiteAudit;
 import com.gonghak98.v2.audit.domain.prerequisite.NonDesignPrerequisiteAudit;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteComponent;
 import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteRequirement;

@@ -1,6 +1,6 @@
 package com.gonghak98.v2.report.infrastructure.jpa;
 
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakRequirementEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

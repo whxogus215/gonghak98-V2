@@ -3,9 +3,9 @@ package com.gonghak98.v2.report.infrastructure.factory;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import com.gonghak98.v2.audit.infrastructure.PrerequisiteRepository;
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.report.infrastructure.entity.GonghakRequirementEntity;
-import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
+import com.gonghak98.v2.core.infrastructure.jpa.JpaDepartmentRepository;
 import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;

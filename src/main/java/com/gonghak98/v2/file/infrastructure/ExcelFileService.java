@@ -5,7 +5,7 @@ import com.gonghak98.v2.file.exception.ExcelFileExceptionType;
 import com.gonghak98.v2.file.service.FileService;
 import com.gonghak98.v2.file.service.dto.FileData;
 import com.gonghak98.v2.file.service.dto.FileResponse;
-import com.gonghak98.v2.report.domain.course.SemesterConst;
+import com.gonghak98.v2.core.domain.course.SemesterConst;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
