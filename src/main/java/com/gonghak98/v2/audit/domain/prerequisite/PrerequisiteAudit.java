@@ -1,8 +1,8 @@
 package com.gonghak98.v2.audit.domain.prerequisite;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -13,7 +13,7 @@ public class PrerequisiteAudit {
 
     private final List<PrerequisiteAuditable> prerequisites;
 
-    public PrerequisiteAuditResult auditPrerequisite(List<CompletedCourse> userCourses) {
+    public PrerequisiteAuditResult auditPrerequisite(List<AuditCompletedCourse> userCourses) {
         return prerequisites.stream()
                             .map(preq -> preq.audit(userCourses))
                             .reduce(new PrerequisiteAuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>()), PrerequisiteAuditResult::merge);

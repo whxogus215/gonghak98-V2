@@ -1,7 +1,7 @@
 package com.gonghak98.v2.report.domain.counting;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,5 +14,5 @@ public class AreaCreditSummary {
 
     private final AbeekType abeekType;
     private final CreditCountResult creditCountResult;
-    private final List<CompletedCourse> relatedCourses;
+    private final List<AuditCompletedCourse> relatedCourses;
 }

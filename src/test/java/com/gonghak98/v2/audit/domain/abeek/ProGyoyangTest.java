@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -25,13 +25,13 @@ class ProGyoyangTest {
         @Test
         void 전문교양_영역_검사() {
             //given
-            List<CompletedCourse> studentCourses = List.of(
-                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
-                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
-                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
-                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
-                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
-                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build()
+            List<AuditCompletedCourse> studentCourses = List.of(
+                AuditCompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                AuditCompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                AuditCompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                AuditCompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
+                AuditCompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                AuditCompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build()
             );
             ProGyoyang gyoyang = createProGyoyang();
 
@@ -46,15 +46,15 @@ class ProGyoyangTest {
         @Test
         void 전문교양_영역_검사2() {
             //given
-            List<CompletedCourse> studentCourses = List.of(
-                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
-                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
-                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
-                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
-                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
-                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
+            List<AuditCompletedCourse> studentCourses = List.of(
+                AuditCompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                AuditCompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                AuditCompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                AuditCompletedCourse.builder().code("009489").name("세계사:인간과문명").build(),
+                AuditCompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                AuditCompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
 
-                CompletedCourse.builder().code("011313").name("경제학").build()
+                AuditCompletedCourse.builder().code("011313").name("경제학").build()
             );
             ProGyoyang gyoyang = createProGyoyang();
 
@@ -69,11 +69,11 @@ class ProGyoyangTest {
         @Test
         void 전문교양_영역_실패() {
             //given
-            List<CompletedCourse> studentCourses = List.of(
-                CompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
-                CompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
-                CompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
-                CompletedCourse.builder().code("009489").name("세계사:인간과문명").build()
+            List<AuditCompletedCourse> studentCourses = List.of(
+                AuditCompletedCourse.builder().code("010352").name("English Listening Practice 1").build(),
+                AuditCompletedCourse.builder().code("010354").name("English Reading Practice 1").build(),
+                AuditCompletedCourse.builder().code("008364").name("세종사회봉사1").build(),
+                AuditCompletedCourse.builder().code("009489").name("세계사:인간과문명").build()
             );
             ProGyoyang gyoyang = createProGyoyang();
 
@@ -92,7 +92,7 @@ class ProGyoyangTest {
         @DisplayName("필수 과목을 모두 이수하고, 선택 교과목 중 2과목 이상을 포함해 14학점 이상 이수하면, 전문교양 영역을 만족한다.")
         @MethodSource("provideAllEssentialAndSufficientElectiveCourses")
         @ParameterizedTest
-        void 전문교양_영역_검사(List<CompletedCourse> studentCourses) {
+        void 전문교양_영역_검사(List<AuditCompletedCourse> studentCourses) {
             //given
             ProGyoyang gyoyang = createProGyoyang();
 
@@ -106,7 +106,7 @@ class ProGyoyangTest {
         @DisplayName("필수 과목을 모두 이수하지 않으면, 선택 교과목 중 2과목 이상을 포함해도, 전문교양 영역을 만족하지 못한다.")
         @MethodSource("provideInsufficientEssentialAndSufficientElectiveCourses")
         @ParameterizedTest
-        void 전문교양_영역_검사_실패(List<CompletedCourse> studentCourses) {
+        void 전문교양_영역_검사_실패(List<AuditCompletedCourse> studentCourses) {
             //given
             ProGyoyang gyoyang = createProGyoyang();
 
@@ -120,7 +120,7 @@ class ProGyoyangTest {
         @DisplayName("필수 과목을 모두 이수해도, 선택 교과목 중 2과목 미만으로 이수하면, 전문교양 영역을 만족하지 못한다.")
         @MethodSource("provideAllEssentialAndInsufficientElectiveCourses")
         @ParameterizedTest
-        void 전문교양_영역_검사_실패2(List<CompletedCourse> studentCourses) {
+        void 전문교양_영역_검사_실패2(List<AuditCompletedCourse> studentCourses) {
             //given
             ProGyoyang gyoyang = createProGyoyang();
 
@@ -131,32 +131,32 @@ class ProGyoyangTest {
             assertThat(auditResult.passResults().get(AbeekType.GYOYANG)).isFalse();
         }
 
-        private static List<CompletedCourse> createEssentialCourses() {
+        private static List<AuditCompletedCourse> createEssentialCourses() {
             return List.of(
-                CompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
-                CompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
-                CompletedCourse.builder().code("011304").name("대학영어").build()
+                AuditCompletedCourse.builder().code("009067").name("문제해결을위한글쓰기와발표").build(),
+                AuditCompletedCourse.builder().code("009068").name("서양철학:쟁점과토론").build(),
+                AuditCompletedCourse.builder().code("011304").name("대학영어").build()
             );
         }
 
-        private static List<CompletedCourse> createAllElectiveCourses() {
+        private static List<AuditCompletedCourse> createAllElectiveCourses() {
             return List.of(
-                CompletedCourse.builder().code("011307").name("세계사").build(),
-                CompletedCourse.builder().code("011305").name("동서양의사상과윤리").build(),
-                CompletedCourse.builder().code("011313").name("경제학").build(),
-                CompletedCourse.builder().code("011312").name("경영학").build(),
-                CompletedCourse.builder().code("011317").name("컴퓨터게임과메타버스").build(),
-                CompletedCourse.builder().code("011316").name("융합예술의이해").build()
+                AuditCompletedCourse.builder().code("011307").name("세계사").build(),
+                AuditCompletedCourse.builder().code("011305").name("동서양의사상과윤리").build(),
+                AuditCompletedCourse.builder().code("011313").name("경제학").build(),
+                AuditCompletedCourse.builder().code("011312").name("경영학").build(),
+                AuditCompletedCourse.builder().code("011317").name("컴퓨터게임과메타버스").build(),
+                AuditCompletedCourse.builder().code("011316").name("융합예술의이해").build()
             );
         }
 
         private static Stream<Arguments> provideAllEssentialAndSufficientElectiveCourses() {
-            List<CompletedCourse> essentialCourses = createEssentialCourses();
+            List<AuditCompletedCourse> essentialCourses = createEssentialCourses();
 
-            List<CompletedCourse> electiveCourses = createAllElectiveCourses();
-            List<CompletedCourse> electiveCourses1 = electiveCourses.subList(0, 2);
-            List<CompletedCourse> electiveCourses2 = electiveCourses.subList(2, 4);
-            List<CompletedCourse> electiveCourses3 = electiveCourses.subList(4, 6);
+            List<AuditCompletedCourse> electiveCourses = createAllElectiveCourses();
+            List<AuditCompletedCourse> electiveCourses1 = electiveCourses.subList(0, 2);
+            List<AuditCompletedCourse> electiveCourses2 = electiveCourses.subList(2, 4);
+            List<AuditCompletedCourse> electiveCourses3 = electiveCourses.subList(4, 6);
 
             return Stream.of(
                 Arguments.of(Stream.concat(essentialCourses.stream(), electiveCourses1.stream()).toList()),
@@ -166,12 +166,12 @@ class ProGyoyangTest {
         }
 
         private static Stream<Arguments> provideInsufficientEssentialAndSufficientElectiveCourses() {
-            List<CompletedCourse> essentialCourses = createEssentialCourses().subList(0, 2);
+            List<AuditCompletedCourse> essentialCourses = createEssentialCourses().subList(0, 2);
 
-            List<CompletedCourse> electiveCourses = createAllElectiveCourses();
-            List<CompletedCourse> electiveCourses1 = electiveCourses.subList(0, 2);
-            List<CompletedCourse> electiveCourses2 = electiveCourses.subList(2, 4);
-            List<CompletedCourse> electiveCourses3 = electiveCourses.subList(4, 6);
+            List<AuditCompletedCourse> electiveCourses = createAllElectiveCourses();
+            List<AuditCompletedCourse> electiveCourses1 = electiveCourses.subList(0, 2);
+            List<AuditCompletedCourse> electiveCourses2 = electiveCourses.subList(2, 4);
+            List<AuditCompletedCourse> electiveCourses3 = electiveCourses.subList(4, 6);
 
             return Stream.of(
                 Arguments.of(Stream.concat(essentialCourses.stream(), electiveCourses1.stream()).toList()),
@@ -181,15 +181,15 @@ class ProGyoyangTest {
         }
 
         private static Stream<Arguments> provideAllEssentialAndInsufficientElectiveCourses() {
-            List<CompletedCourse> essentialCourses = createEssentialCourses();
+            List<AuditCompletedCourse> essentialCourses = createEssentialCourses();
 
-            List<CompletedCourse> electiveCourses = createAllElectiveCourses();
-            List<CompletedCourse> electiveCourses1 = electiveCourses.subList(0, 1);
-            List<CompletedCourse> electiveCourses2 = electiveCourses.subList(1, 2);
-            List<CompletedCourse> electiveCourses3 = electiveCourses.subList(2, 3);
-            List<CompletedCourse> electiveCourses4 = electiveCourses.subList(3, 4);
-            List<CompletedCourse> electiveCourses5 = electiveCourses.subList(4, 5);
-            List<CompletedCourse> electiveCourses6 = electiveCourses.subList(5, 6);
+            List<AuditCompletedCourse> electiveCourses = createAllElectiveCourses();
+            List<AuditCompletedCourse> electiveCourses1 = electiveCourses.subList(0, 1);
+            List<AuditCompletedCourse> electiveCourses2 = electiveCourses.subList(1, 2);
+            List<AuditCompletedCourse> electiveCourses3 = electiveCourses.subList(2, 3);
+            List<AuditCompletedCourse> electiveCourses4 = electiveCourses.subList(3, 4);
+            List<AuditCompletedCourse> electiveCourses5 = electiveCourses.subList(4, 5);
+            List<AuditCompletedCourse> electiveCourses6 = electiveCourses.subList(5, 6);
 
             return Stream.of(
                 Arguments.of(Stream.concat(essentialCourses.stream(), electiveCourses1.stream()).toList()),

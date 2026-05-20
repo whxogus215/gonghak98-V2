@@ -2,8 +2,8 @@ package com.gonghak98.v2.audit.domain.abeek;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.core.domain.course.DesignCourse;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashSet;
@@ -37,27 +37,24 @@ public class Design implements AbeekAuditable {
     }
 
     @Override
-    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+    public AbeekAreaAuditResult audit(List<AuditCompletedCourse> auditCompletedCourses) {
         AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
         double designPointSum = 0.0;
         boolean isBasicPassed = false;
         boolean isComprehensivePassed = false;
-        for (CompletedCourse course : courses) {
-            if (basicDesignCourse.isEqual(course.getCode())) {
+        for (AuditCompletedCourse course : auditCompletedCourses) {
+            if (basicDesignCourse.isEqual(course.code())) {
                 isBasicPassed = true;
                 designPointSum += basicDesignCourse.getDesignPoint();
-                course.setDesignCredit(basicDesignCourse.getDesignPoint());
             }
             for (DesignCourse elementDesignCourse : elementDesignCourses) {
-                if (elementDesignCourse.isEqual(course.getCode())) {
+                if (elementDesignCourse.isEqual(course.code())) {
                     designPointSum += elementDesignCourse.getDesignPoint();
-                    course.setDesignCredit(elementDesignCourse.getDesignPoint());
                 }
             }
             for (DesignCourse comprehensiveDesignCourse : comprehensiveDesignCourses) {
-                if (comprehensiveDesignCourse.isEqual(course.getCode())) {
+                if (comprehensiveDesignCourse.isEqual(course.code())) {
                     designPointSum += comprehensiveDesignCourse.getDesignPoint();
-                    course.setDesignCredit(comprehensiveDesignCourse.getDesignPoint());
                     isComprehensivePassed = true;
                 }
             }

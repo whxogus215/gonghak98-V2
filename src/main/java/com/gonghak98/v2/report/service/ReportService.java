@@ -8,8 +8,6 @@ import com.gonghak98.v2.report.controller.dto.ReportResponse;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.CreditSummaryDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.NonPassResultDto;
 import com.gonghak98.v2.report.controller.dto.ReportResponse.PassResultDto;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,13 +23,10 @@ public class ReportService {
                                     Short entranceYear,
                                     MultipartFile file) {
         FileResponse fileResponse = fileService.getFileData(file);
-        List<CompletedCourse> completedCourses = fileResponse.toCompletedCourses();
-
-        // 기이수 과목에 Abeek Type 할당
-        qualificationAuditService.addAbeekTypeToCompletedCourse(completedCourses, departmentName);
 
         // 기이수 과목을 각 세부 영역별로 검사
-        QualificationResult qualificationResult = qualificationAuditService.getQualificationAudit(departmentName, entranceYear, completedCourses);
+        QualificationResult qualificationResult = qualificationAuditService.getQualificationAudit(departmentName, entranceYear,
+                                                                                                  fileResponse.toCompletedCourses());
 
         return ReportResponse.builder()
                              .passResults(qualificationResult.passResults().entrySet().stream().map(
