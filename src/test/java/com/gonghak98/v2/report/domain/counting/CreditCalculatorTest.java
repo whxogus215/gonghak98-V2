@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -18,18 +18,18 @@ class CreditCalculatorTest {
     void calculateCreditsTest() {
         // given
         AbeekType abeekType = AbeekType.MSC;
-        CompletedCourse course1 = CompletedCourse.builder()
+        AuditCompletedCourse course1 = AuditCompletedCourse.builder()
                                                  .code("000001")
                                                  .name("미적분학1")
                                                  .credit(3)
                                                  .build();
-        CompletedCourse course2 = CompletedCourse.builder()
+        AuditCompletedCourse course2 = AuditCompletedCourse.builder()
                                                  .code("000002")
                                                  .name("일반물리1")
                                                  .credit(3)
                                                  .build();
 
-        Map<AbeekType, List<CompletedCourse>> coursesByArea = new EnumMap<>(AbeekType.class);
+        Map<AbeekType, List<AuditCompletedCourse>> coursesByArea = new EnumMap<>(AbeekType.class);
         coursesByArea.put(abeekType, List.of(course1, course2));
 
         Map<AbeekType, Double> requiredPoints = new EnumMap<>(AbeekType.class);
@@ -41,7 +41,7 @@ class CreditCalculatorTest {
         // then
         final AreaCreditSummary areaCreditSummary = result.creditSummaries().get(abeekType);
         final CreditCountResult creditCountResult = areaCreditSummary.getCreditCountResult();
-        final List<CompletedCourse> relatedCourses = areaCreditSummary.getRelatedCourses();
+        final List<AuditCompletedCourse> relatedCourses = areaCreditSummary.getRelatedCourses();
 
         assertThat(creditCountResult.requiredCredits()).isEqualTo(30.0);
         assertThat(creditCountResult.completedCredits()).isEqualTo(6.0);

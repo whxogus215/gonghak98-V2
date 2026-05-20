@@ -7,7 +7,7 @@ import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
 import com.gonghak98.v2.audit.fixture.PrerequisiteFixture;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,8 +34,8 @@ class DesignPrerequisiteAuditTest {
         @ParameterizedTest
         void 설계_선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(afterYear).semester(afterSemester).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(beforeYear).semester(beforeSemester).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(afterYear).semester(afterSemester).build();
 
             //when
             PrerequisiteAuditResult auditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
@@ -43,11 +43,11 @@ class DesignPrerequisiteAuditTest {
 
             //then
             assertThat(auditResult.nonPassResults()).doesNotContain(new NonPassResult(
-                                                                        elementCompletedCourse.getCode(),
-                                                                        elementCompletedCourse.getName(),
-                                                                        elementCompletedCourse.getYear(),
-                                                                        elementCompletedCourse.getSemester(),
-                                                                        elementCompletedCourse.getCredit(),
+                                                                        elementCompletedCourse.code(),
+                                                                        elementCompletedCourse.name(),
+                                                                        elementCompletedCourse.year(),
+                                                                        elementCompletedCourse.semester(),
+                                                                        elementCompletedCourse.credit(),
                                                                         NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                     )
             );
@@ -57,12 +57,12 @@ class DesignPrerequisiteAuditTest {
         @Test
         void 설계_선후수_조건_검사2() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2025).semester(1).build();
-            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().code("009650").year(2025).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(2024).semester(2).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(2025).semester(1).build();
+            AuditCompletedCourse elementCompletedCourse2 = AuditCompletedCourse.builder().code("009650").year(2025).semester(2).build();
+            AuditCompletedCourse comprehensiveCompletedCourse = AuditCompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
-            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse,
+            final List<AuditCompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse,
                                                                                      elementCompletedCourse,
                                                                                      elementCompletedCourse2,
                                                                                      comprehensiveCompletedCourse);
@@ -78,12 +78,12 @@ class DesignPrerequisiteAuditTest {
         @Test
         void 설계_선후수_조건_검사3() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2025).semester(1).build();
-            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().code("009650").year(2026).semester(1).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(2024).semester(2).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(2025).semester(1).build();
+            AuditCompletedCourse elementCompletedCourse2 = AuditCompletedCourse.builder().code("009650").year(2026).semester(1).build();
+            AuditCompletedCourse comprehensiveCompletedCourse = AuditCompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
-            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse,
+            final List<AuditCompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse,
                                                                                      elementCompletedCourse,
                                                                                      elementCompletedCourse2,
                                                                                      comprehensiveCompletedCourse);
@@ -99,12 +99,12 @@ class DesignPrerequisiteAuditTest {
         @Test
         void 설계_선후수_조건_검사4() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2025).semester(2).build();
-            CompletedCourse elementCompletedCourse2 = CompletedCourse.builder().code("009650").year(2025).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2026).semester(1).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(2024).semester(2).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(2025).semester(2).build();
+            AuditCompletedCourse elementCompletedCourse2 = AuditCompletedCourse.builder().code("009650").year(2025).semester(2).build();
+            AuditCompletedCourse comprehensiveCompletedCourse = AuditCompletedCourse.builder().code("009947").year(2026).semester(1).build();
 
-            final List<CompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse,
+            final List<AuditCompletedCourse> allCompletedCourses = getAllCompletedCourses(basicCompletedCourse,
                                                                                      elementCompletedCourse,
                                                                                      elementCompletedCourse2,
                                                                                      comprehensiveCompletedCourse);
@@ -132,19 +132,19 @@ class DesignPrerequisiteAuditTest {
         @ParameterizedTest
         void 설계_선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(beforeYear).semester(beforeSemester).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
                                                                                                                    elementCompletedCourse));
 
             //then
-            assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(elementCompletedCourse.getCode(),
-                                                                                            elementCompletedCourse.getName(),
-                                                                                            elementCompletedCourse.getYear(),
-                                                                                            elementCompletedCourse.getSemester(),
-                                                                                            elementCompletedCourse.getCredit(),
+            assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(elementCompletedCourse.code(),
+                                                                                            elementCompletedCourse.name(),
+                                                                                            elementCompletedCourse.year(),
+                                                                                            elementCompletedCourse.semester(),
+                                                                                            elementCompletedCourse.credit(),
                                                                                             NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                           )
             );
@@ -156,19 +156,19 @@ class DesignPrerequisiteAuditTest {
         @ParameterizedTest
         void 설계_선후수_조건_검사2(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
+            AuditCompletedCourse comprehensiveCompletedCourse = AuditCompletedCourse.builder().code("009947").year(beforeYear).semester(beforeSemester).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(afterYear).semester(afterSemester).build();
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
                                                                                                                    comprehensiveCompletedCourse));
 
             //then
-            assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(comprehensiveCompletedCourse.getCode(),
-                                                                                            comprehensiveCompletedCourse.getName(),
-                                                                                            comprehensiveCompletedCourse.getYear(),
-                                                                                            comprehensiveCompletedCourse.getSemester(),
-                                                                                            comprehensiveCompletedCourse.getCredit(),
+            assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(comprehensiveCompletedCourse.code(),
+                                                                                            comprehensiveCompletedCourse.name(),
+                                                                                            comprehensiveCompletedCourse.year(),
+                                                                                            comprehensiveCompletedCourse.semester(),
+                                                                                            comprehensiveCompletedCourse.credit(),
                                                                                             NonPassMessage.NOT_SATISFIED_PREREQUISITE)
             );
             assertThat(prerequisiteAuditResult.passResults()).containsEntry(AbeekType.DESIGN, Boolean.FALSE);
@@ -178,9 +178,9 @@ class DesignPrerequisiteAuditTest {
         @Test
         void 설계_선후수_조건_검사3() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2025).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2025).semester(2).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(2024).semester(2).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(2025).semester(2).build();
+            AuditCompletedCourse comprehensiveCompletedCourse = AuditCompletedCourse.builder().code("009947").year(2025).semester(2).build();
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
@@ -195,8 +195,8 @@ class DesignPrerequisiteAuditTest {
         @Test
         void 설계_선후수_조건_동시수강_검사1() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(2024).semester(2).build();
-            CompletedCourse elementCompletedCourse = CompletedCourse.builder().code("007721").year(2024).semester(2).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(2024).semester(2).build();
+            AuditCompletedCourse elementCompletedCourse = AuditCompletedCourse.builder().code("007721").year(2024).semester(2).build();
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
@@ -210,8 +210,8 @@ class DesignPrerequisiteAuditTest {
         @Test
         void 설계_선후수_조건_동시수강_검사2() {
             //given
-            CompletedCourse basicCompletedCourse = CompletedCourse.builder().code("007620").year(2024).semester(2).build();
-            CompletedCourse comprehensiveCompletedCourse = CompletedCourse.builder().code("009947").year(2024).semester(2).build();
+            AuditCompletedCourse basicCompletedCourse = AuditCompletedCourse.builder().code("007620").year(2024).semester(2).build();
+            AuditCompletedCourse comprehensiveCompletedCourse = AuditCompletedCourse.builder().code("009947").year(2024).semester(2).build();
 
             //when
             PrerequisiteAuditResult auditResult = designPrerequisiteAudit.audit(getAllCompletedCourses(basicCompletedCourse,
@@ -222,7 +222,7 @@ class DesignPrerequisiteAuditTest {
         }
     }
 
-    private List<CompletedCourse> getAllCompletedCourses(CompletedCourse... course) {
+    private List<AuditCompletedCourse> getAllCompletedCourses(AuditCompletedCourse... course) {
         return new ArrayList<>(List.of(course));
     }
 }

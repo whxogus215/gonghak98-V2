@@ -3,13 +3,13 @@ package com.gonghak98.v2.audit.domain;
 import com.gonghak98.v2.audit.domain.abeek.AbeekAreaAudit;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
 import com.gonghak98.v2.report.domain.counting.CreditCalculator;
 import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -23,13 +23,13 @@ public class QualificationAudit {
     private final AbeekAreaAudit abeekAreaAudit;
     private final PrerequisiteAudit prerequisiteAudit;
 
-    public QualificationResult getQualificationResult(List<CompletedCourse> userCourses) {
-        AbeekAreaAuditResult abeekAreaAuditResult = abeekAreaAudit.auditAbeekArea(userCourses);
+    public QualificationResult getQualificationResult(List<AuditCompletedCourse> auditCompletedCourses) {
+        AbeekAreaAuditResult abeekAreaAuditResult = abeekAreaAudit.auditAbeekArea(auditCompletedCourses);
         Map<AbeekType, Double> requiredCredits = abeekAreaAudit.getRequiredCredits();
 
-        PrerequisiteAuditResult prerequisiteAuditResult = prerequisiteAudit.auditPrerequisite(userCourses);
+        PrerequisiteAuditResult prerequisiteAuditResult = prerequisiteAudit.auditPrerequisite(auditCompletedCourses);
 
-        Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = categorizeCompletedCourseByAbeekType(userCourses);
+        Map<AbeekType, List<AuditCompletedCourse>> coursesByAbeekType = categorizeCompletedCourseByAbeekType(auditCompletedCourses);
         // TODO : counting 도메인과의 순환참조 해결하기
         CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByAbeekType, requiredCredits);
 
@@ -43,7 +43,7 @@ public class QualificationAudit {
         for (Entry<AbeekType, Boolean> prerequisiteEntry : prerequisiteAuditResult.passResults().entrySet()) {
             AbeekType targetAbeekType = prerequisiteEntry.getKey();
             if (passResults.get(targetAbeekType) == Boolean.TRUE && prerequisiteEntry.getValue() == Boolean.FALSE) {
-                passResults.put(targetAbeekType,Boolean.FALSE);
+                passResults.put(targetAbeekType, Boolean.FALSE);
             }
         }
         nonPassResults.addAll(prerequisiteAuditResult.nonPassResults());
@@ -54,10 +54,10 @@ public class QualificationAudit {
         );
     }
 
-    private Map<AbeekType, List<CompletedCourse>> categorizeCompletedCourseByAbeekType(List<CompletedCourse> completedCourses) {
-        Map<AbeekType, List<CompletedCourse>> coursesByAbeekType = new EnumMap<>(AbeekType.class);
-        for (CompletedCourse course : completedCourses) {
-            AbeekType abeekType = course.getAbeekType();
+    private Map<AbeekType, List<AuditCompletedCourse>> categorizeCompletedCourseByAbeekType(List<AuditCompletedCourse> completedCourses) {
+        Map<AbeekType, List<AuditCompletedCourse>> coursesByAbeekType = new EnumMap<>(AbeekType.class);
+        for (AuditCompletedCourse course : completedCourses) {
+            AbeekType abeekType = course.abeekType();
             if (abeekType == AbeekType.DESIGN) {
                 // 설계 기이수 과목은 전공 영역에도 포함
                 coursesByAbeekType.computeIfAbsent(AbeekType.MAJOR, k -> new ArrayList<>()).add(course);

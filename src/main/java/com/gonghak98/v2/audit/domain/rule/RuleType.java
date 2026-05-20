@@ -1,6 +1,6 @@
 package com.gonghak98.v2.audit.domain.rule;
 
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,11 +9,11 @@ public enum RuleType {
 
     MIN_CREDIT {
         @Override
-        public boolean check(Set<String> targetCourseCodes, int conditionValue, List<CompletedCourse> completedCourses) {
-            double totalCredits = completedCourses.stream()
-                .filter(course -> targetCourseCodes.contains(course.getCode()))
-                .mapToDouble(CompletedCourse::getCredit)
-                .sum();
+        public boolean check(Set<String> targetCourseCodes, int conditionValue, List<AuditCompletedCourse> auditCompletedCourses) {
+            double totalCredits = auditCompletedCourses.stream()
+                                                       .filter(course -> targetCourseCodes.contains(course.code()))
+                                                       .mapToDouble(AuditCompletedCourse::credit)
+                                                       .sum();
 
             return totalCredits >= conditionValue;
         }
@@ -21,10 +21,10 @@ public enum RuleType {
 
     MIN_COUNT {
         @Override
-        public boolean check(Set<String> targetCourseCodes, int conditionValue, List<CompletedCourse> completedCourses) {
-            long count = completedCourses.stream()
-                .filter(course -> targetCourseCodes.contains(course.getCode()))
-                .count();
+        public boolean check(Set<String> targetCourseCodes, int conditionValue, List<AuditCompletedCourse> auditCompletedCourses) {
+            long count = auditCompletedCourses.stream()
+                                              .filter(course -> targetCourseCodes.contains(course.code()))
+                                              .count();
 
             return count >= conditionValue;
         }
@@ -32,13 +32,13 @@ public enum RuleType {
 
     MUST_TAKE_ALL {
         @Override
-        public boolean check(Set<String> targetCourseCodes, int conditionValue, List<CompletedCourse> completedCourses) {
-            final Set<String> completedCodes = completedCourses.stream()
-                                                        .map(CompletedCourse::getCode)
-                                                        .collect(Collectors.toSet());
+        public boolean check(Set<String> targetCourseCodes, int conditionValue, List<AuditCompletedCourse> auditCompletedCourses) {
+            final Set<String> completedCodes = auditCompletedCourses.stream()
+                                                                    .map(AuditCompletedCourse::code)
+                                                                    .collect(Collectors.toSet());
             return completedCodes.containsAll(targetCourseCodes);
         }
     };
 
-    public abstract boolean check(Set<String> targetCourseCodes, int conditionValue, List<CompletedCourse> completedCourses);
+    public abstract boolean check(Set<String> targetCourseCodes, int conditionValue, List<AuditCompletedCourse> auditCompletedCourses);
 }

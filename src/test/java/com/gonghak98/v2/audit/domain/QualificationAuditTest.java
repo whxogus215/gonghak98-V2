@@ -6,11 +6,11 @@ import com.gonghak98.v2.audit.domain.abeek.AbeekAreaAudit;
 import com.gonghak98.v2.audit.domain.abeek.AbeekAuditable;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAuditable;
-import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -97,7 +97,7 @@ class QualificationAuditTest {
         private final AbeekAreaAuditResult result;
 
         @Override
-        public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+        public AbeekAreaAuditResult audit(List<AuditCompletedCourse> courses) {
             return result;
         }
 
@@ -118,7 +118,7 @@ class QualificationAuditTest {
         private final PrerequisiteAuditResult result;
 
         @Override
-        public PrerequisiteAuditResult audit(List<CompletedCourse> courses) {
+        public PrerequisiteAuditResult audit(List<AuditCompletedCourse> courses) {
             return result;
         }
     }

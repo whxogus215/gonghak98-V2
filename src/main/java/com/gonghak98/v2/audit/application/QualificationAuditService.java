@@ -2,6 +2,8 @@ package com.gonghak98.v2.audit.application;
 
 import com.gonghak98.v2.audit.domain.QualificationAudit;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.CourseAuditInfo;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.core.domain.course.CompletedCourse;
 import java.util.List;
@@ -16,16 +18,20 @@ public class QualificationAuditService {
     private final QualificationAuditRepository qualificationAuditRepository;
 
     public QualificationResult getQualificationAudit(String departmentName, Short entranceYear, List<CompletedCourse> completedCourses) {
+
+        Map<String, CourseAuditInfo> infos = qualificationAuditRepository.findCourseAuditInfos(completedCourses, departmentName);
+
+        List<AuditCompletedCourse> auditCompletedCourses = completedCourses.stream()
+                                                                           .map(course -> {
+                                                                               CourseAuditInfo info = infos.getOrDefault(
+                                                                                   course.getCode(),
+                                                                                   new CourseAuditInfo(AbeekType.NONE, 0.0)
+                                                                               );
+                                                                               return AuditCompletedCourse.from(course, info.abeekType(), info.designCredit());
+                                                                           })
+                                                                           .toList();
+
         QualificationAudit qualificationAudit = qualificationAuditRepository.findQualificationAudit(departmentName, entranceYear);
-        return qualificationAudit.getQualificationResult(completedCourses);
-    }
-
-    public void addAbeekTypeToCompletedCourse(List<CompletedCourse> completedCourses, String departmentName) {
-        Map<String, AbeekType> abeekTypeOfCompletedCourses = qualificationAuditRepository.findAbeekTypeOfCompletedCourse(completedCourses, departmentName);
-
-        for (CompletedCourse course : completedCourses) {
-            AbeekType mappedType = abeekTypeOfCompletedCourses.getOrDefault(course.getCode(), AbeekType.NONE);
-            course.setAbeekType(mappedType);
-        }
+        return qualificationAudit.getQualificationResult(auditCompletedCourses);
     }
 }
