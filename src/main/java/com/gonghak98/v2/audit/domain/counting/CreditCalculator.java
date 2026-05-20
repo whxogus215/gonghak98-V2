@@ -1,8 +1,8 @@
-package com.gonghak98.v2.report.domain.counting;
+package com.gonghak98.v2.audit.domain.counting;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
-import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
+import com.gonghak98.v2.audit.domain.counting.dto.CountingResult;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;

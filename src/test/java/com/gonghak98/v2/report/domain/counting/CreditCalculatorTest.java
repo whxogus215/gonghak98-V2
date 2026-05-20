@@ -3,7 +3,10 @@ package com.gonghak98.v2.report.domain.counting;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
+import com.gonghak98.v2.audit.domain.counting.AreaCreditSummary;
+import com.gonghak98.v2.audit.domain.counting.CreditCalculator;
+import com.gonghak98.v2.audit.domain.counting.CreditCountResult;
+import com.gonghak98.v2.audit.domain.counting.dto.CountingResult;
 import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.EnumMap;
 import java.util.List;

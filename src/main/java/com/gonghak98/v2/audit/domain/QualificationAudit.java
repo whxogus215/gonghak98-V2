@@ -8,8 +8,8 @@ import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
-import com.gonghak98.v2.report.domain.counting.CreditCalculator;
-import com.gonghak98.v2.report.domain.counting.dto.CountingResult;
+import com.gonghak98.v2.audit.domain.counting.CreditCalculator;
+import com.gonghak98.v2.audit.domain.counting.dto.CountingResult;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -30,10 +30,8 @@ public class QualificationAudit {
         PrerequisiteAuditResult prerequisiteAuditResult = prerequisiteAudit.auditPrerequisite(auditCompletedCourses);
 
         Map<AbeekType, List<AuditCompletedCourse>> coursesByAbeekType = categorizeCompletedCourseByAbeekType(auditCompletedCourses);
-        // TODO : counting 도메인과의 순환참조 해결하기
-        CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByAbeekType, requiredCredits);
 
-        // TODO : counting 의존관계 제거 후, 리팩토링하기
+        CountingResult creditCountingResult = CreditCalculator.calculateCredits(coursesByAbeekType, requiredCredits);
         Map<AbeekType, Boolean> passResults = new EnumMap<>(AbeekType.class);
 
         // ABEEK 영역 검사를 먼저하고, 선후수 검사를 마지막에 진행 -> 선후수 조건을 만족하지 못할 경우, 미이수로 처리하기 때문
