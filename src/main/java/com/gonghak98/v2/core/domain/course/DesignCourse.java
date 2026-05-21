@@ -11,7 +11,7 @@ public class DesignCourse {
     private final Course course;
 
     @Getter
-    private final double designPoint;
+    private final double designCredit;
 
     public boolean isEqual(String code) {
         return course.isEqual(code);

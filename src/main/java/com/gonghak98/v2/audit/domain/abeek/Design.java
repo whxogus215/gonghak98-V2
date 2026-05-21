@@ -39,27 +39,27 @@ public class Design implements AbeekAuditable {
     @Override
     public AbeekAreaAuditResult audit(List<AuditCompletedCourse> auditCompletedCourses) {
         AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
-        double designPointSum = 0.0;
+        double currentDesignCredit = 0.0;
         boolean isBasicPassed = false;
         boolean isComprehensivePassed = false;
         for (AuditCompletedCourse course : auditCompletedCourses) {
             if (basicDesignCourse.isEqual(course.code())) {
                 isBasicPassed = true;
-                designPointSum += basicDesignCourse.getDesignPoint();
+                currentDesignCredit += course.designCredit();
             }
             for (DesignCourse elementDesignCourse : elementDesignCourses) {
                 if (elementDesignCourse.isEqual(course.code())) {
-                    designPointSum += elementDesignCourse.getDesignPoint();
+                    currentDesignCredit += course.designCredit();
                 }
             }
             for (DesignCourse comprehensiveDesignCourse : comprehensiveDesignCourses) {
                 if (comprehensiveDesignCourse.isEqual(course.code())) {
-                    designPointSum += comprehensiveDesignCourse.getDesignPoint();
+                    currentDesignCredit += course.designCredit();
                     isComprehensivePassed = true;
                 }
             }
         }
-        boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (designPointSum >= minDesignCredit);
+        boolean isAllSatisfied = isBasicPassed && isComprehensivePassed && (currentDesignCredit >= minDesignCredit);
 
         abeekAreaAuditResult.passResults().put(AbeekType.DESIGN, isAllSatisfied);
         return abeekAreaAuditResult;

@@ -44,23 +44,23 @@ class DesignTest {
     }
 
     private static List<AuditCompletedCourse> createBasicDesignCourses() {
-        return List.of(AuditCompletedCourse.builder().code("007620").name("기초설계").build());
+        return List.of(AuditCompletedCourse.builder().code("007620").name("기초설계").designCredit(3).build());
     }
 
     private static List<AuditCompletedCourse> createElementDesignCourses() {
         return List.of(
-            AuditCompletedCourse.builder().code("007721").name("전자소자설계").build(),
-            AuditCompletedCourse.builder().code("009650").name("데이터통신설계").build(),
-            AuditCompletedCourse.builder().code("006935").name("정보시스템설계").build(),
-            AuditCompletedCourse.builder().code("009662").name("전자회로설계").build(),
-            AuditCompletedCourse.builder().code("007585").name("통신시스템설계").build(),
-            AuditCompletedCourse.builder().code("009663").name("멀티미디어설계").build());
+            AuditCompletedCourse.builder().code("007721").name("전자소자설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("009650").name("데이터통신설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("006935").name("정보시스템설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("009662").name("전자회로설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("007585").name("통신시스템설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("009663").name("멀티미디어설계").designCredit(2).build());
     }
 
     private static List<AuditCompletedCourse> createComprehensiveDesignCourses() {
         return List.of(
-            AuditCompletedCourse.builder().code("009947").name("캡스톤디자인A").build(),
-            AuditCompletedCourse.builder().code("009948").name("캡스톤디자인B").build());
+            AuditCompletedCourse.builder().code("009947").name("캡스톤디자인A").designCredit(3).build(),
+            AuditCompletedCourse.builder().code("009948").name("캡스톤디자인B").designCredit(3).build());
     }
 
     private static Stream<Arguments> provideAllSatisfiedDesignCourseCombinations() {
