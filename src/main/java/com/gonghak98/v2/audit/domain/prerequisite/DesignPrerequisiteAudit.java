@@ -2,9 +2,9 @@ package com.gonghak98.v2.audit.domain.prerequisite;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -23,25 +23,25 @@ public class DesignPrerequisiteAudit implements PrerequisiteAuditable {
     private final Set<String> comprehensiveCourseCodes;
 
     @Override
-    public PrerequisiteAuditResult audit(List<CompletedCourse> courses) {
+    public PrerequisiteAuditResult audit(List<AuditCompletedCourse> courses) {
         PrerequisiteAuditResult prerequisiteAuditResult = new PrerequisiteAuditResult(new EnumMap<>(AbeekType.class),
                                                                                       new ArrayList<>());
 
         Map<AbeekType, Boolean> passResults = prerequisiteAuditResult.passResults();
         List<NonPassResult> nonPassResults = prerequisiteAuditResult.nonPassResults();
 
-        Optional<CompletedCourse> completedBasicCourse = courses.stream()
-                                                                .filter(completedCourse -> basicCourseCode.equals(completedCourse.getCode()))
-                                                                .findFirst();
+        Optional<AuditCompletedCourse> completedBasicCourse = courses.stream()
+                                                                     .filter(completedCourse -> basicCourseCode.equals(completedCourse.code()))
+                                                                     .findFirst();
 
-        List<CompletedCourse> completedElementCourses = courses.stream()
-                                                               .filter(completedCourse -> elementCourseCodes.contains(completedCourse.getCode()))
-                                                               .toList();
+        List<AuditCompletedCourse> completedElementCourses = courses.stream()
+                                                                    .filter(completedCourse -> elementCourseCodes.contains(completedCourse.code()))
+                                                                    .toList();
 
-        List<CompletedCourse> completedComprehensiveCourses = courses.stream()
-                                                                     .filter(
-                                                                         completedCourse -> comprehensiveCourseCodes.contains(completedCourse.getCode()))
-                                                                     .collect(Collectors.toList());
+        List<AuditCompletedCourse> completedComprehensiveCourses = courses.stream()
+                                                                          .filter(
+                                                                              completedCourse -> comprehensiveCourseCodes.contains(completedCourse.code()))
+                                                                          .collect(Collectors.toList());
 
         boolean isElementPassed = checkElementPrerequisite(completedBasicCourse, completedElementCourses, nonPassResults);
         boolean isComprehensivePassed = checkComprehensivePrerequisite(completedBasicCourse, completedElementCourses, completedComprehensiveCourses,
@@ -52,31 +52,31 @@ public class DesignPrerequisiteAudit implements PrerequisiteAuditable {
         return prerequisiteAuditResult;
     }
 
-    private boolean checkElementPrerequisite(Optional<CompletedCourse> completedBasicCourse,
-                                             List<CompletedCourse> completedElementCourses,
+    private boolean checkElementPrerequisite(Optional<AuditCompletedCourse> completedBasicCourse,
+                                             List<AuditCompletedCourse> completedElementCourses,
                                              List<NonPassResult> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
-            for (CompletedCourse completedElementCourse : completedElementCourses) {
-                nonPassResults.add(new NonPassResult(completedElementCourse.getCode(),
-                                                     completedElementCourse.getName(),
-                                                     completedElementCourse.getYear(),
-                                                     completedElementCourse.getSemester(),
-                                                     completedElementCourse.getCredit(),
+            for (AuditCompletedCourse completedElementCourse : completedElementCourses) {
+                nonPassResults.add(new NonPassResult(completedElementCourse.code(),
+                                                     completedElementCourse.name(),
+                                                     completedElementCourse.year(),
+                                                     completedElementCourse.semester(),
+                                                     completedElementCourse.credit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
             }
             return false;
         }
-        CompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
-        for (CompletedCourse completedElementCourse : completedElementCourses) {
+        AuditCompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
+        for (AuditCompletedCourse completedElementCourse : completedElementCourses) {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedElementCourse)) {
-                nonPassResults.add(new NonPassResult(completedElementCourse.getCode(),
-                                                     completedElementCourse.getName(),
-                                                     completedElementCourse.getYear(),
-                                                     completedElementCourse.getSemester(),
-                                                     completedElementCourse.getCredit(),
+                nonPassResults.add(new NonPassResult(completedElementCourse.code(),
+                                                     completedElementCourse.name(),
+                                                     completedElementCourse.year(),
+                                                     completedElementCourse.semester(),
+                                                     completedElementCourse.credit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
@@ -86,33 +86,33 @@ public class DesignPrerequisiteAudit implements PrerequisiteAuditable {
         return true;
     }
 
-    private boolean checkComprehensivePrerequisite(Optional<CompletedCourse> completedBasicCourse,
-                                                   List<CompletedCourse> completedElementCourses,
-                                                   List<CompletedCourse> completedComprehensiveCourses,
+    private boolean checkComprehensivePrerequisite(Optional<AuditCompletedCourse> completedBasicCourse,
+                                                   List<AuditCompletedCourse> completedElementCourses,
+                                                   List<AuditCompletedCourse> completedComprehensiveCourses,
                                                    List<NonPassResult> nonPassResults) {
         // 기초설계를 먼저 들었는지 확인
         if (completedBasicCourse.isEmpty()) {
-            for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
-                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
-                                                     completedComprehensiveCourse.getName(),
-                                                     completedComprehensiveCourse.getYear(),
-                                                     completedComprehensiveCourse.getSemester(),
-                                                     completedComprehensiveCourse.getCredit(),
+            for (AuditCompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
+                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.code(),
+                                                     completedComprehensiveCourse.name(),
+                                                     completedComprehensiveCourse.year(),
+                                                     completedComprehensiveCourse.semester(),
+                                                     completedComprehensiveCourse.credit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
             }
             return false;
         }
-        CompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
+        AuditCompletedCourse realCompletedBasicCourse = completedBasicCourse.get();
 
-        for (CompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
+        for (AuditCompletedCourse completedComprehensiveCourse : completedComprehensiveCourses) {
             if (!PrerequisiteChecker.isSatisfiedPrerequisite(realCompletedBasicCourse, completedComprehensiveCourse)) {
-                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
-                                                     completedComprehensiveCourse.getName(),
-                                                     completedComprehensiveCourse.getYear(),
-                                                     completedComprehensiveCourse.getSemester(),
-                                                     completedComprehensiveCourse.getCredit(),
+                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.code(),
+                                                     completedComprehensiveCourse.name(),
+                                                     completedComprehensiveCourse.year(),
+                                                     completedComprehensiveCourse.semester(),
+                                                     completedComprehensiveCourse.credit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );
@@ -125,14 +125,14 @@ public class DesignPrerequisiteAudit implements PrerequisiteAuditable {
         }
         // 요소 설계 중 종합 설계 보다 나중에 들은 과목이 없는지 확인
         Collections.sort(completedComprehensiveCourses);
-        CompletedCourse completedComprehensiveCourse = completedComprehensiveCourses.get(0);
-        for (CompletedCourse completedElementCourse : completedElementCourses) {
+        AuditCompletedCourse completedComprehensiveCourse = completedComprehensiveCourses.get(0);
+        for (AuditCompletedCourse completedElementCourse : completedElementCourses) {
             if (!PrerequisiteChecker.isSatisfiedDesignPrerequisite(completedElementCourse, completedComprehensiveCourse)) {
-                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.getCode(),
-                                                     completedComprehensiveCourse.getName(),
-                                                     completedComprehensiveCourse.getYear(),
-                                                     completedComprehensiveCourse.getSemester(),
-                                                     completedComprehensiveCourse.getCredit(),
+                nonPassResults.add(new NonPassResult(completedComprehensiveCourse.code(),
+                                                     completedComprehensiveCourse.name(),
+                                                     completedComprehensiveCourse.year(),
+                                                     completedComprehensiveCourse.semester(),
+                                                     completedComprehensiveCourse.credit(),
                                                      NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                    )
                 );

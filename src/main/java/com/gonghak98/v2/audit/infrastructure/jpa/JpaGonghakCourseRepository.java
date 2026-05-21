@@ -1,8 +1,8 @@
-package com.gonghak98.v2.report.infrastructure.jpa;
+package com.gonghak98.v2.audit.infrastructure.jpa;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
-import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
+import com.gonghak98.v2.audit.infrastructure.entity.GonghakCourseEntity;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -51,5 +51,6 @@ src/test/resources/file
 *.sh
 
 /.gemini/
+/.agents/
 
 lambda-test.json

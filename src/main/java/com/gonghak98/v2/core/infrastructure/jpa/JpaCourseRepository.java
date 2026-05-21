@@ -1,6 +1,6 @@
-package com.gonghak98.v2.report.infrastructure.jpa;
+package com.gonghak98.v2.core.infrastructure.jpa;
 
-import com.gonghak98.v2.report.infrastructure.entity.CourseEntity;
+import com.gonghak98.v2.core.infrastructure.entity.CourseEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

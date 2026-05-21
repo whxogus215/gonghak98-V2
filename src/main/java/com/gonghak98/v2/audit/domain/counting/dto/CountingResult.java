@@ -1,7 +1,7 @@
-package com.gonghak98.v2.report.domain.counting.dto;
+package com.gonghak98.v2.audit.domain.counting.dto;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
-import com.gonghak98.v2.report.domain.counting.AreaCreditSummary;
+import com.gonghak98.v2.audit.domain.counting.AreaCreditSummary;
 import java.util.Map;
 
 public record CountingResult(

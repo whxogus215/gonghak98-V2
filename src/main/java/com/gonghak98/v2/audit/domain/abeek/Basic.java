@@ -2,8 +2,8 @@ package com.gonghak98.v2.audit.domain.abeek;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.rule.RequirementRule;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class Basic implements AbeekAuditable {
     private final double minCredit;
 
     @Override
-    public AbeekAreaAuditResult audit(List<CompletedCourse> courses) {
+    public AbeekAreaAuditResult audit(List<AuditCompletedCourse> courses) {
         boolean isSatisfied = rules.stream()
                                    .allMatch(rule -> rule.isSatisfied(courses));
         return new AbeekAreaAuditResult(Map.of(abeekType, isSatisfied), Collections.emptyList());

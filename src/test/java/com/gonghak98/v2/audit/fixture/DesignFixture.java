@@ -1,8 +1,8 @@
 package com.gonghak98.v2.audit.fixture;
 
 import com.gonghak98.v2.audit.domain.abeek.Design;
-import com.gonghak98.v2.report.domain.course.Course;
-import com.gonghak98.v2.report.domain.course.DesignCourse;
+import com.gonghak98.v2.core.domain.course.Course;
+import com.gonghak98.v2.core.domain.course.DesignCourse;
 import java.util.List;
 
 public class DesignFixture {
@@ -22,12 +22,12 @@ public class DesignFixture {
             Course.builder().code("009948").name("캡스톤디자인B").build()
         );
 
-        DesignCourse basicDesignCourse = DesignCourse.builder().course(basicCourse).designPoint(3.0).build();
+        DesignCourse basicDesignCourse = DesignCourse.builder().course(basicCourse).designCredit(3.0).build();
         List<DesignCourse> elementDesignCourses = elementCourses.stream()
-                                                                .map(c -> DesignCourse.builder().course(c).designPoint(2.0).build())
+                                                                .map(c -> DesignCourse.builder().course(c).designCredit(2.0).build())
                                                                 .toList();
         List<DesignCourse> comprehensiveDesignCourses = comprehensiveCourses.stream()
-                                                                            .map(c -> DesignCourse.builder().course(c).designPoint(3.0).build())
+                                                                            .map(c -> DesignCourse.builder().course(c).designCredit(3.0).build())
                                                                             .toList();
         double minDesignPoint = 9.0;
 

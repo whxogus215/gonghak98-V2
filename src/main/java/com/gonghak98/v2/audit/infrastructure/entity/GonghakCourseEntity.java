@@ -1,7 +1,9 @@
-package com.gonghak98.v2.report.infrastructure.entity;
+package com.gonghak98.v2.audit.infrastructure.entity;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.CourseType;
+import com.gonghak98.v2.core.infrastructure.entity.CourseEntity;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -7,15 +7,15 @@ import com.gonghak98.v2.audit.domain.abeek.Basic;
 import com.gonghak98.v2.audit.domain.abeek.Design;
 import com.gonghak98.v2.audit.domain.abeek.Major;
 import com.gonghak98.v2.audit.domain.abeek.ProGyoyang;
-import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.dto.CourseAuditInfo;
 import com.gonghak98.v2.audit.domain.exception.AbeekException;
 import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
-import com.gonghak98.v2.report.infrastructure.entity.DepartmentEntity;
-import com.gonghak98.v2.report.infrastructure.entity.GonghakCourseEntity;
-import com.gonghak98.v2.report.infrastructure.jpa.JpaDepartmentRepository;
-import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakCourseRepository;
-import com.gonghak98.v2.report.infrastructure.jpa.JpaGonghakRequirementRepository;
+import com.gonghak98.v2.audit.infrastructure.entity.GonghakCourseEntity;
+import com.gonghak98.v2.audit.infrastructure.jpa.JpaGonghakCourseRepository;
+import com.gonghak98.v2.audit.infrastructure.jpa.JpaGonghakRequirementRepository;
+import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
+import com.gonghak98.v2.core.infrastructure.jpa.JpaDepartmentRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +56,7 @@ public class QualificationAuditRepositoryImpl implements QualificationAuditRepos
     }
 
     @Override
-    public Map<String, AbeekType> findAbeekTypeOfCompletedCourse(List<CompletedCourse> completedCourses, String departmentName) {
+    public Map<String, CourseAuditInfo> findCourseAuditInfos(List<CompletedCourse> completedCourses, String departmentName) {
         if (completedCourses == null || completedCourses.isEmpty()) {
             return Collections.emptyMap();
         }
@@ -68,7 +68,7 @@ public class QualificationAuditRepositoryImpl implements QualificationAuditRepos
         return findCompletedGonghakCourses.stream()
                                           .collect(Collectors.toMap(
                                               gc -> gc.getCourse().getCode(),
-                                              GonghakCourseEntity::getAbeekType
+                                              gc -> new CourseAuditInfo(gc.getAbeekType(), gc.getDesignCredit())
                                           ));
     }
 }

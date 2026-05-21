@@ -3,10 +3,9 @@ package com.gonghak98.v2.audit.domain.abeek;
 import static com.gonghak98.v2.audit.fixture.DesignFixture.createDesign;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gonghak98.v2.audit.domain.abeek.Design;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +18,7 @@ class DesignTest {
     @ParameterizedTest
     @MethodSource("provideAllSatisfiedDesignCourseCombinations")
     @DisplayName("기초설계 및 캡스톤디자인AㆍB 중 하나를 포함하여 설계 9학점 이상 이수해야 설계 영역 조건을 만족한다.")
-    void 기초설계_캡스톤_1개_포함_설계_9학점_이상(List<CompletedCourse> studentCourses) {
+    void 기초설계_캡스톤_1개_포함_설계_9학점_이상(List<AuditCompletedCourse> studentCourses) {
         //given
         Design design = createDesign();
 
@@ -33,7 +32,7 @@ class DesignTest {
     @ParameterizedTest
     @MethodSource("provideSufficientBasicAndElementDesignCourseNotComprehensiveDesignCourse")
     @DisplayName("기초설계 및 요소설계 2개를 이수해도 캡스톤디자인 A or B를 이수하지 않으면, 설계 영역 조건을 만족하지 못한다.")
-    void 기초설계_요소설계_2개_캡스톤디자인_미이수(List<CompletedCourse> studentCourses) {
+    void 기초설계_요소설계_2개_캡스톤디자인_미이수(List<AuditCompletedCourse> studentCourses) {
         //given
         Design design = createDesign();
 
@@ -44,34 +43,34 @@ class DesignTest {
         assertThat(auditResult.passResults().get(AbeekType.DESIGN)).isFalse();
     }
 
-    private static List<CompletedCourse> createBasicDesignCourses() {
-        return List.of(CompletedCourse.builder().code("007620").name("기초설계").build());
+    private static List<AuditCompletedCourse> createBasicDesignCourses() {
+        return List.of(AuditCompletedCourse.builder().code("007620").name("기초설계").designCredit(3).build());
     }
 
-    private static List<CompletedCourse> createElementDesignCourses() {
+    private static List<AuditCompletedCourse> createElementDesignCourses() {
         return List.of(
-            CompletedCourse.builder().code("007721").name("전자소자설계").build(),
-            CompletedCourse.builder().code("009650").name("데이터통신설계").build(),
-            CompletedCourse.builder().code("006935").name("정보시스템설계").build(),
-            CompletedCourse.builder().code("009662").name("전자회로설계").build(),
-            CompletedCourse.builder().code("007585").name("통신시스템설계").build(),
-            CompletedCourse.builder().code("009663").name("멀티미디어설계").build());
+            AuditCompletedCourse.builder().code("007721").name("전자소자설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("009650").name("데이터통신설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("006935").name("정보시스템설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("009662").name("전자회로설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("007585").name("통신시스템설계").designCredit(2).build(),
+            AuditCompletedCourse.builder().code("009663").name("멀티미디어설계").designCredit(2).build());
     }
 
-    private static List<CompletedCourse> createComprehensiveDesignCourses() {
+    private static List<AuditCompletedCourse> createComprehensiveDesignCourses() {
         return List.of(
-            CompletedCourse.builder().code("009947").name("캡스톤디자인A").build(),
-            CompletedCourse.builder().code("009948").name("캡스톤디자인B").build());
+            AuditCompletedCourse.builder().code("009947").name("캡스톤디자인A").designCredit(3).build(),
+            AuditCompletedCourse.builder().code("009948").name("캡스톤디자인B").designCredit(3).build());
     }
 
     private static Stream<Arguments> provideAllSatisfiedDesignCourseCombinations() {
-        List<CompletedCourse> basicDesignCourses = createBasicDesignCourses();
+        List<AuditCompletedCourse> basicDesignCourses = createBasicDesignCourses();
 
-        List<CompletedCourse> elementDesignCourses = createElementDesignCourses();
-        List<CompletedCourse> elementDesignCourses1 = elementDesignCourses.subList(0, 2);
-        List<CompletedCourse> elementDesignCourses2 = elementDesignCourses.subList(2, 4);
+        List<AuditCompletedCourse> elementDesignCourses = createElementDesignCourses();
+        List<AuditCompletedCourse> elementDesignCourses1 = elementDesignCourses.subList(0, 2);
+        List<AuditCompletedCourse> elementDesignCourses2 = elementDesignCourses.subList(2, 4);
 
-        List<CompletedCourse> comprehensiveDesignCourses = createComprehensiveDesignCourses();
+        List<AuditCompletedCourse> comprehensiveDesignCourses = createComprehensiveDesignCourses();
 
         return Stream.of(
             Arguments.of(Stream.concat(Stream.concat(basicDesignCourses.stream(), elementDesignCourses1.stream()),
@@ -82,12 +81,12 @@ class DesignTest {
     }
 
     private static Stream<Arguments> provideSufficientBasicAndElementDesignCourseNotComprehensiveDesignCourse() {
-        List<CompletedCourse> basicDesignCourses = createBasicDesignCourses();
+        List<AuditCompletedCourse> basicDesignCourses = createBasicDesignCourses();
 
-        List<CompletedCourse> elementDesignCourses = createElementDesignCourses();
-        List<CompletedCourse> elementDesignCourses1 = elementDesignCourses.subList(0, 2);
-        List<CompletedCourse> elementDesignCourses2 = elementDesignCourses.subList(2, 4);
-        List<CompletedCourse> elementDesignCourses3 = elementDesignCourses.subList(4, 6);
+        List<AuditCompletedCourse> elementDesignCourses = createElementDesignCourses();
+        List<AuditCompletedCourse> elementDesignCourses1 = elementDesignCourses.subList(0, 2);
+        List<AuditCompletedCourse> elementDesignCourses2 = elementDesignCourses.subList(2, 4);
+        List<AuditCompletedCourse> elementDesignCourses3 = elementDesignCourses.subList(4, 6);
 
         return Stream.of(
             Arguments.of(Stream.concat(basicDesignCourses.stream(), elementDesignCourses1.stream()).toList()),

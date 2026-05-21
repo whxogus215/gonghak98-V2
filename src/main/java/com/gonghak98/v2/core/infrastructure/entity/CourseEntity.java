@@ -1,6 +1,6 @@
-package com.gonghak98.v2.report.infrastructure.entity;
+package com.gonghak98.v2.core.infrastructure.entity;
 
-import com.gonghak98.v2.report.domain.course.Course;
+import com.gonghak98.v2.core.domain.course.Course;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -2,9 +2,9 @@ package com.gonghak98.v2.report.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
-import com.gonghak98.v2.report.domain.counting.AreaCreditSummary;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.audit.domain.counting.AreaCreditSummary;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -88,14 +88,14 @@ public class ReportResponse {
         private double credit;
         private double designCredit;
 
-        public static RelatedCourseDto from(CompletedCourse completedCourse) {
+        public static RelatedCourseDto from(AuditCompletedCourse completedCourse) {
             return RelatedCourseDto.builder()
-                                   .courseCode(completedCourse.getCode())
-                                   .courseName(completedCourse.getName())
-                                   .year(completedCourse.getYear())
-                                   .semester(completedCourse.getSemester())
-                                   .credit(completedCourse.getCredit())
-                                   .designCredit(completedCourse.getDesignCredit())
+                                   .courseCode(completedCourse.code())
+                                   .courseName(completedCourse.name())
+                                   .year(completedCourse.year())
+                                   .semester(completedCourse.semester())
+                                   .credit(completedCourse.credit())
+                                   .designCredit(completedCourse.designCredit())
                                    .build();
         }
     }

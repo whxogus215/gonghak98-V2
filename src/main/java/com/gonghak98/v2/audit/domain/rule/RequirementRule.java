@@ -1,6 +1,6 @@
 package com.gonghak98.v2.audit.domain.rule;
 
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,8 @@ public class RequirementRule implements Rule {
     private final RuleType ruleType;
 
     @Override
-    public boolean isSatisfied(List<CompletedCourse> completedCourses) {
-        return ruleType.check(targetCourseCodes, conditionValue, completedCourses);
+    public boolean isSatisfied(List<AuditCompletedCourse> auditCompletedCourses) {
+        return ruleType.check(targetCourseCodes, conditionValue, auditCompletedCourses);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.gonghak98.v2.report.domain.course;
+package com.gonghak98.v2.core.domain.course;
 
 import java.util.Arrays;
 import lombok.Getter;

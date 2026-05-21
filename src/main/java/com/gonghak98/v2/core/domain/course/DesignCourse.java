@@ -1,4 +1,4 @@
-package com.gonghak98.v2.report.domain.course;
+package com.gonghak98.v2.core.domain.course;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +11,7 @@ public class DesignCourse {
     private final Course course;
 
     @Getter
-    private final double designPoint;
+    private final double designCredit;
 
     public boolean isEqual(String code) {
         return course.isEqual(code);

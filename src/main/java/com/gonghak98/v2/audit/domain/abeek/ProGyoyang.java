@@ -2,8 +2,8 @@ package com.gonghak98.v2.audit.domain.abeek;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.dto.AbeekAreaAuditResult;
-import com.gonghak98.v2.report.domain.course.Course;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
+import com.gonghak98.v2.core.domain.course.Course;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashSet;
@@ -35,10 +35,10 @@ public class ProGyoyang implements AbeekAuditable {
     }
 
     @Override
-    public AbeekAreaAuditResult audit(List<CompletedCourse> completedCourses) {
+    public AbeekAreaAuditResult audit(List<AuditCompletedCourse> completedCourses) {
         AbeekAreaAuditResult abeekAreaAuditResult = new AbeekAreaAuditResult(new EnumMap<>(AbeekType.class), Collections.emptyList());
         Set<String> completedCourseIds = completedCourses.stream()
-                                                         .map(CompletedCourse::getCode)
+                                                         .map(AuditCompletedCourse::code)
                                                          .collect(Collectors.toSet());
         double completedEssentialCredit = 0;
         double completedElectiveCredit = 0;

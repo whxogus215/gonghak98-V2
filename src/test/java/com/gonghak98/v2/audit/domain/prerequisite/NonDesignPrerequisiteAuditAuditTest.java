@@ -5,7 +5,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
-import com.gonghak98.v2.report.domain.student.CompletedCourse;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,22 +26,22 @@ class NonDesignPrerequisiteAuditAuditTest {
         @ParameterizedTest
         void 선후수_조건_검사1(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
+            AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
+            AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
             Map<String, String> prerequisiteCourseIds = new HashMap<>();
-            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
+            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
             NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(prerequisiteCourseIds);
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse, afterCourse));
 
             //then
-            assertThat(prerequisiteAuditResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.getCode(),
-                                                                                                  afterCourse.getName(),
-                                                                                                  afterCourse.getYear(),
-                                                                                                  afterCourse.getSemester(),
-                                                                                                  afterCourse.getCredit(),
+            assertThat(prerequisiteAuditResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.code(),
+                                                                                                  afterCourse.name(),
+                                                                                                  afterCourse.year(),
+                                                                                                  afterCourse.semester(),
+                                                                                                  afterCourse.credit(),
                                                                                                   NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                                 )
             );
@@ -64,21 +64,21 @@ class NonDesignPrerequisiteAuditAuditTest {
         @Test
         void 선후수_조건_검사1() {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").build();
+            AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").build();
+            AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").build();
 
-            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
+            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(
-                                                                              afterCourse.getCode(),
-                                                                              afterCourse.getName(),
-                                                                              afterCourse.getYear(),
-                                                                              afterCourse.getSemester(),
-                                                                              afterCourse.getCredit(),
+                                                                              afterCourse.code(),
+                                                                              afterCourse.name(),
+                                                                              afterCourse.year(),
+                                                                              afterCourse.semester(),
+                                                                              afterCourse.credit(),
                                                                               NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                           )
             );
@@ -89,21 +89,21 @@ class NonDesignPrerequisiteAuditAuditTest {
         @ParameterizedTest
         void 선후수_조건_검사2(int beforeYear, int beforeSemester, int afterYear, int afterSemester) {
             //given
-            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
+            AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
+            AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
-            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
+            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(
-                                                                              afterCourse.getCode(),
-                                                                              afterCourse.getName(),
-                                                                              afterCourse.getYear(),
-                                                                              afterCourse.getSemester(),
-                                                                              afterCourse.getCredit(),
+                                                                              afterCourse.code(),
+                                                                              afterCourse.name(),
+                                                                              afterCourse.year(),
+                                                                              afterCourse.semester(),
+                                                                              afterCourse.credit(),
                                                                               NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                           )
             );
@@ -116,21 +116,21 @@ class NonDesignPrerequisiteAuditAuditTest {
             int year = 2026;
             int semester = 1;
 
-            CompletedCourse beforeCourse = CompletedCourse.builder().code("000001").year(year).semester(semester).build();
-            CompletedCourse afterCourse = CompletedCourse.builder().code("000002").year(year).semester(semester).build();
+            AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").year(year).semester(semester).build();
+            AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").year(year).semester(semester).build();
 
-            prerequisiteCourseIds.put(afterCourse.getCode(), beforeCourse.getCode());
+            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse, afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(
-                                                                              afterCourse.getCode(),
-                                                                              afterCourse.getName(),
-                                                                              afterCourse.getYear(),
-                                                                              afterCourse.getSemester(),
-                                                                              afterCourse.getCredit(),
+                                                                              afterCourse.code(),
+                                                                              afterCourse.name(),
+                                                                              afterCourse.year(),
+                                                                              afterCourse.semester(),
+                                                                              afterCourse.credit(),
                                                                               NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                           )
             );

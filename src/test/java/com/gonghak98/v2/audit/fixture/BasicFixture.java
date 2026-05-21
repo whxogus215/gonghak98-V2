@@ -4,7 +4,7 @@ import com.gonghak98.v2.audit.domain.abeek.Basic;
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.rule.RequirementRule;
 import com.gonghak98.v2.audit.domain.rule.RuleType;
-import com.gonghak98.v2.report.domain.course.Course;
+import com.gonghak98.v2.core.domain.course.Course;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
