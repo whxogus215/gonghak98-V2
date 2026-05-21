@@ -26,11 +26,4 @@ public enum AbeekType {
                      .findFirst()
                      .orElse(null);
     }
-
-    public static AbeekType getByName(String name) {
-        return Arrays.stream(values())
-                     .filter(areaType -> areaType.detail.equals(name))
-                     .findFirst()
-                     .orElse(null);
-    }
 }
