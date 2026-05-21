@@ -28,7 +28,8 @@ import org.springframework.test.context.ActiveProfiles;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class JpaGonghakCourseRepositoryTest {
 
-    private final String testDepartmentName = "전자정보통신공학과";
+    private final String mscDepartmentName = "전자정보통신공학과";
+    private final String bsmDepartmentName = "소프트웨어학과";
 
     @Autowired
     private JpaDepartmentRepository jpaDepartmentRepository;
@@ -39,23 +40,26 @@ class JpaGonghakCourseRepositoryTest {
     @Autowired
     private JpaGonghakCourseRepository jpaGonghakCourseRepository;
 
-    private DepartmentEntity departmentEntity;
-
     @BeforeAll
     void setUp() {
-        departmentEntity = new DepartmentEntity(testDepartmentName);
-        jpaDepartmentRepository.save(departmentEntity);
+        DepartmentEntity mscDepartment = new DepartmentEntity(mscDepartmentName);
+        DepartmentEntity bsmDepartment = new DepartmentEntity(bsmDepartmentName);
+        jpaDepartmentRepository.save(mscDepartment);
+        jpaDepartmentRepository.save(bsmDepartment);
 
-        CourseEntity courseEntity = new CourseEntity("001234", "전문교양 과목", 3.0);
-        CourseEntity courseEntity2 = new CourseEntity("005678", "MSC 과목", 3.0);
+        CourseEntity gyoyangCourse = new CourseEntity("001234", "전문교양 과목", 3.0);
+        CourseEntity basicCourse = new CourseEntity("005678", "MSC/BSM 과목>", 3.0);
 
-        jpaCourseRepository.save(courseEntity);
-        jpaCourseRepository.save(courseEntity2);
+        jpaCourseRepository.save(gyoyangCourse);
+        jpaCourseRepository.save(basicCourse);
 
-        GonghakCourseEntity gonghakCourseEntity = new GonghakCourseEntity(departmentEntity, AbeekType.GYOYANG, CourseType.ESSENTIAL, courseEntity);
-        GonghakCourseEntity gonghakCourseEntity2 = new GonghakCourseEntity(departmentEntity, AbeekType.MSC, CourseType.ESSENTIAL, courseEntity2);
-        jpaGonghakCourseRepository.save(gonghakCourseEntity);
-        jpaGonghakCourseRepository.save(gonghakCourseEntity2);
+        GonghakCourseEntity gyoyangGonghakCourse = new GonghakCourseEntity(mscDepartment, AbeekType.GYOYANG, CourseType.ESSENTIAL, gyoyangCourse);
+        GonghakCourseEntity mscGonghakCourse = new GonghakCourseEntity(mscDepartment, AbeekType.MSC, CourseType.ESSENTIAL, basicCourse);
+        GonghakCourseEntity bsmGonghakCourse = new GonghakCourseEntity(bsmDepartment, AbeekType.BSM, CourseType.ESSENTIAL, basicCourse);
+
+        jpaGonghakCourseRepository.save(gyoyangGonghakCourse);
+        jpaGonghakCourseRepository.save(mscGonghakCourse);
+        jpaGonghakCourseRepository.save(bsmGonghakCourse);
     }
 
     @AfterAll
@@ -69,7 +73,7 @@ class JpaGonghakCourseRepositoryTest {
     @DisplayName("학과이름과 영역 타입으로 원하는 공학인증 과목을 조회할 수 있다.")
     void 공학인증_과목_엔티티_조회() {
         //given
-        final DepartmentEntity department = jpaDepartmentRepository.findByName(testDepartmentName)
+        final DepartmentEntity department = jpaDepartmentRepository.findByName(mscDepartmentName)
                                                                    .orElseThrow();
         //when
         final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findByDepartmentAndAbeekType(department, AbeekType.GYOYANG);
@@ -85,9 +89,27 @@ class JpaGonghakCourseRepositoryTest {
         List<String> courseCodes = List.of("001234", "005678");
 
         //when
-        final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findAllByDepartmentNameAndCourseCodeIn(testDepartmentName, courseCodes);
+        final List<GonghakCourseEntity> gonghakCourses = jpaGonghakCourseRepository.findAllByDepartmentNameAndCourseCodeIn(mscDepartmentName, courseCodes);
 
         //then
         assertThat(gonghakCourses).hasSize(2);
+    }
+
+    @Test
+    @DisplayName("같은 과목이라도 학과에 맞는 공학인증 과목을 조회한다.")
+    void 기이수_과목_코드로_공학인증_과목_엔티티_조회2() {
+        //given
+        List<String> courseCodes = List.of("005678");
+
+        //when
+        final List<GonghakCourseEntity> mscGonghakCourses = jpaGonghakCourseRepository.findAllByDepartmentNameAndCourseCodeIn(mscDepartmentName, courseCodes);
+        final List<GonghakCourseEntity> bsmGonghakCourses = jpaGonghakCourseRepository.findAllByDepartmentNameAndCourseCodeIn(bsmDepartmentName, courseCodes);
+
+        //then
+        assertThat(mscGonghakCourses).hasSize(1);
+        assertThat(mscGonghakCourses.get(0).getAbeekType()).isEqualTo(AbeekType.MSC);
+
+        assertThat(bsmGonghakCourses).hasSize(1);
+        assertThat(bsmGonghakCourses.get(0).getAbeekType()).isEqualTo(AbeekType.BSM);
     }
 }
