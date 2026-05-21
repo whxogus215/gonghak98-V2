@@ -6,6 +6,7 @@ import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.CourseAuditInfo;
 import com.gonghak98.v2.audit.domain.dto.QualificationResult;
 import com.gonghak98.v2.core.domain.course.CompletedCourse;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,9 @@ public class QualificationAuditService {
     private final QualificationAuditRepository qualificationAuditRepository;
 
     public QualificationResult getQualificationAudit(String departmentName, Short entranceYear, List<CompletedCourse> completedCourses) {
-
+        if (completedCourses == null || completedCourses.isEmpty()) {
+            return new QualificationResult(Collections.emptyMap(), Collections.emptyList(), Collections.emptyMap());
+        }
         Map<String, CourseAuditInfo> infos = qualificationAuditRepository.findCourseAuditInfos(completedCourses, departmentName);
 
         List<AuditCompletedCourse> auditCompletedCourses = completedCourses.stream()
