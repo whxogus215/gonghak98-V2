@@ -1,10 +1,9 @@
-package com.gonghak98.v2.report.infrastructure.factory;
+package com.gonghak98.v2.audit.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.constant.CourseType;
-import com.gonghak98.v2.audit.infrastructure.DesignRepository;
 import com.gonghak98.v2.core.infrastructure.entity.CourseEntity;
 import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.audit.infrastructure.entity.GonghakCourseEntity;

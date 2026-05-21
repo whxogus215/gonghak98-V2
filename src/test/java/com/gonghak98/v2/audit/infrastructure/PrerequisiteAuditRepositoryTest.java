@@ -1,8 +1,7 @@
-package com.gonghak98.v2.report.infrastructure.factory;
+package com.gonghak98.v2.audit.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import com.gonghak98.v2.audit.infrastructure.BasicRepository;
 import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.audit.infrastructure.entity.GonghakRequirementEntity;
 import com.gonghak98.v2.core.infrastructure.jpa.JpaDepartmentRepository;
@@ -19,13 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
-class BasicRepositoryTest {
+class PrerequisiteAuditRepositoryTest {
 
-    private final String testDepartmentName = "전자정보통신공학과";
     private final Short entranceYear = 2025;
 
     @Autowired
-    private BasicRepository basicRepository;
+    private PrerequisiteRepository prerequisiteRepository;
 
     @Autowired
     private JpaDepartmentRepository departmentRepository;
@@ -40,6 +38,7 @@ class BasicRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        String testDepartmentName = "전자정보통신공학과";
         department = departmentRepository.save(new DepartmentEntity(testDepartmentName));
 
         entityManager.createNativeQuery(
@@ -54,14 +53,16 @@ class BasicRepositoryTest {
     }
 
     @Test
-    @DisplayName("세부요건 JSON 데이터를 조회하여 MSC 영역 검사 객체를 생성할 수 있다.")
+    @DisplayName("세부요건 JSON 데이터를 조회하여 선후수 검사 객체를 생성할 수 있다.")
     void createTest() {
         //given
         final GonghakRequirementEntity findRequirement = gonghakRequirementRepository.findByDepartmentAndEntranceYear(department, entranceYear)
                                                                                      .orElseThrow();
 
         //when & then
-        assertThatCode(() -> basicRepository.create(department, findRequirement.getDetail().getBasicRequirement())).doesNotThrowAnyException();
+        assertThatCode(() -> prerequisiteRepository.create(department,
+                                                           findRequirement.getDetail().getPrerequisiteRequirement()))
+            .doesNotThrowAnyException();
     }
 
     private String createDetailJson() {
@@ -75,32 +76,20 @@ class BasicRepositoryTest {
               },
               "basicRequirement": {
                 "minCredit": 30,
-                "components": [
-                       {
-                         "name": "msdBasic",
-                         "description": "주어진 MSC 과목 모두 이수",
-                         "ruleType": "MUST_TAKE_ALL",
-                         "conditionValue": 9,
-                         "targetCourses": [
-                           "011300",
-                           "007330",
-                           "009912",
-                           "001357",
-                           "000304",
-                           "009913",
-                           "001725",
-                           "011320",
-                           "011678"
-                         ]
-                       }
-                     ]
+                "components": [ ]
               },
               "majorRequirement": {
                 "minCredit": 45,
                 "components": [ ]
               },
               "prerequisiteRequirement": {
-                "targetCourses": [ ]
+                "targetCourses": [
+                  { "afterCode": "004111", "beforeCode": "001357" },
+                  { "afterCode": "007722", "beforeCode": "007453" },
+                  { "afterCode": "009659", "beforeCode": "009649" },
+                  { "afterCode": "004600", "beforeCode": "005246" },
+                  { "afterCode": "004474", "beforeCode": "005246" }
+                ]
               }
             }
             """;

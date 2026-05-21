@@ -1,8 +1,7 @@
-package com.gonghak98.v2.report.infrastructure.factory;
+package com.gonghak98.v2.audit.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import com.gonghak98.v2.audit.infrastructure.PrerequisiteRepository;
 import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
 import com.gonghak98.v2.audit.infrastructure.entity.GonghakRequirementEntity;
 import com.gonghak98.v2.core.infrastructure.jpa.JpaDepartmentRepository;
@@ -19,12 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
-class PrerequisiteAuditRepositoryTest {
+class MajorRepositoryTest {
 
+    private final String testDepartmentName = "전자정보통신공학과";
     private final Short entranceYear = 2025;
 
     @Autowired
-    private PrerequisiteRepository prerequisiteRepository;
+    private MajorRepository majorRepository;
 
     @Autowired
     private JpaDepartmentRepository departmentRepository;
@@ -39,7 +39,6 @@ class PrerequisiteAuditRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        String testDepartmentName = "전자정보통신공학과";
         department = departmentRepository.save(new DepartmentEntity(testDepartmentName));
 
         entityManager.createNativeQuery(
@@ -54,16 +53,14 @@ class PrerequisiteAuditRepositoryTest {
     }
 
     @Test
-    @DisplayName("세부요건 JSON 데이터를 조회하여 선후수 검사 객체를 생성할 수 있다.")
+    @DisplayName("세부요건 JSON 데이터를 조회하여 전공영역 검사 객체를 생성할 수 있다.")
     void createTest() {
         //given
         final GonghakRequirementEntity findRequirement = gonghakRequirementRepository.findByDepartmentAndEntranceYear(department, entranceYear)
                                                                                      .orElseThrow();
 
         //when & then
-        assertThatCode(() -> prerequisiteRepository.create(department,
-                                                           findRequirement.getDetail().getPrerequisiteRequirement()))
-            .doesNotThrowAnyException();
+        assertThatCode(() -> majorRepository.create(findRequirement.getDetail().getMajorRequirement())).doesNotThrowAnyException();
     }
 
     private String createDetailJson() {
@@ -81,16 +78,32 @@ class PrerequisiteAuditRepositoryTest {
               },
               "majorRequirement": {
                 "minCredit": 45,
-                "components": [ ]
+                "components": [
+                  {
+                    "name": "labMajor",
+                    "description": "전공실험 최소 1과목 이수",
+                    "ruleType": "MIN_COUNT",
+                    "conditionValue": 1,
+                    "targetCourses": ["005611", "009658", "008076", "009666"]
+                  },
+                  {
+                    "name": "generalMajor",
+                    "description": "일반전공 최소 24학점 이수",
+                    "ruleType": "MIN_CREDIT",
+                    "conditionValue": 24,
+                    "targetCourses": ["004114", "005246", "007620", "004111", "007453", "004474", "009649"]
+                  },
+                  {
+                    "name": "mandatoryMajor",
+                    "description": "필수 전공 모두 이수 (요구 과목 개수와 동일하게 조건 설정)",
+                    "ruleType": "MUST_TAKE_ALL",
+                    "conditionValue": 3,
+                    "targetCourses": ["001001", "001002", "001003"]
+                  }
+                ]
               },
               "prerequisiteRequirement": {
-                "targetCourses": [
-                  { "afterCode": "004111", "beforeCode": "001357" },
-                  { "afterCode": "007722", "beforeCode": "007453" },
-                  { "afterCode": "009659", "beforeCode": "009649" },
-                  { "afterCode": "004600", "beforeCode": "005246" },
-                  { "afterCode": "004474", "beforeCode": "005246" }
-                ]
+                "targetCourses": [ ]
               }
             }
             """;
