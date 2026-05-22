@@ -68,7 +68,7 @@ public class BasicFixture {
                              new RequirementRule(
                                  "MSC_MIN_CREDIT",
                                  Stream.concat(essentialCourses.stream(), electiveCourses.stream()).map(Course::getCode).collect(Collectors.toSet()),
-                                 1,
+                                 27,
                                  RuleType.MIN_CREDIT
                              )
                          ),
@@ -78,14 +78,11 @@ public class BasicFixture {
     public static Basic 소프트웨어학과_BASIC_생성() {
         Set<Course> essentialCourses = Set.of(
             Course.builder().code("001357").name("미적분학1").build(),
-            Course.builder().code("001725").name("선형대수").build(),
             Course.builder().code("007330").name("확률및통계").build(),
-            Course.builder().code("009912").name("C프로그래밍및실습").build(),
-            Course.builder().code("009913").name("고급C프로그래밍및실습").build(),
-            Course.builder().code("011300").name("고급프로그래밍활용").build(),
-            Course.builder().code("011320").name("인공지능과빅데이터").build(),
-            Course.builder().code("011678").name("기초전자물리").build(),
-            Course.builder().code("010224").name("창의SW기초설계").build()
+            Course.builder().code("000304").name("공업수학1").build(),
+            Course.builder().code("001725").name("선형대수").build(),
+            Course.builder().code("010206").name("일반물리및시뮬레이션").build(),
+            Course.builder().code("009955").name("이산수학및프로그래밍").build()
         );
 
         return new Basic(AbeekType.BSM,
@@ -95,6 +92,6 @@ public class BasicFixture {
                              essentialCourses.size(),
                              RuleType.MUST_TAKE_ALL
                          )),
-                         27);
+                         18);
     }
 }
