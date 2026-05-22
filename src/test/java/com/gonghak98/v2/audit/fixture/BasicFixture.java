@@ -8,7 +8,6 @@ import com.gonghak98.v2.core.domain.course.Course;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class BasicFixture {
 
@@ -64,12 +63,6 @@ public class BasicFixture {
                                  electiveCourses.stream().map(Course::getCode).collect(Collectors.toSet()),
                                  1,
                                  RuleType.MIN_COUNT
-                             ),
-                             new RequirementRule(
-                                 "MSC_MIN_CREDIT",
-                                 Stream.concat(essentialCourses.stream(), electiveCourses.stream()).map(Course::getCode).collect(Collectors.toSet()),
-                                 27,
-                                 RuleType.MIN_CREDIT
                              )
                          ),
                          27);

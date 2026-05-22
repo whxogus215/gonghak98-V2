@@ -20,7 +20,13 @@ public class Basic implements AbeekAuditable {
     public AbeekAreaAuditResult audit(List<AuditCompletedCourse> courses) {
         boolean isSatisfied = rules.stream()
                                    .allMatch(rule -> rule.isSatisfied(courses));
-        return new AbeekAreaAuditResult(Map.of(abeekType, isSatisfied), Collections.emptyList());
+
+        double totalCredit = courses.stream()
+                                    .filter(course -> course.abeekType() == this.abeekType)
+                                    .mapToDouble(AuditCompletedCourse::credit)
+                                    .sum();
+
+        return new AbeekAreaAuditResult(Map.of(abeekType, isSatisfied && (totalCredit >= minCredit)), Collections.emptyList());
     }
 
     @Override
