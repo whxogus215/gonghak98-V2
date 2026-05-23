@@ -43,6 +43,8 @@ out/
 *.properties
 
 src/main/resources/static/docs
+src/main/resources/csv/new
+src/main/resources/json/requirements/new
 src/main/resources/db/migration-*
 src/test/resources/file
 

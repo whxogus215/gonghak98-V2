@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'csv')
+CSV_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'csv', 'new')
 
 MIGRATION_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'db',
                              'migration')
@@ -140,7 +140,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
   # 4. 공학인증 요건 (GonghakRequirement JSON) 변환
   sql_file.write("-- [4] gonghak_requirement 테이블 적재\n")
   JSON_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'json',
-                          'requirements')
+                          'requirements', 'new')
   if os.path.exists(JSON_DIR):
     # 학과 폴더들 순회
     for dept_name in os.listdir(JSON_DIR):
