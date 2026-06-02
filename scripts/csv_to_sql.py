@@ -10,8 +10,8 @@ MIGRATION_DIR = os.path.join(BASE_DIR, 'src', 'main', 'resources', 'db',
                              'migration')
 os.makedirs(MIGRATION_DIR, exist_ok=True)
 
-version = datetime.now().strftime("%Y%m%d_%H%M%S")
-sql_filename = f"V{version}__init_master_data.sql"
+# version = datetime.now().strftime("%Y%m%d_%H%M%S")
+sql_filename = f"V2.2.3__add_sw_2020_2025.sql"
 sql_filepath = os.path.join(MIGRATION_DIR, sql_filename)
 
 ABEEK_MAP = {
@@ -50,7 +50,7 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
   sql_file.write("\n")
 
   # 2. 과목 INSERT SQL 변환
-  sql_file.write("-- [2] course 테이블\n")
+  # sql_file.write("-- [2] course 테이블\n")
   course_files = glob.glob(os.path.join(CSV_DIR, 'course', '*.csv'))
   # 파일명 기준 내림차순 정렬 (최신 학기 파일이 먼저 처리되도록)
   course_files.sort(reverse=True)
@@ -74,11 +74,11 @@ with open(sql_filepath, 'w', encoding='utf-8') as sql_file:
         course_codes.add(course_code)
         valid_course_names.add(course_name)
 
-        sql_file.write(
-          f"INSERT INTO course (code, name, credit) "
-          f"VALUES ('{course_code}', '{course_name}', {credit});\n"
-        )
-  sql_file.write("\n")
+        # sql_file.write(
+        #   f"INSERT INTO course (code, name, credit) "
+        #   f"VALUES ('{course_code}', '{course_name}', {credit});\n"
+        # )
+  # sql_file.write("\n")
 
   # 3-1. 공학인증 과목명과 실제 강의명과 일치하는지 사전 검증
   print("🔍 데이터 정합성 검사를 시작합니다...")
