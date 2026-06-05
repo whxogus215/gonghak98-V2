@@ -19,3 +19,10 @@
 
 본 서비스는 비회원제로 운영되며, 사용자의 학사정보 ID/PW를 입력받지 않습니다. 따라서 [학사정보시스템](https://portal.sejong.ac.kr/jsp/login/loginSSL.jsp?rtUrl=portal.sejong.ac.kr/comm/member/user/ssoLoginProc.do)에서 기이수 성적표를 다운받아야 합니다.
 > 기이수 성적표에는 사용자의 학사정보가 기록되어 있지 않으며, 본 서비스도 성적표에 기재된 과목 데이터만을 추출하여 사용합니다.
+
+## AWS 아키텍처 & ERD
+<img src="doc/AWS.png" width="800">
+<img src="doc/ERD.png" width="400">
+
+## API 문서(Spring Rest Docs)
+- https://gonghak98.com/docs/index.html
