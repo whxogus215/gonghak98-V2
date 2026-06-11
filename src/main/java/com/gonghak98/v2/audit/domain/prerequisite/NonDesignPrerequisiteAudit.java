@@ -15,35 +15,39 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NonDesignPrerequisiteAudit implements PrerequisiteAuditable {
 
-    private final Map<String, String> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드
+    private final Map<String, List<String>> prerequisiteCourseCodes; // Key : 후수과목 코드, Value : 선수과목 코드 리스트
 
     @Override
-    public PrerequisiteAuditResult audit(List<AuditCompletedCourse> courses) {
+    public PrerequisiteAuditResult audit(List<AuditCompletedCourse> completedCourses) {
         PrerequisiteAuditResult prerequisiteAuditResult = new PrerequisiteAuditResult(new EnumMap<>(AbeekType.class), new ArrayList<>());
         List<NonPassResult> nonPassResults = prerequisiteAuditResult.nonPassResults();
-        Map<String, AuditCompletedCourse> completedCourseTable = courses.stream()
-                                                                        .collect(Collectors.toMap(
-                                                                            AuditCompletedCourse::code,
-                                                                            c -> c,
-                                                                            (c1, c2) -> c1.compareTo(c2) <= 0 ? c2 : c1));
-
-        for (AuditCompletedCourse afterCourse : courses) {
-            String afterCourseCode = afterCourse.code();
-            String beforeCourseCode = prerequisiteCourseCodes.get(afterCourseCode);
-            if (beforeCourseCode == null) {
+        Map<String, AuditCompletedCourse> completedCourseTable = completedCourses.stream()
+                                                                                 .collect(Collectors.toMap(
+                                                                                     AuditCompletedCourse::code,
+                                                                                     c -> c,
+                                                                                     (c1, c2) -> c1.compareTo(c2) <= 0 ? c2 : c1));
+        for (AuditCompletedCourse completedAfterCourse : completedCourses) {
+            String afterCourseCode = completedAfterCourse.code();
+            boolean isPassed = true;
+            List<String> mustBeforeCourseCodes = prerequisiteCourseCodes.get(afterCourseCode);
+            if (mustBeforeCourseCodes == null || mustBeforeCourseCodes.isEmpty()) {
                 continue;
             }
-            if (completedCourseTable.containsKey(beforeCourseCode)) {
-                AuditCompletedCourse beforeCourse = completedCourseTable.get(beforeCourseCode);
-                if (!PrerequisiteChecker.isSatisfiedPrerequisite(beforeCourse, afterCourse)) {
-                    nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
-                    prerequisiteAuditResult.passResults().put(afterCourse.abeekType(), Boolean.FALSE);
+            for (String mustBeforeCourseCode : mustBeforeCourseCodes) {
+                if (isPrerequisiteFailed(mustBeforeCourseCode, completedAfterCourse, completedCourseTable)) {
+                    nonPassResults.add(NonPassResult.of(completedAfterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
+                    isPassed = false;
+                    break;
                 }
-            } else {
-                nonPassResults.add(NonPassResult.of(afterCourse, NonPassMessage.NOT_SATISFIED_PREREQUISITE));
-                prerequisiteAuditResult.passResults().put(afterCourse.abeekType(), Boolean.FALSE);
             }
+            prerequisiteAuditResult.passResults().put(completedAfterCourse.abeekType(), isPassed);
         }
         return prerequisiteAuditResult;
+    }
+
+    private boolean isPrerequisiteFailed(String mustBeforeCourseCode, AuditCompletedCourse afterCourse, Map<String, AuditCompletedCourse> completedCourseTable) {
+        AuditCompletedCourse completedBeforeCourse = completedCourseTable.get(mustBeforeCourseCode);
+
+        return completedBeforeCourse == null || !PrerequisiteChecker.isSatisfiedPrerequisite(completedBeforeCourse, afterCourse);
     }
 }

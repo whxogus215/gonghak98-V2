@@ -3,9 +3,9 @@ package com.gonghak98.v2.audit.domain.prerequisite;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import com.gonghak98.v2.audit.domain.constant.NonPassMessage;
+import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import com.gonghak98.v2.audit.domain.dto.NonPassResult;
 import com.gonghak98.v2.audit.domain.dto.PrerequisiteAuditResult;
-import com.gonghak98.v2.audit.domain.dto.AuditCompletedCourse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +29,8 @@ class NonDesignPrerequisiteAuditAuditTest {
             AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
             AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
-            Map<String, String> prerequisiteCourseIds = new HashMap<>();
-            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
+            Map<String, List<String>> prerequisiteCourseIds = new HashMap<>();
+            prerequisiteCourseIds.put(afterCourse.code(), List.of(beforeCourse.code()));
             NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(prerequisiteCourseIds);
 
             //when
@@ -43,15 +43,40 @@ class NonDesignPrerequisiteAuditAuditTest {
                                                                                                   afterCourse.semester(),
                                                                                                   afterCourse.credit(),
                                                                                                   NonPassMessage.NOT_SATISFIED_PREREQUISITE
+            )).isEmpty();
+        }
+
+        @DisplayName("필수 선수과목이 2개일 때, 모두 후수 과목보다 먼저 들었을 때")
+        @Test
+        void 선후수_조건_검사2() {
+            //given
+            AuditCompletedCourse beforeCourse1 = AuditCompletedCourse.builder().code("000001").year(2025).semester(1).build();
+            AuditCompletedCourse beforeCourse2 = AuditCompletedCourse.builder().code("000002").year(2025).semester(2).build();
+            AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000003").year(2026).semester(1).build();
+
+            Map<String, List<String>> prerequisiteCourseIds = new HashMap<>();
+            prerequisiteCourseIds.put(afterCourse.code(), List.of(beforeCourse1.code(), beforeCourse2.code()));
+            NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(prerequisiteCourseIds);
+
+            //when
+            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse1, beforeCourse2, afterCourse));
+
+            //then
+            assertThat(prerequisiteAuditResult.nonPassResults()).doesNotContain(new NonPassResult(afterCourse.code(),
+                                                                                                  afterCourse.name(),
+                                                                                                  afterCourse.year(),
+                                                                                                  afterCourse.semester(),
+                                                                                                  afterCourse.credit(),
+                                                                                                  NonPassMessage.NOT_SATISFIED_PREREQUISITE
                                                                                 )
-            );
+            ).isEmpty();
         }
     }
 
     @Nested
     class 선후수_조건을_만족하지_않는_경우 {
 
-        private Map<String, String> prerequisiteCourseIds;
+        private Map<String, List<String>> prerequisiteCourseIds;
         private NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit;
 
         @BeforeEach
@@ -67,7 +92,7 @@ class NonDesignPrerequisiteAuditAuditTest {
             AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").build();
             AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").build();
 
-            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
+            prerequisiteCourseIds.put(afterCourse.code(), List.of(beforeCourse.code()));
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(afterCourse));
@@ -92,7 +117,7 @@ class NonDesignPrerequisiteAuditAuditTest {
             AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").year(beforeYear).semester(beforeSemester).build();
             AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").year(afterYear).semester(afterSemester).build();
 
-            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
+            prerequisiteCourseIds.put(afterCourse.code(), List.of(beforeCourse.code()));
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(afterCourse));
@@ -119,10 +144,35 @@ class NonDesignPrerequisiteAuditAuditTest {
             AuditCompletedCourse beforeCourse = AuditCompletedCourse.builder().code("000001").year(year).semester(semester).build();
             AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000002").year(year).semester(semester).build();
 
-            prerequisiteCourseIds.put(afterCourse.code(), beforeCourse.code());
+            prerequisiteCourseIds.put(afterCourse.code(), List.of(beforeCourse.code()));
 
             //when
             PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse, afterCourse));
+
+            //then
+            assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(
+                                                                              afterCourse.code(),
+                                                                              afterCourse.name(),
+                                                                              afterCourse.year(),
+                                                                              afterCourse.semester(),
+                                                                              afterCourse.credit(),
+                                                                              NonPassMessage.NOT_SATISFIED_PREREQUISITE
+                                                                          )
+            );
+        }
+
+        @DisplayName("필수 선수 과목이 2개 이상일 때, 한 개라도 선후수 조건을 만족하지 못했을 때")
+        @Test
+        void 선후수_조건_검사4() {
+            //given
+            AuditCompletedCourse beforeCourse1 = AuditCompletedCourse.builder().code("000001").year(2025).semester(1).build();
+            AuditCompletedCourse beforeCourse2 = AuditCompletedCourse.builder().code("000002").year(2026).semester(2).build();
+            AuditCompletedCourse afterCourse = AuditCompletedCourse.builder().code("000003").year(2026).semester(1).build();
+
+            prerequisiteCourseIds.put(afterCourse.code(), List.of(beforeCourse1.code(), beforeCourse2.code()));
+
+            //when
+            PrerequisiteAuditResult prerequisiteAuditResult = nonDesignPrerequisiteAudit.audit(List.of(beforeCourse1, beforeCourse2, afterCourse));
 
             //then
             assertThat(prerequisiteAuditResult.nonPassResults()).contains(new NonPassResult(

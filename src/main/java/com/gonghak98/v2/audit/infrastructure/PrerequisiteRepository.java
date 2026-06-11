@@ -4,15 +4,17 @@ import com.gonghak98.v2.audit.domain.constant.AbeekType;
 import com.gonghak98.v2.audit.domain.prerequisite.DesignPrerequisiteAudit;
 import com.gonghak98.v2.audit.domain.prerequisite.NonDesignPrerequisiteAudit;
 import com.gonghak98.v2.audit.domain.prerequisite.PrerequisiteAudit;
+import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteComponent;
+import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteRequirement;
 import com.gonghak98.v2.audit.infrastructure.entity.GonghakCourseEntity;
 import com.gonghak98.v2.audit.infrastructure.jpa.JpaGonghakCourseRepository;
 import com.gonghak98.v2.core.infrastructure.entity.DepartmentEntity;
-import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteComponent;
-import com.gonghak98.v2.audit.infrastructure.dto.RequirementDetail.PrerequisiteRequirement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,13 +25,12 @@ public class PrerequisiteRepository {
     private final JpaGonghakCourseRepository gonghakCourseRepository;
 
     public PrerequisiteAudit create(final DepartmentEntity department, PrerequisiteRequirement requirement) {
-        NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(requirement.getTargetCourses()
-                                                                                                          .stream()
-                                                                                                          .collect(Collectors.toMap(
-                                                                                               PrerequisiteComponent::getAfterCode,
-                                                                                               PrerequisiteComponent::getBeforeCode
-                                                                                           ))
-        );
+        Map<String, List<String>> nonDesignPrerequisiteCourseCodes = new HashMap<>();
+        for (PrerequisiteComponent prerequisiteComponent : requirement.getTargetCourses()) {
+            nonDesignPrerequisiteCourseCodes.computeIfAbsent(prerequisiteComponent.getAfterCode(), k -> new ArrayList<>())
+                                            .add(prerequisiteComponent.getBeforeCode());
+        }
+        NonDesignPrerequisiteAudit nonDesignPrerequisiteAudit = new NonDesignPrerequisiteAudit(nonDesignPrerequisiteCourseCodes);
 
         final List<GonghakCourseEntity> findDesignCourses = gonghakCourseRepository.findByDepartmentAndAbeekType(department, AbeekType.DESIGN);
         final DesignPrerequisiteAudit designPrerequisiteAudit = getDesignPrerequisite(findDesignCourses);
